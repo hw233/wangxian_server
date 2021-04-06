@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<foo>		
+	<pool name="hero" default="true">
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<url>jdbc:oracle:thin:@211.179.174.50:1521:ora10g</url>
+			<user>hero</user>
+			<password>1qazxsw2</password>
+			<max-connection>30</max-connection>
+			<idle-timeout unit="s">600</idle-timeout>
+			<checkout-timeout unit="s">600</checkout-timeout>
+			<dump-limit unit="ms">500</dump-limit>
+	</pool>
+</foo>

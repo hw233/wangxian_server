@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+	<title>功能模块管理</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="json2.js"></script>
+<script type="text/javascript">
+ 	  function check(){
+	    /* var xmlHttp;     
+         try{   
+             // Firefox, Opera 8.0+, Safari   
+             xmlHttp=new XMLHttpRequest();  
+         }catch (e){     // Internet Explorer   
+              try{  
+                    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP"); 
+                 }catch (e){   
+                 try{  
+                     xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");  
+                    }catch (e){    
+                       alert("不支持AJAX");     
+                      return false;    
+                      }        
+                }     
+           }   
+            var rid= document.getElementById("rid").value;
+            var mid= document.getElementById("mid").value;
+            var str = "http://221.179.174.53:8888/game_boss/check.sq?rid="+rid+"&mid="+mid;
+           // alert(xmlHttp);
+            xmlHttp.onreadystatechange=function(){  
+              if(xmlHttp.readyState==4){   
+              //alert(1);
+                  //document.myForm.name.value=xmlHttp.ResponseText;   
+                  alert(xmlHttp.responseText);
+                 }  
+                }
+           xmlHttp.open("GET",str,true);
+           xmlHttp.send(null);*/
+           var rid= document.getElementById("rid").value;
+            var mid= document.getElementById("mid").value;
+           
+            $.getJSON("http://221.179.174.53:8888/game_boss/check.sq?format=text&mid="+mid+"&rid="+rid+"&jsoncallback=?",function(json){
+   					alert(json);
+					//var res =JSON.parse(decodeURI(json));
+					//alert(res);
+			       // alert(res.result);
+      });
+	  }
+	  
+	 	  
+</script>
+	</head>
+	<body bgcolor="#FFFFFF">
+		<h1 >
+			测试检查权限
+		</h1>
+		<form>
+			<table>
+				<tr>
+					<th>
+						角色ID
+					</th>
+					<td>
+						<input name='rid' id='rid' type='text' />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						模块ID
+					</th>
+					<td>
+						<input name='mid' id='mid' type='text' />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="button" onclick="check();" value="检测" />
+					</td>
+				</tr>
+			</table>
+
+		</form>
+
+	</body>
+</html>

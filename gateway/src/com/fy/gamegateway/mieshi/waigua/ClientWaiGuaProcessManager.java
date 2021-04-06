@@ -1,0 +1,51 @@
+package com.fy.gamegateway.mieshi.waigua;
+
+public class ClientWaiGuaProcessManager {
+
+	public static String[] waiGuaProcessNames = new String[]{
+		"飘渺寻仙曲ForJ2,org.cocos2dx.tests",
+		"飘渺寻仙曲ForJ1,org.cocos2dx.tests",
+		"飘渺寻仙曲ForXK,org.cocos2dx.tests",
+		"飘渺寻仙曲X,org.cocos2dx.tests",
+		"脚本",
+		"小浪飘渺寻仙曲",
+		"HuoG,cn.xiaolin", 
+		"me.onemobile.android",
+		"com.android.moplayer",
+		"com.wangxianjb.evan_config",
+		"大大脚,com.tencent.qqmusic",
+		"变形版",
+		"变形版3.0.1,com.baidu.input",
+		"变形版2.1.4,com.baidu.input",
+		"变形版2.1.5,com.baidu.input",
+		"变形版2.1.7,com.baidu.input",
+		"com.xl.wxconfig",
+		"com.mobileagent.service",
+		"org.sbtools.gamehack",
+		"getjar.android.client:GetJarWatchDogService",
+		"org.trans.trans",
+		"org.solo.Trans",
+		"bluestacks",
+		"com.selang",
+		"net.aisence.Touchelper",
+		"com.xl.wxconfig",
+		"com.touchscripts.wxhanhua",
+		"org.evan.evan",
+		"org.evan.elf",
+		"com.wwangxianjb.evan_config",
+		"org.onaips.vnc",
+		"com.cih.game_cih",
+		"com.cih.gamecih2",
+		"com.mh.bmsq",
+		"org.sbtools.gamehack",
+		"cn.mc1.sq",
+		"idv.aqua.bulldog",
+		"cn.mc.sq",
+		"com.android.xxx",
+		"com.saitesoft.gamecheater",
+		"com.muzhiwan.gamehelper.memorymanager",
+		"com.company.appname",
+		"com.sjwyb.patchvendo"
+	};
+	
+}

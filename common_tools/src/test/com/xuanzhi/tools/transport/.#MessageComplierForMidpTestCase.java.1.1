@@ -1,0 +1,342 @@
+package com.xuanzhi.tools.transport;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.w3c.dom.Document;
+
+import junit.framework.*;
+import com.xuanzhi.tools.text.*;
+
+public class MessageComplierForMidpTestCase extends TestCase{
+
+	Object ssss = new Object(){};
+	
+	public MessageComplierForMidpTestCase(){
+		super();
+	}
+	
+	public void testBBBB(){
+		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+		int a = 5;
+		map.put(a, a);
+		
+		Integer b = new Integer(5);
+		
+		System.out.println("========================= b =" + map.get(b));
+	}
+	
+	public void testAAAA(){
+		
+		int a[] = new int[]{5,5,5,5,5,5,5,6,5,5,5,5,5,5};
+		int count[] = new int[a.length];
+		int mm = 10000;
+		for(int i = 0 ; i < mm ; i++){
+			int b[] = new int[a.length];
+			for(int j = 0 ; j < a.length ; j++){
+				b[j] = (int)(Math.random() * a[j]);
+			}
+			
+			int k = -1;
+			int value = -1;
+			for(int j = 0 ; j < b.length ; j++){
+				if(b[j] > value){
+					value = b[j];
+				}
+			}
+			ArrayList<Integer> al = new ArrayList<Integer>();
+			for(int j = 0 ; j < b.length ; j++){
+				if(b[j] == value){
+					al.add(j);
+				}
+			}
+			
+			k = al.get((int)(al.size() * Math.random()));
+			
+			
+			count[k]++;
+			
+		}
+		
+		int t = 0;
+		for(int i = 0 ; i < a.length ; i++){
+			t+= a[i];
+		}
+		
+		for(int i = 0 ; i < a.length ; i++){
+			
+			System.out.println("a["+i+"] = " + a[i]+"," + (count[i]*100.0/mm)+"% ,,, " + (a[i]*100.0/t)+"%");
+		}
+	}
+	
+	/*
+	
+	public void testGenerateMessageFactory() throws Exception{
+		HashMap<String,String> env = new HashMap<String,String>(); 
+		env.put("package", "com.xuanzhi.tools.transport.message");
+		env.put("imports", "com.xuanzhi.tools.transport.message.*");
+		MessageComplierForMidp mc = new MessageComplierForMidp(env);
+		String domContent = "<prototypes version=\"1.0\" author=\"myzdf\">\n";
+		domContent += "\t<factory name=\"GameMessageFactory\"/>";
+		domContent += "\t<handler name=\"GameMessageHandler\"/>";
+		domContent += "\t<verification name=\"MD5\" a=\"0x12374834\" b=\"0xfe34b384\" c=\"0x243948e\" d=\"0x45838f4\"/>";
+		
+		domContent += "\t<prototype req_name=\"ACTIVE_TEST_REQ\" res_name=\"ACTIVE_TEST_RES\""; 
+		domContent += "\treq_type=\"0x00000002\" res_type=\"0x80000002\" req_client_recieve=\"true\" res_client_send=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+	
+		domContent += "\t<prototype req_name=\"ENTER_GAME_REQ\" res_name=\"ENTER_GAME_RES\""; 
+		domContent += "\treq_type=\"0x00000003\" res_type=\"0x80000003\" req_client_send=\"true\" res_client_receive=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+		
+		domContent += "</prototypes>";
+		
+		Document dom = XmlUtil.loadStringWithoutTitle(domContent);
+		
+		StringBuffer sb = mc.generateFactory(dom);
+		
+		System.out.println(sb);
+		
+	}
+	
+	public void testGenerateMessageHandler() throws Exception{
+		HashMap<String,String> env = new HashMap<String,String>(); 
+		env.put("package", "com.xuanzhi.tools.transport.message");
+		env.put("imports", "com.xuanzhi.tools.transport.message.*");
+		MessageComplierForMidp mc = new MessageComplierForMidp(env);
+		String domContent = "<prototypes version=\"1.0\" author=\"myzdf\">\n";
+		domContent += "\t<factory name=\"GameMessageFactory\"/>";
+		domContent += "\t<handler name=\"GameMessageHandler\"/>";
+		domContent += "\t<verification name=\"MD5\" a=\"0x12374834\" b=\"0xfe34b384\" c=\"0x243948e\" d=\"0x45838f4\"/>";
+		
+		domContent += "\t<prototype req_name=\"ACTIVE_TEST_REQ\" res_name=\"ACTIVE_TEST_RES\""; 
+		domContent += "\treq_type=\"0x00000002\" res_type=\"0x80000002\" req_client_recieve=\"true\" res_client_send=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+	
+		domContent += "\t<prototype req_name=\"ENTER_GAME_REQ\" res_name=\"ENTER_GAME_RES\""; 
+		domContent += "\treq_type=\"0x00000003\" res_type=\"0x80000003\" req_client_send=\"true\" res_client_receive=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+		
+		domContent += "</prototypes>";
+		
+		Document dom = XmlUtil.loadStringWithoutTitle(domContent);
+		
+		StringBuffer sb = mc.generateMessageHandler(dom);
+		
+		System.out.println(sb);
+		
+		
+		
+	}
+	
+	*/
+	
+	public void testComplie() throws Exception{
+		HashMap<String,String> env = new HashMap<String,String>(); 
+		env.put("package", "com.xuanzhi.tools.transport.message");
+		env.put("imports", "java.nio.ByteBuffer;com.xuanzhi.tools.transport.*");
+		env.put("version", "1.0");
+		env.put("classes", "com.xuanzhi.tools.transport.Sprite");
+		env.put("output.dir", "./src/test/com/xuanzhi/tools/transport/message");
+		
+		//MessageComplierForMidp mc = new MessageComplierForMidp(env);
+		String domContent = "<prototypes version=\"1.0\" author=\"myzdf\">\n";
+		domContent += "\t<factory name=\"GameMessageFactory\"/>";
+		domContent += "\t<handler name=\"GameMessageHandler\"/>";
+		domContent += "\t<verification name=\"MD5\" a=\"0x12374834\" b=\"0xfe34b384\" c=\"0x243948e\" d=\"0x45838f4\"/>";
+		
+		domContent += "\t<prototype req_name=\"ACTIVE_TEST_REQ\" res_name=\"ACTIVE_TEST_RES\""; 
+		domContent += "\treq_type=\"0x00000002\" res_type=\"0x80000002\" req_client_receive=\"true\" res_client_send=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+	
+		domContent += "\t<prototype req_name=\"ENTER_GAME_REQ\" res_name=\"ENTER_GAME_RES\""; 
+		domContent += "\treq_type=\"0x00000003\" res_type=\"0x80000003\" req_client_send=\"true\" res_client_receive=\"true\">";
+		domContent += "\t<req>";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</req>";
+		domContent += "\t<res>";
+		domContent += "\t<property name=\"result\" type=\"boolean\" comment=\"�����\"/>";
+		
+		domContent += "\t<object-property name=\"sprite\" type=\"Sprite\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"32\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		
+		domContent += "\t<object-property name=\"sprites\" type=\"Sprite[]\" max-num=\"128\" comment=\"\">";
+		domContent += "\t<property name=\"spriteId\" type=\"int\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteName\" type=\"String\" comment=\"\"/>";
+		domContent += "\t<property name=\"spriteDesp\" type=\"String\" length=\"16\" comment=\"\"/>";
+		domContent += "\t<property name=\"x\" type=\"short\" comment=\"���x\"/>";
+		domContent += "\t<property name=\"y\" type=\"short\" comment=\"���y\"/>";
+		domContent += "\t<property name=\"moveSpriteIds\" type=\"int[]\" max-num=\"16\" comment=\"�ƶ������ID����\"/>";
+		domContent += "\t</object-property>";
+		domContent += "\t</res>";
+		domContent += "\t</prototype>";
+		
+		domContent += "</prototypes>";
+		
+		Document dom = XmlUtil.loadStringWithoutTitle(domContent);
+		
+		//mc.complie(dom);
+	}
+	
+	
+	
+	
+	
+}

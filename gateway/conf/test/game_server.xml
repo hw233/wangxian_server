@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<servers gameName="灭世">
+	<server name="渠道测试专区" realname="渠道测试专区" ip="116.213.192.216"
+		serverIp="116.213.192.216" clientid="0x5a" serverid="0x4a" port="6678"
+		description="推荐" />
+	<server name="巍巍昆仑" realname="巍巍昆仑" ip="112.25.14.11"
+		serverIp="112.25.14.11" clientid="0x5a" serverid="0x4a" port="5678"
+		description="推荐" />
+	<server name="潘多拉星" realname="潘多拉星" ip="112.25.14.11"
+		serverIp="112.25.14.11" clientid="0x5a" serverid="0x4a" port="6678"
+		description="推荐" />
+
+</servers>

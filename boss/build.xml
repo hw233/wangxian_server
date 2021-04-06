@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="game_boss" default="main" basedir=".">
+
+	<property name="src" 	value="src"/>
+	<property name="dist" value="."/>
+	<property name="build"	value="build"/>
+	<property name="web"	value="web"/>
+	<property name="bin"	value="bin"/>
+	<property name="conf"	value="conf"/>
+	<property name="lib"	value="lib"/>	
+	<property name="name"	value="boss"/>
+	<property name="com"	value="game"/>
+	<property name="webapps"	value="/home/yauser/game/resin_boss/webapps/game_boss"/>
+
+	<path id="project.class.path">
+		<fileset dir="${dist}/lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+	<target name="init" depends="clean">
+		<!-- create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${webapps}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+		<!-- check all jar files to determine whether or not some jar files are updated -->
+		<uptodate property="need.clean" targetfile="${lib}/${com}-${name}.jar">
+		    <srcfiles dir="${lib}">
+				<include name="**/*.jar"/>
+				<exclude name="${com}-${name}.jar"/>
+			</srcfiles>
+		</uptodate>
+	</target>
+
+	<target name="compile" depends="init">
+		<mkdir dir="${build}"/>
+		<javac srcdir="${src}" destdir="${build}" encoding="utf-8" debug="on" optimize="off">
+			<classpath refid="project.class.path"/>
+		</javac>
+        <copy todir="${build}">
+                <fileset dir="${src}">
+                        <include name="**/*.xml" />
+                        <include name="**/*.dtd" />
+                        <include name="**/*.properties" />
+                        <include name="**/*.vm" />
+                        <include name="**/*.xsd" />
+                </fileset>
+        </copy>
+	</target>
+
+	<!--cmd
+	<manifestclasspath property="lib.list" jarfile="${dist}/lib/game-boss.jar">
+	    <classpath refid="project.class.path"/>
+	</manifestclasspath>
+	-->
+	
+	<target name="main" depends="compile">
+		<mkdir dir="${dist}/lib"/>
+		<jar jarfile="${dist}/lib/${com}-${name}.jar" basedir="${build}">
+			<!--cmd
+			<manifest>
+		        <attribute name="Main-Class" value="com.fy.boss.cmd.CMDConnector"/>
+		        <attribute name="Class-Path" value="${lib.list}"/>
+		    </manifest>
+		    -->
+		</jar>
+	</target>
+	
+	<target name="game_boss_release" depends="main">
+		<copy todir="${webapps}/" >
+		  <fileset dir="${web}/">
+		  </fileset>
+		</copy>
+		<copy todir="${webapps}/WEB-INF/lib" >
+		  <fileset dir="${lib}/">
+		  </fileset>
+		</copy>
+        <copy file="${conf}/web.xml" tofile="${webapps}/WEB-INF/web.xml"/>
+        <copy file="${conf}/daoContext.xml" tofile="${webapps}/WEB-INF/daoContext.xml"/>
+		<copy file="${conf}/applicationContext.xml" tofile="${webapps}/WEB-INF/applicationContext.xml"/>
+		<copy file="${conf}/log4j.properties" tofile="${webapps}/WEB-INF/conf/log4j.properties"/>
+        <copy file="${conf}/boss.properties" tofile="${webapps}/WEB-INF/boss.properties"/>
+        <copy file="${conf}/logback.xml" tofile="${webapps}/WEB-INF/conf/logback.xml"/>
+        <copy file="${conf}/dwr.xml" tofile="${webapps}/WEB-INF/conf/dwr.xml"/>
+        <copy file="${conf}/page_auth.txt" tofile="${webapps}/WEB-INF/page_auth.txt"/>
+        <copy file="${conf}/server_deploy.xml" tofile="${webapps}/WEB-INF/server_deploy.xml"/>
+        <copy file="${conf}/simpleEMF.xml" tofile="${webapps}/WEB-INF/classes/simpleEMF.xml"/>
+        <copy file="${conf}/feiliu_SignKey.pub" tofile="${webapps}/WEB-INF/classes/feiliu_SignKey.pub"/>
+		<copy file="${conf}/ppzhushou_SignKey.pub" tofile="${webapps}/WEB-INF/classes/ppzhushou_SignKey.pub"/>
+		<copy file="${conf}/898000000000001.cer" tofile="${webapps}/WEB-INF/classes/898000000000001.cer"/>
+		
+		<mkdir dir="${webapps}/thread"/>
+		<copy todir="${webapps}/thread">
+			<fileset dir="/home/yauser/game/projects/common_tools/web/thread">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+	</target>
+	
+	<target name="generate_message_for_boss">
+		<echo>generating message....</echo>
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer
+		      	-package com.fy.boss.message     	
+		      	-output.dir ${basedir}/src/com/mieshi/boss/message/			      	
+		      	-classes com.fy.boss.authorize.model.Passport
+		      	-classes com.fy.boss.platform.qq.QQUserInfo
+		      	-classes com.fy.boss.gm.newfeedback.GmTalk
+		      	-classes com.fy.boss.gm.newfeedback.NewFeedback
+		      	-file ${basedir}/conf/message_prototype_boss.xml -encoding utf-8"/> 
+		      <classpath>
+		      	<fileset dir="lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>	
+		      </classpath>
+		</java>	
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}"/>
+		<delete file="${dist}/lib/${com}-${name}.jar"/>
+	</target>
+
+
+</project>
+

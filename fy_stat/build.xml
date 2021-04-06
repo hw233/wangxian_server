@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!--
+==============================================================================
+build file
+
+Authors:
+ Chu daping <chudaping@linktone.com>
+
+Legal:
+  Copyright (c) 2002-2003 Codefad INC. All Rights Reserved.
+
+==============================================================================
+-->
+<project name="game_stat" default="main" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="src" 	value="src"/>
+	<property name="build"	value="build"/>
+	<property name="web"	value="web"/>
+	<property name="webapps"	value="/home/jyt/resin_stat/webapps/game_stat"/>
+	<property name="testwebapps"	value="/home/jyt/resin_stat/webapps/game_stat"/>
+	<property name="bin"	value="bin"/>
+	<property name="conf"	value="conf"/>
+	<property name="lib"	value="lib"/>	
+	<property name="name"	value="stat"/>
+	<property name="com"	value="game"/>
+
+	<property name="version" 	value="1.0.0"/>
+	<property name="status" value="final"/>
+	<property name="release" value="1st"/>
+	<property name="short.version" value="1.0"/>
+	<property name="ant_home" value="/usr/local/ant"/>
+	<property name="report"    value="report"/>
+
+	<path id="project.class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+	<target name="init" depends="clean">
+		<!-- create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${webapps}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+		<!-- check all jar files to determine whether or not some jar files are updated -->
+		<uptodate property="need.clean" targetfile="${lib}/${com}-${name}-${version}.jar">
+		    <srcfiles dir="${lib}">
+				<include name="**/*.jar"/>
+				<exclude name="${com}-${name}-${version}.jar"/>
+			</srcfiles>
+		</uptodate>
+	</target>
+
+	<target name="check" depends="init" unless="need.clean">
+		<echo>call cleanup target cause some libs are updated after last compiling time.</echo>
+		<echo>so ant will compile all source files,it will cost more time.</echo>
+		<antcall target="clean"/>
+	</target>
+
+	<target name="compile" depends="check">
+		<mkdir dir="${build}"/>
+		<!-- compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" encoding="utf-8" debug="on">
+			<classpath refid="project.class.path"/>
+		</javac>
+        <copy todir="${build}">
+                <fileset dir="${src}">
+                        <include name="**/*.xml" />
+                        <include name="**/*.dtd" />
+                        <include name="**/*.properties" />
+                        <include name="**/*.vm" />
+                        <include name="**/*.xsd" />
+                </fileset>
+        </copy>
+	</target>
+
+	<target name="hash" depends="init">
+			<!-- compile the java code from ${src} into ${build} -->
+			<javac srcdir="${src}" destdir="${build}" encoding="utf-8" optimize="on">
+					<classpath refid="project.class.path"/>
+			</javac>
+	</target>
+
+	<target name="main" depends="compile">
+		<mkdir dir="${lib}"/>
+		<!-- put everything in ${build} into the airinbox-mud.jar file -->
+		<jar jarfile="${lib}/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+	
+	<target name="web" depends="init">
+		<copy todir="${webapps}/" >
+		  <fileset dir="${web}/">
+		  </fileset>
+		</copy>
+	</target>
+	
+	<target name="game_stat_test" depends="main">
+		<copy todir="${testwebapps}/" >
+		  <fileset dir="${web}/">
+		  </fileset>
+		</copy>
+		<copy todir="${testwebapps}/WEB-INF/lib" >
+		  <fileset dir="${lib}/">
+		  </fileset>
+		</copy>
+        <copy file="${conf}/web.xml" tofile="${testwebapps}/WEB-INF/web.xml"/>
+        <copy file="${conf}/jdbc.properties" tofile="${testwebapps}/WEB-INF/jdbc.properties"/>
+        <copy file="${conf}/system.properties" tofile="${testwebapps}/WEB-INF/system.properties"/>
+        <copy file="${conf}/stat.properties" tofile="${testwebapps}/WEB-INF/stat.properties"/>
+        <copy file="${conf}/daoContext.xml" tofile="${testwebapps}/WEB-INF/daoContext.xml"/>
+		<copy file="${conf}/applicationContext.xml" tofile="${testwebapps}/WEB-INF/applicationContext.xml"/>
+		<copy file="${conf}/log4j.properties" tofile="${testwebapps}/WEB-INF/log4j.properties"/>
+        <copy file="${conf}/stat.properties" tofile="${testwebapps}/WEB-INF/stat.properties"/>
+        <copy file="${conf}/schedule.conf" tofile="${testwebapps}/WEB-INF/schedule.conf"/>
+        <copy file="${conf}/managerContext.xml" tofile="${testwebapps}/WEB-INF/managerContext.xml"/>
+        <copy file="${conf}/language.txt" tofile="${testwebapps}/WEB-INF/language.txt"/>
+	</target>
+	
+	<target name="game_stat" depends="main">
+		<copy todir="${webapps}/" >
+		  <fileset dir="${web}/">
+		  </fileset>
+		</copy>
+		<copy todir="${webapps}/WEB-INF/lib" >
+		  <fileset dir="${lib}/">
+		  </fileset>
+		</copy>
+        <copy file="${conf}/web.xml" tofile="${webapps}/WEB-INF/web.xml"/>
+        <copy file="${conf}/daoContext.xml" tofile="${webapps}/WEB-INF/daoContext.xml"/>
+		<copy file="${conf}/applicationContext.xml" tofile="${webapps}/WEB-INF/applicationContext.xml"/>
+		<copy file="${conf}/log4j.properties" tofile="${webapps}/WEB-INF/log4j.properties"/>
+        <copy file="${conf}/stat.properties" tofile="${webapps}/WEB-INF/stat.properties"/>
+        <copy file="${conf}/schedule.conf" tofile="${webapps}/WEB-INF/schedule.conf"/>
+	</target>
+	
+	<target name="game_stat_tw" depends="game_stat">
+        <copy file="${conf}/taiwan/stat.properties" tofile="${webapps}/WEB-INF/stat.properties" overwrite="true"/>
+	</target>
+	
+	<target name="game_stat_usa" depends="game_stat">
+	        <copy file="${conf}/usa/stat.properties" tofile="${webapps}/WEB-INF/stat.properties" overwrite="true"/>
+		</target>
+	
+	<target name="mock" depends="main">
+		<copy todir="${web}/" >
+		  <fileset dir="${webdev}/">
+		  </fileset>
+		</copy>
+		<copy todir="${web}/WEB-INF/lib" >
+		  <fileset dir="${lib}/">
+		  </fileset>
+		</copy>
+		<copy file="${conf}/mock/log4j.properties" tofile="${web}/WEB-INF/classes/log4j.properties"/>
+	</target>
+
+	<target name="generate_message_for_stat">
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf-8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer
+		      	-package com.sqage.stat.message     	
+		      	-output.dir ./src/com/sqage/stat/message/		
+		      	-classes com.sqage.stat.model.DayChangFlow
+		      	-classes com.sqage.stat.model.EnterGameFlow
+		      	-classes com.sqage.stat.model.LogOutGameFlow
+		      	-classes com.sqage.stat.model.PayMoneyFlow
+		      	-classes com.sqage.stat.model.SpendMoneyFlow
+		      	-classes com.sqage.stat.model.UserRegistFlow
+		      	-classes com.sqage.stat.model.OnLineUsersCountFlow
+		      	-classes com.sqage.stat.model.CreatePlayerFlow
+		      	-classes com.sqage.stat.model.DaoJuFlow
+		      	-classes com.sqage.stat.model.TransactionFlow
+		      	-classes com.sqage.stat.model.Transaction_SpecialFlow
+		      	-classes com.sqage.stat.model.AcceptTaskFlow
+		      	-classes com.sqage.stat.model.FinishTaskFlow
+		      	-classes com.sqage.stat.model.AcceptHuoDonginfoFlow
+		      	-classes com.sqage.stat.model.FinishHuoDonginfoFlow
+		      	-classes com.sqage.stat.model.GameChongZhiFlow
+		      	-classes com.sqage.stat.model.StatUserGuideFlow
+		      	-classes com.sqage.stat.model.YinZiKuCunFlow
+		      	-classes com.sqage.stat.model.PayMoneyUpGradeFlow
+		      	-classes com.sqage.stat.model.LibaoFlow
+		      	-classes com.sqage.stat.model.Transaction_FaceFlow
+		      	-classes com.sqage.stat.model.Transfer_PlatformFlow
+		      	-classes com.sqage.stat.model.Battle_TeamStatFlow
+		      	-classes com.sqage.stat.model.Battle_PlayerStatFlow
+		      	-classes com.sqage.stat.model.Battle_costTimeFlow
+		      	-classes com.sqage.stat.model.FuMoFlow
+		      	-classes com.sqage.stat.model.NpcinfoFlow
+		      	
+		      	-file ./src/conf/message_prototype_stat.xml"/> 
+		      <classpath>
+		      	<fileset dir="WEB-INF/lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>	
+		      </classpath>
+		</java>	
+	</target>
+	
+	<target name="clean">
+		<!-- delete the ${build} -->
+		<delete dir="${build}"/>
+		<delete file="${lib}/${com}-${name}-${version}.jar"/>
+	</target>
+
+</project>

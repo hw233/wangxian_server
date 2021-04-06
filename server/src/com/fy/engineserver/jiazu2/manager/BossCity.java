@@ -1,0 +1,388 @@
+package com.fy.engineserver.jiazu2.manager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+
+import com.fy.engineserver.core.Game;
+import com.fy.engineserver.core.TransportData;
+import com.fy.engineserver.datasource.article.data.articles.Article;
+import com.fy.engineserver.datasource.article.data.entity.ArticleEntity;
+import com.fy.engineserver.datasource.article.manager.ArticleEntityManager;
+import com.fy.engineserver.datasource.article.manager.ArticleManager;
+import com.fy.engineserver.datasource.language.Translate;
+import com.fy.engineserver.downcity.city.CityAction;
+import com.fy.engineserver.downcity.downcity2.DownCityManager2;
+import com.fy.engineserver.gametime.SystemTime;
+import com.fy.engineserver.jiazu.Jiazu;
+import com.fy.engineserver.mail.service.MailManager;
+import com.fy.engineserver.message.GameMessageFactory;
+import com.fy.engineserver.message.PLAYER_REVIVED_RES;
+import com.fy.engineserver.sprite.Player;
+import com.fy.engineserver.sprite.PlayerManager;
+import com.fy.engineserver.sprite.monster.Monster;
+
+public class BossCity implements CityAction{
+
+	
+	Game game;
+	
+	Logger logger = DownCityManager2.logger;
+	
+	int state;
+	public static final int FIGHT_READY = 0;
+	public static final int FIGHT_ING = 1;
+	public static final int FIGHT_REWARD = 2;
+	public static final int FIGHT_END = 3;
+	public static final int DESTROY = 4;
+	
+	Monster boss;
+	
+	Jiazu jiazu;
+	
+	public int id;
+	public Map<Long, Player> pMap = new HashMap<Long, Player>();
+	
+	long startTime = 0;
+	public BossCity(Game g,Monster boss,Jiazu jiazu){
+		this.game = g;
+		this.boss = boss;
+		this.jiazu = jiazu;
+		state = FIGHT_READY;
+		startTime = SystemTime.currentTimeMillis();
+	}
+	String stateStr [] = {"战斗准备","战斗中","战斗奖励","战斗结束","销毁"};
+	public String getStateStr(){
+		return stateStr[state];
+	}
+	
+	int lastState;
+	long lastPrintTime;
+	long printLogLength = 10000;
+	/**
+	 * 每10秒或状态变化时打印log
+	 */
+	boolean printLog = false;
+	
+	long stopTime = 5000;
+	
+	/**
+	 * 1:被打死，2:时间到
+	 */
+	int deadType = 0;
+	
+	Map<Long,Long> deadRecord = new HashMap<Long,Long>();
+	public void noticePlayerDead(){
+		List<Player> ps = game.getPlayers();
+		if(ps != null && ps.size() > 0){
+			for(Player p : ps){
+				if(p.isDeath() && !deadRecord.containsKey(new Long(p.getId()))){
+					deadRecord.put(p.getId(), SystemTime.currentTimeMillis());
+					logger.warn("[家族远征] [id:{}] [玩家死亡] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+				}
+				if(deadRecord.containsKey(new Long(p.getId())) && SystemTime.currentTimeMillis() - deadRecord.get(new Long(p.getId())).longValue() >= 5000){
+					p.setHp(p.getMaxHP()/2);
+					p.setMp(p.getMaxMP()/2);
+					p.setState(Player.STATE_STAND);
+					p.notifyRevived();
+					PLAYER_REVIVED_RES res = new PLAYER_REVIVED_RES(GameMessageFactory.nextSequnceNum(), (byte) 0, Translate.战场免费复活成功, p.getMaxHP(), p.getMaxMP());
+					p.addMessageToRightBag(res);
+					deadRecord.remove(new Long(p.getId()));
+					logger.warn("[家族远征] [id:{}] [玩家复活] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+				}
+				if(!JiazuManager2.instance.isOpen() && p.isDeath()){
+					p.setHp(p.getMaxHP()/2);
+					p.setMp(p.getMaxMP()/2);
+					p.setState(Player.STATE_STAND);
+					p.notifyRevived();
+					PLAYER_REVIVED_RES res = new PLAYER_REVIVED_RES(GameMessageFactory.nextSequnceNum(), (byte) 0, Translate.战场免费复活成功, p.getMaxHP(), p.getMaxMP());
+					p.addMessageToRightBag(res);
+					logger.warn("[家族远征] [id:{}] [玩家死亡复活] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+				}
+			}
+		}
+	}
+	
+	public void heartbeat(){
+		if(System.currentTimeMillis() - lastPrintTime >= printLogLength){
+			lastPrintTime = System.currentTimeMillis();
+			printLog = true;
+		}
+		if(state != lastState){
+			printLog = true;
+			lastState = state;
+		}
+		
+		try {
+			noticePlayerDead();
+			game.heartbeat();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.warn("[家族远征] [game心跳异常]",e);
+		}
+		
+		switch (state) {
+		case FIGHT_READY:
+			if(game != null && boss != null){
+				state = FIGHT_ING;
+			}
+			break;
+		case FIGHT_ING:
+			if(!JiazuManager2.instance.isOpen()){
+				state = FIGHT_REWARD;
+				deadType = 2;
+				stopTime = System.currentTimeMillis() + stopTime;
+				jiazu.setCity(null);
+				jiazu.setHasKillBoss(true);
+				rewardAndNoticeCityEnd();
+				long overHP = boss.getMaxHP() - boss.getHp();
+				jiazu.通知家族远征(boss.getName(),jiazu.getBossLevel(),(double)overHP/boss.getMaxHP(),(SystemTime.currentTimeMillis()-startTime),"时间到");
+				logger.warn("[家族远征] [副本结束:时间到] [副本id:{}] [boss血量:{}] [人数:{}]",new Object[]{id,boss.getHp()+"/"+boss.getMaxHP(),  pMap.size()});
+			}
+//			if(boss == null || boss.isDeath() || !boss.isAlive()){
+//				state = FIGHT_REWARD;
+//				deadType = 1;
+//				jiazu.setBossLevel(jiazu.getBossLevel() + 1);
+//				stopTime = System.currentTimeMillis() + stopTime;
+//				jiazu.setHasKillBoss(true);
+//				jiazu.setCity(null);
+//				logger.warn("[家族远征] [副本结束:boss死亡] [副本id:{}] [级别:{}] 人数:{}] [isDeath:{}] [isAlive:{}]",new Object[]{id,jiazu.getBossLevel(), game.getPlayers().size(),(boss!=null?boss.isAlive():"null")});
+//			}
+			
+			if(boss == null || boss.isDeath() || !boss.isAlive()){
+				state = FIGHT_REWARD;
+				deadType = 1;
+				rewardAndNoticeCityEnd();
+				jiazu.通知家族远征(boss.getName(),jiazu.getBossLevel(),1,(SystemTime.currentTimeMillis()-startTime),"boss死亡");
+				jiazu.setBossLevel(jiazu.getBossLevel() + 1);
+				stopTime = System.currentTimeMillis() + stopTime;
+				jiazu.setHasKillBoss(true);
+				jiazu.setCity(null);
+				logger.warn("[家族远征] [副本结束:boss死亡] [副本id:{}] [boss:{}] [bossId:{}] [级别:{}] 人数:{}] [isDeath:{}] [isAlive:{}]",
+						new Object[]{id,boss.getName(),boss.getId(),jiazu.getBossLevel(), pMap.size(),(boss!=null?boss.isDeath():"null"),(boss!=null?boss.isAlive():"null")});
+			}
+			
+			break;
+		case FIGHT_REWARD:
+			if(System.currentTimeMillis() >= stopTime){
+				state = FIGHT_END;
+			}
+			break;
+		case FIGHT_END:
+			List<Player> ps = game.getPlayers();
+			if(ps != null && ps.size() > 0){
+				for(Player p : ps){
+					if(p == null){
+						continue;
+					}
+//					p.bcity = null;
+					game.transferGame(p, new TransportData(0, 0, 0, 0, p.getResurrectionMapName(), p.getResurrectionX(), p.getResurrectionY()));
+				}
+			}
+			if(ps == null || ps.size() <= 0){
+				state = DESTROY;
+			}
+			break;
+		}
+		
+		if(printLog){
+			printLog = false;
+			logger.warn("[家族远征] [副本心跳] [副本id:{}] [{}] [人数:{}] [boss:{}] [bossId:{}] [boss血量:{}]",
+					new Object[]{id,getStateStr(),pMap.size(),boss.getName(),boss.getId(), boss.getHp()+"/"+boss.getMaxHP(),jiazu.getLogString()});
+		}
+	}
+	
+	public void rewardAndNoticeCityEnd(){
+		try {
+			logger.warn("[家族远征] [进入奖励] [副本id:"+id+"] ["+(deadType==1?"boss死亡":"时间到")+"] [pMap:"+pMap.size()+"]");
+			for(Iterator it = pMap.values().iterator(); it.hasNext(); ){
+				Player p = (Player)it.next();
+				if(p == null){
+					continue;
+				}
+				if(deadType == 1){
+					JiazuManager2.instance.addLiveness(p, JiaZuLivenessType.家族远征_击杀);
+				}else if(deadType == 2){
+					JiazuManager2.instance.addLiveness(p, JiaZuLivenessType.家族远征_击退);
+				}
+				p.sendError(Translate.pk副本时间到);
+				if(p.isDeath() || !p.isAlive()){
+					p.setHp(p.getMaxHP()/2);
+					p.setMp(p.getMaxMP()/2);
+					p.setState(Player.STATE_STAND);
+					p.notifyRevived();
+					PLAYER_REVIVED_RES res = new PLAYER_REVIVED_RES(GameMessageFactory.nextSequnceNum(), (byte) 0, Translate.战场免费复活成功, p.getMaxHP(), p.getMaxMP());
+					p.addMessageToRightBag(res);
+				}
+			}
+			if(JiazuManager2.damages.size() == 0){
+				logger.warn("[家族远征] [奖励出错:没有战斗信息] ["+(deadType==1?"boss死亡":"时间到")+"] [副本id:{}] [{}] [人数:{}] [boss:{}] [boss血量:]",new Object[]{id,getStateStr(),game.getPlayers().size(),boss.getName(),boss.getHp()});
+				return;
+			}
+			BossConfig c = null;
+			if(deadType == 1){
+				c = JiazuManager2.bconfigs.get(jiazu.getBossLevel());
+			}else{
+				c = JiazuManager2.bconfigs.get(jiazu.getBossLevel());
+			}
+			if(c == null){
+				logger.warn("[家族远征] [奖励出错:没有boss信息] ["+(deadType==1?"boss死亡":"时间到")+"] [副本id:{}] [bossLevel:{}] [{}] [人数:{}] [boss:{}] [boss血量:]",new Object[]{id,jiazu.getBossLevel(),getStateStr(),game.getPlayers().size(),boss.getName(),boss.getHp()});
+				return;
+			}
+			BossDamage[] infos = JiazuManager2.damages.values().toArray(new BossDamage[]{});
+			List<BossDamage> list = new ArrayList<BossDamage>();
+			for(int i=0;i<infos.length;i++){
+				if(infos[i] != null && infos[i].getDamages() > 0 && pMap.containsKey(new Long(infos[i].getPlayerId()))){
+					list.add(infos[i]);
+				}
+			}
+			BossDamage[] ds = list.toArray(new BossDamage[]{});
+			Arrays.sort(ds, new Comparator<BossDamage>() {
+				@Override
+				public int compare(BossDamage o1, BossDamage o2) {
+					return new Long(o2.getDamages()).compareTo(new Long(o1.getDamages()));
+				}
+			});
+			
+			if(ds == null || ds.length <= 0){
+				logger.warn("[家族远征] [奖励出错:没有战斗信息2] [副本id:{}] ["+(deadType==1?"boss死亡":"时间到")+"] [伤害数据:{}] [bossLevel:{}] [{}] [人数:{}] [boss:{}] [boss血量:]",
+						new Object[]{id,list.size()+"/"+infos.length, jiazu.getBossLevel(),getStateStr(),game.getPlayers().size(),boss.getName(),boss.getHp()});
+				return;
+			}
+			
+			int rank = 0;
+			String name = "";
+			
+			for(BossDamage d : ds){
+				rank++;
+				if(rank <= 10){
+					if(deadType == 1){
+						name = c.getKill_reward1_10()[rank];
+					}else if(deadType == 2){
+						name = c.getRun_reward1_10()[rank];
+					}
+				}else{
+					if(deadType == 1){
+						name = c.getKill_other_reward();
+					}else if(deadType == 2){
+						name = c.getRun_other_reward();
+					}
+				}
+				try {
+					Player p = PlayerManager.getInstance().getPlayer(d.getPlayerId());
+					Article a = ArticleManager.getInstance().getArticle(name);
+					ArticleEntity ae = ArticleEntityManager.getInstance().createEntity(a, true, ArticleEntityManager.家族远征, p, a.getColorType(), 1, true);
+					MailManager.getInstance().sendMail(p.getId(), new ArticleEntity[]{ae}, Translate.家族远征奖励, Translate.家族远征奖励, 0, 0, 0, "家族远征奖励");
+					logger.warn("[家族远征] [奖励成功] ["+(deadType==1?"boss死亡":"副本结束")+"] [副本id:{}] [伤害:"+d.getDamages()+"] [rank:{}] [奖励:{}] [jiazu:{}] [{}]",new Object[]{id,rank,name,jiazu.getLogString(), p.getLogString()});
+				} catch (Exception e) {
+					e.printStackTrace();
+					logger.warn("[家族远征] [奖励出错:异常] [副本id:{}] ["+(deadType==1?"boss死亡":"时间到")+"]  [pid:{}] [name:{}] [{}]",new Object[]{id,d.getPlayerId(),name,game,e});
+				}
+			}
+		} catch (Exception e) {
+			logger.warn("[家族远征] [奖励出错:奖励异常] ["+(deadType==1?"boss死亡":"时间到")+"] [副本id:"+id+"]",e); 
+		}
+	}
+	
+	public Game getGame(){
+		return game;
+	}
+	
+	@Override
+	public boolean isEnd() {
+		if(state == FIGHT_END){
+			if(game.getPlayers() != null && game.getPlayers().size() == 0){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void destory() {
+		if(game != null){
+			game.removeAllMonster();
+		}
+		if(JiazuManager2.damages != null){
+			JiazuManager2.damages.clear();
+		}
+		game = null;
+		boss = null;
+		jiazu = null;
+	}
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public String getName() {
+		return "家族远征";
+	}
+
+	@Override
+	public boolean isDestroy() {
+		return state == DESTROY;
+	}
+
+	@Override
+	public void killMonster(Monster m) {
+		if(boss != null && m != null && m.getId() == boss.getId()){
+			state = FIGHT_REWARD;
+			deadType = 1;
+			rewardAndNoticeCityEnd();
+			jiazu.通知家族远征(boss.getName(),jiazu.getBossLevel(),1,(SystemTime.currentTimeMillis()-startTime),"boss死亡");
+			jiazu.setBossLevel(jiazu.getBossLevel() + 1);
+			stopTime = System.currentTimeMillis() + stopTime;
+			jiazu.setHasKillBoss(true);
+			jiazu.setCity(null);
+		}
+		logger.warn("[家族远征] [副本结束:boss死亡] [副本id:{}] ",new Object[]{id});
+	}
+
+	@Override
+	public void killPlayer(Player p) {
+		logger.warn("远征中  玩家死亡 。。。"+p.getName());
+//		if(!deadRecord.containsKey(new Long(p.getId()))){
+//			deadRecord.put(p.getId(), SystemTime.currentTimeMillis());
+//			logger.warn("[家族远征] [id:{}] [玩家死亡] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+//		}
+//		if(deadRecord.containsKey(new Long(p.getId())) && SystemTime.currentTimeMillis() - deadRecord.get(new Long(p.getId())).longValue() >= 5000){
+//			p.setHp(p.getMaxHP()/2);
+//			p.setMp(p.getMaxMP()/2);
+//			p.setState(Player.STATE_STAND);
+//			p.notifyRevived();
+//			PLAYER_REVIVED_RES res = new PLAYER_REVIVED_RES(GameMessageFactory.nextSequnceNum(), (byte) 0, Translate.战场免费复活成功, p.getMaxHP(), p.getMaxMP());
+//			p.addMessageToRightBag(res);
+//			deadRecord.remove(new Long(p.getId()));
+//			logger.warn("[家族远征] [id:{}] [玩家复活] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+//		}
+//		if(!JiazuManager2.instance.isOpen() && p.isDeath()){
+//			p.setHp(p.getMaxHP()/2);
+//			p.setMp(p.getMaxMP()/2);
+//			p.setState(Player.STATE_STAND);
+//			p.notifyRevived();
+//			PLAYER_REVIVED_RES res = new PLAYER_REVIVED_RES(GameMessageFactory.nextSequnceNum(), (byte) 0, Translate.战场免费复活成功, p.getMaxHP(), p.getMaxMP());
+//			p.addMessageToRightBag(res);
+//			logger.warn("[家族远征] [id:{}] [玩家死亡复活] [boss:{}] [{}]",new Object[]{id,game.getMonsterNum(),p.getLogString()});
+//		}
+	}
+
+	@Override
+	public Map<Long, Player> pMap() {
+		return pMap;
+	}
+
+	@Override
+	public boolean playerInGame(Player p) {
+		return pMap.containsKey(new Long(p.getId()));
+	}
+	
+}

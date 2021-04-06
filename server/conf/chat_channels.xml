@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding='utf-8'?>
+<chat-channels>
+	<channel type="0" name="周围频道">
+		<minSendPeriod>2000</minSendPeriod>
+		<description></description>
+	</channel>
+	<channel type="1" name="世界频道">
+                <minSendPeriod>10000</minSendPeriod>
+                <minAuthorizedLevel>10</minAuthorizedLevel>
+                <description></description>
+        </channel>
+		<channel type="8" name="彩世频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <minAuthorizedLevel>10</minAuthorizedLevel>
+                <description></description>
+        </channel>
+        <channel type="2" name="国家频道">
+                <minSendPeriod>10000</minSendPeriod>
+                <minAuthorizedLevel>10</minAuthorizedLevel>
+                <description></description>
+        </channel>
+        <channel type="3" name="宗派频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="4" name="帮会频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="5" name="队伍频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="6" name="私聊频道">
+                <minSendPeriod>2000</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="7" name="系统频道">
+                <minSendPeriod>100</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="9" name="好友频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <description></description>
+        </channel>
+        <channel type="10" name="群组频道">
+                <minSendPeriod>1000</minSendPeriod>
+                <description></description>
+        </channel>
+</chat-channels>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+
+	<serverId>222</serverId>
+	<serverName>网关</serverName>
+	
+	<entity-manager id='1' super-class='com.fy.gamegateway.stat.Client' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='21' super-class='com.fy.gamegateway.stat.Client2' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='2' super-class='com.fy.gamegateway.stat.ClientAccount' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='3' super-class='com.fy.gamegateway.getbackpassport.PassportRecord' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='4' super-class='com.fy.gamegateway.stat.ClientExtendInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='5' super-class='com.fy.gamegateway.mieshi.waigua.ClientEntity' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='6' super-class='com.fy.gamegateway.mieshi.waigua.ClientAuthorization' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='7' super-class='com.fy.gamegateway.mieshi.server.MieshiPlayerInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='8' super-class='com.fy.gamegateway.gmaction.GmAction' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='18' super-class='com.fy.gamegateway.mieshi.server.pub.ServerPubRecord' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='19' super-class='com.fy.gamegateway.thirdpartner.ThirdPartDataEntity' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='20' super-class='com.fy.gamegateway.announce.MessageEntity' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='25' super-class='com.fy.gamegateway.mieshi.server.DenyUserEntity' checkIntervalInSeconds='3'></entity-manager>
+	<entity-manager id='26' super-class='com.fy.gamegateway.thirdpartner.sms.SmsData' checkIntervalInSeconds='3'></entity-manager>
+	 		<entity-manager id='27' super-class='com.fy.gamegateway.gmaction.GmSystemNotice' checkIntervalInSeconds='30'>
+ 		</entity-manager>
+	<database name='test-pool' type='oracle'>
+		<driver>oracle.jdbc.driver.OracleDriver</driver>
+		<url>jdbc:oracle:thin:@119.254.154.203:1521:yahldb</url>
+		<username>ya_gateway</username>
+		<password>ya_gateway_R3kCZcm</password>
+		<maxConn>30</maxConn>
+		<timeoutSeconds>300</timeoutSeconds>
+		<checkoutSeconds>300</checkoutSeconds>
+	</database>
+
+</persistence-units>

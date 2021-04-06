@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="gb2312"?>
+<moria>
+	<!-- 主服务器必须命名为"xxx游戏服"，否则gm后台发布游戏服失败 -->
+	<project name="飘渺寻仙曲游戏服" basedir="/home/yauser/game/deploy" game="飘渺寻仙曲">
+		<module type="env" name="resin_app_server" 
+			from="/home/yauser/resinapp" 
+			to="resin" common="true"/>
+		<module type="env" name="gameapp" 
+			from="/home/yauser/game/projects/deploy_server/webapps/game_server" 
+			to="resin/webapps/game_server" common="true">
+			<except>WEB-INF</except>
+		</module>
+		<module type="env" name="web.xml" 
+			from="/home/yauser/game/projects/game_server_release/conf/web.xml" 
+			to="resin/webapps/game_server/WEB-INF/web.xml"
+			parser="com.fy.boss.deploy.GeneralParser" common="true"/>
+		<module type="spring_config" name="spring_config_files" 
+			from="/home/yauser/game/projects/deploy_server/webapps/game_server/WEB-INF/spring_config" 
+			to="resin/webapps/game_server/WEB-INF/spring_config" 
+			parser="com.fy.boss.deploy.GeneralParser" common="true" />
+		<module type="spring_config" name="server.properties" 
+			from="/home/yauser/game/projects/game_server_release/conf/template/server.properties" 
+			to="resin/webapps/game_server/WEB-INF/spring_config/server.properties" 
+			parser="com.fy.boss.deploy.ServerPropertiesParser" common="true" />
+		<module type="spring_config" name="simpleEMF.xml" 
+			from="/home/yauser/game/projects/game_server_release/conf/template/simpleEMF.xml" 
+			to="resin/webapps/game_server/WEB-INF/spring_config/simpleEMF.xml" 
+			parser="com.fy.boss.deploy.SimpleJPAXmlParser" common="true" />
+		<module type="spring_config" name="logback.xml" 
+			from="/home/yauser/game/projects/game_server_release/conf/template/logback.xml" 
+			to="resin/webapps/game_server/WEB-INF/spring_config/logback.xml" 
+			parser="com.fy.boss.deploy.GeneralParser" common="true" />
+		<module type="spring_config" name="log4j.properties" 
+			from="/home/yauser/game/projects/game_server_release/conf/template/log4j.properties" 
+			to="resin/webapps/game_server/WEB-INF/spring_config/log4j.properties" 
+			parser="com.fy.boss.deploy.GeneralParser" common="true" />
+		<module type="game_init_config" name="game_init_config_files" 
+			from="/home/yauser/game/projects/deploy_server/webapps/game_server/WEB-INF/game_init_config" 
+			to="resin/webapps/game_server/WEB-INF/game_init_config" common="true" />
+		<module type="game_lib" name="lib_jars" 
+			from="/home/yauser/game/projects/deploy_server/webapps/game_server/WEB-INF/lib" 
+			to="resin/webapps/game_server/WEB-INF/lib" common="true" />
+	</project>
+</moria>

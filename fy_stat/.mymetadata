@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="stat_common_mieshi"
+  id="myeclipse.1334644687859"
+  context-root="/stat_common_mieshi"
+  j2ee-spec="1.4"
+  archive="stat_common_mieshi.war">
+  <attributes>
+    <attribute name="webrootdir" value="&lt;prjroot&gt;" />
+  </attributes>
+</project-module>
+

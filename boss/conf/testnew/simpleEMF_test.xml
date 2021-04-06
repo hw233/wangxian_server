@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+ 
+ 		<serverId>100</serverId>
+		
+		<entity-manager id='1' super-class='com.fy.boss.authorize.model.Passport' checkIntervalInSeconds='5'>
+ 		</entity-manager>	
+ 
+ 		<entity-manager id='2' super-class='com.fy.boss.finance.model.OrderForm' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  
+   		<entity-manager id='3' super-class='com.fy.boss.game.model.Server' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='4' super-class='com.fy.boss.finance.model.ExceptionOrderForm' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='5' super-class='com.fy.boss.finance.model.UcidToUserName' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='25' super-class='com.fy.boss.vip.platform.model.VipPlayerInfoRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  		
+  		<entity-manager id='28' super-class='com.fy.boss.operation.model.GameActivity' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  		<entity-manager id='29' super-class='com.fy.boss.vip.platform.model.UcVipRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='30' super-class='com.fy.boss.vip.platform.model.VipNewPlayerInfoRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  		
+ 		<database name='test-pool' type='oracle'>
+ 			<driver>oracle.jdbc.driver.OracleDriver</driver>
+ 			<url>jdbc:oracle:thin:116.213.192.202:1521:ora10g</url>
+ 			<username>boss</username>
+ 			<password>boss</password>
+			<maxConn>30</maxConn>
+			<timeoutSeconds>300</timeoutSeconds>
+			<checkoutSeconds>300</checkoutSeconds>
+		</database>
+
+<!--  
+ 		 <database name='test-pool' type='mysql'>
+ 			<driver>com.mysql.jdbc.Driver</driver>
+ 			<url>jdbc:mysql://112.25.14.12:3306/jpatestdb?characterEncoding\=utf-8&amp;useOldAliasMetadataBehavior\=true</url>
+ 			<username>testjpa</username>
+ 			<password>testjpa</password>
+			<maxConn>30</maxConn>
+			<timeoutSeconds>300</timeoutSeconds>
+			<checkoutSeconds>300</checkoutSeconds>
+		</database>
+-->		
+</persistence-units>

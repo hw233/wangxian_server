@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+
+<project name="game_mieshi_server" default="main" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="src" value="src" />
+	<property name="test-src" 	value="src/test"/>
+	<property name="build" value="build"/>
+	<property name="dist" value="."/>
+	<property name="web" value="web"/>
+	<property name="log" value="log"/>
+	<property name="bin" value="bin"/>
+	<property name="lib" value="lib"/>
+	<property name="conf" value="conf"/>
+	<property name="version" value="1.0"/>
+	<property name="com" value="xuanzhi"/>
+	<property name="name" value="mieshiserver"/>
+	<property name="ant_home" value="/usr/local/ant"/>	
+	<property name="clover" value="clover"/>
+	<property name="webapp_path" value="/home/game/resin/webapps"/>
+	<property name="log_path" value="/home/game/resin/log"/>
+	<property name="webapp_path_release" value="/home/game/resin_server_release/webapps"/>
+	<property name="webapp_path_stable" value="/home/game/resin_stable/webapps"/>
+	<property name="webapp_path_stable_2" value="/home/game/resin_stable2/webapps"/>
+	<property name="webapp_path_pan3" value="/home/game/resin_pan3/webapps"/>
+	<property name="webapp_path_ceshia" value="/home/game/resin_server/webapps"/>
+	<property name="webapp_path_cross" value="/home/game/resin_cross/webapps"/>
+	<property name="webapp_path_ceshib" value="/home/game/resin_server_2/webapps"/>
+	<property name="webapp_path_ceshic" value="/home/game/resin_server_3/webapps"/>
+	<property name="webapp_path_test3" value="/home/game/resin_server_3/webapps"/>
+	<property name="webapp_path_pan4" value="/home/game/resin_pan4/webapps"/>
+	<property name="webapp_path_stable_qiannian" value="/home/game/resin_stable_qiannian/webapps"/>
+	<property name="webapp_path_qq" value="/home/game/resin_qq/webapps"/>
+	<property name="webapp_path_qq_release" value="/home/game/resin_release_qq/webapps"/>
+	<property name="webapp_path_taiwan_release" value="/home/game/resin_release_taiwan/webapps"/>
+	<property name="webapp_path_malai_release" value="/home/game/resin_release_malai/webapps"/>
+	<property name="webapp_path_korea_release" value="/home/game/resin_release_korea/webapps"/>
+	<property name="log_path_stable" value="/home/game/resin_stable/log"/>
+	<property name="log_path_pan3" value="/home/game/resin_pan3/log"/>
+	<property name="log_path_cross" value="/home/game/resin_cross/log"/>
+	<property name="log_path_test3" value="/home/game/resin_server_3/log"/>
+	<property name="log_path_pan4" value="/home/game/resin_pan4/log"/>
+	<property name="log_path_release" value="/home/game/resin_server_release/log"/>
+	<property name="log_path_stable_qiannian" value="/home/game/resin_stable_qiannian/log"/>
+	<property name="log_path_qq" value="/home/game/resin_qq/log"/>
+	<property name="game_init_config" value="conf/game_init_config"/>
+	<property name="game_init_config_taiwan" value="conf/game_init_config_taiwan"/>
+	<property name="game_init_config_korea" value="conf/game_init_config_korea"/>
+	<property name="webapp_path_test" value="/home/game/resin_test/webapps"/>
+	<property name="log_path_test" value="/home/game/resin_test/log"/>
+
+	<path id="project.class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+	<taskdef resource="clovertasks" classpath="lib/clover_crack.jar"/>
+
+	<!--step to use clover: 
+		1,ant with.clover query-test
+		2,ant clover.report
+	-->
+
+	<target name="with.clover">
+		<copy file="lib/clover_crack.jar" todir="${ant_home}/lib"/>
+		
+		<clover-setup initString="${clover}/tools_clover.db" tmpdir="${clover}" preserve="true"/>
+	</target> 
+
+	<target name="clover.report" depends="with.clover">
+		<mkdir dir="${apache_document_root}/${name}"/>
+		<clover-report>
+			<current outfile="${apache_document_root}/${name}/clover-report-html">
+				<format type="html"/>
+			</current>
+		</clover-report>
+	</target>
+
+	<target name="init" depends="clean">
+		<!-- create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${log}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+		<mkdir dir="${clover}"/>
+		<mkdir dir="${lib}"/>
+		<!--cvs command="update -P -d" dest="${src}"/>
+		<cvs command="update -P -d" dest="web"/>
+		<cvs command="update -P -d" dest="conf"/>
+		<cvs command="update -P -d" dest="lib"/-->
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" fork="true" memorymaximumsize="1g" encoding="utf-8" debug="on" optimize="off">
+			<classpath refid="project.class.path"/>
+		</javac>
+        <copy todir="${build}">
+                <fileset dir="${src}">
+                        <include name="**/*.xml" />
+                        <include name="**/*.dtd" />
+                        <include name="**/*.properties" />
+                        <include name="**/*.vm" />
+                        <include name="**/*.xsd" />
+                </fileset>
+        </copy>
+	</target>
+
+	<target name="main" depends="compile">
+		<mkdir dir="${dist}/lib"/>
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+	
+	<target name="web">
+		<!--cvs command="update -P -d" dest="${web}" /-->
+		<copy todir="${webapp_path}/game_server" >
+		  <fileset dir="${web}">
+		  </fileset>
+		</copy>
+	</target>
+	
+	<target name="web_stable">
+		<!--cvs command="update -P -d" dest="${web}" /-->
+		<copy todir="${webapp_path_stable}/game_server" >
+		  <fileset dir="${web}">
+		  </fileset>
+		</copy>
+	</target>
+
+	<target name="build-test" depends="compile">
+		<javac srcdir="${test-src}" destdir="${build}" encoding="utf-8" debug="on">
+			<classpath refid="project.class.path"/>
+		</javac>
+		<mkdir dir="${lib}"/>
+		<!-- put everything in ${build} into the airinbox-mud.jar file -->
+		<jar jarfile="${lib}/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+
+	<!--pan4-->
+	<target name="pan4">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path_pan4}/game_server"/>
+		<mkdir dir="${log_path_pan4}/game_server"/>
+
+		<mkdir dir="${webapp_path_pan4}/game_server/WEB-INF/spring_config/"/>
+		<mkdir dir="${webapp_path_pan4}/game_server/WEB-INF/game_init_config/"/>
+		<mkdir dir="${webapp_path_pan4}/game_server/WEB-INF/game_runtime_data/"/>
+		<!-- copy game_init_config cehua -->
+		<copy todir="${webapp_path_pan4}/game_server/WEB-INF/game_init_config/" overwrite="true">
+		                <fileset dir="${game_init_config}"/>
+		</copy>
+		<!-- copy spring_config -->
+		<copy file="${conf}/game_server_context.xml" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+		<copy file="${conf}/pan4/server.properties" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+		<copy file="${conf}/dwr.xml" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/dwr.xml"/>
+		<copy file="${conf}/pan4/log4j.properties" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/pan4/logback.xml" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+		<copy file="${conf}/web.xml" tofile="${webapp_path_pan4}/game_server/WEB-INF/web.xml" overwrite="true"/>
+	
+		<!-- copy game_init_config -->	
+
+		<copy file="${conf}/wordfilter.txt" tofile="${webapp_path_pan4}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+		<copy file="${conf}/schedule.conf" tofile="${webapp_path_pan4}/game_server/WEB-INF/game_init_config/schedule.conf" overwrite="true"/>
+		<copy file="${conf}/pan4/simpleEMF.xml" tofile="${webapp_path_pan4}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+
+		<copy todir="${webapp_path_pan4}/game_server/WEB-INF/lib/" overwrite="true">
+                <fileset dir="${lib}"/>
+        </copy>
+		<mkdir dir="${webapp_path_pan4}/game_server/admin"/>    		
+		<copy todir="${webapp_path_pan4}/game_server/">
+	            <fileset dir="web">
+	                   <include name="**/*.*"/>
+	            </fileset>
+	    </copy>
+		<copy todir="${webapp_path_pan4}/game_server/admin">
+			<fileset dir="/home/game/projects/common_tools/web/transport">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+		<mkdir dir="${webapp_path_pan4}/game_server/thread"/>
+		<copy todir="${webapp_path_pan4}/game_server/thread">
+			<fileset dir="/home/game/projects/common_tools/web/thread">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+	</target>
+	
+	<target name="generate_message_for_cross_system">
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf-8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer;com.mieshi.engineserver.datasource.article.data.entity.ArticleEntity
+		      	-package com.mieshi.engineserver.crossserver.message     	
+		      	-output.dir ./src/com/mieshi/engineserver/crossserver/message/		
+		      	-classes com.mieshi.engineserver.battlefield.concrete.BattleItem
+		      	-classes com.mieshi.engineserver.crossserver.ArticleEntityPacket
+		      	-classes com.mieshi.engineserver.sprite.MagicWeapon
+		      	-file ./conf/message_cross_server.xml"/> 
+		      <classpath>
+		      	<fileset dir="lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>
+		      </classpath>
+		</java>	
+	</target>
+	
+	<target name="docs">
+		<mkdir dir="${dist}/docs/api"/>
+		
+		<!-- put javadocs in ${dist}/docs dir -->
+		<javadoc packagenames="com.mieshi.*"
+			 sourcepath="${src}" 
+			 destdir="${dist}/docs/api" 
+			 author="true"
+			 version="true"
+			 access="private"
+			 use="true"
+			 windowtitle="Maibo componentAPI">
+			<bottom><![CDATA[<i>Copyright &#169; 2007-2009 xuanzhi Corp. All Rights Reserved.</i>]]></bottom>
+			<classpath refid="project.class.path"/>
+		</javadoc>
+	</target>
+			
+	<target name="clean">
+		<!-- delete the ${build} -->
+		<delete dir="${build}"/>
+		<delete dir="${clover}"/>
+		<delete file="${dist}/lib/${com}-${name}-${version}.jar"/>
+	</target>
+	
+	<target name="aaa">
+	<echo message="asdasds"></echo>
+	</target>
+	
+</project>

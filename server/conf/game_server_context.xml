@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="ServiceStartRecord" class="com.fy.engineserver.util.ServiceStartRecord" scope="singleton" init-method="init" destroy-method="destroy">
+		<property name="recordFilePath" value="${game.server.webapp}/WEB-INF/game_runtime_data/serverStartRecord.ddc"/>
+	</bean>
+		<bean id="PlatformManager" class="com.fy.engineserver.platform.PlatformManager" init-method="init" scope="singleton">
+		<property name="gameConstants" ref="GameConstants"></property>
+	</bean>
+	
+	<bean id="systemTime" class="com.fy.engineserver.gametime.SystemTime" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="type" value="0" />
+		<property name="sleepCycle" value="1" />
+	</bean>
+	<bean id="ConfigServiceManager" class="com.fy.engineserver.util.config.ConfigServiceManager" init-method="init" scope="singleton">
+		<property name="platformManager" ref="PlatformManager"></property>
+	</bean>
+	<bean id="MemoryControler" class="com.fy.engineserver.util.MemoryControler" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="timeDistance" value="5000"></property>
+	</bean>	
+	
+	<bean id="CommonDiskCacheManager" class="com.fy.engineserver.util.CommonDiskCacheManager" init-method="init" scope="singleton">
+		<property name="dataFile" value="${game.server.webapp}WEB-INF/game_runtime_data/common.ddc"></property>
+	</bean>
+	
+	<bean id="MultiLanguageTranslateManager" class="com.fy.engineserver.datasource.language.MultiLanguageTranslateManager" init-method="init" scope="singleton">
+		<property name="needTranslate" value="${server.translate}"/>
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/translate/${server.translate.file}"/>
+	</bean>
+	<bean id="SimpleEntityManagerLoader" class="com.fy.engineserver.core.SimpleEntityManagerLoader" init-method="init" scope="singleton" />
+
+	<bean id="transferLanguage" class="com.fy.engineserver.datasource.language.TransferLanguage" init-method="init" scope="singleton">
+		<property name="characterTransferormFlag" value="${server.language.change}"></property><!-- 当需要变换字符时设置为true -->
+		<property name="characterExcel" value="${game.server.webapp}/WEB-INF/game_init_config/characterExcel.xls"></property>
+	</bean>
+	<bean id="DeliverTaskManager" class="com.fy.engineserver.newtask.service.DeliverTaskManager" init-method="init" scope="singleton"
+		destroy-method="destroy" />
+	<bean id="NewDeliverTaskManager" class="com.fy.engineserver.newtask.NewDeliverTaskManager" init-method="init" scope="singleton"
+		destroy-method="destroy" />
+
+	<bean id="experienceManager" class="com.fy.engineserver.core.ExperienceManager" init-method="init" scope="singleton">
+		<property name="playerExpFile" value="${game.server.webapp}/WEB-INF/game_init_config/expData.xls"></property>
+	</bean>
+	
+	<bean id="stat_system_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="stat.system.client.name"></property>
+		<property name="clientModel" value="true"></property>
+		<property name="host" value="${stat.system.server.host}"></property>
+		<property name="port" value="${stat.system.server.port}"></property>
+	</bean>
+
+	<bean id="statClientService" class="com.sqage.stat.client.StatClientService" init-method="initialize" scope="singleton">
+		<property name="selector" ref="stat_system_client"></property>
+		<property name="queueFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/stat_queue/"></property>
+		<property name="openning" value="true"></property>
+	</bean>
+	
+	<!-- 称号 -->
+	<bean id="playerTitlesManager" class="com.fy.engineserver.playerTitles.PlayerTitlesManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/playerTitle.xls"></property>
+	</bean>
+	<!-- 寻人 -->
+	<bean id="PeopleSearchManager" class="com.fy.engineserver.activity.peoplesearch.PeopleSearchManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/peoplesearch.xls"/>
+	</bean>
+	<!-- 封印系统 start -->
+	<bean id="sealManager" class="com.fy.engineserver.seal.SealManager" init-method="init" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_runtime_data/seal.xml"></property>
+	</bean>
+	<!-- 封印系统 end -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring_config/server.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 理论上为所有活动管理类，需要在任意活动初始化之前初始化 -->
+	<bean id="allActivityManager" class="com.fy.engineserver.activity.AllActivityManager" scope="singleton" init-method="init" >
+	</bean>
+	<bean id="TransactionFactory" class="com.xuanzhi.tools.transaction.TransactionFutureFactory" init-method="initialize" scope="singleton">
+	</bean>
+
+	<!-- inner -->
+	<bean id="mieshi_ResourceManager" class="com.fy.engineserver.core.res.ResourceManager" init-method="init" destroy-method="destory" scope="singleton">
+		<property name="resourceDir" value="${game.server.webapp}/WEB-INF/game_init_config/bindata"></property>
+	</bean>
+	<!-- bean id="mieshi_HelpManager" class="com.fy.engineserver.core.res.HelpManager" init-method="init" scope="singleton"> <property name="helpWindowXml" 
+		value="${game.server.webapp}/WEB-INF/game_init_config/helpWindow.xml"></property> </bean -->
+
+	<bean id="game_server" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" destroy-method="destory" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="enableTimepiece" value="true"></property>
+		<property name="threadPoolMaxPoolSize" value="400"></property>
+		<property name="name" value="${game.server.name}"></property>
+		<property name="clientModel" value="false"></property>
+		<property name="multiServerModel" value="false"></property>
+		<property name="secondaryServerNum" value="1"></property>
+		<property name="host" value="${game.server.host}"></property>
+		<property name="port" value="${game.server.port}"></property>
+		<property name="connectionConnectedHandler" ref="game_gateway"></property>
+	</bean>
+
+	<bean id="JuBaoZhuang" class="com.fy.engineserver.septbuilding.templet.JuBaoZhuang" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/JuBaoZhuang.xml"></property>
+	</bean>
+	<bean id="JuXianDian" class="com.fy.engineserver.septbuilding.templet.JuXianDian" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/JuXianDian.xml"></property>
+	</bean>
+	<bean id="XianLingDong" class="com.fy.engineserver.septbuilding.templet.XianLingDong" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/XianLingDong.xml"></property>
+	</bean>
+	<bean id="LongTuGe" class="com.fy.engineserver.septbuilding.templet.LongTuGe" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/LongTuGe.xml"></property>
+	</bean>
+	<bean id="HuanYuZhen" class="com.fy.engineserver.septbuilding.templet.HuanYuZhen" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/HuanYuZhen.xml"></property>
+	</bean>
+	<bean id="WuQiFang" class="com.fy.engineserver.septbuilding.templet.WuQiFang" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/WuQiFang.xml"></property>
+	</bean>
+	<bean id="FangJuFang" class="com.fy.engineserver.septbuilding.templet.FangJuFang" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/FangJuFang.xml"></property>
+	</bean>
+	<bean id="JiaZuQi" class="com.fy.engineserver.septbuilding.templet.JiaZuQi" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/JiaZuQi.xml"></property>
+	</bean>
+	<bean id="BiaoZhiXiangQL" class="com.fy.engineserver.septbuilding.templet.BiaoZhiXiangQL" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/BiaoZhiXiangQL.xml"></property>
+	</bean>
+	<bean id="BiaoZhiXiangBH" class="com.fy.engineserver.septbuilding.templet.BiaoZhiXiangBH" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/BiaoZhiXiangBH.xml"></property>
+	</bean>
+	<bean id="BiaoZhiXiangXW" class="com.fy.engineserver.septbuilding.templet.BiaoZhiXiangXW" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/BiaoZhiXiangXW.xml"></property>
+	</bean>
+	<bean id="BiaoZhiXiangZQ" class="com.fy.engineserver.septbuilding.templet.BiaoZhiXiangZQ" init-method="init" scope="singleton">
+		<property name="confPath" value="${game.server.webapp}WEB-INF/game_init_config/septstation/BiaoZhiXiangZQ.xml"></property>
+	</bean>
+	<!-- bean id="DiJiao" class="com.fy.engineserver.septbuilding.templet.DiJiao" init-method="init" scope="singleton"> </bean -->
+	<!--bean id="JianLou" class="com.fy.engineserver.septbuilding.templet.JianLou" init-method="init" scope="singleton"> </bean -->
+	<!--bean id="JianLouOfHuo" class="com.fy.engineserver.septbuilding.templet.JianLouOfHuo" init-method="init" scope="singleton"> </bean -->
+	<!--bean id="JianLouOfLei" class="com.fy.engineserver.septbuilding.templet.JianLouOfLei" init-method="init" scope="singleton"> </bean -->
+	<!--bean id="JianLouOfBing" class="com.fy.engineserver.septbuilding.templet.JianLouOfBing" init-method="init" scope="singleton"> </bean -->
+	<!--bean id="JianLouOfFeng" class="com.fy.engineserver.septbuilding.templet.JianLouOfFeng" init-method="init" scope="singleton"> </bean -->
+	<bean id="SeptStationMapTemplet" class="com.fy.engineserver.septstation.SeptStationMapTemplet" init-method="init" scope="singleton">
+		<property name="RES_PASH" value="${game.server.webapp}WEB-INF/game_init_config/septstation/septConf.xls"></property>
+	</bean>
+
+
+	<bean id="game_gateway" class="com.fy.engineserver.gateway.GameNetworkFramework" init-method="init" scope="singleton">
+		<property name="threadNum" value="100"></property>
+		<property name="queueSelectorEnabled" value="true"></property>
+		<property name="readyNum" value="1"></property>
+		<property name="waitReadyTimeout" value="100"></property>
+		<property name="connectionSelector" ref="game_server"></property>
+		<property name="gameConstants" ref="GameConstants"></property>
+		<property name="gameSubSystems">
+			<list>
+				<ref bean="security_sub_system" />
+				<ref bean="sprite_sub_system" />
+				<ref bean="core_sub_system" />
+				<ref bean="team_sub_system" />
+				<ref bean="PetSubSystem" />
+				<ref bean="chat_sub_system" />
+				<ref bean="MailSubSystem" />
+				<ref bean="TradeSubSystem" />
+				<ref bean="RequestBuySubSystem" />
+				<ref bean="AuctionSubSystem" />
+				<ref bean="TaskSubSystem" />
+				<ref bean="jiazuSubSystem" />
+
+				<ref bean="HorseSubSystem" />
+				<ref bean="society_sub_system" />
+				<ref bean="zongPaiSubSystem" />
+				<ref bean="unite_sub_system" />
+				<ref bean="masterPrentice_sub_system" />
+				<ref bean="MarriageSubSystem" />
+				<ref bean="activitySubSystem" />
+				<ref bean="HotspotSubSystem" />
+				<ref bean="QianCengTaManager" />
+				<ref bean="guozhanSubSystem" />
+				<ref bean="newfeedback_sub_system" />
+				<ref bean="Pet2Manager" />
+				<ref bean="ActivenessSubSystem" />
+				<ref bean="TransitRobberySystem" />
+				<ref bean="DevilSquareSystem" />
+				<ref bean="ComposeSystem" />
+				<ref bean="MagicWeaponSystem" />
+				<ref bean="PlayerAimSystem" />
+				<ref bean="Horse2System" />
+				<ref bean="DownCitySystem2" />
+				<ref bean="WaFenSystem" />
+				<ref bean="JiazuSystem" />
+				<ref bean="ActivitySubSystem2" />
+				<ref bean="EnchantSubSystem" />
+				<ref bean="HuntLifeSubSystem" />
+				<ref bean="DisasterSubSystem" />
+				<ref bean="SoulPithSubSystem" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="security_sub_system" class="com.fy.engineserver.security.SecuritySubSystem" scope="singleton">
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+	</bean>
+	<bean id="CountryManager" class="com.fy.engineserver.country.manager.CountryManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="mapWangZheTransferPointfile" value="${game.server.webapp}/WEB-INF/game_init_config/mapWangZheTransferPoints.xls"></property>
+	</bean>
+	<bean id="equipmentData_manager" class="com.fy.engineserver.datasource.article.concrete.ReadEquipmentExcelManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/equipmentExcel.xls"></property>
+	</bean>
+	<bean id="article_manager" class="com.fy.engineserver.datasource.article.manager.ArticleManager" init-method="init" scope="singleton">
+		<property name="reem" ref="equipmentData_manager"></property>
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/article.xls"></property>
+		<property name="baoShiColorFile" value="${game.server.webapp}/WEB-INF/game_init_config/xiaZiData.xls"></property>
+	</bean>
+	<bean id="ArticleEntityManager" class="com.fy.engineserver.datasource.article.concrete.DefaultArticleEntityManager" init-method="initialize"
+		scope="singleton" destroy-method="destroy">
+		<property name="updatePeriod" value="20"></property>
+	</bean>
+	<!-- 法宝 -->
+	<bean id="MagicWeaponManager" class="com.fy.engineserver.datasource.article.data.magicweapon.MagicWeaponManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/magicweapon/magicWeapon.xls"></property>
+		<property name="dataFileName" value="${game.server.webapp}/WEB-INF/game_init_config/magicweapon/magicweapondata.xls"></property>
+	</bean>
+	<bean id="sprite_sub_system" class="com.fy.engineserver.sprite.SpriteSubSystem" init-method="init" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+		<property name="gameConstants" ref="GameConstants"></property>
+		<property name="bossService" ref="bossClientService"></property>
+		<property name="gameManager" ref="game_manager"></property>
+	</bean>
+
+	<bean id="player_manager" class="com.fy.engineserver.sprite.concrete.GamePlayerManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="gameConstants" ref="GameConstants"></property>
+		<property name="bossClientService" ref="bossClientService"></property>
+		<property name="updatePeriod" value="10"></property>
+		<property name="playerBasicPropertyValuesFile" value="${game.server.webapp}/WEB-INF/game_init_config/playerBasicPropertyValuesFile.xls"></property>
+		<property name="playerPropertyMaxValuesFile" value="${game.server.webapp}/WEB-INF/game_init_config/playerPropertyMaxValuesFile.xls"></property>
+		<property name="onlinenumDDCFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/onlineDDC.ddc"></property>
+		<property name="combatFValuesFile" value="${game.server.webapp}/WEB-INF/game_init_config/combatFValues.xls"></property>
+	</bean>
+	
+	<bean id="exploreManager" class="com.fy.engineserver.activity.explore.ExploreManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/exploreActivity.xls"></property>
+	</bean>
+
+	<bean id="articleExchangeManager" class="com.fy.engineserver.articleExchange.ArticleExchangeManager" scope="singleton" init-method="init">
+	</bean>
+	<!--
+	<bean id="quizManager" class="com.fy.engineserver.activity.quiz.QuizManager" scope="singleton" init-method="init" destroy-method="destroy">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/quizActivity.xls"></property>
+		<property name="configFileExp" value="${game.server.webapp}/WEB-INF/game_init_config/quizExp.xls"></property>
+	</bean>
+
+	-->
+	<bean id="fateManager" class="com.fy.engineserver.activity.fateActivity.FateManager" scope="singleton" init-method="init" destroy-method="destory">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/fateActivity.xls"></property>
+	</bean>
+	<!-- 交易系统 -->
+	<bean id="TradeSubSystem" class="com.fy.engineserver.core.TradeSubSystem" init-method="init" scope="singleton">
+	</bean>
+	<bean id="BoothsaleManager" class="com.fy.engineserver.trade.boothsale.service.BoothsaleManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/boothOffLine.xls"></property>
+	</bean>
+	<bean id="TradeAbnormalManager" class="com.fy.engineserver.trade.abnormalCount.TradeAbnormalManager" init-method="init" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/tradeContrl.xls"></property>
+	</bean>
+	<!-- 交易系统 -->
+	<!-- 求购系统 -->
+	<bean id="RequestBuySubSystem" class="com.fy.engineserver.core.RequestBuySubSystem" init-method="init" scope="singleton">
+	</bean>
+	<bean id="RequestBuyManager" class="com.fy.engineserver.trade.requestbuy.service.RequestBuyManager" init-method="init" destroy-method="destroy"
+		scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/RequestBuyConfig.xls"></property>
+		<property name="configFile" value="${game.server.webapp}WEB-INF/game_runtime_data/RequestBuyBu.doc"></property>
+	</bean>
+	<!-- 求购系统 -->
+
+	<bean id="ReadSpriteExcelManager" class="com.fy.engineserver.sprite.monster.ReadSpriteExcelManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/spriteData.xls"></property>
+	</bean>
+
+	<bean id="monster_manager" class="com.fy.engineserver.sprite.monster.MemoryMonsterManager" init-method="init" scope="singleton">
+		<property name="monsterFile" value="${game.server.webapp}/WEB-INF/game_init_config/monster.xls"></property>
+		<property name="monsterExpFile" value="${game.server.webapp}/WEB-INF/game_init_config/expData.xls"></property>
+		<property name="readSpriteExcelManager" ref="ReadSpriteExcelManager"></property>
+		<property name="articleManager" ref="article_manager"></property>
+		<property name="rem" ref="ReadSpriteExcelManager"></property>
+	</bean>
+
+	<bean id="npc_manager" class="com.fy.engineserver.sprite.npc.MemoryNPCManager" init-method="init" scope="singleton">
+		<property name="NPCFile" value="${game.server.webapp}/WEB-INF/game_init_config/npc.xls"></property>
+		<property name="NPCWidPath" value="${game.server.webapp}/WEB-INF/game_init_config/npcWid.xls"></property>
+		<!-- property name="taskManager" ref="task_manager"></property -->
+	</bean>
+	<!-- 
+	<bean id="question_manager" class="com.fy.engineserver.menu.question.QuestionManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/questions.xml"></property>
+		<property name="configFileTeacherDay" value="${game.server.webapp}/WEB-INF/game_init_config/questions_teacherDay.xml"></property>
+		<property name="configFileMidAutumnDay" value="${game.server.webapp}/WEB-INF/game_init_config/questions_midAutumnDay.xml"></property>
+		<property name="configFileAsianGames" value="${game.server.webapp}/WEB-INF/game_init_config/questions_asianGames.xml"></property>
+	</bean>
+	-->
+
+	<bean id="core_sub_system" class="com.fy.engineserver.core.CoreSubSystem" init-method="init" scope="singleton">
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<!-- property name="monsterManager" ref="monster_manager"></property -->
+		<property name="gameManager" ref="game_manager"></property>
+		<property name="articleManager" ref="article_manager"></property>
+		<property name="dealCenter" ref="GameDealCenterProxy"></property>
+		<property name="mailManager" ref="MailManager"></property>
+		<property name="bournManager" ref="bournManager"></property>
+		<property name="taskManager" ref="TaskManager"></property>
+		<!-- property name="taskManager" ref="task_manager"></property> <property name="wareHouseManager" ref="GameWareHouseManagerProxy"></property> <property 
+			name="gangWareHouseManager" ref="GangWareHouseManager"></property> <property name="auctionManager" ref="AuctionManager"></property> <property name="resourceManager" 
+			ref="resourceManager"></property -->
+		<!-- property name="gatewayAddressManager" ref="gatewayAddressManager"></property -->
+		<property name="bossClientService" ref="bossClientService"></property>
+		<!-- property name="gangMemberManager" ref="GangMemberManager"></property> <property name="gangManager" ref="GangManager"></property -->
+		<property name="chatMessageService" ref="chatMessageService"></property>
+		<property name="chatChannelManager" ref="chatChannelManager"></property>
+		<property name="npcManager" ref="npc_manager" />
+		<property name="serverOpentimeFile" value="${game.server.webapp}/WEB-INF/game_init_config/serveropentime.xls"></property>
+	</bean>
+
+	<bean id="PetSubSystem" class="com.fy.engineserver.core.PetSubSystem" init-method="init" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="mailManager" ref="MailManager"></property>
+		<property name="petManager" ref="PetManager"></property>
+		<property name="petMatingManager" ref="PetMatingManager"></property>
+	</bean>
+
+	<bean id="team_sub_system" class="com.fy.engineserver.sprite.TeamSubSystem" init-method="init" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="teamManager" ref="teamManager"></property>
+	</bean>
+
+	<bean id="teamManager" class="com.fy.engineserver.sprite.TeamManager" scope="singleton">
+
+	</bean>
+	
+	<bean id="beatheart_thread_manager" class="com.fy.engineserver.core.BeatHeartThreadManager" init-method="init" scope="singleton">
+		<property name="gameManager" ref="game_manager"></property>
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/bindata"></property>
+	</bean>
+
+	<bean id="buff_template_manager" class="com.fy.engineserver.datasource.buff.BuffTemplateManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/buffs.xml"></property>
+	</bean>
+
+	<bean id="game_manager" class="com.fy.engineserver.core.GameManager" init-method="init" scope="singleton">
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="careerManager" ref="career_manager"></property>
+		<property name="monsterManager" ref="monster_manager"></property>
+		<property name="npcManager" ref="npc_manager"></property>
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/bindata"></property>
+		<property name="monsterBornPointFile" value="${game.server.webapp}/WEB-INF/game_init_config/bindata"></property>
+		<property name="npcBornPointFile" value="${game.server.webapp}/WEB-INF/game_init_config/bindata"></property>
+		<property name="worldMapInfoFile" value="${game.server.webapp}/WEB-INF/game_init_config/worldmap.xml"></property>
+		<property name="webappDir" value="${game.server.webapp}"></property>
+		<property name="gamemapInCountryFileName" value="${game.server.webapp}/WEB-INF/game_init_config/gamemapInCountry.xls"></property>
+	</bean>
+
+	<bean id="career_manager" class="com.fy.engineserver.datasource.career.CareerManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/skills.xls"></property>
+	</bean>
+
+	<!-- bianjiqi-->
+	<!--  
+	 <bean id="verify_manager" class="com.fy.engineserver.tool.VerifyServer" init-method="init" scope="singleton">
+		<property name="port" value="${verify.server.port}"></property>
+		<property name="userFile" value="${game.server.webapp}/WEB-INF/game_init_config/users.xml"></property>
+	</bean>
+	-->
+	<bean id="message_server" class="com.fy.engineserver.tool.MessageServer" init-method="init" scope="singleton">
+		<property name="port" value="${tool.server.port}"></property>
+	</bean>
+
+	<bean id="chat_sub_system" class="com.fy.engineserver.chat.ChatSubSystem" init-method="initialize" scope="singleton">
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="chatMessageService" ref="chatMessageService"></property>
+	</bean>
+
+	<bean id="chatMessageService" class="com.fy.engineserver.chat.ChatMessageService" init-method="initialize" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="chatChannelManager" ref="chatChannelManager"></property>
+		<!-- property name="shopManager" ref="ShopManager"></property> <property name="billingCenter" ref="BillingCenter"></property> <property name="gangMemberManager" 
+			ref="GangMemberManager"></property> <property name="gangManager" ref="GangManager"></property -->
+		<property name="chatGoodsShopName" value="${chat.goods.shopname}"></property>
+		<property name="worldNeedChatArticle" value="${worldChat.need.article}"></property>
+		<property name="colorWorldNeedChatArticle" value="${colorWorldChat.need.article}"></property>
+		<property name="banedMapFile" value="${chat.baned.map.file}"></property>
+		<property name="socialManager" ref="socialManager"></property>
+	</bean>
+
+	<bean id="chatChannelManager" class="com.fy.engineserver.chat.ChatChannelManager" init-method="initialize" scope="singleton">
+		<property name="xmlConfigFile" value="${game.server.webapp}/WEB-INF/game_init_config/chat_channels.xml"></property>
+	</bean>
+
+	<!-- 邮件 -->
+	<bean id="MailManager" class="com.fy.engineserver.mail.service.concrete.DefaultMailManager" init-method="initialize" scope="singleton"
+		destroy-method="destroy">
+
+	</bean>
+
+	<!-- 交易 -->
+	<bean id="GameDealCenterProxy" class="com.fy.engineserver.deal.service.concrete.GameDealCenterProxy" init-method="initialize" scope="singleton">
+		<property name="timeout" value="300000"></property>
+		<property name="dataDealCenter" ref="DealCenter"></property>
+	</bean>
+	<bean id="DealCenter" class="com.fy.engineserver.deal.service.concrete.DefaultDealCenter" init-method="initialize" scope="singleton">
+	</bean>
+
+	<!-- 商店 -->
+	<bean id="ShopManager" class="com.fy.engineserver.shop.ShopManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="cacheFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/shopManager.ddc"></property>
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/shops.xls"></property>
+		<property name="articleEntityManager" ref="ArticleEntityManager"></property>
+	</bean>
+
+	<!-- 世界地图 -->
+	<bean id="WorldMapManager" class="com.fy.engineserver.worldmap.WorldMapManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="file" value="${game.server.webapp}/WEB-INF/game_init_config/worldMap.xls"></property>
+		<property name="playerExploredMapFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/playerExploredMapFile.ddc"></property>
+	</bean>
+	<!-- 计费 -->
+	<bean id="BillingCenter" class="com.fy.engineserver.economic.BillingCenter" init-method="initialize" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="bossClientService" ref="bossClientService"></property>
+	</bean>
+	
+	<!-- 合服 -->
+	<bean id="UnitedServerManager" class="com.fy.engineserver.uniteserver.UnitedServerManager" init-method="init" scope="singleton">
+		<property name="diskFile" value="${game.server.webapp}WEB-INF/game_runtime_data/unitedServer.ddc"></property>
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/unitServer.xls"></property>
+	</bean>
+	<!-- 合服 -->
+	<bean id="UnitedServerManager2" class="com.fy.engineserver.uniteserver.UnitedServerManager2" init-method="init" scope="singleton">
+		<property name="diskFile" value="${game.server.webapp}WEB-INF/game_runtime_data/unitedServer.ddc"></property>
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/unitServer.xls"></property>
+	</bean>
+	<bean id="ActivityManagers" class="com.fy.engineserver.activity.loginActivity.ActivityManagers" init-method="init" scope="singleton">
+		<property name="dataFile" value="${game.server.webapp}WEB-INF/game_runtime_data/activity.ddc"></property>
+		<property name="dataKeysFile" value="${game.server.webapp}WEB-INF/game_runtime_data/activity_keys.ddc"></property>
+		<property name="activityFile" value="${game.server.webapp}WEB-INF/game_init_config/activity/activity_showMess.xls"></property>
+	</bean>
+	<!-- bean id="ReputeManager" class="com.fy.engineserver.datasource.repute.ReputeManager" init-method="init" scope="singleton"> <property name="reputeFile" 
+		value="${game.server.webapp}/WEB-INF/game_init_config/reputes.xml"></property> </bean -->
+	<bean id="OldPlayerComeBackManager" class="com.fy.engineserver.activity.oldPlayerComeBack.OldPlayerComeBackManager" init-method="init" scope="singleton">
+	</bean>
+	<!-- 菜单系统 -->
+	<bean id="windowManager" class="com.fy.engineserver.menu.WindowManager" init-method="init" scope="singleton">
+		<!-- <property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/menu_windows.xml"></property> -->
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/windows.xls"></property>
+	</bean>
+
+	<bean id="WordFilter" class="com.xuanzhi.tools.text.WordFilter" init-method="initialize" scope="singleton">
+		<property name="filterFile" value="${game.server.webapp}/WEB-INF/game_init_config/wordfilter.txt"></property>
+	</bean>
+
+	<!-- 战场 -->
+	<bean id="battleFieldManager" class="com.fy.engineserver.battlefield.concrete.BattleFieldManager" init-method="init" scope="singleton"
+		destroy-method="destroy">
+		<property name="threadNum" value="20" />
+	</bean>
+	<bean id="battleFieldLineupService" class="com.fy.engineserver.battlefield.concrete.BattleFieldLineupService" init-method="init" scope="singleton">
+	</bean>
+	<bean id="tournamentManager" class="com.fy.engineserver.tournament.manager.TournamentManager" init-method="init" scope="singleton"
+		destroy-method="destroy">
+		<property name="file" value="${game.server.webapp}/WEB-INF/game_init_config/tournamentReward.xls"></property>
+	</bean>
+
+	<!-- BOSS -->
+	<bean id="GameConstants" class="com.xuanzhi.boss.game.GameConstants" init-method="init" scope="singleton">
+		<property name="gameName" value="${constants.game.name}"></property>
+		<property name="serverName" value="${constants.server.name}"></property>
+		<property name="serverAddress" value="${constants.server.address}"></property>
+		<property name="serverType" value="${constants.server.type}"></property>
+		<property name="hostid" value="${constants.host.id}"></property>
+		<property name="serverid" value="${constants.server.id}"></property>
+		<property name="platForm" value="${constants.server.platForm}"></property>
+	</bean>
+	<bean id="boss_system_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="${boss.system.client.name}"></property>
+		<property name="maxConnectionNum" value="256"></property>
+		<property name="clientModel" value="true"></property>
+		<property name="host" value="${boss.system.server.host}"></property>
+		<property name="port" value="${boss.system.server.port}"></property>
+		<property name="connectionCreatedHandler" ref="bossClientService"></property>
+	</bean>
+	<bean id="bossClientService" class="com.fy.boss.client.BossClientService" init-method="initialize" scope="singleton">
+		<property name="connectionSelector" ref="boss_system_client"></property>
+	</bean>
+	
+	<!-- GM FEEDBACK BOSS -->
+	<bean id="boss_system_client_gm" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="${boss.system.client.name.gm}"></property>
+		<property name="maxConnectionNum" value="256"></property>
+		<property name="clientModel" value="true"></property>
+		<property name="host" value="${boss.system.server.host.gm}"></property>
+		<property name="port" value="${boss.system.server.port.gm}"></property>
+		<property name="connectionCreatedHandler" ref="bossClientService_gm"></property>
+	</bean>
+	<bean id="bossClientService_gm" class="com.fy.boss.gm.newfeedback.client.BossGmClientService" init-method="init" scope="singleton">
+		<property name="connectionSelector2" ref="boss_system_client_gm"></property>
+	</bean>
+	
+	<!-- 激活码 -->
+	<bean id="boss_confirmation_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="${boss.system.client.name}"></property>
+		<property name="maxConnectionNum" value="256"></property>
+		<property name="clientModel" value="true"></property>
+		<property name="host" value="${boss.confirmactioncode.server.host}"></property>
+		<property name="port" value="${boss.confirmactioncode.server.port}"></property>
+		<property name="connectionCreatedHandler" ref="confirmactionCode_message_handler"></property>
+	</bean>
+	<bean id="confirmactionCode_message_handler" class="com.fy.confirm.service.client.MessageSender" init-method="init">
+		<property name="connectionSelector" ref="boss_confirmation_client" />
+	</bean>
+	<bean id="confirmationClientService" class="com.fy.confirm.service.client.ClientService" init-method="init">
+		<property name="messageSender" ref="confirmactionCode_message_handler" />
+	</bean>
+	<!-- 激活码 -->
+	<bean id="RecordManager" class="com.fy.engineserver.gm.record.RecordManager" init-method="initialize" scope="singleton"> 
+	<property name="fileConfigFile" value="${game.server.webapp}WEB-INF/game_runtime_data/talkrecordfiles.xml"></property> 
+	<property name="rootaddress" value="${game.server.webapp}WEB-INF/game_runtime_data/talkrecord/"></property> 
+	</bean>
+	<bean id="WordFilter1" class="com.fy.engineserver.gm.custom.WordFilter" init-method="initialize" scope="singleton">
+		 <property name="wordFile" value="${game.server.webapp}WEB-INF/game_runtime_data/worldchat.xml"></property> 
+	</bean>
+	<!-- GM操作记录 -->
+	<bean id="ActionManager" class="com.fy.engineserver.gm.record.ActionManager" init-method="initialize" scope="singleton"> <property name="actionConfigFile" 
+		value="${game.server.webapp}WEB-INF/game_runtime_data/actionrecord.xml"></property> <property name="fileRoot" value="${game.server.webapp}WEB-INF/game_runtime_data/actionrecord/"></property> 
+	</bean>
+
+	<bean id="PetMatingManager" class="com.fy.engineserver.sprite.pet.PetMatingManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="petManager" ref="PetManager"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="articleManager" ref="article_manager"></property>
+		<property name="articleEntityManager" ref="ArticleEntityManager"></property>
+	</bean>
+	<bean id="PetManager" class="com.fy.engineserver.sprite.pet.PetManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/petSkillBind.xls"></property>
+
+	</bean>
+	<bean id="MailSubSystem" class="com.fy.engineserver.core.MailSubSystem" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="mailManager" ref="MailManager"></property>
+	</bean>
+
+	<bean id="HorseSubSystem" class="com.fy.engineserver.sprite.horse.HorseSubSystem" scope="singleton">
+		<property name="horseManager" ref="HorseManager"></property>
+	</bean>
+
+	<bean id="HorseManager" class="com.fy.engineserver.sprite.horse.HorseManager" init-method="init" scope="singleton" destroy-method="destroy">
+
+	</bean>
+
+
+	<bean id="zongPaiSubSystem" class="com.fy.engineserver.zongzu.ZongPaiSubSystem" scope="singleton">
+		<property name="zongPaiManager" ref="zongPaiManager"></property>
+		<property name="playerManager" ref="player_manager"></property>
+	</bean>
+	<bean id="zongPaiManager" class="com.fy.engineserver.zongzu.manager.ZongPaiManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="chatMessageService" ref="chatMessageService"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="unitedManager" ref="UnitedServerManager"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/seizeCity.ddc"></property>
+	</bean>
+
+	<bean id="society_sub_system" class="com.fy.engineserver.society.SocietySubSystem" init-method="init" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="chatMessageService" ref="chatMessageService"></property>
+		<property name="socialManager" ref="socialManager"></property>
+		<property name="playerSimpleInfoManager" ref="playerSimpleInfoManager"></property>
+	</bean>
+	<bean id="socialManager" class="com.fy.engineserver.society.SocialManager" scope="singleton" init-method="init" destroy-method="destroy">
+		<property name="playerManager" ref="player_manager"></property>
+	</bean>
+
+	<bean id="uniteManager" class="com.fy.engineserver.unite.UniteManager" scope="singleton" init-method="init" destroy-method="destroy">
+		<property name="unitedManager" ref="UnitedServerManager"></property>
+	</bean>
+	<bean id="unite_sub_system" class="com.fy.engineserver.unite.UniteSubSystem" scope="singleton" init-method="init">
+		<property name="uniteManager" ref="uniteManager"></property>
+	</bean>
+
+	<bean id="masterPrenticeManager" class="com.fy.engineserver.masterAndPrentice.MasterPrenticeManager" scope="singleton" init-method="init"
+		destroy-method="destroy">
+		<property name="socialManager" ref="socialManager"></property>
+	</bean>
+	<bean id="masterPrentice_sub_system" class="com.fy.engineserver.masterAndPrentice.MasterPrenticeSubSystem" scope="singleton">
+		<property name="masterPrenticeManager" ref="masterPrenticeManager"></property>
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="socialManager" ref="socialManager"></property>
+	</bean>
+
+	<bean id="chuanGongManager" class="com.fy.engineserver.chuangong.ChuanGongManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/chuangong.xls"></property>
+	</bean>
+
+	<bean id="playerSimpleInfoManager" class="com.fy.engineserver.sprite.PlayerSimpleInfoManager" scope="singleton" init-method="init">
+	</bean>
+
+
+	<!-- 任务系统 -->
+	<bean id="TaskSubSystem" class="com.fy.engineserver.newtask.service.TaskSubSystem" init-method="init" destroy-method="destroy" scope="singleton">
+	</bean>
+	<bean id="TaskManager" class="com.fy.engineserver.newtask.service.TaskManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/task/taskTemplet.xlsx"></property>
+		<property name="npcManager" ref="npc_manager" />
+		<property name="gameManager" ref="game_manager" />
+		<property name="entityManager" ref="ArticleEntityManager" />
+		<property name="articleManager" ref="article_manager" />
+	</bean>
+	<bean id="ActivenessManager" class="com.fy.engineserver.activity.activeness.ActivenessManager" init-method="init" scope="singleton">
+		<property name="npcManager" ref="npc_manager" />
+		<property name="taskManager" ref="TaskManager" />
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/activeness.xls"/>
+	</bean>
+	<!-- 兑换活动 -->
+	<bean id="ExchangeActivityManager" class="com.fy.engineserver.menu.activity.exchange.ExchangeActivityManager" scope="singleton" init-method="init">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/exchangeActivity.xls"></property>
+	</bean>
+	<bean id="ExtraAwardTaskEventTransact" class="com.fy.engineserver.activity.ExtraAwardTaskEventTransact" scope="singleton" init-method="init">
+	</bean>
+	<!-- 任务触发事件 -->
+	<bean id="TaskEventTransactCenter" class="com.fy.engineserver.newtask.service.TaskEventTransactCenter" init-method="init" scope="singleton">
+		<property name="eventTransacts">
+			<list>
+				<ref bean="SealTaskEventTransact" />
+				<ref bean="fataActivityEventTransact" />
+				<ref bean="NewPlayerTaskEventTransact" />
+				<ref bean="HotspotTaskEventTransact" />
+				<ref bean="MastLineTaskOpenNextTaskEventTransact" />
+				<ref bean="FarmingTaskEvent" />
+				<ref bean="SilvercarTaskEvent" />
+				<ref bean="exploreActivityEventTransact" />
+				<ref bean="PeekAndBrickTaskEvent" />
+				<ref bean="SeptBuildingTaskEvent" />
+				<ref bean="NewPlayerLeadTaskEvent" />
+				<ref bean="ThewOpenTaskEventTransact" />
+				<ref bean="TuMoTieTaskEventTransact" />
+				<ref bean="KoreaSocietyTaskEventTransact" />
+				<ref bean="ActivenessTaskEventTransact" />
+				<ref bean="DigActivityTaskEventTransact" />
+				<ref bean="ExtraAwardTaskEventTransact" />
+				<ref bean="TalentStartTaskEvent" />
+			</list>
+		</property>
+	</bean>
+	<!-- 开放体力值任 -->
+	<bean id="ThewOpenTaskEventTransact" class="com.fy.engineserver.newtask.service.ThewOpenTaskEventTransact" init-method="init" scope="singleton">
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+	<!-- 新手引导任务 -->
+	<bean id="NewPlayerLeadTaskEvent" class="com.fy.engineserver.core.NewPlayerLeadTaskEvent" init-method="init" scope="singleton">
+		<property name="dataManager" ref="NewPlayerLeadDataManager"></property>
+	</bean>
+	<!-- 家族发布建设任务 -->
+	<bean id="SeptBuildingTaskEvent" class="com.fy.engineserver.septstation.SeptBuildingTaskEvent" init-method="init" scope="singleton">
+		<property name="taskManager" ref="TaskManager"></property>
+		<property name="stationMapTemplet" ref="SeptStationMapTemplet"></property>
+	</bean>
+	<!-- 偷砖和刺探活 -->
+	<bean id="PeekAndBrickTaskEvent" class="com.fy.engineserver.activity.peekandbrick.PeekAndBrickTaskEvent" init-method="init" scope="singleton">
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+	<!-- 镖车活动 -->
+	<bean id="SilvercarTaskEvent" class="com.fy.engineserver.activity.silvercar.SilvercarTaskEvent" init-method="init" scope="singleton">
+		<property name="silvercarManager" ref="SilvercarManager"></property>
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+	<!-- 神农活动 -->
+	<bean id="FarmingTaskEvent" class="com.fy.engineserver.activity.farming.FarmingTaskEvent" init-method="init" scope="singleton">
+		<property name="farmingManager" ref="FarmingManager"></property>
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+
+	<bean id="MastLineTaskOpenNextTaskEventTransact" class="com.fy.engineserver.newtask.service.MastLineTaskOpenNextTaskEventTransact"
+		init-method="init" scope="singleton">
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+
+	<!-- 封印任务 -->
+	<bean id="SealTaskEventTransact" class="com.fy.engineserver.newtask.service.SealTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+
+	<!-- 情缘活动 -->
+	<bean id="fataActivityEventTransact" class="com.fy.engineserver.newtask.service.FateActivityTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+	<!-- 寻宝活动 -->
+	<bean id="exploreActivityEventTransact" class="com.fy.engineserver.activity.explore.ExploreActivityTaskEventTransact" init-method="init"
+		scope="singleton">
+	</bean>
+
+	<!-- 新手任务 -->
+	<bean id="NewPlayerTaskEventTransact" class="com.fy.engineserver.newtask.service.NewPlayerTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+	<!-- 屠魔贴任-->
+	<bean id="TuMoTieTaskEventTransact" class="com.fy.engineserver.newtask.service.TuMoTieTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+	<!-- 情缘煮酒任务活动 -->
+	<bean id="KoreaSocietyTaskEventTransact" class="com.fy.engineserver.activity.explore.KoreaSocietyTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+
+	<!-- 任务系统 -->
+	<!-- 新手引导 -->
+	<bean id="NewPlayerLeadDataManager" class="com.fy.engineserver.core.NewPlayerLeadDataManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/newPlayer.xls" />
+	</bean>
+
+	<!-- 境界系统 -->
+	<bean id="bournManager" class="com.fy.engineserver.bourn.BournManager" init-method="init" scope="singleton">
+		<property name="resoursePath" value="${game.server.webapp}WEB-INF/game_init_config/bourn/bourn.xls"></property>
+		<property name="taskManager" ref="TaskManager"></property>
+	</bean>
+	<!-- 境界系统 -->
+
+	<!-- 拍卖系统 -->
+	<bean id="AuctionManager" class="com.fy.engineserver.auction.service.AuctionManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<!-- <property name="auctionDAO" ref="AuctionDAO"></property> -->
+	</bean>
+	<!-- <bean id="AuctionDAO" class="com.fy.engineserver.auction.dao.AuctionDAO" init-method="init" scope="singleton"> <property name="ODB_EntityManagerFactory" 
+		ref="ODBEntityManagerFactory"></property> </bean> -->
+	<bean id="AuctionSubSystem" class="com.fy.engineserver.core.AuctionSubSystem" init-method="init" scope="singleton">
+	</bean>
+	<!-- 拍卖系统 -->
+
+	<!-- 结婚系统 -->
+	<bean id="MarriageSubSystem" class="com.fy.engineserver.core.MarriageSubSystem" init-method="init" scope="singleton">
+	</bean>
+	<bean id="MarriageManager" class="com.fy.engineserver.marriage.manager.MarriageManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/MarriageConfig.xls"></property>
+	</bean>
+	<!-- 结婚系统 -->
+
+	<!-- 家族宣战 -->
+	<bean id="JiazuFighterManager" class="com.fy.engineserver.jiazu.service.JiazuFighterManager" init-method="init" scope="singleton">
+	</bean>
+
+	<!-- 祝福果树活动 -->
+	<bean id="ForLuckFruitManager" class="com.fy.engineserver.activity.luckfruit.ForLuckFruitManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/activity/forLuckFruit.xls" />
+	</bean>
+	<!-- 神农活动 -->
+	<bean id="FarmingManager" class="com.fy.engineserver.activity.farming.FarmingManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/activity/farming.xls" />
+	</bean>
+	<!-- 刺探和偷 -->
+	<bean id="PeekAndBrickManager" class="com.fy.engineserver.activity.peekandbrick.PeekAndBrickManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/activity/peekAndbrick.xls" />
+		<property name="countryManager" ref="CountryManager" />
+	</bean>
+	<!-- 押镖 -->
+	<bean id="SilvercarManager" class="com.fy.engineserver.activity.silvercar.SilvercarManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}WEB-INF/game_init_config/activity/silvercar.xls" />
+	</bean>
+	<!-- 祈福 -->
+
+	<bean id="CliffordManager" class="com.fy.engineserver.activity.clifford.manager.CliffordManager" init-method="init" destroy-method="destory"
+		scope="singleton">
+		<property name="fileName" value="${game.server.webapp}WEB-INF/game_init_config/cliffordArticle.xls" />
+	</bean>
+	
+	<bean id="activitySubSystem" class="com.fy.engineserver.activity.ActivitySubSystem" scope="singleton">
+
+	</bean>
+
+	<bean class="com.fy.engineserver.levelExpTag.LevelExpTagManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/levelExp.xls"></property>
+	</bean>
+
+	<bean id="MapSoundManager" class="com.fy.engineserver.mapsound.MapSoundManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}WEB-INF/game_init_config/mapSounds.xls" />
+	</bean>
+
+	<bean id="flopManager" class="com.fy.engineserver.flop.FlopManager" init-method="init" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/flopentity.xls" />
+		<property name="djm" ref="dajingStudioManager" />
+	</bean>
+
+	<!-- 热点 -->
+	<bean id="HotspotTaskEventTransact" class="com.fy.engineserver.newtask.service.HotspotTaskEventTransact" init-method="init" scope="singleton">
+		<property name="manager" ref="HotspotManager" />
+	</bean>
+	<bean id="HotspotManager" class="com.fy.engineserver.hotspot.HotspotManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="file" value="${game.server.webapp}WEB-INF/game_init_config/hotspot.xls"></property>
+		<!-- <property name="dao" ref="HotspotDao" /> -->
+	</bean>
+	<bean id="HotspotSubSystem" class="com.fy.engineserver.core.HotspotSubSystem" init-method="init" scope="singleton">
+	</bean>
+	<!-- 家族 -->
+
+	<bean id="fireManager" class="com.fy.engineserver.activity.fireActivity.FireManager" scope="singleton" init-method="init">
+		<property name="fateManager" ref="fateManager"></property>
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/commonFire.xls"></property>
+	</bean>
+
+	<bean id="jiazuSubSystem" class="com.fy.engineserver.core.JiazuSubSystem" init-method="init" scope="singleton">
+	</bean>
+
+	<bean id="jiazu_manager" class="com.fy.engineserver.jiazu.service.JiazuManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="enableDebug" value="true"></property>
+	</bean>
+
+	<!-- 家族驻地 -->
+	<bean id="SeptBuildingManager" class="com.fy.engineserver.septbuilding.service.SeptBuildingManager" init-method="init" scope="singleton">
+		<property name="res_base_path" value="${game.server.webapp}WEB-INF/game_init_config/septstation/"></property>
+	</bean>
+
+	<bean id="SetpStationManager" class="com.fy.engineserver.septstation.service.SeptStationManager" init-method="init" destroy-method="destroy"
+		scope="singleton">
+		<property name="jiazuManager" ref="jiazu_manager"></property>
+		<property name="septBuildingManager" ref="SeptBuildingManager"></property>
+	</bean>
+	<!-- 家族驻地 -->
+
+	<bean id="VillageFightManager" class="com.fy.engineserver.activity.village.manager.VillageFightManager" init-method="init" scope="singleton"
+		destroy-method="destroy">
+		<property name="nm" ref="npc_manager" />
+		<property name="gm" ref="game_manager" />
+	</bean>
+	
+	<bean id="feedbackManager" class="com.fy.engineserver.gm.feedback.service.FeedbackManager" scope="singleton" init-method="init"
+		destroy-method="destroy">
+		<property name="outFileName" value="${game.server.webapp}/WEB-INF/game_init_config/feedback"></property>
+	</bean>
+	<bean id="EnterServerAgent" class="com.fy.engineserver.lineup.EnterServerAgent" init-method="init" scope="singleton">
+	</bean>
+
+	<bean id="gate_client_message_service" class="com.fy.engineserver.gateway.MieshiGatewayClientService" init-method="init" scope="singleton">
+		<property name="connectionSelector" ref="gateway_sendmessage_selector"></property>
+	</bean>
+
+	<bean id="gateway_sendmessage_selector" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="maxConnectionNum" value="256"></property>
+		<property name="threadPoolMaxPoolSize" value="256"></property>
+		<property name="name" value="${gateway.system.client.name}"></property>
+		<property name="clientModel" value="true"></property>
+		<property name="host" value="${gateway.system.server.host}"></property>
+		<property name="port" value="${gateway.system.server.port}"></property>
+		<property name="connectionCreatedHandler" ref="gate_client_message_service"></property>
+	</bean>
+
+	<bean id="GameStatClientService" class="com.fy.engineserver.stat.GameStatClientService" init-method="init" scope="singleton">
+	</bean>
+
+	<bean id="NoticeManager" class="com.fy.engineserver.notice.NoticeManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="filename" value="${game.server.webapp}/WEB-INF/game_init_config/foreverNotice2.xls"></property>
+	</bean>
+	<bean id="QianCengTaManager" class="com.fy.engineserver.qiancengta.QianCengTaManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="file" value="${game.server.webapp}/WEB-INF/game_init_config/qiancengta.xls"></property>
+		<property name="activityFile" value="${game.server.webapp}/WEB-INF/game_init_config/activity/qiancengtaActivity.xls"></property>
+	</bean>
+
+	<bean id="AchievementManager" class="com.fy.engineserver.achievement.AchievementManager" init-method="init" scope="singleton"
+		destroy-method="destroy">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/Achievement.xls"></property>
+	</bean>
+
+	<bean id="billboardStatDateManager" class="com.fy.engineserver.newBillboard.BillboardStatDateManager" init-method="init" destroy-method="destroy"
+		scope="singleton">
+	</bean>
+
+	<bean id="billboardsManager" class="com.fy.engineserver.newBillboard.BillboardsManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/billboard.xls"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/billboardsPerMonth.ddc"></property>
+		<property name="diskFile1" value="${game.server.webapp}/WEB-INF/game_runtime_data/newServerBillboards.ddc"></property>
+	</bean>
+
+	<bean id="vipManager" class="com.fy.engineserver.vip.VipManager" init-method="init" scope="singleton">
+		<property name="aem" ref="ArticleEntityManager"></property>
+		<property name="am" ref="article_manager"></property>
+		<property name="file" value="${game.server.webapp}/WEB-INF/game_init_config/vip.xls" />
+	</bean>
+
+	<bean id="CityFightManager" class="com.fy.engineserver.cityfight.CityFightManager" init-method="init" destroy-method="destroy" scope="singleton">
+	</bean>
+
+	<bean id="guozhanOrganizer" class="com.fy.engineserver.guozhan.GuozhanOrganizer" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="cacheFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/guozhan.ddc"></property>
+		<property name="expConfigFile" value="${game.server.webapp}/WEB-INF/game_init_config/guozhan_exp.xls" />
+	</bean>
+
+	<bean id="guozhanSubSystem" class="com.fy.engineserver.guozhan.GuozhanSubSystem" init-method="init" scope="singleton">
+		<property name="playerManager" ref="player_manager"></property>
+		<property name="guozhanOrganizer" ref="guozhanOrganizer"></property>
+	</bean>
+
+	<bean id="ActivityManager" class="com.fy.engineserver.activity.ActivityManager" init-method="init" scope="singleton">
+		<property name="npcManager" ref="npc_manager" />
+		<property name="taskManager" ref="TaskManager" />
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/activityIntroduce.xls" />
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/activityPlayer.ddc" />
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/mulActivities.xls"></property>
+		<property name="specialServerPrize" value="${game.server.webapp}/WEB-INF/game_init_config/newServerPrize.xls"/>
+	</bean>
+	
+	<!-- 怪物掉落活动 -->
+	<bean id="MonsterDropActivityManager" class="com.fy.engineserver.activity.monsterDrop.MonsterDropActivityManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/activity_monsterdrop.xls" />
+	</bean>
+	
+	<bean id="NewChongZhiActivityManager" class="com.fy.engineserver.activity.newChongZhiActivity.NewChongZhiActivityManager" init-method="init" scope="singleton">
+		<property name="diskCatchPath" value="${game.server.webapp}WEB-INF/game_runtime_data/newChongZhiActivity.ddc" />
+		<property name="excelPath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/activity_newChongZhi.xls" />
+	</bean>
+	
+	<bean id="AuthorityAgent" class="com.fy.engineserver.authority.AuthorityAgent" init-method="init" scope="singleton">
+		<property name="filename" value="${game.server.webapp}/WEB-INF/game_init_config/authorityConfig.xml" />
+	</bean>
+
+	<bean id="ChargeManager" class="com.fy.engineserver.economic.charge.ChargeManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/chargeList.xls" />
+		<property name="diskCachePath" value="${game.server.webapp}/WEB-INF/game_runtime_data/chargeWhiteList.ddc"/>
+		<property name="fileActivity" value="${game.server.webapp}/WEB-INF/game_init_config/activity/chargeActivity.xls"/>
+		<property name="diskCachePathCloseChannel" value="${game.server.webapp}/WEB-INF/game_runtime_data/chargeCloseChannel.ddc"/>
+	</bean>
+	
+	<!-- 封号，踢下线，解-->
+	<bean id="KickManager" class="com.fy.engineserver.gm.record.KickManager"
+        init-method="initialize" scope="singleton">
+        <property name="bfFile" value="${game.server.webapp}WEB-INF/game_init_config/kickrecord.xml"></property>
+    </bean>
+    
+
+    <bean id="TaskEntityManager" class="com.fy.engineserver.newtask.TaskEntityManager" init-method="init" destroy-method="destory" scope="singleton">
+    </bean>
+	
+	<bean id="ServerWatchDog" class="com.fy.engineserver.util.ServerWatchDog" init-method="init" scope="singleton">
+		<property name="openning" value="true"></property>
+		<property name="warnChange" value="5000000"></property>
+	</bean>
+
+
+    <bean id="oldPlayerBackManager" class="com.fy.engineserver.playerBack.OldPlayerBackManager" init-method="init" scope="singleton">
+        <property name="fileName" value="${game.server.webapp}/WEB-INF/game_runtime_data/oldplayer.ddc"></property>
+    </bean>
+
+    <bean id="dajingStudioManager" class="com.fy.engineserver.dajing.DajingStudioManager" init-method="init" destroy-method="destroy" scope="singleton">
+	  	<property name="cacheFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/dajingStudio.ddc"></property>
+    </bean>
+    
+    <bean id="EnterLimitManager" class="com.fy.engineserver.enterlimit.EnterLimitManager" init-method="init" destroy-method="destroy" scope="singleton">
+    	<property name="dcFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/enterLimit.ddc"></property>
+    	<property name="android_rsa_path" value="${game.server.webapp}/WEB-INF/game_init_config/Android_Cert.RSA"></property>
+    	<property name="android_rsa1_path" value="${game.server.webapp}/WEB-INF/game_init_config/Android_Cert_UC.RSA"></property>
+    	<property name="android_malai_path" value="${game.server.webapp}/WEB-INF/game_init_config/Android_MaLai.RSA"></property>
+    	<property name="android_huawei_path" value="${game.server.webapp}/WEB-INF/game_init_config/Android_huawei.RSA"></property>
+    </bean>
+    <bean id="TengXunDataManager" class="com.fy.engineserver.tengxun.TengXunDataManager" init-method="init" destroy-method="destroy" scope="singleton">
+    	<property name="diskCacthPath" value="${game.server.webapp}/WEB-INF/game_runtime_data/txdiskCatch.ddc"></property>
+    	<property name="platformManager" ref="PlatformManager"></property>
+    </bean>
+    <bean id="ActivityLingQuProp" class="com.fy.engineserver.activity.base.ActivityLingQuProp" init-method="init" scope="singleton">
+    	<property name="diskPath" value="${game.server.webapp}/WEB-INF/game_runtime_data/activityGetProp.ddc"></property>
+    </bean>
+    <bean id="PlayerHookManager" class="com.fy.engineserver.hook.PlayerHookManager" init-method="init" scope="singleton">
+    </bean>
+    <bean id="ArticleProtectManager" class="com.fy.engineserver.articleProtect.ArticleProtectManager" init-method="init" destroy-method="destroy" scope="singleton">
+    </bean>
+    <bean id="newfeedback_sub_system" class="com.fy.engineserver.gm.newfeedback.NewFeedbackSubSystem" init-method="init" scope="singleton">
+		<property name="gameNetworkFramework" ref="game_gateway"></property>
+	</bean>
+	
+	 <bean id="NewFeedbackManager" class="com.fy.engineserver.gm.newfeedback.NewFeedbackManager" init-method="init" scope="singleton">
+		<property name="bossgmclientservice" ref="bossClientService_gm"></property>
+	</bean>
+	
+	<bean id="RefreshSpriteManager" class="com.fy.engineserver.activity.RefreshSpriteManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/refreashSpriteActivities.xls"></property>
+	</bean>
+	<bean id="TimesActivityManager" class="com.fy.engineserver.activity.base.TimesActivityManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/addActivityTimes.xls"></property>
+	</bean>
+	<bean id="NewServerActivityManager" class="com.fy.engineserver.activity.newserver.NewServerActivityManager" init-method="init" scope="singleton">
+		<property name="constants" ref="GameConstants"></property>
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/newServerPrize.xls"/>
+		
+	</bean>
+	<bean id="ArticleStatManager" class="com.fy.engineserver.stat.ArticleStatManager" init-method="init" scope="singleton">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/article_state_config.txt"></property>
+	</bean>
+
+	<bean id="OtherValidateManager" class="com.fy.engineserver.validate.OtherValidateManager" init-method="init" scope="singleton">
+		<property name="configFile" value="${game.server.webapp}/WEB-INF/game_init_config/validateAsk.xls"></property>
+		<property name="diskCachePath" value="${game.server.webapp}/WEB-INF/game_runtime_data/validateUserData.ddc"></property>
+	</bean>
+
+	<bean id="AutoLimitEnterManager" class="com.fy.engineserver.enterlimit.AutoLimitEnterManager" init-method="init" scope="singleton">
+	</bean>
+	
+	<bean id="LoginActivityManager_new" class="com.fy.engineserver.activity.everylogin.LoginActivityManager" init-method="init" scope="singleton">
+		<property name="diskFile" value="${game.server.webapp}WEB-INF/game_runtime_data/newloginactivity.ddc"></property>
+	</bean>
+	
+	<bean id="MoneyRelationShipManager" class="com.fy.engineserver.smith.MoneyRelationShipManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="datafile" value="${game.server.webapp}WEB-INF/game_runtime_data/moneymove.ddc"></property>
+		<property name="openning" value="false"></property>
+	</bean>
+	<bean id="ArticleRelationShipManager" class="com.fy.engineserver.smith.ArticleRelationShipManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="datafile" value="${game.server.webapp}WEB-INF/game_runtime_data/articlemove.ddc"></property>
+		<property name="openning" value="false"></property>
+	</bean>
+	<bean id="WaiguaManager" class="com.fy.engineserver.smith.waigua.WaiguaManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="storeFile" value="${game.server.webapp}WEB-INF/game_runtime_data/waigua.ddc"></property>
+		<property name="openning" value="true"></property>
+	</bean>
+	<bean id="HunshiManager" class="com.fy.engineserver.hunshi.HunshiManager" scope="singleton" init-method="init">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/horse2/hunshi.xls"></property>
+	</bean>
+	
+	<bean id="EventManager" class="com.fy.engineserver.util.gmstat.EventManager" init-method="init" destroy-method="destroy" scope="singleton">
+		<property name="filename" value="${game.server.webapp}WEB-INF/game_runtime_data/pageevent.ddc"></property>
+	</bean>
+	<bean id="DoTimingTask" class="com.fy.engineserver.activity.loginActivity.timingTask.DoTimingTask" init-method="init" scope="singleton">
+	</bean>
+	
+	<bean id="BufferSaveManager" class="com.fy.engineserver.buffsave.BufferSaveManager" init-method="init" destroy-method="destroy" scope="singleton">
+	</bean>
+	<bean id="NpcRefreshManager" class="com.fy.engineserver.activity.autorefreshnpc.NpcRefreshManager" init-method="init" scope="singleton">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/AutoRefreshNPC.xls"></property>
+	</bean>
+	<bean id="RefreshBoxManager" class="com.fy.engineserver.activity.refreshbox.RefreshBoxManager" init-method="init" scope="singleton">
+	</bean>
+	<!-- ProcessCat进程黑名单监-->
+	<bean id="ProcessCat" class="com.fy.engineserver.smith.ProcessCat" init-method="init" scope="singleton">
+		<property name="symbolFile" value="${game.server.webapp}/WEB-INF/game_init_config/processcat.txt"></property>
+	</bean>
+	<bean id="PetDaoManager" class="com.fy.engineserver.sprite.petdao.PetDaoManager" init-method="init" scope="singleton" destroy-method="destroy">
+		<property name="filename" value="${game.server.webapp}/WEB-INF/game_init_config/petDao.xls"></property>
+		<property name="dataFile" value="${game.server.webapp}WEB-INF/game_runtime_data/petdao.ddc"></property>
+	</bean>
+	<bean id="ShopActivityManager" class="com.fy.engineserver.activity.shop.ShopActivityManager" init-method="init" scope="singleton">
+		<property name="dataFile" value="${game.server.webapp}WEB-INF/game_runtime_data/shopactivity.ddc"></property>
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/shopActivities.xls"></property>
+	</bean>
+	<bean id="Pet2Manager" class="com.fy.engineserver.sprite.pet2.Pet2Manager" init-method="init" destroy-method="destory"  scope="singleton">
+		<property name="file" value="${game.server.webapp}/WEB-INF/game_init_config/pet2/pet2data.xls"/>
+		<property name="buffTemplateMgr" ref="buff_template_manager"/>
+	</bean>
+	<bean id="GameStatService" class="com.xuanzhi.tools.gamestat.GameStatService" init-method="init">
+		<property name="dataRootPath" value="${game.server.webapp}WEB-INF/game_runtime_data/gameStat/rowdata/"></property>
+	</bean>
+
+	<bean id="ActivenessSubSystem" class="com.fy.engineserver.activity.activeness.ActivenessSubSystem" scope="singleton">
+	</bean>
+	<bean id="ActivenessTaskEventTransact" class="com.fy.engineserver.activity.activeness.ActivenessTaskEventTransact" init-method="init" scope="singleton">
+	</bean>
+	<!-- 渡劫 -->
+	<bean id="TransitRobberyManager" class="com.fy.engineserver.activity.TransitRobbery.TransitRobberyManager" init-method="init" scope="singleton">
+		<property name="initFileName" value="${game.server.webapp}/WEB-INF/game_init_config/transitRobbery/transitRobbery.xls"/>
+		<property name="diskCachName" value="${game.server.webapp}/WEB-INF/game_runtime_data/transitRobbery.ddc"/>
+	</bean>
+	<bean id="TransitRobberyEntityManager" class="com.fy.engineserver.activity.TransitRobbery.TransitRobberyEntityManager" init-method="init" destroy-method="destory" scope="singleton">
+	</bean>
+	<bean id="TransitRobberySystem" class="com.fy.engineserver.activity.TransitRobbery.TransitRobberySystem" scope="singleton">
+	</bean>
+	<!-- 挖宝 -->
+	<bean id="DigManager" class="com.fy.engineserver.activity.dig.DigManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/digActivity.xls"></property>
+	</bean>
+	<bean id="DigActivityTaskEventTransact" class="com.fy.engineserver.activity.dig.DigActivityTaskEventTransact" scope="singleton">
+	</bean>
+	<!-- 兑换称号活动 -->
+	<bean id="PlayerTitlesActivityManager" class="com.fy.engineserver.activity.playerTitles.PlayerTitlesActivityManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/playerTitlesActivity.xls"></property>
+	</bean>
+	<!-- 完成N次任务奖励活动-->
+	<bean id="TaskDeliverActivityManager" class="com.fy.engineserver.activity.taskDeliver.TaskDeliverActivityManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/delivertaskAct.xls"></property>
+	</bean>
+	<!-- vip经验活动 -->
+	<bean id="VipExpActivityManager" class="com.fy.engineserver.activity.vipExpActivity.VipExpActivityManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/vipExpActivity.xls"></property>
+	</bean>
+	<!-- 恶魔广场-->
+	<bean id="CarbonManager" class="com.fy.engineserver.carbon.CarbonManager" scope="singleton" init-method="init">
+	</bean>
+	<bean id="DevilSquareManager" class="com.fy.engineserver.carbon.devilSquare.DevilSquareManager" scope="singleton" init-method="init">
+		<property name="initFileName" value="${game.server.webapp}/WEB-INF/game_init_config/carbon/DevilSquare.xls"></property>
+	</bean>
+	<bean id="DevilSquareSystem" class="com.fy.engineserver.carbon.devilSquare.DevilSquareSystem" scope="singleton">
+	</bean>
+	<bean id="MagicWeaponSystem" class="com.fy.engineserver.datasource.article.data.magicweapon.MagicWeaponSystem" scope="singleton">
+	</bean>
+	<!-- 合成 -->
+	<bean id="ComposeManager" class="com.fy.engineserver.compose.ComposeManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/compose/articleCompose.xls"></property>
+	</bean>
+	<bean id="ComposeSystem" class="com.fy.engineserver.compose.ComposeSystem" scope="singleton" >
+	</bean>
+	
+	<bean id="MailEventManger" class="com.fy.engineserver.util.datacheck.MailEventManger" scope="singleton" init-method="init">
+	</bean>
+	<bean id="GoodsPriceLimitManager" class="com.fy.engineserver.util.datacheck.handler.GoodsPriceLimitManager" scope="singleton" init-method="init">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/goodsPriceLimit.xls"></property>
+	</bean>
+	
+	<!-- 新成就 -->
+	<bean id="PlayerAimSystem" class="com.fy.engineserver.playerAims.system.PlayerAimSystem" scope="singleton">
+	</bean>
+	<bean id="PlayerAimManager" class="com.fy.engineserver.playerAims.manager.PlayerAimManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/playeraim/playeraims.xls"></property>
+		<property name="diskFilePath" value="${game.server.webapp}/WEB-INF/game_runtime_data/playerAim.ddc"></property>
+	</bean>
+	<bean id="PlayerAimeEntityManager" class="com.fy.engineserver.playerAims.manager.PlayerAimeEntityManager" scope="singleton"  destroy-method="destory" init-method="init">
+	</bean>
+	<!-- 坐骑 -->
+	<bean id="Horse2System" class="com.fy.engineserver.sprite.horse2.manager.Horse2System" scope="singleton">
+	</bean>
+	<bean id="Horse2Manager" class="com.fy.engineserver.sprite.horse2.manager.Horse2Manager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/horse2/horse2Data.xls"></property>
+	</bean>
+	<bean id="Horse2EntityManager" class="com.fy.engineserver.sprite.horse2.manager.Horse2EntityManager" scope="singleton"  destroy-method="destory" init-method="init">
+	</bean>
+	<!-- 副本转盘 -->
+	<bean id="DownCitySystem2" class="com.fy.engineserver.downcity.downcity2.DownCitySystem2" scope="singleton">
+	</bean>
+	<bean id="DownCityManager2" class="com.fy.engineserver.downcity.downcity2.DownCityManager2" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/downcity2/downCityTurntable.xls"></property>
+		<property name="fileName2" value="${game.server.webapp}/WEB-INF/game_init_config/downcity2/downCityConfig.xls"></property>
+		<property name="diskCatchPath" value="${game.server.webapp}WEB-INF/game_runtime_data/cityOutPut.ddc" />
+	</bean>
+	<!-- 挖坟活动 -->
+	<bean id="WaFenManager" class="com.fy.engineserver.activity.wafen.manager.WaFenManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/wafenActivity.xls"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/wafenActivity"></property>
+	</bean>
+	<bean id="WaFenSystem" class="com.fy.engineserver.activity.wafen.manager.WaFenSystem" scope="singleton">
+	</bean>
+	<!-- 家族修改 -->
+	<bean id="JiazuManager2" class="com.fy.engineserver.jiazu2.manager.JiazuManager2" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/jiazu2/jiazu2data.xls"></property>
+		<property name="fileName2" value="${game.server.webapp}/WEB-INF/game_init_config/jiazu2/jiazu_biaoche.xls"></property>
+	</bean>
+	<bean id="JiazuSystem" class="com.fy.engineserver.jiazu2.manager.JiazuSystem" scope="singleton">
+	</bean>
+	<bean id="JiazuEntityManager2" class="com.fy.engineserver.jiazu2.manager.JiazuEntityManager2" scope="singleton"  destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="BiaocheEntityManager" class="com.fy.engineserver.jiazu2.manager.BiaocheEntityManager" scope="singleton"  destroy-method="destory" init-method="init">
+	</bean>
+	
+	<bean id="SaleRecordDAO"
+		class="com.fy.engineserver.economic.thirdpart.migu.entity.SaleRecordDAOImpl">
+	</bean>
+	
+	<bean id="SaleRecordManager" class="com.fy.engineserver.economic.thirdpart.migu.entity.SaleRecordManager" scope="singleton" init-method="initialize">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/migu/channelReflect.xls"></property>
+		<property name="saleRecordDAO" ref="SaleRecordDAO"></property>
+	</bean>
+	<!-- 2015-06-18新增活动 -->
+	<bean id="ActivitySubSystem2" class="com.fy.engineserver.activity.ActivitySubSystem2" scope="singleton">
+	</bean>
+	<bean id="EnchantSubSystem" class="com.fy.engineserver.articleEnchant.EnchantSubSystem" scope="singleton">
+	</bean>
+	<bean id="HuntLifeSubSystem" class="com.fy.engineserver.datasource.article.data.magicweapon.huntLife.HuntLifeSubSystem" scope="singleton">
+	</bean>
+	<bean id="DailyTurnManager" class="com.fy.engineserver.activity.dailyTurnActivity.DailyTurnManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/dailyturnActivity.xls"></property>
+		<property name="diskFileName" value="${game.server.webapp}/WEB-INF/game_runtime_data/dailyTurnAct.ddc"></property>
+	</bean>
+	<bean id="TreasureActivityManager" class="com.fy.engineserver.activity.treasure.TreasureActivityManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/treasureActivity.xls"></property>
+		<property name="diskFileName" value="${game.server.webapp}/WEB-INF/game_runtime_data/treasureAct.ddc"></property>
+	</bean>
+	<bean id="LevelUpRewardManager" class="com.fy.engineserver.activity.levelUpReward.LevelUpRewardManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/levelupReward.xls"></property>
+	</bean>
+	<bean id="LevelUpRewardEntityManager" class="com.fy.engineserver.activity.levelUpReward.LevelUpRewardEntityManager" scope="singleton" destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="EnchantManager" class="com.fy.engineserver.articleEnchant.EnchantManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/enchant/enchantData.xls"></property>
+	</bean>
+	<bean id="EnchantEntityManager" class="com.fy.engineserver.articleEnchant.EnchantEntityManager" scope="singleton" destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="HuntLifeManager" class="com.fy.engineserver.datasource.article.data.magicweapon.huntLife.HuntLifeManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/huntLife/huntLife.xls"></property>
+	</bean>
+	<bean id="HuntLifeEntityManager" class="com.fy.engineserver.datasource.article.data.magicweapon.huntLife.HuntLifeEntityManager" scope="singleton" destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="FurnaceManager" class="com.fy.engineserver.activity.furnace.FurnaceManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/frunace/frunace.xls"></property>
+		<property name="diskPath" value="${game.server.webapp}/WEB-INF/game_runtime_data/frunace.ddc"></property>
+	</bean>
+	<bean id="ChestFightManager" class="com.fy.engineserver.activity.chestFight.ChestFightManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/carbon/chestFight.xls"></property>
+	</bean>
+	<bean id="FairylandTreasureManager" class="com.fy.engineserver.activity.fairylandTreasure.FairylandTreasureManager" scope="singleton" init-method="init">
+ 		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/fairylandTreasure.xls"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/fairylandTreasure.ddc"></property>
+ 	</bean>
+ 	<bean id="FlyTalentManager" class="com.fy.engineserver.talent.FlyTalentManager" scope="singleton" init-method="init" destroy-method="destory">
+ 		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/flyTalentData.xls"></property>
+ 	</bean>
+ 	<bean id="FairyRobberyManager" class="com.fy.engineserver.activity.fairyRobbery.FairyRobberyManager" scope="singleton" init-method="init">
+ 		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/transitRobbery/fairyrobbery.xls"></property>
+ 	</bean>
+ 	<bean id="FairyRobberyEntityManager" class="com.fy.engineserver.activity.fairyRobbery.FairyRobberyEntityManager" scope="singleton" destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="TalentStartTaskEvent" class="com.fy.engineserver.talent.TalentStartTaskEvent" scope="singleton" init-method="init">
+	</bean>
+	<bean id="DiceManager" class="com.fy.engineserver.activity.dice.DiceManager" scope="singleton" init-method="init">
+	</bean>
+<!-- 	<bean id="DisasterManager" class="com.fy.engineserver.activity.disaster.DisasterManager" scope="singleton" init-method="init">-->
+<!-- 		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/disaster/disaster.xls"></property>-->
+<!-- 	</bean>-->
+ 	<bean id="DisasterSubSystem" class="com.fy.engineserver.activity.disaster.DisasterSubSystem" scope="singleton">
+	</bean>
+	<bean id="SoulPithManager" class="com.fy.engineserver.soulpith.SoulPithManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/soulpith/soulpith.xls"></property>
+	</bean>
+	<bean id="SoulPithEntityManager" class="com.fy.engineserver.soulpith.SoulPithEntityManager" scope="singleton" destroy-method="destory" init-method="init">
+	</bean>
+	<bean id="SoulPithSubSystem" class="com.fy.engineserver.soulpith.SoulPithSubSystem" scope="singleton">
+	</bean>
+	<bean id="ActivityDataManager" class="com.fy.engineserver.activity.datamanager.ActivityDataManager" scope="singleton" init-method="init">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/activity/activityShowInfo.xls"></property>
+	</bean>
+	<bean id="EquipStarManager" class="com.fy.engineserver.datasource.article.data.equipextra.EquipStarManager" scope="singleton" init-method="init" destroy-method="destory">
+		<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/equipstrong/equipstrong.xls"></property>
+	</bean>
+	<bean id="XianLingManager" class="com.fy.engineserver.activity.xianling.XianLingManager" scope="singleton" init-method="init">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/xianling.xls"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/xianling.ddc"></property>
+	</bean>
+	<bean id="XianLingChallengeManager" class="com.fy.engineserver.activity.xianling.XianLingChallengeManager" scope="singleton" init-method="init" destroy-method="destory">
+	</bean>
+	<!-- 下面这俩尽量放在最后面,新加的标签往前放吧 -->
+	<bean id="FairyBuddhaManager" class="com.fy.engineserver.activity.fairyBuddha.FairyBuddhaManager" scope="singleton" init-method="init">
+		<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/fairyBuddha.xls"></property>
+		<property name="diskFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/fairyBuddha.ddc"></property>
+	</bean>
+	<bean id="FairyChallengeManager" class="com.fy.engineserver.activity.fairyBuddha.challenge.FairyChallengeManager" scope="singleton" init-method="init">
+	</bean>
+	<bean id="ServerEventManager" class="com.fy.engineserver.activity.buchang.ServerEventManager" scope="singleton" init-method="init">
+	</bean>
+	<bean id="GaiMingManager" class="com.fy.engineserver.gaiming.GaiMingManager" scope="singleton" init-method="init">
+	</bean>
+	<bean id="logRecordManager" class="com.fy.engineserver.newBillboard.monitorLog.LogRecordManager" init-method="init" scope="singleton">
+    </bean>
+    <bean id="HorseEquInlayManager" class="com.fy.engineserver.datasource.article.data.horseInlay.HorseEquInlayManager" init-method="init" scope="singleton">
+   	 	<property name="fileName" value="${game.server.webapp}/WEB-INF/game_init_config/equipstrong/horseEquipInlay.xls"></property>
+    </bean>
+    <bean id="HorseEquInlayEntityManager" class="com.fy.engineserver.datasource.article.data.horseInlay.HorseEquInlayEntityManager" init-method="init" destroy-method="destroy" scope="singleton">
+    </bean>
+    <bean id="BossCityManager" class="com.fy.engineserver.downcity.downcity3.BossCityManager" init-method="init" destroy-method="destroy" scope="singleton">
+    	<property name="ddcFile" value="${game.server.webapp}/WEB-INF/game_runtime_data/bossCityId.ddc"></property>
+    	<property name="filePath" value="${game.server.webapp}/WEB-INF/game_init_config/activity/bossConfig.xls"></property>
+    </bean>
+ 	<bean id="PetHouseManager" class="com.fy.engineserver.jiazu.petHouse.PetHouseManager" init-method="init" destroy-method="destroy" scope="singleton">
+    </bean>
+    <bean id="DataCheckManager" class="com.fy.engineserver.util.datacheck.DataCheckManager" init-method="init" scope="singleton" >
+		<property name="taskManager" ref="TaskManager"></property>
+		<property name="monsterManager" ref="monster_manager"></property>
+		<property name="shopManager" ref="ShopManager"></property>
+		<property name="article_manager" ref="article_manager"></property>
+		<property name="fairyBuddhaManager" ref="FairyBuddhaManager"></property>
+		<property name="fairylandTreasureManager" ref="FairylandTreasureManager"></property>
+		<property name="hunshiManager" ref="HunshiManager"></property>
+		<property name="xianLingManager" ref="XianLingManager"></property>
+	</bean>
+	<!-- 这个标签需要在最后面，后面不要放任何东西 -->
+	<bean id="ServerStartStatus" class="com.fy.engineserver.serverstatus.ServerStartStatus" init-method="init" scope="singleton">
+	</bean>
+	
+</beans>

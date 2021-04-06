@@ -1,0 +1,23 @@
+@charset "GBK";
+body,td,th {
+	font-size: 12px;
+}
+
+a:link {
+	color: #006699;
+	text-decoration: none;
+}
+a:visited {
+	color: #006699;
+	text-decoration: none;
+}
+a:hover {
+	color: #0000FF;
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+	color: #0000FF;
+}
+
+.redDot {color: #FF0000; font-size: 12px;}

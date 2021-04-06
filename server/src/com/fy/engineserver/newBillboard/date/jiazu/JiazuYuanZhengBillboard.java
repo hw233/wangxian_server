@@ -1,0 +1,102 @@
+package com.fy.engineserver.newBillboard.date.jiazu;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import com.fy.engineserver.country.manager.CountryManager;
+import com.fy.engineserver.datasource.language.Translate;
+import com.fy.engineserver.jiazu.Jiazu;
+import com.fy.engineserver.jiazu.service.JiazuManager;
+import com.fy.engineserver.newBillboard.Billboard;
+import com.fy.engineserver.newBillboard.BillboardDate;
+import com.fy.engineserver.newBillboard.BillboardsManager;
+import com.fy.engineserver.newBillboard.monitorLog.LogRecordManager;
+import com.fy.engineserver.sprite.PlayerSimpleInfo;
+import com.fy.engineserver.sprite.PlayerSimpleInfoManager;
+import com.xuanzhi.tools.simplejpa.SimpleEntityManager;
+
+public class JiazuYuanZhengBillboard extends Billboard {
+
+	public void update()throws Exception {
+		super.update();
+		SimpleEntityManager<Jiazu> em = JiazuManager.jiazuEm;
+		long[] ids = em.queryIds(Jiazu.class, " ",new Object[]{},"liveness desc",1,BillboardsManager.实际条数+1);
+		if(ids != null){
+			List<Jiazu> list = new ArrayList<Jiazu>();
+			for(int i =0;i<ids.length;i++){
+				if(i >= 200){
+					break;
+				}
+				Jiazu jiazu = JiazuManager.getInstance().getJiazu(ids[i]);
+				if(jiazu != null){
+					list.add(jiazu);
+				}
+				
+			}
+			Collections.sort(list, new JiazuCompare());
+			
+			BillboardDate[] bbds = new BillboardDate[list.size()];
+			for(int i=0;i<list.size();i++){
+				Jiazu jiazu = list.get(i);
+				BillboardDate date = new BillboardDate();
+				date.setDateId(jiazu.getJiazuID());
+				date.setType(BillboardDate.家族);
+
+				String[] values = new String[4];
+				values[2] = jiazu.getName();
+				PlayerSimpleInfo info = PlayerSimpleInfoManager.getInstance().getInfoById(jiazu.getJiazuMaster());
+				if(info != null){
+					values[0] = info.getName();
+				}else{
+					values[0] = Translate.无;
+				}
+				values[1] = CountryManager.得到国家名(jiazu.getCountry());
+				values[3] = (int)jiazu.getLiveness()+"";
+				date.setDateValues(values);
+				bbds[i] = date;
+			}
+			setDates(bbds);
+			BillboardsManager.logger.warn("[更新榜单数据成功] ["+this.getLogString()+"]");
+			if(LogRecordManager.getInstance() != null){
+				LogRecordManager.getInstance().活动记录日志(LogRecordManager.家族, this);
+			}
+		}else{
+			BillboardDate[] date1 = new BillboardDate[0];
+			setDates(date1);
+			BillboardsManager.logger.error("[查询榜单数据错误] [没有记录] ["+this.getLogString()+"]");
+		}
+	}
+	
+	
+	public static class JiazuCompare implements Comparator<Jiazu>{
+
+		@Override
+		public int compare(Jiazu o1, Jiazu o2) {
+			if(o2.getLiveness() > o1.getLiveness()){
+				return 1;
+			}else if(o2.getLiveness() == o1.getLiveness()){
+				return 0;
+			}
+			return -1;
+		}
+	}
+	
+	
+	public static class JiazuCompareRepair implements Comparator<Jiazu>{
+
+		@Override
+		public int compare(Jiazu o1, Jiazu o2) {
+			if(o2.getProsperity() > o1.getProsperity()){
+				return 1;
+			}else if(o2.getProsperity() == o1.getProsperity()){
+				if(o2.getUpdateProsperityTime() > o1.getUpdateProsperityTime()){
+					return 1;
+				}
+			}
+			return -1;
+		}
+	}
+	
+}

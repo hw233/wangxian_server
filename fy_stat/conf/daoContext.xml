@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="dataSource1"
+		class="com.xuanzhi.tools.dbpool.PooledDataSource" init-method="initialize">
+		<property name="alias" value="${game.server.db.alias}"></property>
+		<property name="driverClassName" value="${game.server.db.driverclassname}"></property>
+		<property name="url" value="${game.server.db.url}"></property>
+		<property name="username" value="${game.server.db.username}"></property>
+		<property name="password" value="${game.server.db.password}"></property>
+		<property name="maxActive" value="100"></property>
+		<property name="idleTimeout" value="2000"></property>
+		<property name="checkoutTimeout" value="3500"></property>
+	</bean>
+	<bean id="dataSourceManager" 
+		class="com.xuanzhi.tools.dbpool.DataSourceManager" init-method="initialize" scope="singleton">
+		<property name="defaultAlias" value="${game.server.db.defaultAlias}"></property>
+		<property name="dataSources">
+			<list>
+				<ref bean="dataSource1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="UserDao"    class="com.sqage.stat.commonstat.dao.Impl.UserDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	<bean id="OnLineUsersCountDao"    class="com.sqage.stat.commonstat.dao.Impl.OnLineUsersCountDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	<bean id="PlayGameDao"    class="com.sqage.stat.commonstat.dao.Impl.PlayGameDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="ChongZhiDao"    class="com.sqage.stat.commonstat.dao.Impl.ChongZhiDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="DaoJuDao"    class="com.sqage.stat.commonstat.dao.Impl.DaoJuDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="TaskinfoDao"    class="com.sqage.stat.commonstat.dao.Impl.TaskinfoDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="HuoDonginfoDao"    class="com.sqage.stat.commonstat.dao.Impl.HuoDonginfoDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="TransactionDao"    class="com.sqage.stat.commonstat.dao.Impl.TransactionDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="Transaction_SpecialDao"    class="com.sqage.stat.commonstat.dao.Impl.Transaction_SpecialDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="GameChongZhiDao"    class="com.sqage.stat.commonstat.dao.Impl.GameChongZhiDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+    <bean id="Stat_base_onlineDao"    class="com.sqage.stat.commonstat.dao.Impl.Stat_base_onlineDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+    <bean id="StatUserGuideDao"    class="com.sqage.stat.commonstat.dao.Impl.StatUserGuideDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+    <bean id="OnlineUserStatDao"    class="com.sqage.stat.commonstat.dao.Impl.OnlineUserStatDaoImpl">
+	</bean>
+	
+    <bean id="LoginAndChargeCountDao"    class="com.sqage.stat.commonstat.dao.Impl.LoginAndChargeCountDaoImpl">
+	</bean>
+	
+	
+	<bean id="TaskAnalysisDao"    class="com.sqage.stat.commonstat.dao.Impl.TaskAnalysisDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="YinZiKuCunDao"    class="com.sqage.stat.commonstat.dao.Impl.YinZiKuCunDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="LibaoDao"    class="com.sqage.stat.commonstat.dao.Impl.LibaoDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="Transaction_FaceDao"    class="com.sqage.stat.commonstat.dao.Impl.Transaction_FaceDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="BattleMSGDao"    class="com.sqage.stat.commonstat.dao.Impl.BattleMSGDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="FuMoDao"    class="com.sqage.stat.commonstat.dao.Impl.FuMoDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	<bean id="NpcinfoDao"    class="com.sqage.stat.commonstat.dao.Impl.NpcinfoDaoImpl">
+	<property name="dataSourceManager" ref="dataSourceManager"></property>
+	</bean>
+	
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource1" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/sqage/stat/dao/UserStat.hbm.xml</value>
+				<value>com/sqage/stat/dao/Channel.hbm.xml</value>
+				<value>com/sqage/stat/dao/ChannelItem.hbm.xml</value>
+				<value>com/sqage/stat/dao/ItemInputChannelDay.hbm.xml</value>
+				<value>com/sqage/stat/dao/PlayerExpense.hbm.xml</value>
+				<value>com/sqage/stat/dao/PlayerLogin.hbm.xml</value>
+				<value>com/sqage/stat/dao/PlayerLogout.hbm.xml</value>
+				<value>com/xuanzhi/stat/dao/ExpenseSavingReport.hbm.xml</value>
+				<value>com/sqage/stat/dao/OnlinePlayer.hbm.xml</value>
+				<value>com/sqage/stat/dao/SavingYuanbao.hbm.xml</value>
+				<value>com/sqage/stat/dao/Province.hbm.xml</value>
+				<value>com/sqage/stat/dao/ChannelStat.hbm.xml</value>
+				
+				<value>com/xuanzhi/boss/gmuser/dao/Authority.hbm.xml</value>
+				<value>com/xuanzhi/boss/gmuser/dao/Gmuser.hbm.xml</value>
+				</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="UserStatDAO"
+		class="com.sqage.stat.dao.UserStatDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelDAO"
+		class="com.sqage.stat.dao.ChannelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelItemDAO"
+		class="com.sqage.stat.dao.ChannelItemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelStatDAO"
+		class="com.sqage.stat.dao.ChannelStatDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ItemInputChannelDayDAO"
+		class="com.sqage.stat.dao.ItemInputChannelDayDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OnlinePlayerDAO"
+		class="com.sqage.stat.dao.OnlinePlayerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PlayerExpenseDAO"
+		class="com.sqage.stat.dao.PlayerExpenseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PlayerLoginDAO"
+		class="com.sqage.stat.dao.PlayerLoginDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PlayerLogoutDAO"
+		class="com.sqage.stat.dao.PlayerLogoutDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProvinceDAO" class="com.sqage.stat.dao.ProvinceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SavingYuanbaoDAO"
+		class="com.sqage.stat.dao.SavingYuanbaoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="AuthorityDAO"
+		class="com.xuanzhi.boss.gmuser.dao.AuthorityDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GmuserDAO" class="com.xuanzhi.boss.gmuser.dao.GmuserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+</beans>

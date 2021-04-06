@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<prototypes version="1.0" author="myzdf">
+	<factory name="BossMessageFactory" />
+	<init-params stringMaxLength="10240000" arrayMaxLength="5024000" objectMaxLength="4096000"/>
+	<prototype req_name="PASSPORT_REGISTER_REQ" req_type="0x0000E000" 
+			res_name="PASSPORT_REGISTER_RES" res_type="0x8000E000"  comment="注册一个通行证"> 
+		<req>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误"></property>
+			<property name="description" type="String" encoding="UTF-8"  comment="结果描述"></property>
+		</res>
+	</prototype>
+		<prototype req_name="PASSPORT_LOGIN_REQ" req_type="0x0000E001" 
+			res_name="PASSPORT_LOGIN_RES" res_type="0x8000E001"  comment="登陆">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="lastLoginClientId" type="String"  comment="最后登录的clientid"/>
+			<property name="lastLoginChannel" type="String" encoding="UTF-8" comment="最后登录的渠道"/>
+			<property name="lastLoginMobileOs" type="String" comment="最后登录手机平台" />
+			<property name="lastLoginMobileType" type="String" comment="最后登录机型" />
+			<property name="lastLoginNetworkMode" type="String"  comment="最后登录联网方式" />
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+	<prototype req_name="PASSPORT_GET_REQ" req_type="0x0000E002" 
+			res_name="PASSPORT_GET_RES" res_type="0x8000E002"  comment="登陆">
+		<req>
+			<property name="id" type="long" comment="id"/>
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerDate" type="long"  comment="注册日期"/>
+			<property name="lastLoginDate" type="long"  comment="最后一次登陆日期"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="lastLoginChannel" type="String"  comment="最后一次登陆渠道"/>
+			<property name="lastLoginIp" type="String"  comment="最后一次登陆ip"/>
+			<property name="lastLoginClientId" type="String"  comment="最后一次登陆clientId"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="lastLoginMobileOs" type="String" comment="最后一次登陆手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="lastLoginMobileType" type="String" comment="最后一次登陆手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+			<property name="lastLoginNetworkMode" type="String" encoding="UTF-8"  comment="登陆时联网方式" />
+			<property name="totalChargeAmount" type="long"   comment="充值总额" />
+			<property name="lastChargeDate" type="long"   comment="最后一次充值日期" />
+			<property name="lastChargeAmount" type="long"   comment="最后一次充值金额" />
+			<property name="lastChargeChannel" type="String"   comment="最后一次充值渠道" />
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+			
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+
+	
+	<prototype req_name="PASSPORT_GET_REQ2" req_type="0x0000E003" 
+			res_name="PASSPORT_GET_RES2" res_type="0x8000E003"  comment="登陆">
+		<req>
+			<property name="username" type="String" comment="账号名"/>
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerDate" type="long"  comment="注册日期"/>
+			<property name="lastLoginDate" type="long"  comment="最后一次登陆日期"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="lastLoginChannel" type="String"  comment="最后一次登陆渠道"/>
+			<property name="lastLoginIp" type="String"  comment="最后一次登陆ip"/>
+			<property name="lastLoginClientId" type="String"  comment="最后一次登陆clientId"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="lastLoginMobileOs" type="String" comment="最后一次登陆手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="lastLoginMobileType" type="String" comment="最后一次登陆手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+			<property name="lastLoginNetworkMode" type="String" encoding="UTF-8"  comment="登陆时联网方式" />
+			<property name="totalChargeAmount" type="long"   comment="充值总额" />
+			<property name="lastChargeDate" type="long"   comment="最后一次充值日期" />
+			<property name="lastChargeAmount" type="long"   comment="最后一次充值金额" />
+			<property name="lastChargeChannel" type="String"   comment="最后一次充值渠道" />
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+			
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+
+	<prototype req_name="PASSPORT_UPDATE_REQ" req_type="0x0000E004" 
+			res_name="PASSPORT_UPDATE_RES" res_type="0x8000E004"  comment="登陆">
+		<req>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+		</req>
+		<res>
+			<property name="isOk" type="boolean"   comment="是否设置密保问题" />
+		</res>
+	</prototype>
+</prototypes>

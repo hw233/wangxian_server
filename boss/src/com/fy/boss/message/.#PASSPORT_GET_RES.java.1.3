@@ -1,0 +1,1020 @@
+package com.fy.boss.message;
+
+import com.xuanzhi.tools.transport.*;
+import java.nio.ByteBuffer;
+
+
+
+/**
+ * 网络数据包，此数据包是由MessageComplier自动生成，请不要手动修改。<br>
+ * 版本号：null<br>
+ * 登陆<br>
+ * 数据包的格式如下：<br><br>
+ * <table border="0" cellpadding="0" cellspacing="1" width="100%" bgcolor="#000000" align="center">
+ * <tr bgcolor="#00FFFF" align="center"><td>字段名</td><td>数据类型</td><td>长度（字节数）</td><td>说明</td></tr> * <tr bgcolor="#FFFFFF" align="center"><td>length</td><td>int</td><td>getNumOfByteForMessageLength()个字节</td><td>包的整体长度，包头的一部分</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>type</td><td>int</td><td>4个字节</td><td>包的类型，包头的一部分</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>seqNum</td><td>int</td><td>4个字节</td><td>包的序列号，包头的一部分</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>passportid</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerClientId.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerClientId</td><td>String</td><td>registerClientId.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>username.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>username</td><td>String</td><td>username.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>passwd.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>passwd</td><td>String</td><td>passwd.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>nickName.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>nickName</td><td>String</td><td>nickName.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>fromWhere.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>fromWhere</td><td>String</td><td>fromWhere.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerDate</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginDate</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerChannel.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerChannel</td><td>String</td><td>registerChannel.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginChannel.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginChannel</td><td>String</td><td>lastLoginChannel.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginIp.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginIp</td><td>String</td><td>lastLoginIp.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginClientId.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginClientId</td><td>String</td><td>lastLoginClientId.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerMobile.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerMobile</td><td>String</td><td>registerMobile.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerMobileOs.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerMobileOs</td><td>String</td><td>registerMobileOs.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginMobileOs.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginMobileOs</td><td>String</td><td>lastLoginMobileOs.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerMobileType.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerMobileType</td><td>String</td><td>registerMobileType.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginMobileType.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginMobileType</td><td>String</td><td>lastLoginMobileType.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>registerNetworkMode.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>registerNetworkMode</td><td>String</td><td>registerNetworkMode.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastLoginNetworkMode.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastLoginNetworkMode</td><td>String</td><td>lastLoginNetworkMode.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>totalChargeAmount</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastChargeDate</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastChargeAmount</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastChargeChannel.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastChargeChannel</td><td>String</td><td>lastChargeChannel.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>secretQuestion.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>secretQuestion</td><td>String</td><td>secretQuestion.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>secretAnswer.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>secretAnswer</td><td>String</td><td>secretAnswer.length</td><td>字符串对应的byte数组</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>lastQuestionSetDate</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>isSetSecretQuestion</td><td>boolean</td><td>1个字节</td><td>布尔型长度,0==false，其他为true</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>status</td><td>int</td><td>4个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>lastUpdateStatusDate</td><td>long</td><td>8个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>result</td><td>byte</td><td>1个字节</td><td>配置的长度</td></tr>
+ * <tr bgcolor="#FFFFFF" align="center"><td>description.length</td><td>short</td><td>2个字节</td><td>字符串实际长度</td></tr>
+ * <tr bgcolor="#FAFAFA" align="center"><td>description</td><td>String</td><td>description.length</td><td>字符串对应的byte数组</td></tr>
+ * </table>
+ */
+public class PASSPORT_GET_RES implements ResponseMessage{
+
+	static BossMessageFactory mf = BossMessageFactory.getInstance();
+
+	long seqNum;
+	long passportid;
+	String registerClientId;
+	String username;
+	String passwd;
+	String nickName;
+	String fromWhere;
+	long registerDate;
+	long lastLoginDate;
+	String registerChannel;
+	String lastLoginChannel;
+	String lastLoginIp;
+	String lastLoginClientId;
+	String registerMobile;
+	String registerMobileOs;
+	String lastLoginMobileOs;
+	String registerMobileType;
+	String lastLoginMobileType;
+	String registerNetworkMode;
+	String lastLoginNetworkMode;
+	long totalChargeAmount;
+	long lastChargeDate;
+	long lastChargeAmount;
+	String lastChargeChannel;
+	String secretQuestion;
+	String secretAnswer;
+	long lastQuestionSetDate;
+	boolean isSetSecretQuestion;
+	int status;
+	long lastUpdateStatusDate;
+	byte result;
+	String description;
+
+	public PASSPORT_GET_RES(long seqNum,long passportid,String registerClientId,String username,String passwd,String nickName,String fromWhere,long registerDate,long lastLoginDate,String registerChannel,String lastLoginChannel,String lastLoginIp,String lastLoginClientId,String registerMobile,String registerMobileOs,String lastLoginMobileOs,String registerMobileType,String lastLoginMobileType,String registerNetworkMode,String lastLoginNetworkMode,long totalChargeAmount,long lastChargeDate,long lastChargeAmount,String lastChargeChannel,String secretQuestion,String secretAnswer,long lastQuestionSetDate,boolean isSetSecretQuestion,int status,long lastUpdateStatusDate,byte result,String description){
+		this.seqNum = seqNum;
+		this.passportid = passportid;
+		this.registerClientId = registerClientId;
+		this.username = username;
+		this.passwd = passwd;
+		this.nickName = nickName;
+		this.fromWhere = fromWhere;
+		this.registerDate = registerDate;
+		this.lastLoginDate = lastLoginDate;
+		this.registerChannel = registerChannel;
+		this.lastLoginChannel = lastLoginChannel;
+		this.lastLoginIp = lastLoginIp;
+		this.lastLoginClientId = lastLoginClientId;
+		this.registerMobile = registerMobile;
+		this.registerMobileOs = registerMobileOs;
+		this.lastLoginMobileOs = lastLoginMobileOs;
+		this.registerMobileType = registerMobileType;
+		this.lastLoginMobileType = lastLoginMobileType;
+		this.registerNetworkMode = registerNetworkMode;
+		this.lastLoginNetworkMode = lastLoginNetworkMode;
+		this.totalChargeAmount = totalChargeAmount;
+		this.lastChargeDate = lastChargeDate;
+		this.lastChargeAmount = lastChargeAmount;
+		this.lastChargeChannel = lastChargeChannel;
+		this.secretQuestion = secretQuestion;
+		this.secretAnswer = secretAnswer;
+		this.lastQuestionSetDate = lastQuestionSetDate;
+		this.isSetSecretQuestion = isSetSecretQuestion;
+		this.status = status;
+		this.lastUpdateStatusDate = lastUpdateStatusDate;
+		this.result = result;
+		this.description = description;
+	}
+
+	public PASSPORT_GET_RES(long seqNum,byte[] content,int offset,int size) throws Exception{
+		this.seqNum = seqNum;
+		passportid = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		int len = 0;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerClientId = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		username = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		passwd = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		nickName = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		fromWhere = new String(content,offset,len,"UTF-8");
+		offset += len;
+		registerDate = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		lastLoginDate = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerChannel = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginChannel = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginIp = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginClientId = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerMobile = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerMobileOs = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginMobileOs = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerMobileType = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginMobileType = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		registerNetworkMode = new String(content,offset,len,"UTF-8");
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastLoginNetworkMode = new String(content,offset,len,"UTF-8");
+		offset += len;
+		totalChargeAmount = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		lastChargeDate = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		lastChargeAmount = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		lastChargeChannel = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		secretQuestion = new String(content,offset,len);
+		offset += len;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		secretAnswer = new String(content,offset,len);
+		offset += len;
+		lastQuestionSetDate = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		isSetSecretQuestion = mf.byteArrayToNumber(content,offset,1) != 0;
+		offset += 1;
+		status = (int)mf.byteArrayToNumber(content,offset,4);
+		offset += 4;
+		lastUpdateStatusDate = (long)mf.byteArrayToNumber(content,offset,8);
+		offset += 8;
+		result = (byte)mf.byteArrayToNumber(content,offset,1);
+		offset += 1;
+		len = (int)mf.byteArrayToNumber(content,offset,2);
+		offset += 2;
+		if(len < 0 || len > 10240000) throw new Exception("string length ["+len+"] big than the max length [10240000]");
+		description = new String(content,offset,len,"UTF-8");
+		offset += len;
+	}
+
+	public int getType() {
+		return 0x8000E002;
+	}
+
+	public String getTypeDescription() {
+		return "PASSPORT_GET_RES";
+	}
+
+	public String getSequenceNumAsString() {
+		return String.valueOf(seqNum);
+	}
+
+	public long getSequnceNum(){
+		return seqNum;
+	}
+
+	private int packet_length = 0;
+
+	public int getLength() {
+		if(packet_length > 0) return packet_length;
+		int len =  mf.getNumOfByteForMessageLength() + 4 + 4;
+		len += 8;
+		len += 2;
+		try{
+			len +=registerClientId.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		try{
+			len +=username.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		try{
+			len +=passwd.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		try{
+			len +=nickName.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		try{
+			len +=fromWhere.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 8;
+		len += 8;
+		len += 2;
+		try{
+			len +=registerChannel.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		len +=lastLoginChannel.getBytes().length;
+		len += 2;
+		len +=lastLoginIp.getBytes().length;
+		len += 2;
+		len +=lastLoginClientId.getBytes().length;
+		len += 2;
+		len +=registerMobile.getBytes().length;
+		len += 2;
+		len +=registerMobileOs.getBytes().length;
+		len += 2;
+		len +=lastLoginMobileOs.getBytes().length;
+		len += 2;
+		len +=registerMobileType.getBytes().length;
+		len += 2;
+		len +=lastLoginMobileType.getBytes().length;
+		len += 2;
+		try{
+			len +=registerNetworkMode.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 2;
+		try{
+			len +=lastLoginNetworkMode.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		len += 8;
+		len += 8;
+		len += 8;
+		len += 2;
+		len +=lastChargeChannel.getBytes().length;
+		len += 2;
+		len +=secretQuestion.getBytes().length;
+		len += 2;
+		len +=secretAnswer.getBytes().length;
+		len += 8;
+		len += 1;
+		len += 4;
+		len += 8;
+		len += 1;
+		len += 2;
+		try{
+			len +=description.getBytes("UTF-8").length;
+		}catch(java.io.UnsupportedEncodingException e){
+		 e.printStackTrace();
+			throw new RuntimeException("unsupported encoding [UTF-8]",e);
+		}
+		packet_length = len;
+		return len;
+	}
+
+	public int writeTo(ByteBuffer buffer) {
+		int messageLength = getLength();
+		if(buffer.remaining() < messageLength) return 0;
+		buffer.mark();
+		try{
+			buffer.put(mf.numberToByteArray(messageLength,mf.getNumOfByteForMessageLength()));
+			buffer.putInt(getType());
+			buffer.putInt((int)seqNum);
+
+			buffer.putLong(passportid);
+			byte[] tmpBytes1;
+				try{
+			 tmpBytes1 = registerClientId.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = username.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = passwd.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = nickName.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = fromWhere.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			buffer.putLong(registerDate);
+			buffer.putLong(lastLoginDate);
+				try{
+			tmpBytes1 = registerChannel.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = lastLoginChannel.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = lastLoginIp.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = lastLoginClientId.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = registerMobile.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = registerMobileOs.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = lastLoginMobileOs.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = registerMobileType.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = lastLoginMobileType.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = registerNetworkMode.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+				try{
+			tmpBytes1 = lastLoginNetworkMode.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			buffer.putLong(totalChargeAmount);
+			buffer.putLong(lastChargeDate);
+			buffer.putLong(lastChargeAmount);
+			tmpBytes1 = lastChargeChannel.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = secretQuestion.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			tmpBytes1 = secretAnswer.getBytes();
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+			buffer.putLong(lastQuestionSetDate);
+			buffer.put((byte)(isSetSecretQuestion==false?0:1));
+			buffer.putInt(status);
+			buffer.putLong(lastUpdateStatusDate);
+			buffer.put(result);
+				try{
+			tmpBytes1 = description.getBytes("UTF-8");
+				}catch(java.io.UnsupportedEncodingException e){
+			 e.printStackTrace();
+					throw new RuntimeException("unsupported encoding [UTF-8]",e);
+				}
+			buffer.putShort((short)tmpBytes1.length);
+			buffer.put(tmpBytes1);
+		}catch(Exception e){
+		 e.printStackTrace();
+			buffer.reset();
+			throw new RuntimeException("in writeTo method catch exception :",e);
+		}
+		return messageLength;
+	}
+
+	/**
+	 * 获取属性：
+	 *	通行证id
+	 */
+	public long getPassportid(){
+		return passportid;
+	}
+
+	/**
+	 * 设置属性：
+	 *	通行证id
+	 */
+	public void setPassportid(long passportid){
+		this.passportid = passportid;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册clientId
+	 */
+	public String getRegisterClientId(){
+		return registerClientId;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册clientId
+	 */
+	public void setRegisterClientId(String registerClientId){
+		this.registerClientId = registerClientId;
+	}
+
+	/**
+	 * 获取属性：
+	 *	账户名
+	 */
+	public String getUsername(){
+		return username;
+	}
+
+	/**
+	 * 设置属性：
+	 *	账户名
+	 */
+	public void setUsername(String username){
+		this.username = username;
+	}
+
+	/**
+	 * 获取属性：
+	 *	密码
+	 */
+	public String getPasswd(){
+		return passwd;
+	}
+
+	/**
+	 * 设置属性：
+	 *	密码
+	 */
+	public void setPasswd(String passwd){
+		this.passwd = passwd;
+	}
+
+	/**
+	 * 获取属性：
+	 *	账户别名
+	 */
+	public String getNickName(){
+		return nickName;
+	}
+
+	/**
+	 * 设置属性：
+	 *	账户别名
+	 */
+	public void setNickName(String nickName){
+		this.nickName = nickName;
+	}
+
+	/**
+	 * 获取属性：
+	 *	账号来源
+	 */
+	public String getFromWhere(){
+		return fromWhere;
+	}
+
+	/**
+	 * 设置属性：
+	 *	账号来源
+	 */
+	public void setFromWhere(String fromWhere){
+		this.fromWhere = fromWhere;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册日期
+	 */
+	public long getRegisterDate(){
+		return registerDate;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册日期
+	 */
+	public void setRegisterDate(long registerDate){
+		this.registerDate = registerDate;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆日期
+	 */
+	public long getLastLoginDate(){
+		return lastLoginDate;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆日期
+	 */
+	public void setLastLoginDate(long lastLoginDate){
+		this.lastLoginDate = lastLoginDate;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册渠道
+	 */
+	public String getRegisterChannel(){
+		return registerChannel;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册渠道
+	 */
+	public void setRegisterChannel(String registerChannel){
+		this.registerChannel = registerChannel;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆渠道
+	 */
+	public String getLastLoginChannel(){
+		return lastLoginChannel;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆渠道
+	 */
+	public void setLastLoginChannel(String lastLoginChannel){
+		this.lastLoginChannel = lastLoginChannel;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆ip
+	 */
+	public String getLastLoginIp(){
+		return lastLoginIp;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆ip
+	 */
+	public void setLastLoginIp(String lastLoginIp){
+		this.lastLoginIp = lastLoginIp;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆clientId
+	 */
+	public String getLastLoginClientId(){
+		return lastLoginClientId;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆clientId
+	 */
+	public void setLastLoginClientId(String lastLoginClientId){
+		this.lastLoginClientId = lastLoginClientId;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册手机号码
+	 */
+	public String getRegisterMobile(){
+		return registerMobile;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册手机号码
+	 */
+	public void setRegisterMobile(String registerMobile){
+		this.registerMobile = registerMobile;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册手机平台
+	 */
+	public String getRegisterMobileOs(){
+		return registerMobileOs;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册手机平台
+	 */
+	public void setRegisterMobileOs(String registerMobileOs){
+		this.registerMobileOs = registerMobileOs;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆手机平台
+	 */
+	public String getLastLoginMobileOs(){
+		return lastLoginMobileOs;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆手机平台
+	 */
+	public void setLastLoginMobileOs(String lastLoginMobileOs){
+		this.lastLoginMobileOs = lastLoginMobileOs;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册手机机型
+	 */
+	public String getRegisterMobileType(){
+		return registerMobileType;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册手机机型
+	 */
+	public void setRegisterMobileType(String registerMobileType){
+		this.registerMobileType = registerMobileType;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次登陆手机机型
+	 */
+	public String getLastLoginMobileType(){
+		return lastLoginMobileType;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次登陆手机机型
+	 */
+	public void setLastLoginMobileType(String lastLoginMobileType){
+		this.lastLoginMobileType = lastLoginMobileType;
+	}
+
+	/**
+	 * 获取属性：
+	 *	注册时联网方式
+	 */
+	public String getRegisterNetworkMode(){
+		return registerNetworkMode;
+	}
+
+	/**
+	 * 设置属性：
+	 *	注册时联网方式
+	 */
+	public void setRegisterNetworkMode(String registerNetworkMode){
+		this.registerNetworkMode = registerNetworkMode;
+	}
+
+	/**
+	 * 获取属性：
+	 *	登陆时联网方式
+	 */
+	public String getLastLoginNetworkMode(){
+		return lastLoginNetworkMode;
+	}
+
+	/**
+	 * 设置属性：
+	 *	登陆时联网方式
+	 */
+	public void setLastLoginNetworkMode(String lastLoginNetworkMode){
+		this.lastLoginNetworkMode = lastLoginNetworkMode;
+	}
+
+	/**
+	 * 获取属性：
+	 *	充值总额
+	 */
+	public long getTotalChargeAmount(){
+		return totalChargeAmount;
+	}
+
+	/**
+	 * 设置属性：
+	 *	充值总额
+	 */
+	public void setTotalChargeAmount(long totalChargeAmount){
+		this.totalChargeAmount = totalChargeAmount;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次充值日期
+	 */
+	public long getLastChargeDate(){
+		return lastChargeDate;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次充值日期
+	 */
+	public void setLastChargeDate(long lastChargeDate){
+		this.lastChargeDate = lastChargeDate;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次充值金额
+	 */
+	public long getLastChargeAmount(){
+		return lastChargeAmount;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次充值金额
+	 */
+	public void setLastChargeAmount(long lastChargeAmount){
+		this.lastChargeAmount = lastChargeAmount;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次充值渠道
+	 */
+	public String getLastChargeChannel(){
+		return lastChargeChannel;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次充值渠道
+	 */
+	public void setLastChargeChannel(String lastChargeChannel){
+		this.lastChargeChannel = lastChargeChannel;
+	}
+
+	/**
+	 * 获取属性：
+	 *	密保问题
+	 */
+	public String getSecretQuestion(){
+		return secretQuestion;
+	}
+
+	/**
+	 * 设置属性：
+	 *	密保问题
+	 */
+	public void setSecretQuestion(String secretQuestion){
+		this.secretQuestion = secretQuestion;
+	}
+
+	/**
+	 * 获取属性：
+	 *	密保答案
+	 */
+	public String getSecretAnswer(){
+		return secretAnswer;
+	}
+
+	/**
+	 * 设置属性：
+	 *	密保答案
+	 */
+	public void setSecretAnswer(String secretAnswer){
+		this.secretAnswer = secretAnswer;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次设置密保时间
+	 */
+	public long getLastQuestionSetDate(){
+		return lastQuestionSetDate;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次设置密保时间
+	 */
+	public void setLastQuestionSetDate(long lastQuestionSetDate){
+		this.lastQuestionSetDate = lastQuestionSetDate;
+	}
+
+	/**
+	 * 获取属性：
+	 *	是否设置密保问题
+	 */
+	public boolean getIsSetSecretQuestion(){
+		return isSetSecretQuestion;
+	}
+
+	/**
+	 * 设置属性：
+	 *	是否设置密保问题
+	 */
+	public void setIsSetSecretQuestion(boolean isSetSecretQuestion){
+		this.isSetSecretQuestion = isSetSecretQuestion;
+	}
+
+	/**
+	 * 获取属性：
+	 *	用户状态
+	 */
+	public int getStatus(){
+		return status;
+	}
+
+	/**
+	 * 设置属性：
+	 *	用户状态
+	 */
+	public void setStatus(int status){
+		this.status = status;
+	}
+
+	/**
+	 * 获取属性：
+	 *	最后一次设置用户状态时间
+	 */
+	public long getLastUpdateStatusDate(){
+		return lastUpdateStatusDate;
+	}
+
+	/**
+	 * 设置属性：
+	 *	最后一次设置用户状态时间
+	 */
+	public void setLastUpdateStatusDate(long lastUpdateStatusDate){
+		this.lastUpdateStatusDate = lastUpdateStatusDate;
+	}
+
+	/**
+	 * 获取属性：
+	 *	结果，0表示成功，1表示id不存在，2表示Boss内部错误，
+	 */
+	public byte getResult(){
+		return result;
+	}
+
+	/**
+	 * 设置属性：
+	 *	结果，0表示成功，1表示id不存在，2表示Boss内部错误，
+	 */
+	public void setResult(byte result){
+		this.result = result;
+	}
+
+	/**
+	 * 获取属性：
+	 *	结果描述
+	 */
+	public String getDescription(){
+		return description;
+	}
+
+	/**
+	 * 设置属性：
+	 *	结果描述
+	 */
+	public void setDescription(String description){
+		this.description = description;
+	}
+
+}

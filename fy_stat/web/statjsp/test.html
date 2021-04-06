@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/atalk.css" />
+		<script language="javascript" type="text/javascript" src="../js/flotr/lib/prototype-1.6.0.2.js"></script>
+		<script language="javascript" type="text/javascript" src="../js/flotr/flotr-0.2.0-alpha.js"></script>
+<script language="JavaScript">
+
+ var mycars=["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","E];
+      
+       function drawRegUserFlotr(){
+		    var f = Flotr.draw(
+		$('regUserContainer'), [
+		{
+data:[[0,null],[1,0.18287037],[2,0.027314816],[3,0.020833334],[4,0.037962962],[5,0.0074074073],[6,0.029166667],[7,0.05509259],[8,0.047685184],[9,0.032407407],[10,0.13981481],[11,0.02638889],[12,0.042592593],[13,0.031018518],[14,0.015277778],[15,0.04212963],[16,0.049074072],[17,0.033796296],[18,0.022222223],[19,0.019444445],[20,0.024537036],[21,0.015277778],[22,0.008333334],[23,0.017592592],[24,0.011111111],[25,0.010185185],[26,0.008796296],[27,0.0060185185],[28,0.0055555557],[29,0.0064814813],[30,0.0018518518],[31,0.0037037036],[32,0.004166667],[33,0.0018518518],[34,0.0018518518],[35,0.0023148148],[36,null],[37,0.0013888889],[38,0.0013888889],[39,4.6296295E-4],[40,0.0013888889],[41,4.6296295E-4],[42,4.6296295E-4],[43,null],[44,4.6296295E-4],[45,9.259259E-4],[46,null],[47,4.6296295E-4],[48,null],[49,4.6296295E-4],[50,null],[51,null],[52,null],[53,null],[54,null],[55,null],[56,null],[57,null],[58,null],[59,null],[60,null],[61,null],[62,null],[63,null],[64,null],[65,null],[66,null],[67,null],[68,null],[69,null]],
+label:'用户级别'
+}
+
+		],{
+			xaxis:{
+				noTicks: 7,	// Display 7 ticks.	
+				tickFormatter: function(n){ return mycars[Math.floor(n)];}, // =>
+				min: 1,
+				max: 70
+			},
+			yaxis:{
+				tickFormatter: function(n){ return (n);}, // =>
+				min: 0,
+			},
+			legend:{
+				position: 'ne', // => position the legend 'south-east'.
+				backgroundColor: '#D2E8FF' // => a light blue background color.
+			},
+			mouse:{
+				track: true,
+				color: 'purple',
+				sensibility: 1, // => distance to show point get's smaller
+				trackDecimals: 2,
+				trackFormatter: function(obj){ return 'y = ' + obj.y; }
+			}
+		}
+	);
+	}
+
+</script>
+	</head>
+	<body>
+		<center>
+		<h2 style="font-weight:bold;">
+		用户等级分布
+		</h2>
+		<form  method="post">
+		注册起始日期：<input type='text' name='day' value='2014-02-25'>
+		-- 注册结束日期：<input type='text' name='endDay' value='2014-02-25'>(格式：2012-02-09)
+		<br>统计日期：<input type='text' name='statday' value='2014-02-25'>
+		  	
+		
+		<br/><br/>
+		       
+            	<input type='submit' value='提交'></form>
+		    		<br/>
+		    		<h3>玩家等级分布</h3>
+		    		<br>
+
+		    		
+		    		<div id="regUserContainer" style="width:100%;height:400px;display:block;"></div>
+		   <script>
+		  drawRegUserFlotr();
+		   </script>
+		</center>
+		<br>
+		<i>这里的用户都是指进入游戏的用户</i>
+		<br>
+	</body>
+</html>

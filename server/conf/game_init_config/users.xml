@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='utf-8'?>
+<usermanagement>
+	<editor name="mapeditor">
+<user name="zhanghuanyu" password="zhanghuanyu" />
+                <user name="xiaohan" password="xiaohan" />
+                <user name="gaowenlong" password="gaowenlong" />            
+                <user name="tiancheng" password="tiancheng" />
+<user name="liuyang" password="liuyang" />	
+</editor>
+	<editor name="parteditor">
+		<user name="zhanghuanyu" password="zhanghuanyu" />
+		<user name="xiaohan" password="xiaohan" />
+		<user name="gaowenlong" password="gaowenlong" />	
+		<user name="tiancheng" password="tiancheng" />	
+<user name="liuyang" password="liuyang" />
+</editor>
+</usermanagement>

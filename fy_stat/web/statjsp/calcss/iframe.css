@@ -1,0 +1,46 @@
+form input,
+form select {
+	float: left;
+	font: normal 12px Arial, sans-serif;
+	margin-right: 6px;
+}
+form.long input, 
+form.long select {
+	width: 100px;
+}
+form.short input, 
+form.short select {
+	width: 100px;
+}
+form.long input.alternate,
+form.long select.alternate,
+form.long input.calendar,
+form.long select.calendar {
+	width: 100px;
+}
+
+form.short input.alternate,
+form.short select.alternate,
+form.short input.calendar,
+form.short select.calendar {
+	width: 100px;
+}
+
+form input {
+	padding: 1px 3px;
+}
+form label {
+	color: #262626;
+	font: normal 12px/18px Arial, sans-serif;
+	float: left;
+	margin-right: 6px;
+	text-align: right;
+	width: 50px;
+}
+form legend {
+	background: #E5E5E5;
+	color: #262626;
+	font: normal 12px/18px Arial, sans-serif;
+	margin-bottom: 9px;
+	padding: 2px 11px;
+}

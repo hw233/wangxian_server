@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prototypes>
+<NpcStation index="1" x="1" y ="1" />
+<NpcStation index="2" x="2" y ="2" />
+<NpcStation index="3" x="3" y ="3" />
+<NpcStation index="4" x="4" y ="4" />
+<NpcStation index="5" x="5" y ="5" />
+<NpcStation index="6" x="6" y ="6" />
+<NpcStation index="7" x="7" y ="7" />
+<NpcStation index="8" x="8" y ="8" />
+<NpcStation index="9" x="9" y ="9" />
+<NpcStation index="10" x="10" y ="10" />
+<NpcStation index="11" x="11" y ="11" />
+<NpcStation index="12" x="12" y ="12" />
+<NpcStation index="13" x="13" y ="13" />
+<NpcStation index="14" x="14" y ="14" />
+<NpcStation index="15" x="15" y ="15" />
+<NpcStation index="16" x="16" y ="16" />
+<NpcStation index="17" x="17" y ="17" />
+<NpcStation index="18" x="18" y ="18" />
+<NpcStation index="19" x="19" y ="19" />
+<NpcStation index="20" x="20" y ="20" />
+<NpcStation index="11" x="11" y ="21" />
+<NpcStation index="12" x="12" y ="22" />
+<NpcStation index="13" x="13" y ="23" />
+<NpcStation index="14" x="14" y ="24" />
+<NpcStation index="15" x="15" y ="25" />
+<NpcStation index="16" x="16" y ="26" />
+<NpcStation index="17" x="17" y ="27" />
+<NpcStation index="18" x="18" y ="28" />
+<NpcStation index="19" x="19" y ="29" />
+<NpcStation index="20" x="20" y ="30" />
+</prototypes>

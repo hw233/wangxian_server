@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.mailTitle {
+	float: left;
+	color: red;
+	font-weight:bold;
+	margin-left: 20px;
+}
+
+.mailContent {
+	float: inherit;
+	color: blue;
+	font-style:inherit;
+	margin-bottom: 20px;
+	font-weight:bold;
+	font-size: 14px;	
+}
+.inputList {
+	float: left;
+	width: 10%;
+}

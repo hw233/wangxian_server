@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<listener>
+		<listener-class>
+			com.xuanzhi.tools.text.LogbackConfigListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/logback.xml</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>10000</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/*Context.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+
+	<welcome-file-list>
+		<welcome-file>gm/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>dwr-servlet</servlet-name>
+		<servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config-1</param-name>
+			<param-value>WEB-INF/conf/dwr.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr-servlet</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>alipayResult</servlet-name>
+		<servlet-class>com.fy.boss.finance.service.platform.AlipayAppSavingBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>alipayResult</servlet-name>
+		<url-pattern>/alipayResult</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>huaweiResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huawei.HuaweiYeepaySavingBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>huaweiResult</servlet-name>
+		<url-pattern>/huaweiResult</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>meizuResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.meizu.MeiZuSavingCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>meizuResult</servlet-name>
+		<url-pattern>/meizuResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>xiaomiResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.xiaomi.XiaomiSdkSavingCallBackServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>xiaomiResult</servlet-name>
+		<url-pattern>/xiaomiResult</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>zhujianxiaomi</servlet-name>
+		<servlet-class>com.fy.boss.platform.xiaomi.XiaomiSdkSavingCallBackServlet2</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>zhujianxiaomi</servlet-name>
+		<url-pattern>/zhujianxiaomi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ucsdkNewResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.uc.UCNewSDKSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ucsdkNewResult</servlet-name>
+		<url-pattern>/ucsdkNewResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>u8Result</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.U8DKSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>u8Result</servlet-name>
+		<url-pattern>/u8Result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>v8Result</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.V8DKSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>v8Result</servlet-name>
+		<url-pattern>/v8Result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>6533result</servlet-name>
+		<servlet-class>com.fy.boss.platform.t6533.T6533SavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>6533result</servlet-name>
+		<url-pattern>/6533result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>185result</servlet-name>
+		<servlet-class>com.fy.boss.platform.t6533.T185SavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>185result</servlet-name>
+		<url-pattern>/185result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>oppoResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.oppo.OppoSavingCallBack</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>oppoResult</servlet-name>
+		<url-pattern>/oppoResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>yijieResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.YiJieCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>yijieResult</servlet-name>
+		<url-pattern>/yijieResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>quickResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.QuickSdkSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>quickResult</servlet-name>
+		<url-pattern>/quickResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>quick2Result</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.QuickSdkSavingCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>quick2Result</servlet-name>
+		<url-pattern>/quick2Result</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>sxpquickResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.QuickSdkSavingCallBackServlet3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sxpquickResult</servlet-name>
+		<url-pattern>/sxpquickResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>yijieResult01</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.YiJieCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>yijieResult01</servlet-name>
+		<url-pattern>/yijieResult01</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>yijieResult03</servlet-name>
+		<servlet-class>com.fy.boss.platform.yijie.YiJieCallBackServlet3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>yijieResult03</servlet-name>
+		<url-pattern>/yijieResult03</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>vivoResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.oppo.VivoSavingCallBack</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vivoResult</servlet-name>
+		<url-pattern>/vivoResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>haodongResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HaoDongSavingCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>haodongResult</servlet-name>
+		<url-pattern>/haodongResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>hyResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuiYaoSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>hyResult</servlet-name>
+		<url-pattern>/hyResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jgResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuoGameSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jgResult</servlet-name>
+		<url-pattern>/jgResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jgResult2</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuoGameSavingCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jgResult2</servlet-name>
+		<url-pattern>/jgResult2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>zhuxian</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuoGameSavingCallBackServlet4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>zhuxian</servlet-name>
+		<url-pattern>/zhuxian</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>sanjie</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuoGameSavingCallBackServlet5</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sanjie</servlet-name>
+		<url-pattern>/sanjie</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jzqResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.HuoGameSavingCallBackServlet3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jzqResult</servlet-name>
+		<url-pattern>/jzqResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>guopanResult</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.GuoPanSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>guopanResult</servlet-name>
+		<url-pattern>/guopanResult</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>guopanResult2</servlet-name>
+		<servlet-class>com.fy.boss.platform.huiyao.GuoPanSavingCallBackServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>guopanResult2</servlet-name>
+		<url-pattern>/guopanResult2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>xunxian</servlet-name>
+		<servlet-class>com.fy.boss.platform.xmwan.XMWSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>xunxian</servlet-name>
+		<url-pattern>/xunxian</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>anjiu</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.AnJiuSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>anjiu</servlet-name>
+		<url-pattern>/anjiu</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>lehaihai</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.LeHaiHaiSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lehaihai</servlet-name>
+		<url-pattern>/lehaihai</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>maiyou</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.MaiYouSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>maiyou</servlet-name>
+		<url-pattern>/maiyou</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>xiao7</servlet-name>
+		<servlet-class>com.fy.boss.platform.u8.Xiao7SavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>xiao7</servlet-name>
+		<url-pattern>/xiao7</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aiwan</servlet-name>
+		<servlet-class>com.fy.boss.platform.aiwan.AiWan2SavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aiwan</servlet-name>
+		<url-pattern>/aiwan</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aiwan2</servlet-name>
+		<servlet-class>com.fy.boss.platform.aiwan.AiWanSavingCallBackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aiwan2</servlet-name>
+		<url-pattern>/aiwan2</url-pattern>
+	</servlet-mapping>
+	
+	
+	<session-config>
+		<!-- Default to 5 minute session timeouts -->
+		<session-timeout>240</session-timeout>
+	</session-config>
+
+
+	<!-- currently the W3C havent settled on a media type for WSDL; http://www.w3.org/TR/2003/WD-wsdl12-20030303/#ietf-draft for now we go with the basic 
+		'it's XML' response -->
+	<mime-mapping>
+		<extension>wsdl</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+
+
+	<mime-mapping>
+		<extension>xsd</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+</web-app>   

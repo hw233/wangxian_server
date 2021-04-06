@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" >
+	<property name="log.base" value="/root/resin_mieshi_boss/log/mieshi_game_boss" />
+	
+	<appender name="simpleJpa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/simpleJpa.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/simpleJpa.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date - [%thread] %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.simplejpa.SimpleEntityManager">
+		<level value="info" />
+		<appender-ref ref="simpleJpa" />
+	</logger>
+	
+</configuration>

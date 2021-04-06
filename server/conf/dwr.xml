@@ -1,0 +1,14 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.org/dwr//dwr20.dtd">
+
+<dwr>
+  <allow>
+	<create creator="new" javascript="chatborder">
+      <param name="class" value="com.fy.engineserver.gm.custom.Chatborder"/>
+    </create>	
+    <create creator="new" javascript="mct">
+      <param name="class" value="com.fy.engineserver.gm.custom.Mailborder"/>
+    </create>
+  </allow>
+</dwr>

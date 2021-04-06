@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/conf/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>10000</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/conf/applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<session-config>
+		<!-- Default to 5 minute session timeouts -->
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.sqage.stat.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>RandomCodeServlet</servlet-name>
+		<servlet-class>com.sqage.validationCode.RandomCode</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RandomCodeServlet</servlet-name>
+		<url-pattern>/imgcode</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>VipTransferServlet</servlet-name>
+		<servlet-class>com.sqage.stat.servlet.VipTransferServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VipTransferServlet</servlet-name>
+		<url-pattern>/VipTransferServlet/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Vip8TransferServlet</servlet-name>
+		<servlet-class>com.sqage.stat.servlet.Vip8TransferServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Vip8TransferServlet</servlet-name>
+		<url-pattern>/Vip8TransferServlet/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>OnlineUserServlet</servlet-name>
+		<servlet-class>com.sqage.stat.servlet.OnlineUserServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OnlineUserServlet</servlet-name>
+		<url-pattern>/OnlineUserServlet/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Caiwu_rechargeTypeServlet</servlet-name>
+		<servlet-class>com.sqage.stat.servlet.Caiwu_rechargeTypeServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Caiwu_rechargeTypeServlet</servlet-name>
+		<url-pattern>/Caiwu_rechargeTypeServlet/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Caiwu_rechargeChannelServlet</servlet-name>
+		<servlet-class>com.sqage.stat.servlet.Caiwu_rechargeChannelServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Caiwu_rechargeChannelServlet</servlet-name>
+		<url-pattern>/Caiwu_rechargeChannelServlet/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	<!--
+		<servlet> <servlet-name>RegistStatServlet</servlet-name>
+		<servlet-class>com.sqage.stat.sanguo.servlet.RegistStatServlet</servlet-class>
+		<load-on-startup>1</load-on-startup> </servlet> <servlet-mapping>
+		<servlet-name>RegistStatServlet</servlet-name>
+		<url-pattern>/RegistStatServlet/*</url-pattern> </servlet-mapping>
+
+		<servlet> <servlet-name>ReseiveDataServlet</servlet-name>
+		<servlet-class>com.sqage.stat.sanguo.servlet.ReseiveDataServlet</servlet-class>
+		<load-on-startup>1</load-on-startup> </servlet> <servlet-mapping>
+		<servlet-name>ReseiveDataServlet</servlet-name>
+		<url-pattern>/ReseiveDataServlet/*</url-pattern> </servlet-mapping>
+	-->
+</web-app>

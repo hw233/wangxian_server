@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+a:link {color: #2157F8;text-decoration:none;}     /* 未被访问的链接 红色 没有下划线*/
+a:visited {color:#2157F8;text-decoration:none}  /* 已被访问过的链接 绿色 没有下划线*/
+a:hover {color: #C1C1C1;text-decoration:none}   /* 鼠标悬浮在上的链接 橙色 有下划线 下划线为underline 上划线为overline 无下划线为none*/
+a:active {color: #2157F8;text-decoration:none}   /* 鼠标点中激活链接 蓝色 没有下划线*/
+td {
+			font-size: 14px;
+			text-align: center;;
+		}
+.title {
+	background-color: #8CA6E8;
+	font-weight: bold;
+}
+.button {
+		background-color: #72B8FF;
+		color: #000000; 
+		text-align: center; 
+		border-style: double; 
+		border-width: 1;
+		size: 20px;
+	}
+.head {
+	background-color: #F3DA29;
+	font-size:x-large;
+	text-align: center;
+	font-weight: bold;
+}
+.prize{
+		background-color: #6192E2;
+		color: #000000; 
+		text-align: center; 
+		border-style: double; 
+		border-width: 1;
+		size: 20px;
+}
+.target{
+		background-color: #FFFFFF;
+		color: #000000; 
+		text-align: center; 
+		border-style: double; 
+		border-width: 1;
+		size: 20px;
+}
+
+table.inline {
+	display: inline;
+}

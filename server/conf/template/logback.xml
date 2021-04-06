@@ -1,0 +1,2340 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<property name="log.base" value="@resinHome/log/game_server" />
+	<appender name="knapsack" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/knapsack.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/knapsack.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="gateway" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/gateway.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/gateway.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="sendError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/sendError.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/sendError.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="playerManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/playerManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/playerManager.log.%d{yyyy-MM-dd-HH}.log.gz
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="horseManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/horseManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/horseManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.horse.HorseManager">
+		<level value="WARN" />
+		<appender-ref ref="horseManager" />
+	</logger>
+
+	<logger name="com.fy.engineserver.datasource.article.data.props.Knapsack">
+		<level value="INFO" />
+		<appender-ref ref="knapsack" />
+	</logger>
+	<logger name="com.fy.engineserver.gateway.GameNetworkFramework">
+		<level value="WARN" />
+		<appender-ref ref="gateway" />
+	</logger>
+	<logger name="game.server.network.sendError">
+		<level value="ERROR" />
+		<appender-ref ref="sendError" />
+	</logger>
+
+
+	<logger name="com.fy.engineserver.sprite.PlayerManager">
+		<level value="INFO" />
+		<appender-ref ref="playerManager" />
+	</logger>
+
+
+
+
+
+	<appender name="UniteManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/unitemanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/unitemanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.unite.UniteManager">
+		<level value="INFO" />
+		<appender-ref ref="UniteManager" />
+	</logger>
+	<appender name="MailManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/mailManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/mailManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.mail.service.MailManager">
+		<level value="INFO" />
+		<appender-ref ref="MailManager" />
+	</logger>
+
+	<appender name="ArticleEntityManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/articleEntityManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/articleEntityManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.datasource.article.manager.ArticleEntityManager">
+		<level value="INFO" />
+		<appender-ref ref="ArticleEntityManager" />
+	</logger>
+	<appender name="MarriageManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/MarriageManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/MarriageManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.marriage.manager.MarriageManager">
+		<level value="INFO" />
+		<appender-ref ref="MarriageManager" />
+	</logger>
+	<!-- <appender name="GameNetworkFramework" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>${log.base}/gateway.log</File> <rollingPolicy 
+		class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <FileNamePattern>${log.base}/gateway.log.%d{yyyy-MM-dd-HH}.log</FileNamePattern> </rollingPolicy> 
+		<layout class="ch.qos.logback.classic.PatternLayout"> <pattern>[%level] %date - %msg%n</pattern> </layout> </appender> <logger name="com.fy.engineserver.gateway.GameNetworkFramework"> 
+		<level value="WARN" /> <appender-ref ref="GameNetworkFramework" /> </logger> -->
+
+	<appender name="game" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/game.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/game.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.Game">
+		<level value="INFO" />
+		<appender-ref ref="game" />
+	</logger>
+	<appender name="TradeSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/TradeSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/TradeSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.TradeSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="TradeSubSystem" />
+	</logger>
+	<appender name="PetManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/petManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/petManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.pet.PetManager">
+		<level value="WARN" />
+		<appender-ref ref="PetManager" />
+	</logger>
+	<appender name="zongPaiManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/zongPaiManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/zongPaiManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.zongzu.manager.ZongPaiManager">
+		<level value="INFO" />
+		<appender-ref ref="zongPaiManager" />
+	</logger>
+	<appender name="BossAction" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/bossAction.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/bossAction.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.monster.BossAction">
+		<level value="WARN" />
+		<appender-ref ref="BossAction" />
+	</logger>
+
+	<appender name="PetManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/petManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/petManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.pet.PetMatingManager">
+		<level value="WARN" />
+		<appender-ref ref="PetManager" />
+	</logger>
+	<appender name="DealCenter" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/DealCenter.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/DealCenter.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.deal.service.DealCenter">
+		<level value="INFO" />
+		<appender-ref ref="DealCenter" />
+	</logger>
+	<appender name="BossClientService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/bossClientService.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/bossClientService.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.boss.client.BossClientService">
+		<level value="WARN" />
+		<appender-ref ref="BossClientService" />
+	</logger>
+
+	<appender name="ArticleManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/articleManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/articleManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.datasource.article.manager.ArticleManager">
+		<level value="INFO" />
+		<appender-ref ref="ArticleManager" />
+	</logger>
+
+	<appender name="EquipmentColumn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/equipmentColumn.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/equipmentColumn.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.datasource.article.data.equipments.EquipmentColumn">
+		<level value="INFO" />
+		<appender-ref ref="EquipmentColumn" />
+	</logger>
+
+	<appender name="MonsterManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/monsterManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/monsterManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.monster.MonsterManager">
+		<level value="WARN" />
+		<appender-ref ref="MonsterManager" />
+	</logger>
+
+	<appender name="UniteSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/unitesubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/unitesubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.unite.UniteSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="UniteSubSystem" />
+	</logger>
+	<appender name="chuanGongManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/chuanGongManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/chuanGongManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.chuangong.ChuanGongManager">
+		<level value="WARN" />
+		<appender-ref ref="chuanGongManager" />
+	</logger>
+
+	<appender name="SpriteSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/spriteSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/spriteSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.SpriteSubSystem">
+		<level value="INFO" />
+		<appender-ref ref="SpriteSubSystem" />
+	</logger>
+
+	<appender name="core" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/core.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/core.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.CoreSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="core" />
+	</logger>
+	<appender name="Connection" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/connection.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/connection.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport.Connection">
+		<level value="WARN" />
+		<appender-ref ref="Connection" />
+	</logger>
+	<appender name="petSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/petSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/petSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.PetSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="petSubSystem" />
+	</logger>
+	<appender name="SocietySubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/societys.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/societys.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.society.SocietySubSystem">
+		<level value="WARN" />
+		<appender-ref ref="SocietySubSystem" />
+	</logger>
+
+
+	<appender name="SocialManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/socialManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/socialManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.society.SocialManager">
+		<level value="WARN" />
+		<appender-ref ref="SocialManager" />
+	</logger>
+
+
+	<appender name="CountryManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/countryManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/countryManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.country.manager.CountryManager">
+		<level value="INFO" />
+		<appender-ref ref="CountryManager" />
+	</logger>
+	<appender name="ResourceManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/resourceManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/resourceManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.res.ResourceManager">
+		<level value="WARN" />
+		<appender-ref ref="ResourceManager" />
+	</logger>
+	<appender name="MasterPrenticeSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/masterPrenticeManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/masterPrenticeManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.masterAndPrentice.MasterPrenticeSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="MasterPrenticeSubSystem" />
+	</logger>
+	<appender name="ChatMessageService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/chatMessageService.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/chatMessageService.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.chat.ChatMessageService">
+		<level value="WARN" />
+		<appender-ref ref="ChatMessageService" />
+	</logger>
+	<appender name="ChatMessage" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/personChatMessage.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/personChatMessage.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.chat.ChatMessage">
+		<level value="WARN" />
+		<appender-ref ref="ChatMessage" />
+	</logger>
+	<!-- <appender name="sendError" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>${log.base}/sendError.log</File> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+		<FileNamePattern>${log.base}/sendError.log.%d{yyyy-MM-dd-HH}.log</FileNamePattern> </rollingPolicy> <layout class="ch.qos.logback.classic.PatternLayout"> 
+		<pattern>[%level] %date - %msg%n</pattern> </layout> </appender> <logger name="game.server.network.sendError"> <level value="DEBUG" /> <appender-ref ref="sendError" 
+		/> </logger> -->
+	<appender name="TaskSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/TaskSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/TaskSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.newtask.service.TaskSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="TaskSubSystem" />
+	</logger>
+	<appender name="RequestBuy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/RequestBuy.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/RequestBuy.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.trade.requestbuy.RequestBuy">
+		<level value="WARN" />
+		<appender-ref ref="RequestBuy" />
+	</logger>
+
+	<appender name="SeptStationBeatHeartThread" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SeptStationBeatHeartThread.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SeptStationBeatHeartThread.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.septstation.SeptStationBeatHeartThread">
+		<level value="WARN" />
+		<appender-ref ref="SeptStationBeatHeartThread" />
+	</logger>
+	<appender name="BeatHeartThread" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/thread.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/thread.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.BeatHeartThread">
+		<level value="WARN" />
+		<appender-ref ref="BeatHeartThread" />
+	</logger>
+	<appender name="RequestBuyBuConfig" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/RequestBuyBuConfig.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/RequestBuyBuConfig.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.trade.requestbuy.RequestBuyBuConfig">
+		<level value="INFO" />
+		<appender-ref ref="RequestBuyBuConfig" />
+	</logger>
+	<appender name="RequestBuySubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/RequestBuySubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/RequestBuySubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.RequestBuySubSystem">
+		<level value="WARN" />
+		<appender-ref ref="RequestBuySubSystem" />
+	</logger>
+	<appender name="PublicIDGenerator" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/publicIDGenerator.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/publicIDGenerator.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.util.PublicIDGenerator">
+		<level value="WARN" />
+		<appender-ref ref="PublicIDGenerator" />
+	</logger>
+
+	<appender name="ChatSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/chatSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/chatSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.chat.ChatSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="ChatSubSystem" />
+	</logger>
+	<appender name="FaeryBeatHeartThread" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FaeryBeatHeartThread.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FaeryBeatHeartThread.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.homestead.FaeryBeatHeartThread">
+		<level value="WARN" />
+		<appender-ref ref="FaeryBeatHeartThread" />
+	</logger>
+	<appender name="CaveSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/CaveSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/CaveSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.homestead.faery.service.CaveSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="CaveSubSystem" />
+	</logger>
+
+	<appender name="Selector" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/selector.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/selector.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport.DefaultConnectionSelector">
+		<level value="WARN" />
+		<appender-ref ref="Selector" />
+	</logger>
+	<appender name="SeptStation" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SeptStation.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SeptStation.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.septstation.SeptStation">
+		<level value="WARN" />
+		<appender-ref ref="SeptStation" />
+	</logger>
+	<appender name="teamSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/teamSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/teamSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.TeamSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="teamSubSystem" />
+	</logger>
+	<appender name="SeptStationManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SeptStationManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SeptStationManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.septstation.service.SeptStationManager">
+		<level value="WARN" />
+		<appender-ref ref="SeptStationManager" />
+	</logger>
+	<appender name="MailSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/mailSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/mailSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.MailSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="MailSubSystem" />
+	</logger>
+
+	<appender name="SeptStationMapTemplet" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SeptStationMapTemplet.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SeptStationMapTemplet.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.septstation.SeptStationMapTemplet">
+		<level value="WARN" />
+		<appender-ref ref="SeptStationMapTemplet" />
+	</logger>
+	<appender name="AuctionSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/AuctionSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/AuctionSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.AuctionSubSystem">
+		<level value="INFO" />
+		<appender-ref ref="AuctionSubSystem" />
+	</logger>
+	<appender name="playerSimpleWARNManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/playerSimpleWARNManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/playerSimpleWARNManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.PlayerSimpleWARNManager ">
+		<level value="WARN" />
+		<appender-ref ref="playerSimpleWARNManager" />
+	</logger>
+
+	<!-- <appender name="Knapsack" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>${log.base}/knapsack.log</File> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+		<FileNamePattern>${log.base}/knapsack.log.%d{yyyy-MM-dd-HH}.log</FileNamePattern> </rollingPolicy> <layout class="ch.qos.logback.classic.PatternLayout"> <pattern>[%level] 
+		%date - %msg%n</pattern> </layout> </appender> <logger name="com.fy.engineserver.datasource.article.data.props.Knapsack"> <level value="WARN" /> <appender-ref 
+		ref="Knapsack" /> </logger> -->
+	<appender name="SeptBuildingTemplet" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SeptBuildingTemplet.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SeptBuildingTemplet.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.septbuilding.templet.SeptBuildingTemplet">
+		<level value="WARN" />
+		<appender-ref ref="SeptBuildingTemplet" />
+	</logger>
+	<!-- <appender name="HorseSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>${log.base}/horse.log</File> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+		<FileNamePattern>${log.base}/horse.log.%d{yyyy-MM-dd-HH}.log</FileNamePattern> </rollingPolicy> <layout class="ch.qos.logback.classic.PatternLayout"> <pattern>[%level] 
+		%date - %msg%n</pattern> </layout> </appender> <logger name="com.fy.engineserver.sprite.horse.HorseSubSystem "> <level value="WARN" /> <appender-ref 
+		ref="HorseSubSystem" /> </logger> -->
+
+	<appender name="chuanGongSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/chuanGongSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/chuanGongSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.chuangong.ChuanGongSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="chuanGongSubSystem" />
+	</logger>
+	<appender name="FaeryManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FaeryManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FaeryManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.homestead.faery.service.FaeryManager">
+		<level value="WARN" />
+		<appender-ref ref="FaeryManager" />
+	</logger>
+
+	<appender name="BoothsaleManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/BoothsaleManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/BoothsaleManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.trade.boothsale.service.BoothsaleManager">
+		<level value="WARN" />
+		<appender-ref ref="BoothsaleManager" />
+	</logger>
+	<!-- <appender name="PlayerManager" class="ch.qos.logback.core.rolling.RollingFileAppender"> <File>${log.base}/playerManager.log</File> <rollingPolicy 
+		class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <FileNamePattern>${log.base}/playerManager.log.%d{yyyy-MM-dd-HH}.log</FileNamePattern> </rollingPolicy> 
+		<layout class="ch.qos.logback.classic.PatternLayout"> <pattern>[%level] %date - %msg%n</pattern> </layout> </appender> <logger name="com.fy.engineserver.sprite.PlayerManager"> 
+		<level value="WARN" /> <appender-ref ref="PlayerManager" /> </logger> -->
+	<appender name="VerifyServer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/VerifyServer.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/VerifyServer.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.tool.VerifyServer">
+		<level value="WARN" />
+		<appender-ref ref="VerifyServer" />
+	</logger>
+	<appender name="TaskManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/TaskManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/TaskManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.newtask.service.TaskManager">
+		<level value="WARN" />
+		<appender-ref ref="TaskManager" />
+	</logger>
+	<appender name="skill" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/skill.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/skill.log.%d{yyyy-MM-dd-HH}.log.gz
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.datasource.skill.Skill">
+		<level value="WARN" />
+		<appender-ref ref="skill" />
+	</logger>
+	<appender name="jiazuSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/jiazuSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/jiazuSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.JiazuSubSystem">
+		<level value="WARN" />
+		<appender-ref ref="jiazuSubSystem" />
+	</logger>
+	<appender name="masterPrenticeManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/masterPrenticeManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/masterPrenticeManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.masterAndPrentice.MasterPrenticeManager">
+		<level value="WARN" />
+		<appender-ref ref="masterPrenticeManager" />
+	</logger>
+
+	<appender name="ShopManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/shopManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/shopManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.shop.ShopManager">
+		<level value="INFO" />
+		<appender-ref ref="ShopManager" />
+	</logger>
+
+	<appender name="NpcAction" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/npcAction.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/npcAction.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.npc.npcaction.NpcAction">
+		<level value="WARN" />
+		<appender-ref ref="NpcAction" />
+	</logger>
+
+	<appender name="fateManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FateManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FateManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.fateActivity.FateManager">
+		<level value="WARN" />
+		<appender-ref ref="fateManager" />
+	</logger>
+
+	<appender name="fireActivityManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/fireActivityManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/fireActivityManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.fireActivity.FireManager">
+		<level value="WARN" />
+		<appender-ref ref="fireActivityManager" />
+	</logger>
+	
+	<!-- 活动   感恩充值活动 -->
+	<appender name="ChongZhiActivity" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/ChongZhiActivity.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/ChongZhiActivity.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.chongzhiActivity.ChongZhiActivity">
+		<level value="WARN" />
+		<appender-ref ref="ChongZhiActivity" />
+	</logger>
+	
+	<appender name="NewChongZhiActivityManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/NewChongZhiActivityManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/NewChongZhiActivityManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.newChongZhiActivity.NewChongZhiActivityManager">
+		<level value="INFO" />
+		<appender-ref ref="NewChongZhiActivityManager" />
+	</logger>
+
+	<appender name="BournManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/BournManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/BournManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.bourn.BournManager">
+		<level value="WARN" />
+		<appender-ref ref="BournManager" />
+	</logger>
+
+	<appender name="exploreManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/exploreManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/exploreManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.explore.ExploreManager">
+		<level value="WARN" />
+		<appender-ref ref="exploreManager" />
+	</logger>
+
+	<appender name="quizManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/quizManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/quizManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.quiz.QuizManager">
+		<level value="WARN" />
+		<appender-ref ref="quizManager" />
+	</logger>
+
+	<appender name="specialEquipmentManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/specialEquipmentManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/specialEquipmentManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.billboard.special.SpecialEquipmentManager">
+		<level value="INFO" />
+		<appender-ref ref="specialEquipmentManager" />
+	</logger>
+
+	<appender name="SystemTime" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SystemTime.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SystemTime.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.gametime.SystemTime">
+		<level value="WARN" />
+		<appender-ref ref="SystemTime" />
+	</logger>
+
+	<appender name="FeedSilkwormManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FeedSilkwormManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FeedSilkwormManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.feedsilkworm.FeedSilkwormManager">
+		<level value="WARN" />
+		<appender-ref ref="FeedSilkwormManager" />
+	</logger>
+
+	<appender name="JiazuFighterManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/jiazuFighterManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/jiazuFighterManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.jiazu.service.JiazuFighterManager">
+		<level value="WARN" />
+		<appender-ref ref="JiazuFighterManager" />
+	</logger>
+
+	<appender name="ForLuckFruitManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/ForLuckFruitManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/ForLuckFruitManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.luckfruit.ForLuckFruitManager">
+		<level value="INFO" />
+		<appender-ref ref="ForLuckFruitManager" />
+	</logger>
+
+
+	<appender name="FarmingManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FarmingManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FarmingManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.farming.FarmingManager">
+		<level value="WARN" />
+		<appender-ref ref="FarmingManager" />
+	</logger>
+
+	<appender name="PeekAndBrickManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/PeekAndBrickManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/PeekAndBrickManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.peekandbrick.PeekAndBrickManager">
+		<level value="WARN" />
+		<appender-ref ref="PeekAndBrickManager" />
+	</logger>
+
+	<appender name="BillingCenter" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/billingCenter.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/billingCenter.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.economic.BillingCenter">
+		<level value="INFO" />
+		<appender-ref ref="BillingCenter" />
+	</logger>
+
+	<appender name="TimerTaskAgent" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/TimerTaskAgent.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/TimerTaskAgent.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.TimerTaskAgent">
+		<level value="WARN" />
+		<appender-ref ref="TimerTaskAgent" />
+	</logger>
+
+	<appender name="CliffordManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/cliffordManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/cliffordManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.clifford.manager.CliffordManager">
+		<level value="INFO" />
+		<appender-ref ref="CliffordManager" />
+	</logger>
+
+	<appender name="BattleFieldManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/battleFieldManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/battleFieldManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.battlefield.concrete.BattleFieldManager">
+		<level value="WARN" />
+		<appender-ref ref="BattleFieldManager" />
+	</logger>
+
+	<appender name="TournamentManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/tournamentManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/tournamentManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.tournament.manager.TournamentManager">
+		<level value="INFO" />
+		<appender-ref ref="TournamentManager" />
+	</logger>
+
+	<appender name="VillageFightManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/villageFightManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/villageFightManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.village.manager.VillageFightManager">
+		<level value="INFO" />
+		<appender-ref ref="VillageFightManager" />
+	</logger>
+	
+	<!-- 锁魂日志 -->
+	<appender name="ArticleProtectManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/ArticleProtectManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/ArticleProtectManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.articleProtect.ArticleProtectManager">
+		<level value="INFO" />
+		<appender-ref ref="ArticleProtectManager" />
+	</logger>
+
+	<appender name="ActivitySubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/ActivitySubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/ActivitySubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.ActivitySubSystem">
+		<level value="WARN" />
+		<appender-ref ref="ActivitySubSystem" />
+	</logger>
+
+	<appender name="SilvercarManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SilvercarManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SilvercarManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.silvercar.SilvercarManager">
+		<level value="INFO" />
+		<appender-ref ref="SilvercarManager" />
+	</logger>
+
+	<appender name="HotspotManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/HotspotManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/HotspotManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.hotspot.HotspotManager">
+		<level value="WARN" />
+		<appender-ref ref="HotspotManager" />
+	</logger>
+
+	<appender name="NewPlayerLeadDataManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/NewPlayerLeadDataManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/NewPlayerLeadDataManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.core.NewPlayerLeadDataManager">
+		<level value="WARN" />
+		<appender-ref ref="NewPlayerLeadDataManager" />
+	</logger>
+
+	<appender name="StatClientManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/StatClientManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/StatClientManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.stat.client.StatClientManager">
+		<level value="WARN" />
+		<appender-ref ref="StatClientManager" />
+	</logger>
+
+	<appender name="EnterServerAgent" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/enterServerAgent.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/enterServerAgent.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.lineup.EnterServerAgent">
+		<level value="WARN" />
+		<appender-ref ref="EnterServerAgent" />
+	</logger>
+
+	<appender name="MieshiGatewayClientService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/gatewayClientService.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/gatewayClientService.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.gateway.MieshiGatewayClientService">
+		<level value="INFO" />
+		<appender-ref ref="MieshiGatewayClientService" />
+	</logger>
+
+	<appender name="FeedbackManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/feedbackManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/feedbackManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.gm.feedback.service.FeedbackManager">
+		<level value="WARN" />
+		<appender-ref ref="FeedbackManager" />
+	</logger>
+
+	<appender name="ODBEntityManagerFactory" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/odb.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/odb.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.object.entitymanagerfactory.ODBEntityManagerFactory">
+		<level value="WARN" />
+		<appender-ref ref="ODBEntityManagerFactory" />
+	</logger>
+
+	<appender name="NoticeManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/noticeManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/noticeManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.notice.NoticeManager">
+		<level value="WARN" />
+		<appender-ref ref="NoticeManager" />
+	</logger>
+
+	<appender name="simpleJpa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/simpleJpa.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/simpleJpa.log.%d{yyyy-MM-dd-HH}.log.gz
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date - [%thread] %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.simplejpa.SimpleEntityManager">
+		<level value="WARN" />
+		<appender-ref ref="simpleJpa" />
+	</logger>
+
+	<appender name="DeliverTaskManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/DeliverTaskManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/DeliverTaskManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.newtask.service.DeliverTaskManager">
+		<level value="WARN" />
+		<appender-ref ref="DeliverTaskManager" />
+	</logger>
+
+	<appender name="FlopManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/flopManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/flopManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.flop.FlopManager">
+		<level value="INFO" />
+		<appender-ref ref="FlopManager" />
+	</logger>
+
+	<!-- 千层塔log -->
+	<appender name="QianCengTa_Ta" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/QianCengTa_Ta.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/QianCengTa_Ta.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.qiancengta.QianCengTa_Ta">
+		<level value="WARN" />
+		<appender-ref ref="QianCengTa_Ta" />
+	</logger>
+	
+	<appender name="SiFangManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/SiFangManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/SiFangManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sifang.SiFangManager">
+		<level value="WARN" />
+		<appender-ref ref="SiFangManager" />
+	</logger>
+
+	<!-- 排行LOG -->
+	<appender name="BillboardsManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/billboardsManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/billboardsManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.newBillboard.BillboardsManager">
+		<level value="WARN" />
+		<appender-ref ref="BillboardsManager" />
+	</logger>
+	<!-- 成就LOG -->
+	<appender name="AchievementManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/AchievementManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/AchievementManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.achievement.AchievementManager">
+		<level value="WARN" />
+		<appender-ref ref="AchievementManager" />
+	</logger>
+	<appender name="VipManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/vipManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/vipManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.vip.VipManager">
+		<level value="WARN" />
+		<appender-ref ref="VipManager" />
+	</logger>
+
+	<appender name="GuozhanOrganizer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/guozhan.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/guozhan.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.guozhan.GuozhanOrganizer">
+		<level value="INFO" />
+		<appender-ref ref="GuozhanOrganizer" />
+	</logger>
+
+	<appender name="GuozhanSubSystem" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/guozhanSubSystem.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/guozhanSubSystem.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.guozhan.GuozhanSubSystem">
+		<level value="INFO" />
+		<appender-ref ref="GuozhanSubSystem" />
+	</logger>
+		
+	<appender name="CityFightManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/cityFightManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/cityFightManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.cityfight.CityFightManager">
+		<level value="INFO" />
+		<appender-ref ref="CityFightManager" />
+	</logger>
+	
+		<appender name="ChargeManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/ChargeManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/ChargeManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.economic.charge.ChargeManager">
+		<level value="WARN" />
+		<appender-ref ref="ChargeManager" />
+	</logger>
+	
+	<appender name="NewUserEnterServerService" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/NewUserEnterServerService.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/NewUserEnterServerService.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.NewUserEnterServerService">
+		<level value="INFO" />
+		<appender-ref ref="NewUserEnterServerService" />
+	</logger>
+	
+	<appender name="actionmanager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/actionmanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/actionmanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.gm.record.ActionManager">
+		<level value="WARN" />
+		<appender-ref ref="actionmanager" />
+	</logger>
+
+	<appender name="savingNotifier" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/savingNotifyServlet.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/savingNotifyServlet.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.economic.GameServerSavingNotifyService">
+		<level value="INFO" />
+		<appender-ref ref="savingNotifier" />
+	</logger>
+	
+	<appender name="Connection" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/connection.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/connection.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport.Connection">
+		<level value="WARN" />
+		<appender-ref ref="Connection" />
+	</logger>
+	
+	<appender name="Selector" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/selector.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/selector.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport.DefaultConnectionSelector">
+		<level value="WARN" />
+		<appender-ref ref="Selector" />
+	</logger>
+
+	<appender name="flushMonsterInGuoQingManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/flushMonsterInGuoQingManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/flushMonsterInGuoQingManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.flushmonster.FlushMonsterInGuoQingManager">
+		<level value="INFO" />
+		<appender-ref ref="flushMonsterInGuoQingManager" />
+	</logger>
+				
+	<appender name="downCityManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/downCityManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/downCityManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.downcity.DownCityManager">
+		<level value="INFO" />
+		<appender-ref ref="downCityManager" />
+	</logger>
+	
+	<appender name="TradeAbnormalManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/TradeAbnormalManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/TradeAbnormalManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.trade.abnormalCount.TradeAbnormalManager">
+		<level value="INFO" />
+		<appender-ref ref="TradeAbnormalManager" />
+	</logger>
+	
+	<!-- 限制登录日志 -->
+	<appender name="EnterLimitManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/EnterLimitManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/EnterLimitManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.enterlimit.EnterLimitManager">
+		<level value="WARN" />
+		<appender-ref ref="EnterLimitManager" />
+	</logger>
+		<!-- Android信息日志 -->
+	<appender name="AndroidMsgManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/AndroidMsgManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/AndroidMsgManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.enterlimit.AndroidMsgManager">
+		<level value="INFO" />
+		<appender-ref ref="AndroidMsgManager" />
+	</logger>
+	<appender name="ConfigServiceManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/configservicemanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/configservicemanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.util.config.ConfigServiceManager">
+		<level value="WARN" />
+		<appender-ref ref="ConfigServiceManager" />
+	</logger>
+	
+	<appender name="MoneyRelationShipManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/moneyRelationShipManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/moneyRelationShipManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.smith.MoneyRelationShipManager">
+		<level value="DEBUG" />
+		<appender-ref ref="MoneyRelationShipManager" />
+	</logger>
+	
+	<appender name="ArticleRelationShipManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/articleRelationShipManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/articleRelationShipManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.smith.ArticleRelationShipManager">
+		<level value="DEBUG" />
+		<appender-ref ref="ArticleRelationShipManager" />
+	</logger>
+	
+	
+	
+	<appender name="WaiguaManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/waigua.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/waigua.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.smith.waigua.WaiguaManager">
+		<level value="INFO" />
+		<appender-ref ref="WaiguaManager" />
+	</logger>
+	
+	<appender name="UnitedServerManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/UnitedServerManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/UnitedServerManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.uniteserver.UnitedServerManager">
+		<level value="DEBUG" />
+		<appender-ref ref="UnitedServerManager" />
+	</logger>
+	
+	<appender name="ServerMoneyGuard" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/serverWatchDog.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/serverWatchDog.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern> 
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.guard.ServerMoneyGuard">
+		<level value="INFO" />
+		<appender-ref ref="ServerMoneyGuard" />
+	</logger>
+	
+	<appender name="RelationShipHelper" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/relationShipHelper.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/relationShipHelper.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.smith.RelationShipHelper">
+		<level value="INFO" />
+		<appender-ref ref="RelationShipHelper" />
+	</logger>
+	
+		<appender name="EventManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/eventManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/eventManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.util.gmstat.EventManager">
+		<level value="DEBUG" />
+		<appender-ref ref="EventManager" />
+	</logger>
+	
+		<appender name="OldPlayerComeBackManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/oldPlayerActiviyty.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/oldPlayerActiviyty.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.oldPlayerComeBack.OldPlayerComeBackManager">
+		<level value="DEBUG" />
+		<appender-ref ref="OldPlayerComeBackManager" />
+	</logger>
+	
+	<appender name="WorldBossManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/worldBossManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/worldBossManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.worldBoss.WorldBossManager">
+		<level value="DEBUG" />
+		<appender-ref ref="WorldBossManager" />
+	</logger>
+	<appender name="GM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/gm.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/gm.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="MinigameManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/MinigameManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/MinigameManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.minigame.MiniGameManager">
+		<level value="INFO" />
+		<appender-ref ref="MinigameManager" />
+	</logger>
+	<appender name="TransitRobberyManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/transitrobbery.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/transitrobbery.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.TransitRobbery.TransitRobberyManager">
+		<level value="INFO" />
+		<appender-ref ref="TransitRobberyManager" />
+	</logger>
+	<logger name="com.gm.servlet.GMServlet">
+		<level value="INFO" />
+		<appender-ref ref="GM" />
+	</logger>
+		<appender name="PetDaoManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/petdao.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/petdao.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.sprite.petdao.PetDaoManager">
+		<level value="DEBUG" />
+		<appender-ref ref="PetDaoManager" />
+	</logger>
+	
+	<appender name="MagicWeaponManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/magicweaponmanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/magicweaponmanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.datasource.article.data.magicweapon.MagicWeaponManager">
+		<level value="INFO" />
+		<appender-ref ref="MagicWeaponManager" />
+	</logger>
+	
+	<appender name="DevilSquareManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/devilsquaremanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/devilsquaremanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.carbon.devilSquare.DevilSquareManager">
+		<level value="INFO" />
+		<appender-ref ref="DevilSquareManager" />
+	</logger>
+	
+	<appender name="ComposeManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/composemanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/composemanager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.compose.ComposeManager">
+		<level value="INFO" />
+		<appender-ref ref="ComposeManager" />
+	</logger>
+	
+	<appender name="EventRouter" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/eventRouter.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/eventRouter.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.event.EventRouter">
+		<level value="WARN" />
+		<appender-ref ref="EventRouter" />
+	</logger>
+	
+	<appender name="WingCarbonManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/wingcarbon.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/wingcarbon.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.carbon.wingCarbon.WingCarbonManager">
+		<level value="DEBUG" />
+		<appender-ref ref="WingCarbonManager" />
+	</logger>
+	
+	<appender name="Exception" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/Exception.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/Exception.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="Exception">
+		<level value="DEBUG" />
+		<appender-ref ref="Exception" />
+	</logger>
+	
+	<appender name="FairyBuddhaManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FairyBuddhaManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FairyBuddhaManager.log.%d{yyyy-MM-dd-HH}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.fairyBuddha.FairyBuddhaManager">
+		<level value="DEBUG" />
+		<appender-ref ref="FairyBuddhaManager" />
+	</logger>
+	<appender name="WingManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/WingManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/WingManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.wing.WingManager">
+		<level value="DEBUG" />
+		<appender-ref ref="WingManager" />
+	</logger>
+	<appender name="WingCarbonManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/wingcarbon.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/wingcarbon.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.carbon.wingCarbon.WingCarbonManager">
+		<level value="INFO" />
+		<appender-ref ref="WingCarbonManager" />
+	</logger>
+	
+	<appender name="JJCManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/jjcManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/jjcManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.battlefield.jjc.JJCManager">
+		<level value="INFO" />
+		<appender-ref ref="JJCManager" />
+	</logger>
+	<appender name="EnchantManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/enchantManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/enchantManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.articleEnchant.EnchantManager">
+		<level value="INFO" />
+		<appender-ref ref="EnchantManager" />
+	</logger>
+	
+	<appender name="FlyTalentManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/FlyTalentManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/FlyTalentManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.talent.FlyTalentManager">
+		<level value="INFO" />
+		<appender-ref ref="FlyTalentManager" />
+	</logger>
+	<appender name="DisasterManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/WingManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/DisasterManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.disaster.DisasterManager">
+		<level value="INFO" />
+		<appender-ref ref="DisasterManager" />
+	</logger>
+	<appender name="SoulPithManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/soulpithmanager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/soulpithmanager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.soulpith.SoulPithManager">
+		<level value="INFO" />
+		<appender-ref ref="SoulPithManager" />
+	</logger>
+	
+	<appender name="AcrossServerManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/acrossServerManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/acrossServerManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.across.AcrossServerManager">
+		<level value="INFO" />
+		<appender-ref ref="AcrossServerManager" />
+	</logger>
+		<appender name="XianLingManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/xianLingManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/xianLingManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.activity.xianling.XianLingManager">
+		<level value="INFO" />
+		<appender-ref ref="XianLingManager" />
+	</logger>
+	
+	<appender name="ConfirmationCode" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/DataManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/DataManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.confirm.service.server.DataManager">
+		<level value="DEBUG" />
+		<appender-ref ref="ConfirmationCode" />
+	</logger>
+		<appender name="BossCityManager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/BossCityManager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/BossCityManager.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date [%thread] - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.fy.engineserver.downcity.downcity3.BossCityManager">
+		<level value="DEBUG" />
+		<appender-ref ref="BossCityManager" />
+	</logger>
+</configuration>

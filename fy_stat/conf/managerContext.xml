@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	
+	<bean id="UserManager"   class="com.sqage.stat.commonstat.manager.Impl.UserManagerImpl"
+        init-method="init" scope="singleton">
+		<property name="userDao" ref="UserDao"></property>
+		<property name="onlineUserStatDao" ref="OnlineUserStatDao"></property>
+		<property name="loginAndChargeCountDao" ref="LoginAndChargeCountDao"></property>
+	 </bean>
+	 <bean id="PlayGameManager"   class="com.sqage.stat.commonstat.manager.Impl.PlayGameManagerImpl" 
+	    init-method="init" scope="singleton">
+		<property name="playGameDao" ref="PlayGameDao"></property>
+		<property name="userDao" ref="UserDao"></property>
+	 </bean>
+	 <bean id="OnLineUsersCountManager"   class="com.sqage.stat.commonstat.manager.Impl.OnLineUsersCountManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="onLineUsersCountDao" ref="OnLineUsersCountDao"></property>
+	 </bean>
+	 
+	 <bean id="ChongZhiManager"   class="com.sqage.stat.commonstat.manager.Impl.ChongZhiManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="chongZhiDao" ref="ChongZhiDao"></property>
+	 </bean>
+	 
+	 
+	  <bean id="TaskinfoManager"   class="com.sqage.stat.commonstat.manager.Impl.TaskinfoManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="taskinfoDao" ref="TaskinfoDao"></property>
+	 </bean>
+	 
+	  <bean id="HuoDonginfoManager"   class="com.sqage.stat.commonstat.manager.Impl.HuoDonginfoManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="huoDonginfoDao" ref="HuoDonginfoDao"></property>
+	 </bean>
+	 
+	 <bean id="TransactionManager"   class="com.sqage.stat.commonstat.manager.Impl.TransactionManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="transactionDao" ref="TransactionDao"></property>
+	 </bean>
+	 
+	  <bean id="Transaction_SpecialManager"   class="com.sqage.stat.commonstat.manager.Impl.Transaction_SpecialManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="transaction_SpecialDao" ref="Transaction_SpecialDao"></property>
+	 </bean>
+	 
+	   <bean id="DaoJuManager"   class="com.sqage.stat.commonstat.manager.Impl.DaoJuManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="daoJuDao" ref="DaoJuDao"></property>
+	 </bean>
+	 
+	   <bean id="GameChongZhiManager"   class="com.sqage.stat.commonstat.manager.Impl.GameChongZhiManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="gameChongZhiDao" ref="GameChongZhiDao"></property>
+	 </bean>
+	 
+	  <bean id="Stat_base_onlineManager"   class="com.sqage.stat.commonstat.manager.Impl.Stat_base_onlineManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="stat_base_onlineDao" ref="Stat_base_onlineDao"></property>
+	 </bean>
+	 
+	   <bean id="StatUserGuideManager"   class="com.sqage.stat.commonstat.manager.Impl.StatUserGuideManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="statUserGuideDao" ref="StatUserGuideDao"></property>
+	 </bean>
+	 
+	  <bean id="TaskAnalysisManager"   class="com.sqage.stat.commonstat.manager.Impl.TaskAnalysisManagerImpl"
+         init-method="init" scope="singleton">
+		<property name="taskAnalysisDao" ref="TaskAnalysisDao"></property>
+	 </bean>
+	 
+	   <bean id="YinZiKuCunManager" class="com.sqage.stat.commonstat.manager.Impl.YinZiKuCunManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="yinZiKuCunDao" ref="YinZiKuCunDao"></property>
+    </bean>
+	 
+	   <bean id="LibaoManager" class="com.sqage.stat.commonstat.manager.Impl.LibaoManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="libaoDao" ref="LibaoDao"></property>
+    </bean>
+    
+       <bean id="Transaction_FaceManager" class="com.sqage.stat.commonstat.manager.Impl.Transaction_FaceManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="transaction_FaceDao" ref="Transaction_FaceDao"></property>
+    </bean>
+    
+     <bean id="BattleMSGManager" class="com.sqage.stat.commonstat.manager.Impl.BattleMSGManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="battleMSGDao" ref="BattleMSGDao"></property>
+    </bean>
+    
+     <bean id="FuMoManager" class="com.sqage.stat.commonstat.manager.Impl.FuMoManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="fuMoDao" ref="FuMoDao"></property>
+    </bean>
+    
+     <bean id="NpcinfoManager" class="com.sqage.stat.commonstat.manager.Impl.NpcinfoManagerImpl"
+    	init-method="init" scope="singleton">
+    	<property name="npcinfoDao" ref="NpcinfoDao"></property>
+    </bean>
+    
+    
+	 
+	 <bean id="ChannelManager" class="com.sqage.stat.service.ChannelManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="channelDAO" ref="ChannelDAO"></property>
+    </bean>
+    <bean id="ChannelItemManager" class="com.sqage.stat.service.ChannelItemManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="channelItemDAO" ref="ChannelItemDAO"></property>
+    </bean>
+    <bean id="OnlinePlayerManager" class="com.sqage.stat.service.OnlinePlayerManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="onlinePlayerDAO" ref="OnlinePlayerDAO"></property>
+    </bean>
+    <bean id="ItemInputChannelDayManager" class="com.sqage.stat.service.ItemInputChannelDayManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="itemInputChannelDayDAO" ref="ItemInputChannelDayDAO"></property>
+    </bean>
+     <bean id="ProvinceManager" class="com.sqage.stat.service.ProvinceManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="provinceDAO" ref="ProvinceDAO"></property>
+    </bean>
+    <bean id="ChannelStatManager" class="com.sqage.stat.service.ChannelStatManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="channelStatDAO" ref="ChannelStatDAO"></property>
+    </bean>
+    
+     <bean id="StatChannel360Manager" class="com.sqage.stat.service.StatChannel360Manager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+    <bean id="StatGameChongZhiManager" class="com.sqage.stat.service.StatGameChongZhiManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+      <bean id="StatDaoJuDeShiManager" class="com.sqage.stat.service.StatDaoJuDeShiManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+      <bean id="StatDaoJuShopManager" class="com.sqage.stat.service.StatDaoJuShopManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+      <bean id="StatPlayGameGuiZongManager" class="com.sqage.stat.service.StatPlayGameGuiZongManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+     <bean id="StatGameChongZhiYinPiaoManager" class="com.sqage.stat.service.StatGameChongZhiYinPiaoManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+    
+    <bean id="DailyGenerationManager" class="com.sqage.stat.service.DailyGenerationManager"
+    	init-method="initialize" scope="singleton">
+    </bean>
+  
+  
+    
+    
+    
+    
+    <bean id="PlayerLoginManager" class="com.sqage.stat.service.PlayerLoginManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="playerLoginDAO" ref="PlayerLoginDAO"></property>
+    </bean>
+    <bean id="PlayerLogoutManager" class="com.sqage.stat.service.PlayerLogoutManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="playerLogoutDAO" ref="PlayerLogoutDAO"></property>
+    </bean>
+    <bean id="UserStatManager" class="com.sqage.stat.service.UserStatManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="userStatDAO" ref="UserStatDAO"></property>
+    </bean>
+    
+     <bean id="PlayerExpenseManager" class="com.sqage.stat.service.PlayerExpenseManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="playerExpenseDAO" ref="PlayerExpenseDAO"></property>
+    </bean>
+     <bean id="SavingYuanbaoManager" class="com.sqage.stat.service.SavingYuanbaoManager"
+    	init-method="initialize" scope="singleton">
+    	<property name="savingYuanbaoDAO" ref="SavingYuanbaoDAO"></property>
+    </bean>
+	
+	
+	
+	 <bean id="GmUserManager" class="com.xuanzhi.boss.gmuser.server.GmUserManager" 
+    		init-method="initialize" scope="singleton">
+    	<property name="authorityDao" ref="AuthorityDAO"></property>
+    	<property name="gmuserDao" ref="GmuserDAO"></property>
+    </bean> 
+     <bean id="XmlServerManager"
+    	class="com.xuanzhi.boss.gmxml.XmlServerManager" scope="singleton" init-method="initialize">
+    	<property name="serverConfFile" value="${project.stat.base}/server.xml"></property>
+    </bean>
+    <bean id="XmlRoleManager"
+    	class="com.xuanzhi.boss.gmxml.XmlRoleManager" scope="singleton" init-method="initialize">
+    	<property name="roleConfFile" value="${project.stat.base}/role.xml"></property>
+    </bean>  
+     <bean id="ModuleTypeManager"
+    	class="com.xuanzhi.boss.gmxml.ModuleTypeManager" scope="singleton" init-method="initialize">
+    	<property name="typeConfFile" value="${project.stat.base}/typemodule.xml"></property>
+    </bean> 
+     <bean id="ActionManager"
+    	class="com.xuanzhi.boss.gmxml.ActionManager" scope="singleton" init-method="initialize">
+    	<property name="fileroot" value="${project.stat.base}/actionrecord/"></property>
+    	<property name="actionsrcfile" value="${project.stat.base}/actionrecordsrc.xml"></property>
+    </bean>  
+     <!-- 
+     <bean id="DailyGenerationExcelManager" class="com.sqage.stat.service.DailyGenerationExcelManager"
+    	init-method="init" scope="singleton">
+    	<property name="userManager" ref="UserManager"></property>
+    	<property name="chongZhiManager" ref="ChongZhiManager"></property>
+    	<property name="channelManager" ref="ChannelManager"></property>
+    	<property name="dailyExcelBase" value="${stat.daily.excel.base}"></property>
+    </bean>
+     -->
+     
+      <bean id="DailyChongzhiManager" class="com.sqage.stat.service.DailyChongzhiManager"
+    	init-method="init" scope="singleton">
+    </bean>
+      <bean id="MultiLanguageManager" class="com.sqage.stat.language.MultiLanguageManager"
+    	init-method="init" scope="singleton">
+    	
+    	<property name="lanMapFile" value="${transaction.file}"></property>
+    	<property name="translate" value="true"></property>
+    </bean>
+    
+     
+   
+    
+</beans>

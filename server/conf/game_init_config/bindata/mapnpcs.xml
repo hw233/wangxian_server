@@ -1,0 +1,1873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapnpcmanager>
+<game name='anhunzhidi' displayName='安魂之地'>
+	<npc categoryId='180004'>
+		<bornpoint x='1009' y='5157'/>
+	</npc>
+	<npc categoryId='180001'>
+		<bornpoint x='1653' y='483'/>
+	</npc>
+	<npc categoryId='180003'>
+		<bornpoint x='4258' y='3036'/>
+	</npc>
+	<npc categoryId='180002'>
+		<bornpoint x='3939' y='1808'/>
+	</npc>
+</game>
+<game name='bianjing' displayName='边境'>
+	<npc categoryId='500005'>
+		<bornpoint x='1320' y='2413'/>
+	</npc>
+	<npc categoryId='600000001'>
+		<bornpoint x='3531' y='1446'/>
+	</npc>
+	<npc categoryId='5000028'>
+		<bornpoint x='1914' y='4699'/>
+	</npc>
+	<npc categoryId='130027'>
+		<bornpoint x='4446' y='7108'/>
+	</npc>
+	<npc categoryId='130025'>
+		<bornpoint x='2662' y='3172'/>
+	</npc>
+</game>
+<game name='bingfenghuanjing' displayName='冰封幻境'>
+</game>
+<game name='bingfenghuanjingdanren' displayName='冰封幻境单人'>
+</game>
+<game name='biyiqiyuan' displayName='比翼奇缘'>
+	<npc categoryId='130003'>
+		<bornpoint x='2658' y='1430'/>
+	</npc>
+	<npc categoryId='500001'>
+		<bornpoint x='1556' y='710'/>
+	</npc>
+</game>
+<game name='dujieer' displayName='渡劫二'>
+</game>
+<game name='dujieyi' displayName='渡劫一'>
+</game>
+<game name='fayuandadao' displayName='法缘大道'>
+	<npc categoryId='600000001'>
+		<bornpoint x='4937' y='2233'/>
+	</npc>
+	<npc categoryId='130026'>
+		<bornpoint x='3358' y='500'/>
+	</npc>
+</game>
+<game name='fengdouguicheng' displayName='酆都鬼城'>
+	<npc categoryId='240002'>
+		<bornpoint x='4048' y='4345'/>
+	</npc>
+	<npc categoryId='240003'>
+		<bornpoint x='4753' y='1873'/>
+	</npc>
+	<npc categoryId='240001'>
+		<bornpoint x='6551' y='4355'/>
+	</npc>
+	<npc categoryId='240004'>
+		<bornpoint x='3019' y='2147'/>
+	</npc>
+	<npc categoryId='240005'>
+		<bornpoint x='2625' y='2938'/>
+	</npc>
+</game>
+<game name='fengmoyu' displayName='封魔域'>
+	<npc categoryId='290004'>
+		<bornpoint x='5846' y='3337'/>
+	</npc>
+	<npc categoryId='290005'>
+		<bornpoint x='3019' y='2504'/>
+	</npc>
+	<npc categoryId='290002'>
+		<bornpoint x='2285' y='4221'/>
+	</npc>
+	<npc categoryId='5000032'>
+		<bornpoint x='2950' y='1881'/>
+		<bornpoint x='2994' y='1908'/>
+		<bornpoint x='3046' y='1927'/>
+		<bornpoint x='2658' y='2069'/>
+		<bornpoint x='2611' y='2061'/>
+		<bornpoint x='2551' y='2062'/>
+		<bornpoint x='2501' y='2063'/>
+	</npc>
+	<npc categoryId='290003'>
+		<bornpoint x='6079' y='4252'/>
+	</npc>
+	<npc categoryId='290001'>
+		<bornpoint x='589' y='4372'/>
+	</npc>
+</game>
+<game name='fudidongtianerceng' displayName='福地洞天二层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5006' y='2854'/>
+	</npc>
+</game>
+<game name='fudidongtianliuceng' displayName='福地洞天六层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5007' y='2849'/>
+	</npc>
+</game>
+<game name='fudidongtianqiceng' displayName='福地洞天七层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5043' y='2837'/>
+	</npc>
+</game>
+<game name='fudidongtiansanceng' displayName='福地洞天三层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='4981' y='2847'/>
+	</npc>
+</game>
+<game name='fudidongtiansiceng' displayName='福地洞天四层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5011' y='2870'/>
+	</npc>
+</game>
+<game name='fudidongtianwuceng' displayName='福地洞天五层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5014' y='2843'/>
+	</npc>
+</game>
+<game name='fudidongtianyiceng' displayName='福地洞天一层'>
+	<npc categoryId='90001000'>
+		<bornpoint x='5021' y='2873'/>
+	</npc>
+</game>
+<game name='fushengruomeng' displayName='浮生若梦'>
+	<npc categoryId='130003'>
+		<bornpoint x='2535' y='1466'/>
+	</npc>
+	<npc categoryId='500001'>
+		<bornpoint x='1644' y='606'/>
+	</npc>
+</game>
+<game name='haohuashengshouge' displayName='豪华圣兽阁'>
+	<npc categoryId='600141'>
+		<bornpoint x='1009' y='838'/>
+	</npc>
+</game>
+<game name='huangquanhedi' displayName='黄泉河底'>
+	<npc categoryId='240002'>
+		<bornpoint x='5184' y='3023'/>
+	</npc>
+	<npc categoryId='240001'>
+		<bornpoint x='1333' y='2542'/>
+	</npc>
+	<npc categoryId='260001'>
+		<bornpoint x='1044' y='310'/>
+	</npc>
+	<npc categoryId='260004'>
+		<bornpoint x='5517' y='5287'/>
+	</npc>
+</game>
+<game name='jianyu' displayName='监狱'>
+	<npc categoryId='130029'>
+		<bornpoint x='2489' y='1851'/>
+	</npc>
+</game>
+<game name='jiaoshacun' displayName='焦沙村'>
+	<npc categoryId='10013'>
+		<bornpoint x='8088' y='1219'/>
+	</npc>
+	<npc categoryId='10014'>
+		<bornpoint x='6173' y='1246'/>
+	</npc>
+	<npc categoryId='10009'>
+		<bornpoint x='3655' y='2914'/>
+	</npc>
+	<npc categoryId='5000002'>
+		<bornpoint x='5079' y='2438'/>
+	</npc>
+	<npc categoryId='10008'>
+		<bornpoint x='5334' y='3455'/>
+	</npc>
+	<npc categoryId='10011'>
+		<bornpoint x='5153' y='296'/>
+	</npc>
+	<npc categoryId='10010'>
+		<bornpoint x='2225' y='1436'/>
+	</npc>
+	<npc categoryId='10005'>
+		<bornpoint x='4949' y='5638'/>
+	</npc>
+	<npc categoryId='10004'>
+		<bornpoint x='4290' y='5592'/>
+	</npc>
+	<npc categoryId='10007'>
+		<bornpoint x='8655' y='3134'/>
+	</npc>
+	<npc categoryId='10006'>
+		<bornpoint x='8269' y='4216'/>
+	</npc>
+	<npc categoryId='10001'>
+		<bornpoint x='651' y='4385'/>
+	</npc>
+	<npc categoryId='600299'>
+		<bornpoint x='6327' y='1024'/>
+	</npc>
+	<npc categoryId='10003'>
+		<bornpoint x='6881' y='5164'/>
+	</npc>
+	<npc categoryId='10002'>
+		<bornpoint x='2682' y='5067'/>
+	</npc>
+</game>
+<game name='jiazuBOSSditu' displayName='家族BOSS地图'>
+	<npc categoryId='600303'>
+		<bornpoint x='592' y='603'/>
+	</npc>
+</game>
+<game name='jiazuditu' displayName='家族地图'>
+	<npc categoryId='490004'>
+		<bornpoint x='5701' y='4798'/>
+	</npc>
+	<npc categoryId='490001'>
+		<bornpoint x='2496' y='2112'/>
+	</npc>
+	<npc categoryId='490002'>
+		<bornpoint x='4194' y='3031'/>
+	</npc>
+	<npc categoryId='600301'>
+		<bornpoint x='672' y='5639'/>
+	</npc>
+	<npc categoryId='600302'>
+		<bornpoint x='8172' y='516'/>
+	</npc>
+</game>
+<game name='jiazudituer' displayName='家族地图二'>
+	<npc categoryId='490004'>
+		<bornpoint x='5701' y='4798'/>
+	</npc>
+	<npc categoryId='490001'>
+		<bornpoint x='2496' y='2112'/>
+	</npc>
+	<npc categoryId='490002'>
+		<bornpoint x='4179' y='3064'/>
+	</npc>
+</game>
+<game name='jiazuditusan' displayName='家族地图三'>
+	<npc categoryId='490004'>
+		<bornpoint x='5701' y='4798'/>
+	</npc>
+	<npc categoryId='490001'>
+		<bornpoint x='2496' y='2112'/>
+	</npc>
+	<npc categoryId='490002'>
+		<bornpoint x='4199' y='3062'/>
+	</npc>
+</game>
+<game name='jiazuditusi' displayName='家族地图四'>
+	<npc categoryId='490004'>
+		<bornpoint x='5701' y='4798'/>
+	</npc>
+	<npc categoryId='490001'>
+		<bornpoint x='2496' y='2112'/>
+	</npc>
+	<npc categoryId='490002'>
+		<bornpoint x='4150' y='3054'/>
+	</npc>
+</game>
+<game name='jiazudituyi' displayName='家族地图一'>
+	<npc categoryId='490004'>
+		<bornpoint x='5701' y='4798'/>
+	</npc>
+	<npc categoryId='490001'>
+		<bornpoint x='2496' y='2112'/>
+	</npc>
+	<npc categoryId='490002'>
+		<bornpoint x='3781' y='3271'/>
+	</npc>
+</game>
+<game name='jiefengBOSStiaozhanditu' displayName='解封BOSS挑战地图'>
+</game>
+<game name='jileyu' displayName='极乐域'>
+	<npc categoryId='5000035'>
+		<bornpoint x='2497' y='1802'/>
+		<bornpoint x='2568' y='1802'/>
+		<bornpoint x='2621' y='1816'/>
+		<bornpoint x='2424' y='1845'/>
+		<bornpoint x='2367' y='1858'/>
+		<bornpoint x='2313' y='1874'/>
+		<bornpoint x='2241' y='1870'/>
+		<bornpoint x='2187' y='1852'/>
+	</npc>
+	<npc categoryId='350005'>
+		<bornpoint x='2155' y='2502'/>
+	</npc>
+	<npc categoryId='350004'>
+		<bornpoint x='3384' y='1961'/>
+	</npc>
+	<npc categoryId='350001'>
+		<bornpoint x='8101' y='3888'/>
+	</npc>
+	<npc categoryId='350003'>
+		<bornpoint x='7718' y='838'/>
+	</npc>
+	<npc categoryId='350002'>
+		<bornpoint x='6729' y='2389'/>
+	</npc>
+</game>
+<game name='jiuyoumijing' displayName='九幽秘境'>
+	<npc categoryId='270003'>
+		<bornpoint x='2235' y='4375'/>
+	</npc>
+	<npc categoryId='270002'>
+		<bornpoint x='1341' y='2994'/>
+	</npc>
+	<npc categoryId='270001'>
+		<bornpoint x='4213' y='1525'/>
+	</npc>
+</game>
+<game name='jiuzhoumidao' displayName='九州密道'>
+</game>
+<game name='jiuzhoutiancheng' displayName='九州天城'>
+	<npc categoryId='130004'>
+		<bornpoint x='4471' y='5143'/>
+	</npc>
+	<npc categoryId='130005'>
+		<bornpoint x='5361' y='1923'/>
+	</npc>
+	<npc categoryId='130006'>
+		<bornpoint x='9255' y='480'/>
+	</npc>
+	<npc categoryId='130001'>
+		<bornpoint x='299' y='2652'/>
+	</npc>
+	<npc categoryId='130002'>
+		<bornpoint x='8648' y='733'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='8932' y='936'/>
+	</npc>
+	<npc categoryId='130012'>
+		<bornpoint x='6789' y='2658'/>
+	</npc>
+	<npc categoryId='130013'>
+		<bornpoint x='6942' y='2946'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='6487' y='1126'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='4572' y='1734'/>
+	</npc>
+	<npc categoryId='130015'>
+		<bornpoint x='2202' y='3235'/>
+	</npc>
+	<npc categoryId='130008'>
+		<bornpoint x='4807' y='724'/>
+	</npc>
+	<npc categoryId='130009'>
+		<bornpoint x='4623' y='827'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='8203' y='4549'/>
+	</npc>
+	<npc categoryId='130011'>
+		<bornpoint x='9588' y='4566'/>
+	</npc>
+	<npc categoryId='130054'>
+		<bornpoint x='4002' y='726'/>
+	</npc>
+	<npc categoryId='130038'>
+		<bornpoint x='7161' y='981'/>
+	</npc>
+	<npc categoryId='130055'>
+		<bornpoint x='3564' y='2211'/>
+	</npc>
+	<npc categoryId='600295'>
+		<bornpoint x='2805' y='996'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='8920' y='2194'/>
+	</npc>
+	<npc categoryId='130032'>
+		<bornpoint x='6016' y='1497'/>
+	</npc>
+	<npc categoryId='130033'>
+		<bornpoint x='5732' y='1302'/>
+	</npc>
+	<npc categoryId='130056'>
+		<bornpoint x='909' y='979'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='3378' y='2309'/>
+	</npc>
+	<npc categoryId='130021'>
+		<bornpoint x='1638' y='651'/>
+	</npc>
+	<npc categoryId='130019'>
+		<bornpoint x='8569' y='2781'/>
+	</npc>
+	<npc categoryId='600305'>
+		<bornpoint x='5172' y='2418'/>
+	</npc>
+	<npc categoryId='130018'>
+		<bornpoint x='7535' y='4887'/>
+	</npc>
+	<npc categoryId='130017'>
+		<bornpoint x='5604' y='4418'/>
+	</npc>
+	<npc categoryId='130016'>
+		<bornpoint x='4797' y='4414'/>
+	</npc>
+	<npc categoryId='130031'>
+		<bornpoint x='6743' y='748'/>
+	</npc>
+	<npc categoryId='130024'>
+		<bornpoint x='814' y='4475'/>
+	</npc>
+</game>
+<game name='jiuzhoutianlu' displayName='九州天路'>
+	<npc categoryId='600000001'>
+		<bornpoint x='2671' y='1542'/>
+	</npc>
+	<npc categoryId='130026'>
+		<bornpoint x='2191' y='479'/>
+	</npc>
+</game>
+<game name='jiuzhouyaosai' displayName='九州要塞'>
+	<npc categoryId='130057'>
+		<bornpoint x='8160' y='4866'/>
+	</npc>
+</game>
+<game name='juexianyu' displayName='绝仙域'>
+	<npc categoryId='320004'>
+		<bornpoint x='1627' y='4994'/>
+	</npc>
+	<npc categoryId='320005'>
+		<bornpoint x='3645' y='3032'/>
+	</npc>
+	<npc categoryId='320002'>
+		<bornpoint x='2383' y='1345'/>
+	</npc>
+	<npc categoryId='320003'>
+		<bornpoint x='3551' y='1894'/>
+	</npc>
+	<npc categoryId='320001'>
+		<bornpoint x='1896' y='484'/>
+	</npc>
+</game>
+<game name='kunhuagucheng' displayName='昆华古城'>
+	<npc categoryId='130005'>
+		<bornpoint x='2203' y='1215'/>
+	</npc>
+	<npc categoryId='130007'>
+		<bornpoint x='2482' y='3159'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='2194' y='2984'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='5972' y='1441'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='5564' y='1231'/>
+	</npc>
+	<npc categoryId='600269'>
+		<bornpoint x='2157' y='2490'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='2742' y='2078'/>
+	</npc>
+	<npc categoryId='20010'>
+		<bornpoint x='2946' y='2839'/>
+	</npc>
+	<npc categoryId='600276'>
+		<bornpoint x='3249' y='2399'/>
+	</npc>
+	<npc categoryId='20008'>
+		<bornpoint x='4393' y='1506'/>
+	</npc>
+	<npc categoryId='20012'>
+		<bornpoint x='6105' y='2168'/>
+	</npc>
+	<npc categoryId='20002'>
+		<bornpoint x='2874' y='1060'/>
+	</npc>
+	<npc categoryId='100005'>
+		<bornpoint x='423' y='848'/>
+	</npc>
+	<npc categoryId='20001'>
+		<bornpoint x='3984' y='1492'/>
+	</npc>
+	<npc categoryId='20006'>
+		<bornpoint x='5843' y='2942'/>
+	</npc>
+	<npc categoryId='20007'>
+		<bornpoint x='6812' y='2043'/>
+	</npc>
+	<npc categoryId='20004'>
+		<bornpoint x='2087' y='2102'/>
+	</npc>
+	<npc categoryId='20005'>
+		<bornpoint x='1359' y='3748'/>
+	</npc>
+	<npc categoryId='130039'>
+		<bornpoint x='1743' y='2402'/>
+	</npc>
+	<npc categoryId='5000004'>
+		<bornpoint x='1451' y='341'/>
+		<bornpoint x='1490' y='259'/>
+		<bornpoint x='1484' y='166'/>
+		<bornpoint x='1345' y='175'/>
+		<bornpoint x='1369' y='256'/>
+		<bornpoint x='1378' y='408'/>
+		<bornpoint x='1479' y='423'/>
+	</npc>
+	<npc categoryId='130034'>
+		<bornpoint x='4993' y='2353'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='4254' y='819'/>
+	</npc>
+	<npc categoryId='130044'>
+		<bornpoint x='3910' y='2824'/>
+	</npc>
+	<npc categoryId='130040'>
+		<bornpoint x='4488' y='2205'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='2536' y='1374'/>
+	</npc>
+	<npc categoryId='130023'>
+		<bornpoint x='3962' y='557'/>
+	</npc>
+	<npc categoryId='600112'>
+		<bornpoint x='2872' y='1689'/>
+	</npc>
+</game>
+<game name='kunlunmidao' displayName='昆仑密道'>
+</game>
+<game name='kunlunshengdian' displayName='昆仑圣殿'>
+	<npc categoryId='130004'>
+		<bornpoint x='7163' y='6783'/>
+	</npc>
+	<npc categoryId='130005'>
+		<bornpoint x='8988' y='2758'/>
+	</npc>
+	<npc categoryId='130006'>
+		<bornpoint x='10505' y='1290'/>
+	</npc>
+	<npc categoryId='130001'>
+		<bornpoint x='817' y='4448'/>
+	</npc>
+	<npc categoryId='130002'>
+		<bornpoint x='9458' y='765'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='10270' y='1147'/>
+	</npc>
+	<npc categoryId='130012'>
+		<bornpoint x='7001' y='3004'/>
+	</npc>
+	<npc categoryId='130013'>
+		<bornpoint x='7480' y='3225'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='5721' y='851'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='5447' y='2167'/>
+	</npc>
+	<npc categoryId='130015'>
+		<bornpoint x='2621' y='3536'/>
+	</npc>
+	<npc categoryId='130008'>
+		<bornpoint x='7587' y='1882'/>
+	</npc>
+	<npc categoryId='130009'>
+		<bornpoint x='6428' y='2318'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='8133' y='4841'/>
+	</npc>
+	<npc categoryId='130011'>
+		<bornpoint x='9434' y='4280'/>
+	</npc>
+	<npc categoryId='130038'>
+		<bornpoint x='5900' y='586'/>
+	</npc>
+	<npc categoryId='130054'>
+		<bornpoint x='3404' y='1187'/>
+	</npc>
+	<npc categoryId='130055'>
+		<bornpoint x='4453' y='2733'/>
+	</npc>
+	<npc categoryId='600295'>
+		<bornpoint x='2661' y='1742'/>
+	</npc>
+	<npc categoryId='130032'>
+		<bornpoint x='5131' y='946'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='9605' y='1905'/>
+	</npc>
+	<npc categoryId='130033'>
+		<bornpoint x='5419' y='1110'/>
+	</npc>
+	<npc categoryId='130056'>
+		<bornpoint x='2112' y='1449'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='3410' y='3179'/>
+	</npc>
+	<npc categoryId='130021'>
+		<bornpoint x='1546' y='1766'/>
+	</npc>
+	<npc categoryId='130019'>
+		<bornpoint x='8320' y='1212'/>
+	</npc>
+	<npc categoryId='600305'>
+		<bornpoint x='5115' y='2837'/>
+	</npc>
+	<npc categoryId='130018'>
+		<bornpoint x='7406' y='5038'/>
+	</npc>
+	<npc categoryId='130017'>
+		<bornpoint x='5226' y='4486'/>
+	</npc>
+	<npc categoryId='130016'>
+		<bornpoint x='4480' y='4485'/>
+	</npc>
+	<npc categoryId='130031'>
+		<bornpoint x='6315' y='780'/>
+	</npc>
+	<npc categoryId='130024'>
+		<bornpoint x='526' y='3263'/>
+	</npc>
+</game>
+<game name='kunlunyaosai' displayName='昆仑要塞'>
+	<npc categoryId='130057'>
+		<bornpoint x='8806' y='5353'/>
+	</npc>
+</game>
+<game name='lianhuatianchi' displayName='莲花天池'>
+	<npc categoryId='60025'>
+		<bornpoint x='1352' y='406'/>
+	</npc>
+	<npc categoryId='5000018'>
+		<bornpoint x='2925' y='2857'/>
+		<bornpoint x='2830' y='2846'/>
+		<bornpoint x='2722' y='2827'/>
+		<bornpoint x='2990' y='2967'/>
+		<bornpoint x='2576' y='2703'/>
+		<bornpoint x='2514' y='2561'/>
+		<bornpoint x='2652' y='2403'/>
+		<bornpoint x='2692' y='2268'/>
+	</npc>
+	<npc categoryId='100004'>
+		<bornpoint x='4654' y='3662'/>
+	</npc>
+	<npc categoryId='100002'>
+		<bornpoint x='1043' y='2415'/>
+	</npc>
+	<npc categoryId='100003'>
+		<bornpoint x='4952' y='1946'/>
+	</npc>
+</game>
+<game name='lianxinzhidi' displayName='炼心之地'>
+</game>
+<game name='lianxinzhididanren' displayName='炼心之地单人'>
+</game>
+<game name='lianyuhuanjing' displayName='炼狱幻境'>
+	<npc categoryId='220004'>
+		<bornpoint x='2661' y='4394'/>
+	</npc>
+	<npc categoryId='220005'>
+		<bornpoint x='1527' y='4907'/>
+	</npc>
+	<npc categoryId='220002'>
+		<bornpoint x='3324' y='2509'/>
+	</npc>
+	<npc categoryId='220003'>
+		<bornpoint x='4851' y='3721'/>
+	</npc>
+	<npc categoryId='220001'>
+		<bornpoint x='3379' y='368'/>
+	</npc>
+</game>
+<game name='linshuangcun' displayName='凛霜村'>
+	<npc categoryId='10013'>
+		<bornpoint x='6624' y='550'/>
+	</npc>
+	<npc categoryId='10014'>
+		<bornpoint x='5240' y='1079'/>
+	</npc>
+	<npc categoryId='10009'>
+		<bornpoint x='1804' y='2871'/>
+	</npc>
+	<npc categoryId='5000002'>
+		<bornpoint x='6678' y='3426'/>
+	</npc>
+	<npc categoryId='10008'>
+		<bornpoint x='4666' y='3370'/>
+	</npc>
+	<npc categoryId='10011'>
+		<bornpoint x='2190' y='720'/>
+	</npc>
+	<npc categoryId='10010'>
+		<bornpoint x='440' y='884'/>
+	</npc>
+	<npc categoryId='10005'>
+		<bornpoint x='4897' y='5175'/>
+	</npc>
+	<npc categoryId='10004'>
+		<bornpoint x='3710' y='5525'/>
+	</npc>
+	<npc categoryId='10007'>
+		<bornpoint x='7823' y='3210'/>
+	</npc>
+	<npc categoryId='10006'>
+		<bornpoint x='8282' y='5334'/>
+	</npc>
+	<npc categoryId='10001'>
+		<bornpoint x='1526' y='5766'/>
+	</npc>
+	<npc categoryId='600299'>
+		<bornpoint x='5344' y='996'/>
+	</npc>
+	<npc categoryId='10003'>
+		<bornpoint x='6431' y='5209'/>
+	</npc>
+	<npc categoryId='10002'>
+		<bornpoint x='2968' y='5457'/>
+	</npc>
+</game>
+<game name='longfengge' displayName='龙凤阁'>
+</game>
+<game name='luxianyu' displayName='戮仙域'>
+	<npc categoryId='300004'>
+		<bornpoint x='2416' y='3967'/>
+	</npc>
+	<npc categoryId='300005'>
+		<bornpoint x='3649' y='1325'/>
+	</npc>
+	<npc categoryId='300001'>
+		<bornpoint x='496' y='6076'/>
+	</npc>
+	<npc categoryId='300002'>
+		<bornpoint x='3964' y='6238'/>
+	</npc>
+	<npc categoryId='300003'>
+		<bornpoint x='5753' y='4384'/>
+	</npc>
+</game>
+<game name='maigushenmu' displayName='埋骨神墓'>
+	<npc categoryId='210005'>
+		<bornpoint x='2308' y='1282'/>
+	</npc>
+	<npc categoryId='200005'>
+		<bornpoint x='3266' y='4163'/>
+	</npc>
+	<npc categoryId='5000029'>
+		<bornpoint x='7347' y='929'/>
+		<bornpoint x='7198' y='909'/>
+		<bornpoint x='7101' y='933'/>
+		<bornpoint x='7052' y='1035'/>
+		<bornpoint x='7210' y='1067'/>
+		<bornpoint x='7326' y='1079'/>
+		<bornpoint x='7217' y='987'/>
+	</npc>
+	<npc categoryId='210001'>
+		<bornpoint x='4593' y='999'/>
+	</npc>
+	<npc categoryId='200001'>
+		<bornpoint x='1061' y='6704'/>
+	</npc>
+	<npc categoryId='200003'>
+		<bornpoint x='1940' y='4658'/>
+	</npc>
+	<npc categoryId='210002'>
+		<bornpoint x='5710' y='3163'/>
+	</npc>
+	<npc categoryId='200002'>
+		<bornpoint x='5196' y='5948'/>
+	</npc>
+</game>
+<game name='miemoshenyu' displayName='灭魔神域'>
+	<npc categoryId='600142'>
+		<bornpoint x='2979' y='1270'/>
+	</npc>
+	<npc categoryId='600140'>
+		<bornpoint x='1698' y='1408'/>
+	</npc>
+	<npc categoryId='130034'>
+		<bornpoint x='4813' y='676'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='6183' y='5286'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='5746' y='1043'/>
+	</npc>
+	<npc categoryId='130063'>
+		<bornpoint x='6376' y='1441'/>
+	</npc>
+	<npc categoryId='130061'>
+		<bornpoint x='2034' y='1257'/>
+	</npc>
+	<npc categoryId='600191'>
+		<bornpoint x='3816' y='3707'/>
+	</npc>
+	<npc categoryId='600190'>
+		<bornpoint x='4756' y='3213'/>
+	</npc>
+	<npc categoryId='600306'>
+		<bornpoint x='3567' y='2895'/>
+	</npc>
+	<npc categoryId='20002'>
+		<bornpoint x='5625' y='4930'/>
+	</npc>
+	<npc categoryId='600048'>
+		<bornpoint x='9209' y='665'/>
+	</npc>
+	<npc categoryId='600049'>
+		<bornpoint x='5639' y='2661'/>
+	</npc>
+	<npc categoryId='20004'>
+		<bornpoint x='5090' y='1365'/>
+	</npc>
+</game>
+<game name='miemoshenyumijing' displayName='灭魔神域密境'>
+</game>
+<game name='miemoyu' displayName='灭魔域'>
+	<npc categoryId='280006'>
+		<bornpoint x='5501' y='3801'/>
+	</npc>
+	<npc categoryId='280005'>
+		<bornpoint x='3703' y='2733'/>
+	</npc>
+	<npc categoryId='280004'>
+		<bornpoint x='6003' y='2647'/>
+	</npc>
+	<npc categoryId='280003'>
+		<bornpoint x='4763' y='3609'/>
+	</npc>
+	<npc categoryId='280002'>
+		<bornpoint x='1015' y='2897'/>
+	</npc>
+	<npc categoryId='280001'>
+		<bornpoint x='1223' y='326'/>
+	</npc>
+	<npc categoryId='5000031'>
+		<bornpoint x='321' y='2544'/>
+		<bornpoint x='318' y='2633'/>
+		<bornpoint x='365' y='2709'/>
+		<bornpoint x='420' y='2752'/>
+		<bornpoint x='348' y='2737'/>
+		<bornpoint x='307' y='2711'/>
+		<bornpoint x='284' y='2666'/>
+	</npc>
+</game>
+<game name='mizongshenlin' displayName='迷踪深林'>
+	<npc categoryId='40005'>
+		<bornpoint x='3563' y='423'/>
+	</npc>
+	<npc categoryId='40004'>
+		<bornpoint x='1598' y='2136'/>
+	</npc>
+	<npc categoryId='40001'>
+		<bornpoint x='3021' y='5051'/>
+	</npc>
+	<npc categoryId='5000016'>
+		<bornpoint x='3606' y='2477'/>
+		<bornpoint x='3689' y='2486'/>
+		<bornpoint x='3779' y='2488'/>
+		<bornpoint x='3863' y='2482'/>
+		<bornpoint x='3924' y='2532'/>
+		<bornpoint x='3993' y='2542'/>
+		<bornpoint x='4036' y='2532'/>
+		<bornpoint x='4093' y='2522'/>
+	</npc>
+	<npc categoryId='40003'>
+		<bornpoint x='4581' y='2460'/>
+	</npc>
+	<npc categoryId='40002'>
+		<bornpoint x='5242' y='4350'/>
+	</npc>
+</game>
+<game name='piaomiaoge' displayName='缥缈阁'>
+</game>
+<game name='putongshengshouge' displayName='普通圣兽阁'>
+	<npc categoryId='600141'>
+		<bornpoint x='1061' y='828'/>
+	</npc>
+</game>
+<game name='qinglongxiagu' displayName='青龙峡谷'>
+	<npc categoryId='110003'>
+		<bornpoint x='3414' y='3995'/>
+	</npc>
+	<npc categoryId='110002'>
+		<bornpoint x='3739' y='2282'/>
+	</npc>
+	<npc categoryId='110001'>
+		<bornpoint x='4801' y='360'/>
+	</npc>
+</game>
+<game name='qingyunshengfeng' displayName='青云圣峰'>
+	<npc categoryId='60015'>
+		<bornpoint x='5038' y='1778'/>
+	</npc>
+	<npc categoryId='90001'>
+		<bornpoint x='4830' y='723'/>
+	</npc>
+	<npc categoryId='60021'>
+		<bornpoint x='1270' y='2583'/>
+	</npc>
+	<npc categoryId='60022'>
+		<bornpoint x='6068' y='5072'/>
+	</npc>
+</game>
+<game name='queqiaoxianjing' displayName='鹊桥仙境'>
+	<npc categoryId='130003'>
+		<bornpoint x='3201' y='1665'/>
+	</npc>
+	<npc categoryId='500001'>
+		<bornpoint x='1660' y='595'/>
+	</npc>
+</game>
+<game name='shangzhouxianjing' displayName='上州仙境'>
+	<npc categoryId='130005'>
+		<bornpoint x='4124' y='1632'/>
+	</npc>
+	<npc categoryId='130007'>
+		<bornpoint x='1994' y='2216'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='6300' y='2007'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='7469' y='1463'/>
+	</npc>
+	<npc categoryId='600269'>
+		<bornpoint x='3397' y='3084'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='7819' y='2014'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='4010' y='2110'/>
+	</npc>
+	<npc categoryId='20010'>
+		<bornpoint x='3274' y='2748'/>
+	</npc>
+	<npc categoryId='600276'>
+		<bornpoint x='3858' y='2823'/>
+	</npc>
+	<npc categoryId='20008'>
+		<bornpoint x='6806' y='1091'/>
+	</npc>
+	<npc categoryId='20012'>
+		<bornpoint x='5686' y='2416'/>
+	</npc>
+	<npc categoryId='20002'>
+		<bornpoint x='5110' y='1057'/>
+	</npc>
+	<npc categoryId='100005'>
+		<bornpoint x='1199' y='1500'/>
+	</npc>
+	<npc categoryId='20001'>
+		<bornpoint x='6464' y='936'/>
+	</npc>
+	<npc categoryId='20006'>
+		<bornpoint x='5206' y='2838'/>
+	</npc>
+	<npc categoryId='20007'>
+		<bornpoint x='6202' y='2314'/>
+	</npc>
+	<npc categoryId='20004'>
+		<bornpoint x='2173' y='2134'/>
+	</npc>
+	<npc categoryId='20005'>
+		<bornpoint x='2113' y='3585'/>
+	</npc>
+	<npc categoryId='130039'>
+		<bornpoint x='2731' y='1930'/>
+	</npc>
+	<npc categoryId='5000004'>
+		<bornpoint x='511' y='2103'/>
+		<bornpoint x='508' y='2047'/>
+		<bornpoint x='517' y='1990'/>
+		<bornpoint x='522' y='1911'/>
+		<bornpoint x='537' y='1841'/>
+	</npc>
+	<npc categoryId='130034'>
+		<bornpoint x='6041' y='1714'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='4761' y='555'/>
+	</npc>
+	<npc categoryId='130044'>
+		<bornpoint x='4747' y='1953'/>
+	</npc>
+	<npc categoryId='130040'>
+		<bornpoint x='5388' y='1893'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='4355' y='1762'/>
+	</npc>
+	<npc categoryId='130023'>
+		<bornpoint x='5233' y='648'/>
+	</npc>
+	<npc categoryId='600112'>
+		<bornpoint x='4646' y='2412'/>
+	</npc>
+</game>
+<game name='shengshanzhidian' displayName='圣山之巅'>
+	<npc categoryId='160005'>
+		<bornpoint x='4224' y='5818'/>
+	</npc>
+	<npc categoryId='170002'>
+		<bornpoint x='3429' y='1996'/>
+	</npc>
+	<npc categoryId='170003'>
+		<bornpoint x='4968' y='3139'/>
+	</npc>
+	<npc categoryId='170001'>
+		<bornpoint x='2118' y='3734'/>
+	</npc>
+	<npc categoryId='170004'>
+		<bornpoint x='4820' y='1727'/>
+	</npc>
+</game>
+<game name='shengshougeerceng' displayName='圣兽阁二层'>
+</game>
+<game name='shengshougeliuceng' displayName='圣兽阁六层'>
+</game>
+<game name='shengshougeqiceng' displayName='圣兽阁七层'>
+</game>
+<game name='shengshougesanceng' displayName='圣兽阁三层'>
+</game>
+<game name='shengshougewuceng' displayName='圣兽阁五层'>
+</game>
+<game name='shengshoumicheng' displayName='圣兽迷城'>
+	<npc categoryId='90000010'>
+		<bornpoint x='1528' y='486'/>
+	</npc>
+</game>
+<game name='shengshoumichengerceng' displayName='圣兽迷城二层'>
+	<npc categoryId='90000010'>
+		<bornpoint x='1536' y='723'/>
+	</npc>
+</game>
+<game name='shengshoumichengsanceng' displayName='圣兽迷城三层'>
+	<npc categoryId='90000010'>
+		<bornpoint x='2069' y='666'/>
+	</npc>
+</game>
+<game name='shengtianzhidao' displayName='圣天之道'>
+	<npc categoryId='600000001'>
+		<bornpoint x='4076' y='2295'/>
+	</npc>
+	<npc categoryId='130026'>
+		<bornpoint x='3663' y='509'/>
+	</npc>
+</game>
+<game name='shihunshahai' displayName='噬魂沙海'>
+</game>
+<game name='shihunshahaidanren' displayName='噬魂沙海单人'>
+</game>
+<game name='shijieBOSSditu' displayName='世界BOSS地图'>
+	<npc categoryId='600303'>
+		<bornpoint x='612' y='534'/>
+	</npc>
+</game>
+<game name='shilianzhidibaceng' displayName='试炼之地八层'>
+</game>
+<game name='shilianzhidierceng' displayName='试炼之地二层'>
+</game>
+<game name='shilianzhidijiuceng' displayName='试炼之地九层'>
+</game>
+<game name='shilianzhidiliuceng' displayName='试炼之地六层'>
+</game>
+<game name='shilianzhidiqiceng' displayName='试炼之地七层'>
+</game>
+<game name='shilianzhidisanceng' displayName='试炼之地三层'>
+</game>
+<game name='shilianzhidishiceng' displayName='试炼之地十层'>
+</game>
+<game name='shilianzhidisiceng' displayName='试炼之地四层'>
+</game>
+<game name='shilianzhidiwuceng' displayName='试炼之地五层'>
+</game>
+<game name='shilianzhidiyiceng' displayName='试炼之地一层'>
+</game>
+<game name='shilianzhitabaceng' displayName='试炼之塔八层'>
+	<npc categoryId='60023'>
+		<bornpoint x='3594' y='2102'/>
+	</npc>
+	<npc categoryId='60022'>
+		<bornpoint x='3023' y='558'/>
+	</npc>
+</game>
+<game name='shilianzhitaerceng' displayName='试炼之塔二层'>
+	<npc categoryId='60004'>
+		<bornpoint x='2977' y='1775'/>
+	</npc>
+	<npc categoryId='60005'>
+		<bornpoint x='2515' y='2924'/>
+	</npc>
+	<npc categoryId='60006'>
+		<bornpoint x='4855' y='3640'/>
+	</npc>
+	<npc categoryId='60003'>
+		<bornpoint x='3922' y='1362'/>
+	</npc>
+</game>
+<game name='shilianzhitajiuceng' displayName='试炼之塔九层'>
+	<npc categoryId='600304'>
+		<bornpoint x='2522' y='2415'/>
+	</npc>
+	<npc categoryId='60025'>
+		<bornpoint x='3560' y='1362'/>
+	</npc>
+	<npc categoryId='60024'>
+		<bornpoint x='5879' y='3068'/>
+	</npc>
+	<npc categoryId='130047'>
+		<bornpoint x='2278' y='2238'/>
+	</npc>
+</game>
+<game name='shilianzhitaliuceng' displayName='试炼之塔六层'>
+	<npc categoryId='60016'>
+		<bornpoint x='4654' y='576'/>
+	</npc>
+	<npc categoryId='60018'>
+		<bornpoint x='4858' y='2395'/>
+	</npc>
+</game>
+<game name='shilianzhitaqiceng' displayName='试炼之塔七层'>
+	<npc categoryId='60021'>
+		<bornpoint x='3587' y='2074'/>
+	</npc>
+	<npc categoryId='60020'>
+		<bornpoint x='6299' y='3747'/>
+	</npc>
+</game>
+<game name='shilianzhitasanceng' displayName='试炼之塔三层'>
+	<npc categoryId='5000021'>
+		<bornpoint x='5408' y='3356'/>
+		<bornpoint x='5309' y='3431'/>
+		<bornpoint x='5217' y='3480'/>
+		<bornpoint x='5140' y='3515'/>
+		<bornpoint x='5049' y='3559'/>
+		<bornpoint x='4972' y='3601'/>
+	</npc>
+	<npc categoryId='60008'>
+		<bornpoint x='5819' y='2757'/>
+	</npc>
+	<npc categoryId='60009'>
+		<bornpoint x='3803' y='2071'/>
+	</npc>
+	<npc categoryId='60010'>
+		<bornpoint x='3641' y='1111'/>
+	</npc>
+	<npc categoryId='60007'>
+		<bornpoint x='6374' y='3739'/>
+	</npc>
+</game>
+<game name='shilianzhitashiceng' displayName='试炼之塔十层'>
+</game>
+<game name='shilianzhitasiceng' displayName='试炼之塔四层'>
+	<npc categoryId='60013'>
+		<bornpoint x='4689' y='2655'/>
+	</npc>
+	<npc categoryId='60014'>
+		<bornpoint x='2638' y='1619'/>
+	</npc>
+	<npc categoryId='60015'>
+		<bornpoint x='2522' y='2644'/>
+	</npc>
+</game>
+<game name='shilianzhitawuceng' displayName='试炼之塔五层'>
+	<npc categoryId='130048'>
+		<bornpoint x='3130' y='786'/>
+	</npc>
+	<npc categoryId='130046'>
+		<bornpoint x='761' y='1833'/>
+	</npc>
+	<npc categoryId='130040'>
+		<bornpoint x='3302' y='1193'/>
+	</npc>
+</game>
+<game name='shilianzhitayiceng' displayName='试炼之塔一层'>
+	<npc categoryId='130045'>
+		<bornpoint x='4306' y='2188'/>
+	</npc>
+	<npc categoryId='60001'>
+		<bornpoint x='2668' y='1255'/>
+	</npc>
+	<npc categoryId='60002'>
+		<bornpoint x='2420' y='1070'/>
+	</npc>
+</game>
+<game name='taoyuancun' displayName='桃源村'>
+	<npc categoryId='10013'>
+		<bornpoint x='6725' y='376'/>
+	</npc>
+	<npc categoryId='10014'>
+		<bornpoint x='3035' y='1053'/>
+	</npc>
+	<npc categoryId='10009'>
+		<bornpoint x='3327' y='2058'/>
+	</npc>
+	<npc categoryId='5000002'>
+		<bornpoint x='6884' y='3918'/>
+	</npc>
+	<npc categoryId='10008'>
+		<bornpoint x='5731' y='1975'/>
+	</npc>
+	<npc categoryId='10011'>
+		<bornpoint x='605' y='1236'/>
+	</npc>
+	<npc categoryId='10010'>
+		<bornpoint x='1078' y='2488'/>
+	</npc>
+	<npc categoryId='10005'>
+		<bornpoint x='2819' y='4054'/>
+		<bornpoint x='4916' y='4090'/>
+	</npc>
+	<npc categoryId='10004'>
+		<bornpoint x='4421' y='4196'/>
+	</npc>
+	<npc categoryId='10007'>
+		<bornpoint x='6534' y='3195'/>
+	</npc>
+	<npc categoryId='10006'>
+		<bornpoint x='8171' y='1713'/>
+	</npc>
+	<npc categoryId='10001'>
+		<bornpoint x='715' y='5300'/>
+	</npc>
+	<npc categoryId='600299'>
+		<bornpoint x='3180' y='856'/>
+	</npc>
+	<npc categoryId='10003'>
+		<bornpoint x='6998' y='4779'/>
+	</npc>
+	<npc categoryId='10002'>
+		<bornpoint x='1330' y='3867'/>
+	</npc>
+</game>
+<game name='taoyuanmijing' displayName='桃源秘境'>
+</game>
+<game name='taoyuanmijingdanren' displayName='桃源秘境单人'>
+</game>
+<game name='tianmojindier' displayName='天魔禁地二'>
+</game>
+<game name='tianmojindisan' displayName='天魔禁地三'>
+</game>
+<game name='tianmojindisi' displayName='天魔禁地四'>
+</game>
+<game name='tianmojindiyi' displayName='天魔禁地一'>
+</game>
+<game name='tianquedian' displayName='天阙殿'>
+	<npc categoryId='130059'>
+		<bornpoint x='2914' y='1527'/>
+	</npc>
+</game>
+<game name='tianwaihuanjing' displayName='天外幻境'>
+</game>
+<game name='tianwaijingtu' displayName='天外净土'>
+	<npc categoryId='600091'>
+		<bornpoint x='814' y='7521'/>
+	</npc>
+	<npc categoryId='600090'>
+		<bornpoint x='5520' y='6117'/>
+	</npc>
+	<npc categoryId='600089'>
+		<bornpoint x='5900' y='3582'/>
+	</npc>
+	<npc categoryId='600088'>
+		<bornpoint x='4728' y='2101'/>
+	</npc>
+</game>
+<game name='tongguzhilu' displayName='通古之路'>
+	<npc categoryId='170008'>
+		<bornpoint x='1781' y='4455'/>
+	</npc>
+	<npc categoryId='170013'>
+		<bornpoint x='4800' y='1147'/>
+	</npc>
+	<npc categoryId='170006'>
+		<bornpoint x='2961' y='933'/>
+	</npc>
+	<npc categoryId='170007'>
+		<bornpoint x='2806' y='2838'/>
+	</npc>
+	<npc categoryId='170005'>
+		<bornpoint x='667' y='416'/>
+	</npc>
+</game>
+<game name='tumoyu' displayName='屠魔域'>
+	<npc categoryId='280007'>
+		<bornpoint x='1296' y='6981'/>
+	</npc>
+	<npc categoryId='280009'>
+		<bornpoint x='5090' y='3606'/>
+	</npc>
+	<npc categoryId='280008'>
+		<bornpoint x='2986' y='2929'/>
+	</npc>
+</game>
+<game name='wanfamidao' displayName='万法密道'>
+</game>
+<game name='wanfayaosai' displayName='万法要塞'>
+	<npc categoryId='130057'>
+		<bornpoint x='6973' y='4800'/>
+	</npc>
+</game>
+<game name='wanfayiji' displayName='万法遗迹'>
+	<npc categoryId='130005'>
+		<bornpoint x='3894' y='3266'/>
+	</npc>
+	<npc categoryId='130007'>
+		<bornpoint x='6479' y='4676'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='6942' y='4072'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='8424' y='2363'/>
+	</npc>
+	<npc categoryId='600269'>
+		<bornpoint x='4589' y='4829'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='7468' y='1885'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='5877' y='4143'/>
+	</npc>
+	<npc categoryId='20010'>
+		<bornpoint x='6018' y='4918'/>
+	</npc>
+	<npc categoryId='600276'>
+		<bornpoint x='6698' y='3869'/>
+	</npc>
+	<npc categoryId='20008'>
+		<bornpoint x='8538' y='5126'/>
+	</npc>
+	<npc categoryId='20012'>
+		<bornpoint x='10572' y='3719'/>
+	</npc>
+	<npc categoryId='20002'>
+		<bornpoint x='5788' y='2642'/>
+	</npc>
+	<npc categoryId='20001'>
+		<bornpoint x='9740' y='4202'/>
+	</npc>
+	<npc categoryId='100005'>
+		<bornpoint x='3042' y='2737'/>
+	</npc>
+	<npc categoryId='20006'>
+		<bornpoint x='7105' y='4517'/>
+	</npc>
+	<npc categoryId='20007'>
+		<bornpoint x='8717' y='3520'/>
+	</npc>
+	<npc categoryId='20004'>
+		<bornpoint x='3997' y='4278'/>
+	</npc>
+	<npc categoryId='20005'>
+		<bornpoint x='3419' y='5149'/>
+	</npc>
+	<npc categoryId='130039'>
+		<bornpoint x='2586' y='3999'/>
+	</npc>
+	<npc categoryId='5000004'>
+		<bornpoint x='2466' y='2036'/>
+		<bornpoint x='2525' y='1992'/>
+		<bornpoint x='2602' y='1964'/>
+		<bornpoint x='2659' y='1967'/>
+		<bornpoint x='2722' y='1975'/>
+	</npc>
+	<npc categoryId='130034'>
+		<bornpoint x='7632' y='2797'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='6315' y='1707'/>
+	</npc>
+	<npc categoryId='130044'>
+		<bornpoint x='6627' y='5903'/>
+	</npc>
+	<npc categoryId='130040'>
+		<bornpoint x='7216' y='3007'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='5487' y='3359'/>
+	</npc>
+	<npc categoryId='130023'>
+		<bornpoint x='6649' y='1835'/>
+	</npc>
+	<npc categoryId='600112'>
+		<bornpoint x='6467' y='3122'/>
+	</npc>
+</game>
+<game name='wanfayuan' displayName='万法缘'>
+	<npc categoryId='130059'>
+		<bornpoint x='2843' y='1469'/>
+	</npc>
+</game>
+<game name='wanfazhiyuan' displayName='万法之源'>
+	<npc categoryId='130004'>
+		<bornpoint x='798' y='6175'/>
+	</npc>
+	<npc categoryId='130005'>
+		<bornpoint x='3857' y='5515'/>
+	</npc>
+	<npc categoryId='130006'>
+		<bornpoint x='4348' y='6378'/>
+	</npc>
+	<npc categoryId='130001'>
+		<bornpoint x='2655' y='2798'/>
+	</npc>
+	<npc categoryId='130002'>
+		<bornpoint x='5261' y='5983'/>
+	</npc>
+	<npc categoryId='130003'>
+		<bornpoint x='4780' y='5480'/>
+	</npc>
+	<npc categoryId='130012'>
+		<bornpoint x='10123' y='3573'/>
+	</npc>
+	<npc categoryId='500004'>
+		<bornpoint x='2147' y='2916'/>
+	</npc>
+	<npc categoryId='130013'>
+		<bornpoint x='6038' y='4819'/>
+	</npc>
+	<npc categoryId='130014'>
+		<bornpoint x='3567' y='4881'/>
+	</npc>
+	<npc categoryId='130015'>
+		<bornpoint x='3150' y='4920'/>
+	</npc>
+	<npc categoryId='130008'>
+		<bornpoint x='7785' y='2595'/>
+	</npc>
+	<npc categoryId='130009'>
+		<bornpoint x='8127' y='2641'/>
+	</npc>
+	<npc categoryId='130010'>
+		<bornpoint x='1082' y='4185'/>
+	</npc>
+	<npc categoryId='130011'>
+		<bornpoint x='9796' y='1098'/>
+	</npc>
+	<npc categoryId='130054'>
+		<bornpoint x='1476' y='3266'/>
+	</npc>
+	<npc categoryId='130038'>
+		<bornpoint x='1086' y='2760'/>
+	</npc>
+	<npc categoryId='130055'>
+		<bornpoint x='5959' y='4030'/>
+	</npc>
+	<npc categoryId='600295'>
+		<bornpoint x='2386' y='1256'/>
+		<bornpoint x='4595' y='4801'/>
+	</npc>
+	<npc categoryId='130048'>
+		<bornpoint x='6726' y='5745'/>
+	</npc>
+	<npc categoryId='130032'>
+		<bornpoint x='441' y='2908'/>
+	</npc>
+	<npc categoryId='130033'>
+		<bornpoint x='741' y='2798'/>
+	</npc>
+	<npc categoryId='130056'>
+		<bornpoint x='1220' y='1562'/>
+	</npc>
+	<npc categoryId='130057'>
+		<bornpoint x='6233' y='3712'/>
+	</npc>
+	<npc categoryId='130021'>
+		<bornpoint x='1065' y='449'/>
+	</npc>
+	<npc categoryId='130019'>
+		<bornpoint x='6421' y='5613'/>
+	</npc>
+	<npc categoryId='600305'>
+		<bornpoint x='4331' y='2449'/>
+	</npc>
+	<npc categoryId='130018'>
+		<bornpoint x='8876' y='5271'/>
+	</npc>
+	<npc categoryId='130017'>
+		<bornpoint x='6532' y='4324'/>
+	</npc>
+	<npc categoryId='130016'>
+		<bornpoint x='6868' y='4512'/>
+	</npc>
+	<npc categoryId='130031'>
+		<bornpoint x='1787' y='2764'/>
+	</npc>
+	<npc categoryId='130024'>
+		<bornpoint x='4501' y='374'/>
+	</npc>
+</game>
+<game name='wangchuanhepan' displayName='忘川河畔'>
+	<npc categoryId='250004'>
+		<bornpoint x='5947' y='5150'/>
+	</npc>
+	<npc categoryId='250005'>
+		<bornpoint x='1831' y='4844'/>
+	</npc>
+	<npc categoryId='250002'>
+		<bornpoint x='3511' y='1726'/>
+	</npc>
+	<npc categoryId='250003'>
+		<bornpoint x='1952' y='3728'/>
+	</npc>
+	<npc categoryId='250001'>
+		<bornpoint x='5455' y='904'/>
+	</npc>
+	<npc categoryId='5000030'>
+		<bornpoint x='1101' y='5113'/>
+		<bornpoint x='1017' y='5110'/>
+		<bornpoint x='976' y='5123'/>
+		<bornpoint x='910' y='5164'/>
+		<bornpoint x='854' y='5178'/>
+	</npc>
+</game>
+<game name='wangshengyu' displayName='往生域'>
+	<npc categoryId='340004'>
+		<bornpoint x='4911' y='1131'/>
+	</npc>
+	<npc categoryId='340005'>
+		<bornpoint x='619' y='2955'/>
+	</npc>
+	<npc categoryId='340001'>
+		<bornpoint x='7842' y='2276'/>
+	</npc>
+	<npc categoryId='340002'>
+		<bornpoint x='6307' y='3721'/>
+	</npc>
+</game>
+<game name='wangumicha' displayName='万古迷刹'>
+	<npc categoryId='5000017'>
+		<bornpoint x='3360' y='1971'/>
+		<bornpoint x='3241' y='1986'/>
+		<bornpoint x='3338' y='2035'/>
+		<bornpoint x='3267' y='2041'/>
+		<bornpoint x='3160' y='2026'/>
+		<bornpoint x='3333' y='2109'/>
+		<bornpoint x='3279' y='2102'/>
+		<bornpoint x='3192' y='2093'/>
+	</npc>
+	<npc categoryId='50005'>
+		<bornpoint x='3576' y='486'/>
+	</npc>
+	<npc categoryId='50004'>
+		<bornpoint x='2618' y='2216'/>
+	</npc>
+	<npc categoryId='50003'>
+		<bornpoint x='5460' y='3007'/>
+	</npc>
+	<npc categoryId='50002'>
+		<bornpoint x='2642' y='4484'/>
+	</npc>
+	<npc categoryId='50001'>
+		<bornpoint x='482' y='5055'/>
+	</npc>
+</game>
+<game name='wenxianzhilu' displayName='问仙之路'>
+	<npc categoryId='140011'>
+		<bornpoint x='4245' y='3328'/>
+	</npc>
+	<npc categoryId='140010'>
+		<bornpoint x='6301' y='3863'/>
+	</npc>
+	<npc categoryId='140008'>
+		<bornpoint x='2844' y='3063'/>
+	</npc>
+	<npc categoryId='140012'>
+		<bornpoint x='6887' y='4224'/>
+	</npc>
+	<npc categoryId='140002'>
+		<bornpoint x='4016' y='1036'/>
+	</npc>
+	<npc categoryId='140001'>
+		<bornpoint x='6405' y='936'/>
+	</npc>
+	<npc categoryId='140007'>
+		<bornpoint x='818' y='2218'/>
+	</npc>
+	<npc categoryId='140006'>
+		<bornpoint x='1334' y='2924'/>
+	</npc>
+	<npc categoryId='140005'>
+		<bornpoint x='2092' y='491'/>
+	</npc>
+	<npc categoryId='140004'>
+		<bornpoint x='1554' y='1332'/>
+	</npc>
+</game>
+<game name='wujiandiyu' displayName='无间地狱'>
+	<npc categoryId='230001'>
+		<bornpoint x='5046' y='2060'/>
+	</npc>
+	<npc categoryId='230002'>
+		<bornpoint x='5913' y='554'/>
+	</npc>
+	<npc categoryId='230003'>
+		<bornpoint x='5683' y='3196'/>
+	</npc>
+	<npc categoryId='230004'>
+		<bornpoint x='5983' y='4329'/>
+	</npc>
+	<npc categoryId='230005'>
+		<bornpoint x='3278' y='2088'/>
+	</npc>
+	<npc categoryId='230006'>
+		<bornpoint x='2963' y='3153'/>
+	</npc>
+</game>
+<game name='wujinxukong' displayName='无尽虚空'>
+</game>
+<game name='wujinxukongdanren' displayName='无尽虚空单人'>
+</game>
+<game name='wujinyouming' displayName='无尽幽冥'>
+</game>
+<game name='wujinzhihai' displayName='无尽之海'>
+	<npc categoryId='30004'>
+		<bornpoint x='5791' y='1083'/>
+	</npc>
+	<npc categoryId='30005'>
+		<bornpoint x='4615' y='2492'/>
+	</npc>
+	<npc categoryId='30002'>
+		<bornpoint x='3069' y='2625'/>
+	</npc>
+	<npc categoryId='30003'>
+		<bornpoint x='3344' y='1437'/>
+	</npc>
+	<npc categoryId='30001'>
+		<bornpoint x='6000' y='2412'/>
+	</npc>
+</game>
+<game name='xianfanjitai' displayName='仙凡祭台'>
+	<npc categoryId='150010'>
+		<bornpoint x='6459' y='883'/>
+	</npc>
+	<npc categoryId='150011'>
+		<bornpoint x='5454' y='511'/>
+	</npc>
+	<npc categoryId='150008'>
+		<bornpoint x='3745' y='1119'/>
+	</npc>
+	<npc categoryId='150009'>
+		<bornpoint x='5150' y='1237'/>
+	</npc>
+	<npc categoryId='150002'>
+		<bornpoint x='6926' y='4203'/>
+	</npc>
+	<npc categoryId='150001'>
+		<bornpoint x='5455' y='3446'/>
+	</npc>
+	<npc categoryId='150006'>
+		<bornpoint x='1701' y='2399'/>
+	</npc>
+	<npc categoryId='150007'>
+		<bornpoint x='2063' y='505'/>
+	</npc>
+	<npc categoryId='150004'>
+		<bornpoint x='3749' y='3227'/>
+	</npc>
+</game>
+<game name='xiangong' displayName='仙宫'>
+	<npc categoryId='130059'>
+		<bornpoint x='2740' y='1450'/>
+	</npc>
+</game>
+<game name='xianwudahui' displayName='仙武大会'>
+</game>
+<game name='xianxianyu' displayName='陷仙域'>
+	<npc categoryId='310005'>
+		<bornpoint x='4981' y='945'/>
+	</npc>
+	<npc categoryId='310004'>
+		<bornpoint x='1312' y='5037'/>
+	</npc>
+	<npc categoryId='5000033'>
+		<bornpoint x='5717' y='3480'/>
+		<bornpoint x='5715' y='3438'/>
+		<bornpoint x='5715' y='3407'/>
+		<bornpoint x='5731' y='3360'/>
+		<bornpoint x='5739' y='3307'/>
+		<bornpoint x='5730' y='3259'/>
+		<bornpoint x='5728' y='3227'/>
+	</npc>
+	<npc categoryId='310001'>
+		<bornpoint x='6387' y='5029'/>
+	</npc>
+	<npc categoryId='310003'>
+		<bornpoint x='2695' y='5201'/>
+	</npc>
+	<npc categoryId='310002'>
+		<bornpoint x='3935' y='5023'/>
+	</npc>
+</game>
+<game name='xianyuanshengshan' displayName='仙缘圣山'>
+</game>
+<game name='xingluqiongge' displayName='星路琼阁'>
+</game>
+<game name='xinshoucunmijing' displayName='新手村秘境'>
+</game>
+<game name='xuehaiyouming' displayName='血海幽冥'>
+</game>
+<game name='xuehaiyoumingdanren' displayName='血海幽冥单人'>
+</game>
+<game name='xukongjuedi' displayName='虚空绝地'>
+</game>
+<game name='yaochixiantai' displayName='瑶池仙台'>
+	<npc categoryId='5000036'>
+		<bornpoint x='926' y='1286'/>
+		<bornpoint x='885' y='1265'/>
+		<bornpoint x='839' y='1249'/>
+		<bornpoint x='789' y='1240'/>
+		<bornpoint x='743' y='1211'/>
+		<bornpoint x='691' y='1204'/>
+	</npc>
+	<npc categoryId='5000039'>
+		<bornpoint x='3831' y='1952'/>
+		<bornpoint x='3879' y='1928'/>
+		<bornpoint x='3939' y='1905'/>
+		<bornpoint x='3992' y='1882'/>
+		<bornpoint x='3986' y='1910'/>
+		<bornpoint x='3950' y='1935'/>
+		<bornpoint x='3910' y='1963'/>
+		<bornpoint x='3920' y='1994'/>
+	</npc>
+	<npc categoryId='600087'>
+		<bornpoint x='3087' y='2754'/>
+	</npc>
+	<npc categoryId='600086'>
+		<bornpoint x='3145' y='3472'/>
+	</npc>
+	<npc categoryId='600085'>
+		<bornpoint x='5839' y='4647'/>
+	</npc>
+	<npc categoryId='600084'>
+		<bornpoint x='650' y='7333'/>
+	</npc>
+</game>
+<game name='yaosaimijing' displayName='要塞秘境'>
+</game>
+<game name='youminghuanyuba' displayName='幽冥幻域八'>
+</game>
+<game name='youminghuanyuer' displayName='幽冥幻域二'>
+</game>
+<game name='youminghuanyujiu' displayName='幽冥幻域九'>
+</game>
+<game name='youminghuanyuliu' displayName='幽冥幻域六'>
+</game>
+<game name='youminghuanyuqi' displayName='幽冥幻域七'>
+</game>
+<game name='youminghuanyusan' displayName='幽冥幻域三'>
+</game>
+<game name='youminghuanyusi' displayName='幽冥幻域四'>
+</game>
+<game name='youminghuanyuwu' displayName='幽冥幻域五'>
+</game>
+<game name='youminghuanyuyi' displayName='幽冥幻域一'>
+</game>
+<game name='yuangushengshan' displayName='远古圣山'>
+	<npc categoryId='5000022'>
+		<bornpoint x='6313' y='792'/>
+		<bornpoint x='6417' y='827'/>
+		<bornpoint x='6452' y='867'/>
+		<bornpoint x='6408' y='869'/>
+		<bornpoint x='6352' y='841'/>
+		<bornpoint x='6253' y='816'/>
+		<bornpoint x='6188' y='810'/>
+		<bornpoint x='6320' y='871'/>
+	</npc>
+	<npc categoryId='160004'>
+		<bornpoint x='3464' y='5101'/>
+	</npc>
+	<npc categoryId='160003'>
+		<bornpoint x='1486' y='2689'/>
+	</npc>
+	<npc categoryId='160002'>
+		<bornpoint x='4366' y='2517'/>
+	</npc>
+	<npc categoryId='160001'>
+		<bornpoint x='5256' y='1498'/>
+	</npc>
+	<npc categoryId='150012'>
+		<bornpoint x='1874' y='500'/>
+	</npc>
+	<npc categoryId='150013'>
+		<bornpoint x='3268' y='1628'/>
+	</npc>
+</game>
+<game name='yuanguzhanchang' displayName='远古战场'>
+	<npc categoryId='180005'>
+		<bornpoint x='711' y='3975'/>
+	</npc>
+	<npc categoryId='190002'>
+		<bornpoint x='3512' y='3409'/>
+	</npc>
+	<npc categoryId='190004'>
+		<bornpoint x='2133' y='1758'/>
+	</npc>
+</game>
+<game name='yuwailingtai' displayName='域外灵台'>
+</game>
+<game name='yuwaixinghe' displayName='域外星河'>
+	<npc categoryId='600083'>
+		<bornpoint x='2758' y='1310'/>
+	</npc>
+	<npc categoryId='600082'>
+		<bornpoint x='2383' y='3387'/>
+	</npc>
+	<npc categoryId='600081'>
+		<bornpoint x='2176' y='4920'/>
+	</npc>
+	<npc categoryId='600080'>
+		<bornpoint x='6860' y='5568'/>
+	</npc>
+</game>
+<game name='zhanmotianyu' displayName='战魔天域'>
+</game>
+<game name='zhizunshengshouge' displayName='至尊圣兽阁'>
+	<npc categoryId='600141'>
+		<bornpoint x='1085' y='837'/>
+	</npc>
+</game>
+<game name='zhuchengmijing' displayName='主城秘境'>
+</game>
+<game name='zhuxianyu' displayName='诛仙域'>
+	<npc categoryId='330006'>
+		<bornpoint x='3522' y='2137'/>
+	</npc>
+	<npc categoryId='330004'>
+		<bornpoint x='3601' y='4249'/>
+	</npc>
+	<npc categoryId='330005'>
+		<bornpoint x='4586' y='3626'/>
+	</npc>
+	<npc categoryId='330002'>
+		<bornpoint x='2291' y='6385'/>
+	</npc>
+	<npc categoryId='330003'>
+		<bornpoint x='2229' y='3998'/>
+	</npc>
+	<npc categoryId='5000034'>
+		<bornpoint x='4507' y='1118'/>
+		<bornpoint x='4450' y='1123'/>
+		<bornpoint x='4397' y='1134'/>
+		<bornpoint x='4340' y='1148'/>
+		<bornpoint x='4293' y='1155'/>
+		<bornpoint x='4261' y='1172'/>
+		<bornpoint x='4237' y='1189'/>
+	</npc>
+	<npc categoryId='330001'>
+		<bornpoint x='5388' y='7416'/>
+	</npc>
+</game>
+</mapnpcmanager>

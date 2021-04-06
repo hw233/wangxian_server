@@ -1,0 +1,10 @@
+03 04 * * * com.sqage.stat.service.ChannelStatManager -1
+53 04 * * * com.sqage.stat.service.StatChannel360Manager -1
+43 06 * * * com.sqage.stat.service.StatGameChongZhiManager -1
+56 04 * * * com.sqage.stat.service.StatPlayGameGuiZongManager -1
+10 05 * * * com.sqage.stat.service.StatDaoJuDeShiManager -1
+24 06 * * * com.sqage.stat.service.StatDaoJuShopManager -1
+38 06 * * * com.sqage.stat.service.StatGameChongZhiYinPiaoManager -1
+38 06 * * * com.sqage.stat.service.DailyGenerationManager -1
+04 01 * * * com.sqage.stat.service.DailyGenerationExcelManager -1
+40 01 * * * com.sqage.stat.service.DailySendEmailManager -1

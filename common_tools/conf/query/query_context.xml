@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+
+	<bean id="com.xuanzhi.tools.query.net.MobileServer" class="com.xuanzhi.tools.query.net.MobileServer" init-method="init">
+		<property name="profixfile" value="/usr/local/resin/webapps/query/WEB-INF/conf/mobile"></property>
+		<property name="files">
+			<list>
+				<value>130</value>
+				<value>131</value>
+				<value>132</value>
+				<value>133</value>
+				<value>134</value>
+				<value>135</value>
+				<value>136</value>
+				<value>137</value>
+				<value>138</value>
+				<value>139</value>
+				<value>150</value>
+				<value>151</value>
+				<value>152</value>
+				<value>153</value>
+				<value>155</value>
+				<value>156</value>
+				<value>157</value>
+				<value>158</value>
+				<value>159</value>
+				<value>188</value>
+				<value>189</value>
+			</list>
+		</property>
+		<property name="port" value="6666"></property>
+	</bean>
+</beans>

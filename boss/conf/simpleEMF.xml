@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+ 
+ 		<serverId>100</serverId>
+		
+		<entity-manager id='1' super-class='com.fy.boss.authorize.model.Passport' checkIntervalInSeconds='5'>
+ 		</entity-manager>	
+ 
+ 		<entity-manager id='2' super-class='com.fy.boss.finance.model.OrderForm' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  
+   		<entity-manager id='3' super-class='com.fy.boss.game.model.Server' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		 		
+ 		<entity-manager id='4' super-class='com.fy.boss.finance.model.ExceptionOrderForm' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		 <entity-manager id='5' super-class='com.fy.boss.finance.model.UcidToUserName' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='6' super-class='com.fy.boss.gm.gmuser.GmSystemNotice' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='7' super-class='com.fy.boss.gm.gmuser.TransferQuestion' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='8' super-class='com.fy.boss.gm.newfeedback.NewFeedback' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='9' super-class='com.fy.boss.gm.newfeedback.FeedbackState' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='10' super-class='com.fy.boss.gm.newfeedback.FeedbackPlayerState' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		<entity-manager id='11' super-class='com.fy.boss.gm.dbserver.DbServer' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='12' super-class='com.fy.boss.gm.gmuser.QuestionQuery' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+  		<entity-manager id='13' super-class='com.fy.boss.gm.newfeedback.GmTalk' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		
+ 		 <entity-manager id='25' super-class='com.fy.boss.vip.platform.model.VipPlayerInfoRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='27' super-class='com.fy.boss.gm.newfeedback.GmZanliState' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='29' super-class='com.fy.boss.vip.platform.model.UcVipRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 		<entity-manager id='30' super-class='com.fy.boss.vip.platform.model.VipNewPlayerInfoRecord' checkIntervalInSeconds='5'>
+ 		</entity-manager>
+ 	<!--  
+	<database name='test-pool' type='mysql' CHARSET='utf8' Collation='utf8_general_ci'> 
+			<driver>com.mysql.jdbc.Driver</driver>
+			<url>jdbc:mysql://119.254.85.171:3306/fybosstest?characterEncoding=utf-8&amp;useUnicode=true</url>
+			<username>gatewaytest</username>
+			<password>123098</password>
+		<maxConn>30</maxConn>
+		<timeoutSeconds>300</timeoutSeconds>
+		<checkoutSeconds>300</checkoutSeconds>
+	</database>
+	
+	-->	
+	<database name='test-pool' type='oracle'>
+		<driver>oracle.jdbc.driver.OracleDriver</driver>
+		<url>jdbc:oracle:thin:@119.254.154.203:1521:yahldb</url>
+		<username>ya_boss</username>
+		<password>ya_boss_R3kCZcm</password>
+		<maxConn>30</maxConn>
+		<timeoutSeconds>300</timeoutSeconds>
+		<checkoutSeconds>300</checkoutSeconds>
+	</database>
+	
+	
+</persistence-units>

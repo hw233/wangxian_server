@@ -1,0 +1,13 @@
+table{
+width:100%;
+border:0px solid #69c;
+border-top:1px solid #69c;
+border-right:1px solid #69c;
+border-bottom:1px solid #69c;
+border-left:1px solid #69c;
+border-collapse: collapse;
+}
+td{
+border:1px solid #69c;
+text-align:left;
+}

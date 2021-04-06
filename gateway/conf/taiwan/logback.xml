@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" >
+	<property name="log.base" value="/home/game/resin_gateway/log/game_gateway" />
+	
+	<appender name="simpleJpa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/simpleJpa.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/simpleJpa.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date - [%thread] %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.simplejpa.SimpleEntityManager">
+		<level value="INFO" />
+		<appender-ref ref="simpleJpa" />
+	</logger>
+	
+	<appender name="Connection" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>${log.base}/connection.log</File>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <FileNamePattern>
+                                ${log.base}/connection.log.%d{yyyy-MM-dd}.log
+                </FileNamePattern>
+                </rollingPolicy>
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                        <pattern>[%level] %date [%thread] - %msg%n</pattern>
+                </layout>
+        </appender>
+        <logger name="com.xuanzhi.tools.transport.Connection">
+                <level value="WARN" />
+                <appender-ref ref="Connection" />
+        </logger>
+
+        <appender name="Selector" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>${log.base}/selector.log</File>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <FileNamePattern>
+                                ${log.base}/selector.log.%d{yyyy-MM-dd}.log
+                </FileNamePattern>
+                </rollingPolicy>
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                        <pattern>[%level] %date [%thread] - %msg%n</pattern>
+                </layout>
+        </appender>
+        <logger name="com.xuanzhi.tools.transport.DefaultConnectionSelector">
+                <level value="WARN" />
+                <appender-ref ref="Selector" />
+        </logger>
+</configuration>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<prototypes version="1.0" author="jieyh">
+	<factory name="StatMessageFactory" />
+		<prototype req_name="USEREGIST_LOG_REQ" req_type="0x00000000" 
+			res_name="USEREGIST_LOG_RES" res_type="0x80000000"  comment="用户注册日志">
+		<req>
+			<object-property name="userRegistFlow" type="UserRegistFlow" comment="用户注册日志">
+			    <property name="registtime" type="long" comment="注册时间"></property>
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="playerName" type="String" encoding="UTF-8" comment="角色名"></property>
+				<property name="qudao" type="String" encoding="UTF-8" comment="渠道"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+				<property name="didian" type="String" encoding="UTF-8" comment="地点" />
+				<property name="haoma" type="String" encoding="UTF-8" comment="号码" />
+				<property name="emei" type="String" encoding="UTF-8" comment="EMEI" />
+				<property name="nations" type="String" encoding="UTF-8" comment="国家" />
+				<property name="creatPlayerTime" type="long" comment="创建角色时间" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="创建角色时的分区" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	<prototype req_name="ENTERGAME_LOG_REQ" req_type="0x00000001" 
+			res_name="ENTERGAME_LOG_RES" res_type="0x80000001"  comment="进入游戏日志">
+		<req>
+			<object-property name="enterGameFlow" type="EnterGameFlow" comment="进入游戏">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8" comment="级别" />
+				<property name="quDao"  type="String" encoding="UTF-8" comment="渠道" />
+				 <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+				 
+				 <property name="zhiye" type="String" encoding="UTF-8" comment="职业" />
+				 <property name="column1" type="String" encoding="UTF-8" comment="备用字段1" />
+				 <property name="column2" type="String" encoding="UTF-8" comment="备用字段2" />
+				 
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	<prototype req_name="LOGOUTGAME_LOG_REQ" req_type="0x00000002" 
+			res_name="LOGOUTGAME_LOG_RES" res_type="0x80000002"  comment="退出游戏日志">
+		<req>
+			<object-property name="logOutGameFlow" type="LogOutGameFlow" comment="退出游戏">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8" comment="级别" />
+				<property name="onLineTime" type="long" comment="在线时长" />
+				<property name="yuanBaoCount" type="long" comment="剩余元宝数" />
+				<property name="youXiBi" type="long" comment="剩余游戏币" />
+				<property name="quDao"  type="String" encoding="UTF-8" comment="渠道" />
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="DAYCHENG_LOG_REQ" req_type="0x00000003" 
+			res_name="DAYCHENG_LOG_RES" res_type="0x80000003"  comment="日期变更日志">
+		<req>
+			<object-property name="dayChangFlow" type="DayChangFlow" comment="日期变更">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8"  comment="级别" />
+				<property name="onLineTime" type="long" comment="在线时长" />
+				<property name="yuanBaoCount" type="long" comment="剩余元宝数" />
+				<property name="youXiBi" type="long" comment="剩余游戏币" />
+				<property name="quDao"  type="String" encoding="UTF-8" comment="渠道" />
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+				
+				<property name="zhiye" type="String" encoding="UTF-8" comment="职业" />
+				<property name="column1" type="String" encoding="UTF-8" comment="备用字段1" />
+				<property name="column2" type="String" encoding="UTF-8" comment="备用字段2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="PAYMONEY_LOG_REQ" req_type="0x00000004" 
+			res_name="PAYMONEY_LOG_RES" res_type="0x80000004"  comment="充值日志">
+		<req>
+			<object-property name="payMoneyFlow" type="PayMoneyFlow" comment="充值日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8" comment="级别" />
+				<property name="payMoney" type="long" comment="充值金额" />
+				<property name="type" type="String" encoding="UTF-8" comment="充值类型" />
+				<property name="quDao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="cost" type="String" encoding="UTF-8" comment="渠道手续费" />
+				<property name="cardType" type="String" encoding="UTF-8" comment="充值卡类型，例如盛大卡，神州行卡，联通卡" />
+			
+			    <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	<prototype req_name="SPENDMONEY_LOG_REQ" req_type="0x00000005" 
+			res_name="SPENDMONEY_LOG_RES" res_type="0x80000005"  comment="消费日志">
+		<req>
+			<object-property name="spendMoneyFlow" type="SpendMoneyFlow" comment="消费日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8" comment="级别" />
+				<property name="spendMoney" type="long" comment="消费金额" />
+			
+                <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+		<prototype req_name="ONLINEUSERSCOUNT_LOG_REQ" req_type="0x00000006" 
+			res_name="ONLINEUSERSCOUNT_LOG_RES"        res_type="0x80000006"  comment="用户在线人数日志">
+		<req>
+			<object-property name="onLineUsersCountFlow" type="OnLineUsersCountFlow" comment="用户在线人数日志">
+			
+				<property name="onlineTime" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="quDao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="userCount" type="long" comment="用户在线人数" />
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="CREATEPLAYER_LOG_REQ" req_type="0x00000007" 
+			res_name="CREATEPLAYER_LOG_RES"        res_type="0x80000007"  comment="用户创建角色日志">
+		<req>
+			<object-property name="createPlayerFlow" type="CreatePlayerFlow" comment="用户创建角色日志">
+			
+				<property name="creatPlayerTime" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="userName" type="String" encoding="UTF-8" comment="用户名" />
+				<property name="playerName" type="String" encoding="UTF-8" comment="角色名" />
+				<property name="qudao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="sex" type="String" encoding="UTF-8" comment="性别" />
+				<property name="nation" type="String" encoding="UTF-8" comment="国家" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="DAOJU_LOG_REQ" req_type="0x00000008" 
+			res_name="DAOJU_LOG_RES"        res_type="0x80000008"  comment="道具得失日志">
+		<req>
+			<object-property name="daoJuFlow" type="DaoJuFlow" comment="道具变更日志">
+			
+				<property name="id" type="long" comment="id"></property>
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="userName" type="String" encoding="UTF-8" comment="用户名" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="gameLevel" type="String" encoding="UTF-8" comment="游戏级别" />
+				<property name="daoJuName" type="String" encoding="UTF-8" comment="道具名称" />
+				<property name="huoBiType" type="String" encoding="UTF-8" comment="货币类型" />
+				<property name="danJia" type="long" comment="道具单价" />
+				<property name="daoJuNum" type="long" comment="道具数量" />
+				<property name="getType" type="String" encoding="UTF-8" comment="获取类型（如： 购买，使用，系统发送，交换）" />
+				<property name="position" type="String" encoding="UTF-8" comment="道具获取位置" />
+			
+			<property name="daoJuColor" type="String" encoding="UTF-8" comment="道具颜色" />
+			<property name="daoJuLevel" type="String" encoding="UTF-8" comment="道具级别" />
+			<property name="bindType" type="String" encoding="UTF-8" comment="道具绑定类型" />
+		    
+		    <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+		    <property name="vip" type="long" comment="vip" />
+		    <property name="guojia" type="String" encoding="UTF-8" comment="国家" />
+		    
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="TRANSACTION_LOG_REQ" req_type="0x00000009" 
+			res_name="TRANSACTION_LOG_RES"        res_type="0x80000009"  comment="道具变更日志">
+		<req>
+			<object-property name="transactionFlow" type="TransactionFlow" comment="道具交换日志">
+	
+				<property name="id" type="long" comment="id"></property>
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="transactionType" type="String" encoding="UTF-8" comment="交换类型（1邮件，2摆摊，3拍卖）" />
+				<property name="daoJuName" type="String" encoding="UTF-8" comment="道具名称" />
+				<property name="danjia" type="int" comment="道具单价" />
+				<property name="daojunum" type="int" comment="道具数量" />
+				<property name="fuserName" type="String" encoding="UTF-8" comment="送出玩家姓名" />
+				<property name="fgameLevel" type="String" encoding="UTF-8" comment="送出玩家级别" />
+				<property name="toUserName" type="String" encoding="UTF-8" comment="收获玩家姓名" />
+				<property name="toGameLevel" type="String" encoding="UTF-8" comment="收获玩家级别" />
+				
+			<property name="daoJuColor" type="String" encoding="UTF-8" comment="道具颜色" />
+			<property name="daoJuLevel" type="String" encoding="UTF-8" comment="道具级别" />
+			<property name="bindType" type="String" encoding="UTF-8" comment="道具绑定类型" />
+
+            <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+            
+             <property name="fvip" type="String" encoding="UTF-8" comment="发起者vip" />
+              <property name="tovip" type="String" encoding="UTF-8" comment="接受者vip" />
+               <property name="fguoJia" type="String" encoding="UTF-8" comment="发起者国家" />
+                <property name="toguoJia" type="String" encoding="UTF-8" comment="接受者国家" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="ACCEPTTASK_LOG_REQ"     req_type="0x00000010" 
+			res_name="ACCEPTTASK_LOG_RES"        res_type="0x80000010"  comment="接受任务日志">
+		<req>
+			<object-property name="acceptTaskFlow" type="AcceptTaskFlow" comment="接受任务日志">
+		
+				<property name="id" type="long" comment="id"></property>
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="userName" type="String" encoding="UTF-8" comment="玩家姓名" />
+				<property name="gameLevel" type="String" encoding="UTF-8" comment="玩家级别" />
+				<property name="taskName" type="String" encoding="UTF-8" comment="任务名称" />
+				<property name="taskType" type="String" encoding="UTF-8" comment="任务类型" />
+				
+				<property name="taskGroup" type="String" encoding="UTF-8" comment="任务组" />
+				<property name="preTaskGroup" type="String" encoding="UTF-8" comment="前置任务组" />
+				<property name="career" type="String" encoding="UTF-8" comment="职业" />
+				
+				 <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="FINISHTASK_LOG_REQ" req_type="0x00000011" 
+			res_name="FINISHTASK_LOG_RES"        res_type="0x80000011"  comment="完成任务日志">
+		<req>
+			<object-property name="finishTaskFlow" type="FinishTaskFlow" comment="完成任务日志">
+		
+				<property name="id" type="long" comment="id"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="userName" type="String" encoding="UTF-8" comment="玩家姓名" />
+				<property name="taskName" type="String" encoding="UTF-8" comment="任务名称" />
+				<property name="status" type="String" encoding="UTF-8" comment="完成状态" />
+				<property name="getYOuXiBi" type="int" comment="获取游戏币" />
+				<property name="getWuPin" type="int" comment="获取物品" />
+				<property name="getDaoJu" type="int" comment="获取道具" />
+				<property name="award" type="String" encoding="UTF-8" comment="获取奖励" />
+				
+				<property name="taskGroup" type="String" encoding="UTF-8" comment="任务组" />
+				<property name="preTaskGroup" type="String" encoding="UTF-8" comment="前置任务组" />
+				<property name="career" type="String" encoding="UTF-8" comment="前置任务组" />
+				
+				<property name="date" type="long" comment="任务完成日期"></property>
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="ACCEPTHUODONGINFO_LOG_REQ"     req_type="0x00000012" 
+			res_name="ACCEPTHUODONGINFO_LOG_RES"        res_type="0x80000012"  comment="接受活动日志">
+		<req>
+			<object-property name="acceptHuoDonginfoFlow" type="AcceptHuoDonginfoFlow" comment="接受活动日志">
+		
+				<property name="id" type="long" comment="id"></property>
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="userName" type="String" encoding="UTF-8" comment="玩家姓名" />
+				<property name="gameLevel" type="String" encoding="UTF-8" comment="玩家级别" />
+				<property name="taskName" type="String" encoding="UTF-8" comment="活动名称" />
+				<property name="taskType" type="String" encoding="UTF-8" comment="活动类型" />
+				
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="FINISHHUODONGINFO_LOG_REQ" req_type="0x00000013" 
+			res_name="FINISHHUODONGINFO_LOG_RES"        res_type="0x80000013"  comment="完成活动日志">
+		<req>
+			<object-property name="finishHuoDonginfoFlow" type="FinishHuoDonginfoFlow" comment="完成活动日志">
+		
+				<property name="id" type="long" comment="id"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="userName" type="String" encoding="UTF-8" comment="玩家姓名" />
+				<property name="taskName" type="String" encoding="UTF-8" comment="活动名称" />
+				<property name="status" type="String" encoding="UTF-8" comment="完成状态" />
+				<property name="getYOuXiBi" type="int" comment="获取游戏币" />
+				<property name="getWuPin" type="int" comment="获取物品" />
+				<property name="getDaoJu" type="int" comment="获取道具" />
+				<property name="award" type="String" encoding="UTF-8" comment="获取奖励" />
+				
+			    <property name="date" type="long" comment="活动完成日期"></property>
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="GAMECHONGZHI_LOG_REQ" req_type="0x00000014" 
+			res_name="GAMECHONGZHI_LOG_RES"        res_type="0x80000014"  comment="游戏中的货币充值，消耗日志">
+		<req>
+			<object-property name="gameChongZhiFlow" type="GameChongZhiFlow" comment="游戏中的货币充值，消耗日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="time" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="gameLevel" type="String" encoding="UTF-8" comment="级别" />
+				<property name="money" type="long" comment="充值金额" />
+				
+				<property name="action" type="int" encoding="UTF-8" comment="充值还是消耗,0 充值 ，1 消耗" />
+				<property name="quDao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="currencyType" type="String" encoding="UTF-8" comment="货币类型" />
+				<property name="reasonType" type="String" encoding="UTF-8" comment="原因" />
+				
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="STATUSERGUIDE_LOG_REQ" req_type="0x00000015" 
+			res_name="STATUSERGUIDE_LOG_RES"        res_type="0x80000015"  comment="新手引导日志">
+		<req>
+			<object-property name="statUserGuideFlow" type="StatUserGuideFlow" comment="新手引导日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="createDate" type="long" comment="操作日期（精确到秒）"></property>
+				<property name="registDate" type="long" comment="注册日期"/>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="playerName" type="String" encoding="UTF-8" comment="角色名称" />
+				<property name="quDao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="step" type="String" encoding="UTF-8" comment="操作步骤" />
+				<property name="action" type="String" encoding="UTF-8" comment="1继续引导 2 跳过完成引导" />
+			
+			     <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="TRANSACTION_SPECIAL_LOG_REQ" req_type="0x00000016" 
+			res_name="TRANSACTION_SPECIAL_RES"        res_type="0x80000016"  comment="特殊交易日志">
+		<req>
+			<object-property name="transaction_SpecialFlow" type="Transaction_SpecialFlow" comment="特殊交易日志">
+	
+				<property name="id" type="long" comment="id"></property>
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="transactionType" type="String" encoding="UTF-8" comment="交换类型（1邮件，2摆摊，3拍卖）" />
+				
+				<property name="fuuId" type="String" encoding="UTF-8" comment="送出玩家UUID" />
+				<property name="fuserName" type="String" encoding="UTF-8" comment="送出玩家用户名" />
+				<property name="fplayerName" type="String" encoding="UTF-8" comment="送出玩家角色名" />
+				<property name="fquDao" type="String" encoding="UTF-8" comment="送出玩家渠道" />
+				<property name="fdaoJuName" type="String" encoding="UTF-8" comment="送出玩家道具名" />
+				<property name="fyinzi" type="long"  comment="送出玩家银子" />
+				<property name="fjiazhi" type="long"  comment="送出玩家价值" />
+				
+				<property name="fregisttime" type="long"  comment="送出玩家注册时间" />
+				<property name="fcreatPlayerTime" type="long"  comment="送出玩家创建角色时间" />
+				<property name="flevel" type="String" encoding="UTF-8"   comment="" />
+				<property name="fvip" type="String" encoding="UTF-8"   comment="" />
+				<property name="ftotalMoney" type="long"  comment="出货方总充值钱数" />
+                <property name="toRegisttime" type="long"  comment="收货玩家注册时间" />
+                <property name="toCreatPlayerTime" type="long"  comment="收货玩家创建角色时间" />
+                <property name="toLevel" type="String" encoding="UTF-8"   comment="" />
+                <property name="toVip" type="String" encoding="UTF-8"   comment="" />
+                <property name="toTotalMoney" type="long"  comment="收货方总充值钱数" />
+	
+				<property name="touuId" type="String" encoding="UTF-8" comment="收获玩家UUID" />
+				<property name="toUserName" type="String" encoding="UTF-8" comment="收获玩家用户名" />
+				<property name="toPlayername" type="String" encoding="UTF-8" comment="收获玩家角色名" />
+				<property name="toquDao" type="String" encoding="UTF-8" comment="收获玩家渠道" />
+				<property name="todaoJuName" type="String" encoding="UTF-8" comment="收获玩家道具名" />
+				<property name="toyinzi" type="long"  comment="收获玩家银子" />
+				<property name="tojiazhi" type="long"  comment="收获玩家价值" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="YINZIKUCUN_LOG_REQ" req_type="0x00000017" 
+			res_name="YINZIKUCUN_LOG_RES"        res_type="0x80000017"  comment="银子库存日志">
+		<req>
+			<object-property name="yinZiKuCunFlow" type="YinZiKuCunFlow" comment="银子库存日志">
+				
+				<property name="count" type="long" comment="库存银子数"></property>
+				<property name="createDate" type="long" comment="操作日期（精确到秒）"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="column1" type="String" encoding="UTF-8" comment="备用字段" />
+				<property name="column2" type="String" encoding="UTF-8" comment="备用字段" />
+				<property name="column3" type="String" encoding="UTF-8" comment="备用字段" />
+				<property name="column4" type="String" encoding="UTF-8" comment="备用字段" />
+				<property name="column5" type="String" encoding="UTF-8" comment="备用字段" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+	
+	
+	<prototype req_name="PAYMONEYUPDATE_LOG_REQ" req_type="0x00000018" 
+			res_name="PAYMONEYUPDATE_LOG_RES" res_type="0x80000018"  comment="充值日志">
+		<req>
+			<object-property name="PayMoneyUpGradeFlow" type="PayMoneyUpGradeFlow" comment="充值日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="date" type="long" comment="日期（精确到秒）"></property>
+				<property name="game" type="String" encoding="UTF-8" comment="游戏" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="level" type="String" encoding="UTF-8" comment="级别" />
+				<property name="payMoney" type="long" comment="充值金额" />
+				<property name="type" type="String" encoding="UTF-8" comment="充值类型" />
+				<property name="quDao" type="String" encoding="UTF-8" comment="渠道" />
+				<property name="cost" type="String" encoding="UTF-8" comment="渠道手续费" />
+				<property name="cardType" type="String" encoding="UTF-8" comment="充值卡类型，例如盛大卡，神州行卡，联通卡" />
+			    <property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+			    
+			    <property name="modelType" type="String" encoding="UTF-8" comment="设备型号" />
+			    <property name="vip" type="String" encoding="UTF-8" comment="vip" />
+			    <property name="registDate" type="long" comment="用户注册时间" />
+			    <property name="playName" type="String" comment="角色名称" />
+			    <property name="colum1" type="String" comment="备用字段" />
+			    
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+		<prototype req_name="LIBAO_LOG_REQ" req_type="0x00000019" 
+			res_name="LIBAO_LOG_RES" res_type="0x80000019"  comment="周月礼包日志">
+		<req>
+			<object-property name="LibaoFlow" type="LibaoFlow" comment="周月礼包日志">
+				<property name="daoJuName" type="String" encoding="UTF-8" comment="名称"></property>
+				<property name="createDate" type="long" comment="日期（精确到秒）"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				
+				<property name="count" type="int" encoding="UTF-8" comment="人数" />
+				<property name="danjia" type="long" comment="单价" />
+				<property name="type" type="int" encoding="UTF-8" comment="类型 1:达到条件,2:领取" />
+			    <property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+			    <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="TRANSACTION_FACE_LOG_REQ" req_type="0x00000020" 
+			res_name="TRANSACTION_FACE_RES"        res_type="0x80000020"  comment="面对面交易日志">
+		<req>
+			<object-property name="transaction_FaceFlow" type="Transaction_FaceFlow" comment="面对面交易日志">
+				<property name="createDate" type="long" comment="日期"></property>
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="zhenYing" type="String" encoding="UTF-8" comment="阵营" />
+				
+				<property name="fuserName" type="String" encoding="UTF-8" comment="送出玩家用户名" />
+				<property name="fquDao" type="String" encoding="UTF-8" comment="送出玩家渠道" />
+				<property name="fdaoJu" type="String" encoding="UTF-8" comment="送出玩家道具名" />
+				<property name="flevel" type="String" encoding="UTF-8" comment="送出玩家级别" />
+				<property name="fvip" type="String" encoding="UTF-8" comment="送出玩家vip" />
+				<property name="fmoney" type="long"  comment="送出玩家银子" />
+            
+                <property name="toLevel" type="String" encoding="UTF-8"   comment="" />
+                <property name="toVip" type="String" encoding="UTF-8"   comment="" />
+				<property name="toUserName" type="String" encoding="UTF-8" comment="收获玩家用户名" />
+				<property name="toquDao" type="String" encoding="UTF-8" comment="收获玩家渠道" />
+				<property name="todaoJu" type="String" encoding="UTF-8" comment="收获玩家道具名" />
+				<property name="toMoney" type="long"  comment="收获玩家银子" />
+				
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="TRANSFER_PLATFORM_LOG_REQ" req_type="0x00000021" 
+			res_name="TRANSFER_PLATFORM_RES"        res_type="0x80000021"  comment="交易平台日志">
+		<req>
+			<object-property name="transfer_PlatformFlow" type="Transfer_PlatformFlow" comment="交易平台日志">
+				
+				
+				<property name="id" type="String" encoding="UTF-8" comment="订单ID" />
+				<property name="articleId" type="String" encoding="UTF-8" comment="道具ID" />
+				<property name="articleName" type="String" encoding="UTF-8" comment="道具名称" />
+				<property name="articleColor" type="String" encoding="UTF-8" comment="道具颜色" />
+				<property name="cellIndex" type="String" encoding="UTF-8" comment="背包中的格子号" />
+				<property name="goodsCount" type="String" encoding="UTF-8" comment="此次购买的道具数量" />
+				
+				<property name="createTime" type="long" comment="订单创建时间"></property>
+				<property name="payMoney" type="long" comment="订单金额"></property>
+				
+				<property name="sellPassportId" type="String" encoding="UTF-8" comment="卖家的账号id" />
+				<property name="sellPassportName" type="String" encoding="UTF-8" comment="卖家的账号" />
+				<property name="sellPlayerId" type="String" encoding="UTF-8" comment="卖家的角色id" />
+				<property name="sellPlayerName" type="String" encoding="UTF-8" comment="卖家的角色名	" />
+				<property name="sellPassportChannel" type="String" encoding="UTF-8" comment="卖家的渠道" />
+				<property name="sellPlayerLevel" type="String" encoding="UTF-8" comment="卖家的等级" />
+				<property name="sellVipLevel" type="String" encoding="UTF-8" comment="卖家的vip等级" />
+				<property name="tradeType" type="String" encoding="UTF-8" comment="交易类型" />
+				<property name="responseResult" type="String" encoding="UTF-8" comment="订单交易结果" />
+				
+	            <property name="tradeMoney" type="long" comment="手续费"></property>
+				
+	             <property name="buyPlayerId" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPlayerName" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPassportId" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPassportName" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPlayerLevel" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPlayerVipLevel" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="buyPassportChannel" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             <property name="serverName" type="String" encoding="UTF-8" comment="卖家的账号id" />
+	             
+	             <property name="articleSalePaySilver" type="String" encoding="UTF-8" comment="挂单" />
+	             <property name="cancelSaleSilver" type="String" encoding="UTF-8" comment="提前银锭交易撤单扣除银两" />
+	             
+	             <property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	             <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+	             <property name="column3" type="String" encoding="UTF-8" comment="备用项3" />
+	             <property name="column4" type="String" encoding="UTF-8" comment="备用项4" />
+
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="BATTLE_COSTTIME_LOG_REQ" req_type="0x00000022" 
+			res_name="BATTLE_COSTTIME_RES"        res_type="0x80000022"  comment="每场战斗用的时间日志">
+		<req>
+			<object-property name="battle_costTimeFlow" type="Battle_costTimeFlow" comment="每场战斗用的时间日志">
+				
+				<property name="type" type="String" encoding="UTF-8" comment="模式" />
+				<property name="fenqu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="costTime" type="long" encoding="UTF-8" comment="战斗花费时间" />
+				<property name="haoTianCount" type="String" encoding="UTF-8" comment="昊天人数" />
+				<property name="wuHuangCount" type="String" encoding="UTF-8" comment="巫皇人数" />
+				<property name="lingZunCount" type="String" encoding="UTF-8" comment="灵尊人数" />
+				<property name="guiShaCount" type="String" encoding="UTF-8" comment="鬼煞人数" />
+				<property name="createTime" type="long" comment="创建时间"></property>
+				<property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	            <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+
+    <prototype req_name="BATTLE_PLAYERSTAT_LOG_REQ" req_type="0x00000023" 
+			res_name="BATTLE_PLAYERSTAT_RES"        res_type="0x80000023"  comment="每个人的功勋时间日志">
+		<req>
+			<object-property name="battle_PlayerStatFlow" type="Battle_PlayerStatFlow" comment="每个人的功勋时间日志">
+				
+				<property name="type" type="String" encoding="UTF-8" comment="模式" />
+				<property name="fenqu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="gongxun" type="String" encoding="UTF-8" comment="功勋值" />
+				<property name="PlayerCount" type="long" encoding="UTF-8" comment="玩家人数" />
+				<property name="createTime" type="long" comment="创建时间"></property>
+				<property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	            <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+
+
+ <prototype req_name="BATTLE_TEAMSTAT_LOG_REQ" req_type="0x00000024" 
+			res_name="BATTLE_TEAMSTAT_RES"        res_type="0x80000024"  comment="团队功勋时间日志">
+		<req>
+			<object-property name="battle_TeamStatFlow" type="Battle_TeamStatFlow" comment="团队功勋时间日志">
+				
+				<property name="type" type="String" encoding="UTF-8" comment="模式" />
+				<property name="fenqu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="gongxun" type="String" encoding="UTF-8" comment="功勋值" />
+				<property name="guojia" type="String" encoding="UTF-8" comment="国家" />
+				<property name="haoTianCount" type="String" encoding="UTF-8" comment="昊天人数" />
+				<property name="wuHuangCount" type="String" encoding="UTF-8" comment="巫皇人数" />
+				<property name="lingZunCount" type="String" encoding="UTF-8" comment="灵尊人数" />
+				<property name="guiShaCount" type="String" encoding="UTF-8" comment="鬼煞人数" />
+				<property name="createTime" type="long" comment="创建时间"></property>
+				
+				<property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	            <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	 <prototype req_name="FUMO_LOG_REQ" req_type="0x00000025" 
+			res_name="FUMO_LOG_RES"        res_type="0x80000025"  comment="附魔日志">
+		<req>
+			<object-property name="fuMoFlow" type="FuMoFlow" comment="附魔日志">
+				<property name="userName" type="String" encoding="UTF-8" comment="用户名" />
+				<property name="createTime" type="long" comment="创建时间"></property>
+				<property name="type" type="String" encoding="UTF-8" comment="类型" />
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="foMoWuPinName" type="String" encoding="UTF-8" comment="佛魔物品" />
+				<property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	            <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+	 <prototype req_name="NPC_LOG_REQ" req_type="0x00000026" 
+			res_name="NPC_LOG_RES"        res_type="0x80000026"  comment="NPC日志">
+		<req>
+			<object-property name="npcinfoFlow" type="NpcinfoFlow" comment="Npc日志">
+				<property name="createDate" type="long" comment="创建时间"></property>
+				
+				<property name="fenQu" type="String" encoding="UTF-8" comment="分区" />
+				<property name="userName" type="String" encoding="UTF-8" comment="用户名" />
+				<property name="gameLevel" type="int" encoding="UTF-8" comment="gameLevel" />
+				
+				<property name="npcName" type="String" encoding="UTF-8" comment="npcName" />
+				<property name="taskType" type="String" encoding="UTF-8" comment="任务类型" />
+				<property name="getYOuXiBi" type="int" encoding="UTF-8" comment="YOuXiBi" />
+				
+				<property name="getWuPin" type="int" encoding="UTF-8" comment="获取物品数量" />
+				<property name="getDaoJu" type="int" encoding="UTF-8" comment="获取道具数" />
+				<property name="award" type="String" encoding="UTF-8" comment="获取奖励" />
+				
+				<property name="career" type="String" encoding="UTF-8" comment="职业" />
+				<property name="jixing" type="String" encoding="UTF-8" comment="机型" />
+				<property name="column1" type="String" encoding="UTF-8" comment="备用项1" />
+	            <property name="column2" type="String" encoding="UTF-8" comment="备用项2" />
+			
+			</object-property>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-失败, 1-成功"/>
+		</res>
+	</prototype>
+	
+</prototypes>

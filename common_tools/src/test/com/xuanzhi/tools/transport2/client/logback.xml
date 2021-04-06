@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<property name="log.base" value="d:/"/>
+	
+	<appender name="Selector" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/selectorClient.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/selectorClient.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport2.DefaultConnectionSelector2">
+		<level value="WARN" />
+		<appender-ref ref="Selector" />
+	</logger>
+	
+	<appender name="Connection" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/connectionClient.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				${log.base}/connectionClient.log.%d{yyyy-MM-dd}.log
+    		</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%level] %date - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.xuanzhi.tools.transport2.Connection2">
+		<level value="WARN" />
+		<appender-ref ref="Connection" />
+	</logger>
+
+</configuration>

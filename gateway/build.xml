@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="gbk"?>
+
+<project name="game_gateway" default="main" basedir=".">
+
+	<property name="src" value="src"/>
+	<property name="build" value="build"/>
+	<property name="dist" value="."/>
+	<property name="web" value="web"/>
+	<property name="log_path" value="log"/>
+	<property name="bin" value="bin"/>
+	<property name="lib" value="lib"/>
+	<property name="conf" value="conf"/>
+	<property name="version" value="1.0"/>
+	<property name="com" value="game"/>
+	<property name="name" value="gateway"/><!--boss,server-->
+	<property name="ant_home" value="/usr/local/ant"/>	
+	<property name="clover" value="clover"/>
+	<property name="webapp_path" value="/home/yauser/game/resin_gateway/webapps"/>
+	<property name="log_path" value="/home/yauser/game/resin_gateway/log"/>
+
+	<path id="project.class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+	<!--step to use clover: 
+		1,ant with.clover query-test
+		2,ant clover.report
+	-->
+
+	<target name="init" depends="clean">
+		<!-- create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" fork="true" memorymaximumsize="1g" encoding="utf-8" debug="on" optimize="off">
+			<classpath refid="project.class.path"/>
+		</javac>
+	</target>
+	
+	<target name="main" depends="compile">
+		<mkdir dir="${dist}/lib"/>
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+
+	<target name="game_gateway_test">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path}/game_gateway"/>
+		<mkdir dir="${log_path}/game_gateway"/>
+		<copy todir="${webapp_path}/game_gateway/WEB-INF/conf">
+			<fileset dir="${conf}/testnew">
+				<patternset>
+					<include name="*.*"/>
+  				</patternset>
+			</fileset>
+		</copy>
+		<copy file="${conf}/testnew/simpleEMF.xml" tofile="${webapp_path}/game_gateway/WEB-INF/conf/simpleEMF.xml"/>
+		<copy file="${conf}/testnew/log4j.properties" tofile="${webapp_path}/game_gateway/WEB-INF/conf/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/testnew/logback.xml" tofile="${webapp_path}/game_gateway/WEB-INF/classes/logback.xml"/>
+		<copy file="${conf}/testnew/web.xml" tofile="${webapp_path}/game_gateway/WEB-INF/web.xml"/>
+		<copy file="${conf}/testnew/gateway.properties" tofile="${webapp_path}/game_gateway/WEB-INF/conf/gateway.properties"/>
+		<copy file="${conf}/testnew/gateway_server_context.xml" tofile="${webapp_path}/game_gateway/WEB-INF/conf/gateway_server_context.xml"/>
+		<copy todir="${webapp_path}/game_gateway/WEB-INF/lib/">
+             <fileset dir="${lib}"/>
+	    </copy>
+		
+		<mkdir dir="${webapp_path}/game_gateway/admin"/>    		
+		<copy todir="${webapp_path}/game_gateway/admin">
+            <fileset dir="web">
+               <include name="**/*.*"/>
+            </fileset>
+	    </copy>
+				
+	</target>	
+	
+	<target name="game_gateway_release">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path}/game_gateway"/>
+		<mkdir dir="${log_path}/game_gateway"/>
+		<copy todir="${webapp_path}/game_gateway/WEB-INF/conf">
+			<fileset dir="${conf}/release">
+				<patternset>
+					<include name="*.*"/>
+  				</patternset>
+			</fileset>
+		</copy>
+		<copy file="${conf}/release/simpleEMF.xml" tofile="${webapp_path}/game_gateway/WEB-INF/conf/simpleEMF.xml"/>
+		<copy file="${conf}/release/log4j.properties" tofile="${webapp_path}/game_gateway/WEB-INF/conf/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/release/logback.xml" tofile="${webapp_path}/game_gateway/WEB-INF/classes/logback.xml"/>
+		<copy file="${conf}/release/web.xml" tofile="${webapp_path}/game_gateway/WEB-INF/web.xml"/>
+		<copy file="${conf}/release/gateway.properties" tofile="${webapp_path}/game_gateway/WEB-INF/conf/gateway.properties"/>
+		<copy file="${conf}/release/gateway_server_context.xml" tofile="${webapp_path}/game_gateway/WEB-INF/conf/gateway_server_context.xml"/>
+		<copy todir="${webapp_path}/game_gateway/WEB-INF/lib/">
+             <fileset dir="${lib}"/>
+	    </copy>
+		
+		<mkdir dir="${webapp_path}/game_gateway/admin"/>    		
+		<copy todir="${webapp_path}/game_gateway/admin">
+            <fileset dir="web">
+               <include name="**/*.*"/>
+            </fileset>
+	    </copy>
+	</target>	
+
+	<target name="generate_message_for_gw">
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer
+		      	-package com.fy.gamegateway.message     	
+		      	-output.dir ./conf/newMessage
+		      	-encoding utf-8
+		      	-classes com.fy.gamegateway.mieshi.server.ServerInfoForClient
+		      	-classes com.fy.gamegateway.gmaction.GmAction
+		      	-classes com.fy.gamegateway.menu.Option
+		      	-file ./conf/common/message_gateway.xml"/> 
+		      <classpath>
+		      	<fileset dir="lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>	
+		      </classpath>
+		</java>	
+	</target>
+	
+	<target name="clean">
+		<!-- delete the ${build} -->
+		<delete dir="${build}"/>
+		<delete file="${dist}/lib/${com}-${name}-${version}.jar"/>
+	</target>
+</project>
+

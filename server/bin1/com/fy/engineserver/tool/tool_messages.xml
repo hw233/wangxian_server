@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<prototypes version="1.0" author="">
+
+	<verification name="Verification" a="0x67452301" b="0xEFCDAB89" c="0x98BADCFE" d="0x10325476" />
+	<prototype req_name="VERIFY_USER_REQ" res_name="VERIFY_USER_RES"
+		req_type="0x00000040" res_type="0x80000040" comment="工具客户端发送验证信息给服务器，等待验证结果">
+		<req verification-enable="true" verification-keyword="POIUYH564RFbhd">
+			<property name="username" type="String" encoding="UTF-8"
+				comment="用户名" />
+			<property name="password" type="String" comment="密码" />
+			<property name="product" type="String" comment="验证的工具名称" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆 其它表示出错" />
+			<property name="resultString" type="String" encoding="UTF-8"
+				comment="错误信息" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="NPC_REQ" res_name="NPC_RES" req_type="0x00000001"
+		res_type="0x80000001" comment="请求NPC数据">
+		<res>
+			<object-property name="npcs" type="NPC[]" comment="">
+			<property name="avataRace" type="String" encoding="UTF-8" comment="客户端用来定位形象"> </property>
+			<property name="avataSex" type="String" encoding="UTF-8" comment="客户端用来定位形象" />
+			<property name="name" type="String" encoding="UTF-8" comment="精灵的昵称"></property>
+			<property name="title" type="String" encoding="UTF-8" comment="精灵的称号"></property>
+			<property name="nPCCategoryId" type="int" comment="指定的NPC的分类编号" />
+			<property name="level" type="short" comment="精灵的等级" />
+			<property name="npcType" type="byte" comment="区别不同种类的NPC" />
+			<property name="politicalCamp" type="byte" comment="NPC 阵营 0-中立，1-紫薇宫，2-日月盟" />			
+			</object-property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="MONSTER_REQ" res_name="MONSTER_RES" req_type="0x00000002"
+		res_type="0x80000002" comment="请求MONSTER数据">
+		<res>
+			<object-property name="monsters" type="Monster[]" comment="">
+			<property name="avataRace" type="String" encoding="UTF-8" comment="客户端用来定位形象"> </property>
+			<property name="avataSex" type="String" encoding="UTF-8" comment="客户端用来定位形象" />
+			<property name="name" type="String" encoding="UTF-8" comment="精灵的昵称"></property>
+			<property name="title" type="String" encoding="UTF-8" comment="精灵的称号"></property>
+			<property name="spriteCategoryId" type="int" comment="指定的monsters的分类编号" />
+			<property name="level" type="short" comment="精灵的等级" />
+			</object-property>
+		</res>
+	</prototype>
+
+</prototypes>

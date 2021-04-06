@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div id="bdshare" style="right: 0px; top: 130px; position: fixed; height: 330px; overflow: hidden; width: 24px;">
+	<img  id="bdimg" style="float:left;margin-top:58px;" alt="" src="http://bdimg.share.baidu.com/static/images/r2.gif">
+	<iframe id="bdsIfr" frameborder="0" style="position:absolute;display:none;z-index:9999;width:0px;top:0px;right:0px;height:314px;">
+</div>
+<script type="text/javascript">
+	function init()
+	{
+		alert("aa");
+		var img = document.getElementById("bdimg");
+		img.addEventListener("mouseover",listen(),false);
+		img.addEventListener("mouseout",listenO(),false);
+	}
+	
+	function listen()
+	{
+			var div = document.getElementById("bdshare");
+			var frm = document.getElementById("bdsIfr");
+			frm.style.width = "212px";
+			frm.style.display = "block";
+			div.style.width = "236px";
+			div.style.display = "block";
+	}
+	
+	function listenO()
+	{
+			var frm = document.getElementById("bdsIfr");
+			frm.style.width = "0px";
+			frm.style.display = "none";
+			div.style.width = "24px";
+			div.style.display = "hidden";
+	}
+	
+	init();
+</script>
+</body>
+</html>
+
+</body>
+</html>

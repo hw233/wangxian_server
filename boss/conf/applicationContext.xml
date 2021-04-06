@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/WEB-INF/boss.properties</value>
+		</property>
+	</bean>
+	<bean id="GameConstants" class="com.xuanzhi.boss.game.GameConstants" init-method="init" scope="singleton">
+		<property name="gameName" value="${constants.game.name}"></property>
+	</bean>
+	<bean id="PassportManager" class="com.fy.boss.authorize.service.PassportManager" scope="singleton"  init-method="initialize">
+		<property name="passportDAO" ref="PassportDAO"></property>
+	</bean>
+	<bean id="OrderFormManager" class="com.fy.boss.finance.service.OrderFormManager" scope="singleton" init-method="initialize">
+		<property name="orderFormDAO" ref="OrderFormDAO"></property>
+	</bean>
+	<bean id="ServerManager" class="com.fy.boss.game.service.ServerManager" scope="singleton" init-method="initialize">
+		<property name="serverDAO" ref="ServerDAO"></property>
+	</bean>
+	
+	<bean id="boss_system_server" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="${boss.system.server.name}"></property>
+		<property name="clientModel" value="false"></property>
+		<property name="multiServerModel" value="false"></property>
+		<property name="secondaryServerNum" value="1"></property>
+		<property name="host" value="${boss.system.server.host}"></property>
+		<property name="port" value="${boss.system.server.port}"></property>
+		<property name="connectionConnectedHandler" ref="boss_system_server_connector">
+		</property>
+	</bean>
+	<bean id="boss_system_server_connector" class="com.fy.boss.transport.BossServerService"  scope="singleton">
+		<property name="connectionSelector" ref="boss_system_server"></property>
+		<property name="passportManager" ref="PassportManager"></property>
+		<property name="serverManager" ref="ServerManager"></property>
+		<property name="orderFormManager" ref="OrderFormManager"></property>
+	</bean>
+	
+	<bean id="UCSDKSavingManager" class="com.fy.boss.platform.uc.UCSDKSavingManager" scope="singleton" init-method="initialize"> 
+	</bean>
+	<!-- GM -->
+	<bean id="boss_system_server_gm" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="${boss.system.server.name.gm}"></property>
+		<property name="clientModel" value="false"></property>
+		<property name="multiServerModel" value="false"></property>
+		<property name="secondaryServerNum" value="1"></property>
+		<property name="host" value="${boss.system.server.host.gm}"></property>
+		<property name="port" value="${boss.system.server.port.gm}"></property>
+		<property name="connectionConnectedHandler" ref="boss_system_server_connector_gm">
+		</property>
+	</bean>
+	<bean id="boss_system_server_connector_gm" class="com.fy.boss.gm.newfeedback.service.BossGmServerService"  scope="singleton">
+		<property name="connectionSelector" ref="boss_system_server_gm"></property>
+	</bean>
+	
+	
+	<bean id="CMDService" class="com.fy.boss.cmd.CMDService" init-method="initialize" scope="singleton">
+	</bean>
+	<bean id="ProjectManager" class="com.fy.boss.deploy.ProjectManager" init-method="initialize" scope="singleton">
+		<property name="projectFile" value="${project.deploy.file}"></property>
+		<property name="cmdService" ref="CMDService"></property>
+		<property name="serverManager" ref="ServerManager"></property>
+	</bean>
+	<bean id="notify_saving" class="com.fy.boss.finance.service.NotifySavingManager"  scope="singleton" init-method="init">
+	</bean>
+	<!--  
+	<bean id="qq_message_service" class="com.fy.boss.platform.qq.QQMessageService"  scope="singleton" init-method="init">
+	</bean>
+	-->
+	<bean id="platformSavingCenter" class="com.fy.boss.finance.service.PlatformSavingCenter"  scope="singleton" init-method="initialize">
+	</bean>
+	<bean id="GameServerSzfSavingManager" class="com.fy.boss.finance.service.platform.GameServerSzfSavingManager"  scope="singleton" init-method="initialize">
+	</bean>
+	<bean id="GameServerYeepaySavingManager" class="com.fy.boss.finance.service.platform.GameServerYeepaySavingManager"  scope="singleton" init-method="initialize">
+	</bean>
+	
+	<!-- GM -->
+	<bean id="ModuleTypeManager" class="com.fy.boss.gm.ModuleTypeManager" scope="singleton" init-method="initialize">
+		<property name="typeConfFile" value="${project.boss.base}/WEB-INF/typemodule.xml">
+		</property>
+	</bean>
+	<bean id="XmlServerManager" class="com.fy.boss.gm.XmlServerManager" scope="singleton" init-method="initialize">
+		<property name="serverConfFile" value="${project.boss.base}/WEB-INF/server.xml">
+		</property>
+	</bean>
+	<bean id="XmlRoleManager" class="com.fy.boss.gm.XmlRoleManager" scope="singleton" init-method="initialize">
+		<property name="roleConfFile" value="${project.boss.base}/WEB-INF/role.xml">
+		</property>
+	</bean>
+	<bean id="TelRecordManager" class="com.fy.boss.gm.record.TelRecordManager" scope="singleton" init-method="initialize">
+		<property name="telrecordfile" value="${project.boss.base}/WEB-INF/telrecord.xml">
+		</property>
+	</bean>
+	<bean id="ActionManager" class="com.fy.boss.gm.record.ActionManager" scope="singleton" init-method="initialize">
+		<property name="fileroot" value="${project.boss.base}/WEB-INF/actionrecord/">
+		</property>
+		<property name="actionsrcfile" value="${project.boss.base}/WEB-INF/actionrecordsrc.xml">
+		</property>
+	</bean>
+	<bean id="BanPassportManager" class="com.fy.boss.gm.gmuser.server.BanPassportManager" scope="singleton" init-method="initialize">
+		<property name="bpfile" value="${project.boss.base}/WEB-INF/banpassport.xml">
+		</property>
+	</bean>
+	<bean id="RecoverManager" class="com.fy.boss.gm.record.RecoverManager" scope="singleton" init-method="initialize">
+		<property name="recoverfile" value="${project.boss.base}/WEB-INF/recover.xml">
+		</property>
+	</bean>
+	<bean id="SavingForbidManager" class="com.fy.boss.finance.service.SavingForbidManager" scope="singleton" init-method="init">
+		<property name="cacheFile" value="${project.boss.base}/WEB-INF/forbidSaving.ddc">
+		</property>
+	</bean>
+	<bean id="AlipaySavingManager" class="com.fy.boss.finance.service.platform.AlipaySavingManager"  scope="singleton" init-method="initialize">
+	</bean>
+	<!-- gm -->
+ 	<bean id="GmSystemNoticeManager" class="com.fy.boss.gm.gmuser.server.GmSystemNoticeManager" scope="singleton" init-method="init" destroy-method="destroy">
+	</bean>
+	<bean id="TransferQuestionManager" class="com.fy.boss.gm.gmuser.server.TransferQuestionManager" scope="singleton" init-method="init" destroy-method="destroy">
+		<property name="dataFile" value="${project.boss.base}/WEB-INF/questionMaxNum.xml">
+		</property>
+	</bean>
+	<bean id="BossGmClientService" class="com.fy.boss.gm.newfeedback.client.BossGmClientService" scope="singleton" init-method="init" destroy-method="destroy">
+	</bean>
+</beans>

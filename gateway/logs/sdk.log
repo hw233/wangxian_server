@@ -1,0 +1,198 @@
+0    DEBUG [2018-03-21 17:34:58]  CookieSpec selected: default
+8    DEBUG [2018-03-21 17:34:58]  Auth cache not set in the context
+9    DEBUG [2018-03-21 17:34:58]  Connection request: [route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+31   DEBUG [2018-03-21 17:34:58]  Connection leased: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+32   DEBUG [2018-03-21 17:34:58]  Opening connection {s}->https://gss-cn.game.hicloud.com:443
+70   DEBUG [2018-03-21 17:34:58]  Connecting to gss-cn.game.hicloud.com/118.194.62.184:443
+70   DEBUG [2018-03-21 17:34:58]  Connecting socket to gss-cn.game.hicloud.com/118.194.62.184:443 with timeout 0
+890  DEBUG [2018-03-21 17:34:59]  Enabled protocols: [TLSv1]
+890  DEBUG [2018-03-21 17:34:59]  Enabled cipher suites:[SSL_RSA_WITH_RC4_128_MD5, SSL_RSA_WITH_RC4_128_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_DES_CBC_SHA, SSL_DHE_RSA_WITH_DES_CBC_SHA, SSL_DHE_DSS_WITH_DES_CBC_SHA, SSL_RSA_EXPORT_WITH_RC4_40_MD5, SSL_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA]
+891  DEBUG [2018-03-21 17:34:59]  Starting handshake
+947  DEBUG [2018-03-21 17:34:59]  Secure session established
+947  DEBUG [2018-03-21 17:34:59]   negotiated protocol: TLSv1
+947  DEBUG [2018-03-21 17:34:59]   negotiated cipher suite: SSL_RSA_WITH_3DES_EDE_CBC_SHA
+947  DEBUG [2018-03-21 17:34:59]   peer principal: CN=*.game.hicloud.com, OU=Cloud Platform Dept CNDR, O="Huawei Software Technologies Co., Ltd", L=Nanjing, ST=Jiangsu, C=CN
+947  DEBUG [2018-03-21 17:34:59]   peer alternative names: [*.game.hicloud.com]
+947  DEBUG [2018-03-21 17:34:59]   issuer principal: CN=Symantec Class 3 Secure Server CA - G4, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+996  DEBUG [2018-03-21 17:34:59]  Connection established 192.168.51.168:54342<->118.194.62.184:443
+996  DEBUG [2018-03-21 17:34:59]  Executing request POST /gameservice/api/gbClientApi HTTP/1.1
+996  DEBUG [2018-03-21 17:34:59]  Target auth state: UNCHALLENGED
+996  DEBUG [2018-03-21 17:34:59]  Proxy auth state: UNCHALLENGED
+997  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> POST /gameservice/api/gbClientApi HTTP/1.1
+997  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> Content-Length: 850
+997  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> Host: gss-cn.game.hicloud.com
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> Connection: Keep-Alive
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> Accept-Encoding: gzip,deflate
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "POST /gameservice/api/gbClientApi HTTP/1.1[\r][\n]"
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "Content-Length: 850[\r][\n]"
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "Content-Type: application/x-www-form-urlencoded; charset=UTF-8[\r][\n]"
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "Host: gss-cn.game.hicloud.com[\r][\n]"
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+998  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)[\r][\n]"
+999  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+999  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "[\r][\n]"
+999  DEBUG [2018-03-21 17:34:59]  http-outgoing-0 >> "playerLevel=10&cpId=1000&playerSSign=VUOoWexHeQC98OFHyWapgKSACDwBgEHWb6IvPutKO0Z%2FwSVU3SDoK7%2FvnaLsYte6cYJu%2FRVWxoGh8lJfHuMoMucKutoNEXnAnPgTG5cfXf79DCtTnhMJ3lHBjaYFD03RWb2XBRKlnF7m455DeU2bvPZOsi7BhTDNPD0bTxY7PWlASLCSX7C7WqHN4%2FAWxDiU%2Bki2pPBstuSDecoUQQATBU35bQE2V7DtOsoGAhseuKXZe7yExMqszyZHLKaaqsbqq1rCua6FvJtwlwO82eY7N5kyW29r3MQ%2FuW1XGh4aPDods9UfD90BSLoPPmLjV9tREX%2FHFIdxkZ3FVWbkcWR4YQ%3D%3D&appId=10000&ts=1350539672156&playerId=100&method=external.hms.gs.checkPlayerSign&cpSign=ZPX0ENIRUaOPav4zpMYJ8D4ahpdrYgBuWEwD5yypN1TCK7NKnu8I%2BHNDGjZKZKpqSOJ1Govg%2FuFsauvAyY%2Bw3rPkYAuEJHIQqcgDI1GUgb396dHXekdJl8vXj5rUNKL4Gv5BSQ8CmGzAEjLXNvrXsxriVb29JXWi03LEA0gUpbiNjKMpCBuVYMs%2FjtMqCgSurm86V3%2FMUqrdJ7FSjsz9HIwSJfgus0A8GyLRY3qLbMQukL7mU5k1iiccaUe0yMY3vOZjypKDPAhaYj9kG%2BzyBsJMAJaKgVJFN0PUpaqmcRmXaO3EoXLISp4qOkSGczjQSPJY16%2BSrFWgCFgCpjDOZA%3D%3D"
+1007 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "HTTP/1.1 200 [\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Server: openresty[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Date: Wed, 21 Mar 2018 09:34:21 GMT[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Content-Type: text/html;charset=UTF-8[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Cache-Control: no-store[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Content-Language: en-US[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "Content-Encoding: gzip[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "6e[\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "[0x1f][0x8b][0x8][0x0][0x0][0x0][0x0][0x0][0x0][0x3]%[0xc7];[\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "[0x80]0[0xc][0x0][0xd0][0xab][0x84][0xcc]"Mk[0xaa]vu[0xf6][0x4][0xe2]P1[0xe8][0xe0][0x8f][0xb6][0xe2] [0xde]][0xd0][0xb7][0xbd][0x1b]%[0x84]6N[0xe8][0xf0][0xf0][0xc1][0xaf][0xd0][0xa5][0xe8][0xc8][0xb0]bS[0xdb]R[0x13][0xdb][0x1e][0xe2][0xbc][0x9f][0xcb][0x8][0x83][0xa4]Kd[0x83][0x8e]X[0x93][0xd5][0x5][[0xa2][0xaa][0xca][0xfe]1}[0xeb]![0xc7][0xc]C[0xda][0x9a]}[0x14]tF)z^v[0xa6][0xf5]Dc[0x0][0x0][0x0][\r][\n]"
+1008 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "0[\r][\n]"
+1009 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << "[\r][\n]"
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << HTTP/1.1 200 
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Server: openresty
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Date: Wed, 21 Mar 2018 09:34:21 GMT
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Content-Type: text/html;charset=UTF-8
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Transfer-Encoding: chunked
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Connection: keep-alive
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Cache-Control: no-store
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Content-Language: en-US
+1011 DEBUG [2018-03-21 17:34:59]  http-outgoing-0 << Content-Encoding: gzip
+1015 DEBUG [2018-03-21 17:34:59]  Connection can be kept alive indefinitely
+1019 DEBUG [2018-03-21 17:34:59]  Connection [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443] can be kept alive indefinitely
+1019 DEBUG [2018-03-21 17:34:59]  Connection released: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+1146 DEBUG [2018-03-21 17:34:59]  Connection manager is shutting down
+1146 DEBUG [2018-03-21 17:34:59]  http-outgoing-0: Close connection
+1147 DEBUG [2018-03-21 17:34:59]  Connection manager shut down
+0    DEBUG [2018-03-21 17:36:32]  CookieSpec selected: default
+8    DEBUG [2018-03-21 17:36:32]  Auth cache not set in the context
+9    DEBUG [2018-03-21 17:36:32]  Connection request: [route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+21   DEBUG [2018-03-21 17:36:32]  Connection leased: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+22   DEBUG [2018-03-21 17:36:32]  Opening connection {s}->https://gss-cn.game.hicloud.com:443
+29   DEBUG [2018-03-21 17:36:32]  Connecting to gss-cn.game.hicloud.com/117.78.54.184:443
+29   DEBUG [2018-03-21 17:36:32]  Connecting socket to gss-cn.game.hicloud.com/117.78.54.184:443 with timeout 0
+143  DEBUG [2018-03-21 17:36:32]  Enabled protocols: [TLSv1]
+144  DEBUG [2018-03-21 17:36:32]  Enabled cipher suites:[SSL_RSA_WITH_RC4_128_MD5, SSL_RSA_WITH_RC4_128_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_DES_CBC_SHA, SSL_DHE_RSA_WITH_DES_CBC_SHA, SSL_DHE_DSS_WITH_DES_CBC_SHA, SSL_RSA_EXPORT_WITH_RC4_40_MD5, SSL_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA]
+144  DEBUG [2018-03-21 17:36:32]  Starting handshake
+183  DEBUG [2018-03-21 17:36:32]  Secure session established
+183  DEBUG [2018-03-21 17:36:32]   negotiated protocol: TLSv1
+183  DEBUG [2018-03-21 17:36:32]   negotiated cipher suite: SSL_RSA_WITH_3DES_EDE_CBC_SHA
+184  DEBUG [2018-03-21 17:36:32]   peer principal: CN=*.game.hicloud.com, OU=Cloud Platform Dept CNDR, O="Huawei Software Technologies Co., Ltd", L=Nanjing, ST=Jiangsu, C=CN
+184  DEBUG [2018-03-21 17:36:32]   peer alternative names: [*.game.hicloud.com]
+184  DEBUG [2018-03-21 17:36:32]   issuer principal: CN=Symantec Class 3 Secure Server CA - G4, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+189  DEBUG [2018-03-21 17:36:32]  Connection established 192.168.51.168:54371<->117.78.54.184:443
+190  DEBUG [2018-03-21 17:36:32]  Executing request POST /gameservice/api/gbClientApi HTTP/1.1
+190  DEBUG [2018-03-21 17:36:32]  Target auth state: UNCHALLENGED
+190  DEBUG [2018-03-21 17:36:32]  Proxy auth state: UNCHALLENGED
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> POST /gameservice/api/gbClientApi HTTP/1.1
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> Content-Length: 856
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> Host: gss-cn.game.hicloud.com
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> Connection: Keep-Alive
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)
+191  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> Accept-Encoding: gzip,deflate
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "POST /gameservice/api/gbClientApi HTTP/1.1[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "Content-Length: 856[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "Content-Type: application/x-www-form-urlencoded; charset=UTF-8[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "Host: gss-cn.game.hicloud.com[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "[\r][\n]"
+192  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 >> "playerLevel=10&cpId=1000&playerSSign=VUOoWexHeQC98OFHyWapgKSACDwBgEHWb6IvPutKO0Z%2FwSVU3SDoK7%2FvnaLsYte6cYJu%2FRVWxoGh8lJfHuMoMucKutoNEXnAnPgTG5cfXf79DCtTnhMJ3lHBjaYFD03RWb2XBRKlnF7m455DeU2bvPZOsi7BhTDNPD0bTxY7PWlASLCSX7C7WqHN4%2FAWxDiU%2Bki2pPBstuSDecoUQQATBU35bQE2V7DtOsoGAhseuKXZe7yExMqszyZHLKaaqsbqq1rCua6FvJtwlwO82eY7N5kyW29r3MQ%2FuW1XGh4aPDods9UfD90BSLoPPmLjV9tREX%2FHFIdxkZ3FVWbkcWR4YQ%3D%3D&appId=10000&ts=1521624992028&playerId=100&method=external.hms.gs.checkPlayerSign&cpSign=UWh9Uk8adbBA64qaQwoMfFiwEQoBKFECqAxMfyclf%2B%2FhSRwTXyu7UzRtMA0AFSzEbjcKddku8XXrxCeehTA3xFZqORQ6bloLYLuPJsQYGSPh50rBwZ3lcHcOvame6J%2FhTxqeZBV%2BxbjkofK2TR%2FaJnMWBMjRKJ24OeXbSJQCpWSesAB9%2BhPjq7qOxdJjyLcwzcvzj7XPKXEfgm8WS1iLAS1ERGZ%2F4GTgpV9im4vlhyXHSQZhH4s8yOtjnCikkqhLtZLCI7%2FjLS0rodB%2BhIekU42fE9ZSebCAx5daOePeuKezWhYUWnOCWYWQlZGwHex7SjGUwJyUAqQyFCXh9%2B9ZaA%3D%3D"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "HTTP/1.1 200 [\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Server: openresty[\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Date: Wed, 21 Mar 2018 09:35:54 GMT[\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Content-Type: text/html;charset=UTF-8[\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+206  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Cache-Control: no-store[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Content-Language: en-US[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "Content-Encoding: gzip[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "44[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "[0x1f][0x8b][0x8][0x0][0x0][0x0][0x0][0x0][0x0][0x3][0xab]VJ-*[0xf2]-NW[0xb2]RJ[0xce]HM[0xce]V([0xc8]I[0xac]L-[\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "[0xe][0xce]L[0xcf]SHK[0xcc][0xcc]Q[0xd2]Q**[0xc9]s[0xce]OIU[0xb2][0xd2]5[0xac][0x5][0x0][0xe9][0x9c][0xcd]^0[0x0][0x0][0x0][\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "0[\r][\n]"
+207  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << "[\r][\n]"
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << HTTP/1.1 200 
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Server: openresty
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Date: Wed, 21 Mar 2018 09:35:54 GMT
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Content-Type: text/html;charset=UTF-8
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Transfer-Encoding: chunked
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Connection: keep-alive
+209  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Cache-Control: no-store
+210  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Content-Language: en-US
+210  DEBUG [2018-03-21 17:36:32]  http-outgoing-0 << Content-Encoding: gzip
+213  DEBUG [2018-03-21 17:36:32]  Connection can be kept alive indefinitely
+217  DEBUG [2018-03-21 17:36:32]  Connection [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443] can be kept alive indefinitely
+217  DEBUG [2018-03-21 17:36:32]  Connection released: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+273  DEBUG [2018-03-21 17:36:32]  Connection manager is shutting down
+273  DEBUG [2018-03-21 17:36:32]  http-outgoing-0: Close connection
+273  DEBUG [2018-03-21 17:36:32]  Connection manager shut down
+0    DEBUG [2018-03-21 17:52:27]  CookieSpec selected: default
+8    DEBUG [2018-03-21 17:52:27]  Auth cache not set in the context
+9    DEBUG [2018-03-21 17:52:27]  Connection request: [route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+21   DEBUG [2018-03-21 17:52:27]  Connection leased: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+22   DEBUG [2018-03-21 17:52:27]  Opening connection {s}->https://gss-cn.game.hicloud.com:443
+29   DEBUG [2018-03-21 17:52:27]  Connecting to gss-cn.game.hicloud.com/118.194.62.184:443
+29   DEBUG [2018-03-21 17:52:27]  Connecting socket to gss-cn.game.hicloud.com/118.194.62.184:443 with timeout 0
+139  DEBUG [2018-03-21 17:52:27]  Enabled protocols: [TLSv1]
+139  DEBUG [2018-03-21 17:52:27]  Enabled cipher suites:[SSL_RSA_WITH_RC4_128_MD5, SSL_RSA_WITH_RC4_128_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_DES_CBC_SHA, SSL_DHE_RSA_WITH_DES_CBC_SHA, SSL_DHE_DSS_WITH_DES_CBC_SHA, SSL_RSA_EXPORT_WITH_RC4_40_MD5, SSL_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA, SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA]
+139  DEBUG [2018-03-21 17:52:27]  Starting handshake
+182  DEBUG [2018-03-21 17:52:27]  Secure session established
+182  DEBUG [2018-03-21 17:52:27]   negotiated protocol: TLSv1
+182  DEBUG [2018-03-21 17:52:27]   negotiated cipher suite: SSL_RSA_WITH_3DES_EDE_CBC_SHA
+182  DEBUG [2018-03-21 17:52:27]   peer principal: CN=*.game.hicloud.com, OU=Cloud Platform Dept CNDR, O="Huawei Software Technologies Co., Ltd", L=Nanjing, ST=Jiangsu, C=CN
+182  DEBUG [2018-03-21 17:52:27]   peer alternative names: [*.game.hicloud.com]
+182  DEBUG [2018-03-21 17:52:27]   issuer principal: CN=Symantec Class 3 Secure Server CA - G4, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+187  DEBUG [2018-03-21 17:52:27]  Connection established 192.168.51.168:54445<->118.194.62.184:443
+188  DEBUG [2018-03-21 17:52:27]  Executing request POST /gameservice/api/gbClientApi HTTP/1.1
+188  DEBUG [2018-03-21 17:52:27]  Target auth state: UNCHALLENGED
+188  DEBUG [2018-03-21 17:52:27]  Proxy auth state: UNCHALLENGED
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> POST /gameservice/api/gbClientApi HTTP/1.1
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> Content-Length: 704
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> Host: gss-cn.game.hicloud.com
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> Connection: Keep-Alive
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)
+189  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> Accept-Encoding: gzip,deflate
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "POST /gameservice/api/gbClientApi HTTP/1.1[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "Content-Length: 704[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "Content-Type: application/x-www-form-urlencoded; charset=UTF-8[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "Host: gss-cn.game.hicloud.com[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.6.0_10-rc2)[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "[\r][\n]"
+190  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 >> "playerLevel=2&cpId=900086000000000375&playerSSign=KdbNLoC23SOMlkW2fm9q%2BdTgQEASqZJP1QzMkNwGCFEMnNinY1CTg3Z7hIAb2GPCgw%2B39vvEZ2Ruvj5Fts0xAzV4qfRXUCC6bHVE1l%2FaFJUnHl8JAcpY8k3ZqPqng1suwzdlZor9eyPe52uRDLvxrDTqUAFH4s9vVR8PbpAEBFGhrD%2FnyZ%2BW0ORQ16ondxZQCTnkGDt6lrp7mX4vTQYJ8C8vv1fZgIKJPR4GAL8Hu0CEkJd0NCoktzL59WNzLOTL3D0iZl4mV8UcGx3aiKN2UZiuKf1J3ePG8wf6g7nXgM8EGRfZlItdqgPRP%2B898m73Z2KDntW2YGPMluH60ckjMQ%3D%3D&appId=300011255&ts=1500552495471&playerId=1646420000000006&method=external.hms.gs.checkPlayerSign&cpSign=HC9E0Mv0WMijHeNk%2BkZbXvLIxvZqCNa7CPJKB0tHHUOy%2F6djP6UpuqY30QF%2Bhri1bneZI%2B0v0aaDmxo%2F0e0pekDzSP0soS0l8vhl4A5%2BuG58qNgQ2WaW9wqiGWgbPin8dX%2FUjcQvnfrVO4xtPT5Up2Eyev0dc56efHgeVPBuWFc%3D"
+198  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "HTTP/1.1 200 [\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Server: openresty[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Date: Wed, 21 Mar 2018 09:51:49 GMT[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Content-Type: text/html;charset=UTF-8[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Cache-Control: no-store[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Content-Language: en-US[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "Content-Encoding: gzip[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "6e[\r][\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "[0x1f][0x8b][0x8][0x0][0x0][0x0][0x0][0x0][0x0][0x3]%[0xc7];[\n]"
+199  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "[0x80]0[0xc][0x0][0xd0][0xab][0x84][0xcc]"I5[0x95]vu[0xf6][0x4][0xe2][0xa0][0x18]t[0xf0]G[q[0x10][0xef].[0xe8][0xdb][0xde][0x8d][0x1a]B[0x13]'[0xf4]x[0xf4][0xa1]_[0xa1]M[0xd1][0xb3][0x10][0x89][0x98][0xd2]IYq[0x7]q[0xde][0xcf]e[0x84]A[0xd3][0xa5][0xba]A[0xcb]b[0xd8][0x1a][0xb1][0xe4]X\[0xf6][0xcf][0x9a]o[0x1d][0xe4][0x98]aH[[0xbd][0x8f][0x8a][0xbe] [0xe2][0xe7][0x5][0x80]L[0xba][0xb3]c[0x0][0x0][0x0][\r][\n]"
+200  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "0[\r][\n]"
+200  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << "[\r][\n]"
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << HTTP/1.1 200 
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Server: openresty
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Date: Wed, 21 Mar 2018 09:51:49 GMT
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Content-Type: text/html;charset=UTF-8
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Transfer-Encoding: chunked
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Connection: keep-alive
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Cache-Control: no-store
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Content-Language: en-US
+202  DEBUG [2018-03-21 17:52:27]  http-outgoing-0 << Content-Encoding: gzip
+206  DEBUG [2018-03-21 17:52:27]  Connection can be kept alive indefinitely
+209  DEBUG [2018-03-21 17:52:27]  Connection [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443] can be kept alive indefinitely
+209  DEBUG [2018-03-21 17:52:27]  Connection released: [id: 0][route: {s}->https://gss-cn.game.hicloud.com:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+266  DEBUG [2018-03-21 17:52:27]  Connection manager is shutting down
+266  DEBUG [2018-03-21 17:52:27]  http-outgoing-0: Close connection
+266  DEBUG [2018-03-21 17:52:27]  Connection manager shut down

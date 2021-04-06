@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+
+	<serverId>100</serverId>
+	<serverName>一区</serverName>
+	
+	<entity-manager id='1' super-class='com.fy.engineserver.jiazu.JiazuMember' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='2' super-class='com.fy.engineserver.jiazu.Jiazu' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='3' super-class='com.fy.engineserver.septstation.SeptStation' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='4' super-class='com.fy.engineserver.homestead.cave.Cave' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='5' super-class='com.fy.engineserver.homestead.faery.Faery' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='6' super-class='com.fy.engineserver.newtask.DeliverTask' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='7' super-class='com.fy.engineserver.achievement.GameDataRecord' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='8' super-class='com.fy.engineserver.achievement.AchievementEntity' checkIntervalInSeconds='30'></entity-manager>
+	
+	<entity-manager id='9' super-class='com.fy.engineserver.qiancengta.QianCengTa_Ta' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='10' super-class='com.fy.engineserver.sifang.info.SiFangInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='11' super-class='com.fy.engineserver.trade.requestbuy.RequestBuy' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='12' super-class='com.fy.engineserver.auction.Auction' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='13' super-class='com.fy.engineserver.hotspot.HotspotInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='14' super-class='com.fy.engineserver.marriage.MarriageBeq' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='15' super-class='com.fy.engineserver.marriage.MarriageInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='16' super-class='com.fy.engineserver.marriage.MarriageDownCity' checkIntervalInSeconds='30'></entity-manager>
+	
+	<entity-manager id='17' super-class='com.fy.engineserver.unite.Unite' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='18' super-class='com.fy.engineserver.masterAndPrentice.MasterPrenticeInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='19' super-class='com.fy.engineserver.society.Relation' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='20' super-class='com.fy.engineserver.gm.feedback.Feedback' checkIntervalInSeconds='60'></entity-manager>
+	<entity-manager id='21' super-class='com.fy.engineserver.notice.Notice' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='22' super-class='com.fy.engineserver.zongzu.data.ZongPai' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='23' super-class='com.fy.engineserver.sprite.horse.Horse' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='24' super-class='com.fy.engineserver.sprite.pet.Pet' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='25' super-class='com.fy.engineserver.billboard.special.SpecialEquipmentBillBoard' checkIntervalInSeconds='60'></entity-manager>
+	<entity-manager id='26' super-class='com.fy.engineserver.newBillboard.BillboardStatDate' checkIntervalInSeconds='30'></entity-manager>
+	
+	<entity-manager id='27' super-class='com.fy.engineserver.activity.fateActivity.base.FateActivity' checkIntervalInSeconds='30'>
+		<class id='28'>com.fy.engineserver.activity.fateActivity.BeerActivityAbroad</class>
+		<class id='29'>com.fy.engineserver.activity.fateActivity.BeerActivityInCountry</class>
+		<class id='30'>com.fy.engineserver.activity.fateActivity.FateActivityAbroad</class>
+		<class id='31'>com.fy.engineserver.activity.fateActivity.FateActivityInCountry</class>
+	</entity-manager>
+	
+	<entity-manager id='32' super-class='com.fy.engineserver.gm.feedback.GMRecord' checkIntervalInSeconds='60'></entity-manager>
+	<entity-manager id='33' super-class='com.fy.engineserver.datasource.article.data.entity.ArticleEntity' checkIntervalInSeconds='30'>
+		<class id='34'>com.fy.engineserver.datasource.article.data.entity.EquipmentEntity</class>
+		<class id='35'>com.fy.engineserver.datasource.article.data.entity.BiWuArticleEntity</class>
+		<class id='36'>com.fy.engineserver.datasource.article.data.entity.BottlePropsEntity</class>
+		<class id='37'>com.fy.engineserver.datasource.article.data.entity.ExchangeArticleEntity</class>
+		<class id='38'>com.fy.engineserver.datasource.article.data.entity.FateActivityPropsEntity</class>
+		<class id='39'>com.fy.engineserver.datasource.article.data.entity.MagicWeaponEntity</class>
+		<class id='40'>com.fy.engineserver.datasource.article.data.entity.PetEggPropsEntity</class>
+		<class id='41'>com.fy.engineserver.datasource.article.data.entity.PetPropsEntity</class>
+		<class id='42'>com.fy.engineserver.datasource.article.data.entity.PropsEntity</class>
+		<class id='43'>com.fy.engineserver.datasource.article.data.entity.Special_1EquipmentEntity</class>
+		<class id='44'>com.fy.engineserver.datasource.article.data.entity.Special_2EquipmentEntity</class>
+		<class id='45'>com.fy.engineserver.activity.explore.ExploreResourceMapEntity</class>
+		<class id='46'>com.fy.engineserver.sprite.pet.SingleForPetPropsEntity</class>
+		<class id='57'>com.fy.engineserver.datasource.article.data.entity.QiLingArticleEntity</class>
+		<class id='60'>com.fy.engineserver.datasource.article.data.entity.YinPiaoEntity</class>
+		<class id='69'>com.fy.engineserver.activity.dig.DigPropsEntity</class>
+		<class id='71'>com.fy.engineserver.datasource.article.data.entity.NewMagicWeaponEntity</class>
+		<class id='93'>com.fy.engineserver.datasource.article.data.entity.HuntLifeArticleEntity</class>
+		<class id='97'>com.fy.engineserver.datasource.article.data.entity.SoulPithArticleEntity</class>
+		<class id='100'>com.fy.engineserver.datasource.article.data.entity.HunshiEntity</class>
+		<class id='104'>com.fy.engineserver.sprite.pet.suit.PetSuitArticleEntity</class>
+	</entity-manager>
+	<entity-manager id='47' super-class='com.fy.engineserver.mail.Mail' checkIntervalInSeconds='5'></entity-manager>
+	<entity-manager id='48' super-class='com.fy.engineserver.activity.clifford.CliffordData' checkIntervalInSeconds='50'></entity-manager>
+	<entity-manager id='49' super-class='com.fy.engineserver.activity.village.data.VillageData' checkIntervalInSeconds='50'></entity-manager>
+	<entity-manager id='50' super-class='com.fy.engineserver.country.data.Country' checkIntervalInSeconds='50'></entity-manager>
+	<entity-manager id='51' super-class='com.fy.engineserver.country.data.CountryManagerData' checkIntervalInSeconds='50'></entity-manager>
+	<entity-manager id='52' super-class='com.fy.engineserver.tournament.data.TournamentData' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='53' super-class='com.fy.engineserver.tournament.data.OneTournamentData' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='54' super-class='com.fy.engineserver.cityfight.citydata.CityData' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='55' super-class='com.fy.engineserver.sprite.Player' checkIntervalInSeconds='30'></entity-manager>
+
+
+	<entity-manager id='56' super-class='com.fy.engineserver.newtask.TaskEntity' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='58' super-class='com.fy.engineserver.articleProtect.ArticleProtectData' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='59' super-class='com.fy.engineserver.buffsave.BuffSave' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='62' super-class='com.fy.engineserver.newBillboard.BillboardInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='64' super-class='com.fy.engineserver.sprite.pet2.PetsOfPlayer' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='65' super-class='com.fy.engineserver.activity.activeness.PlayerActivenessInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='67' super-class='com.fy.engineserver.datasource.skill.master.SkBean' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='68' super-class='com.fy.engineserver.activity.TransitRobbery.TransitRobberyEntity' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='70' super-class='com.fy.engineserver.newtask.NewDeliverTask' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='72' super-class='com.fy.engineserver.playerAims.instance.PlayerAimsEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='75' super-class='com.fy.engineserver.sprite.horse2.instance.Horse2RelevantEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='76' super-class='com.fy.engineserver.seal.data.SealTaskInfo' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='79' super-class='com.fy.engineserver.jiazu2.instance.JiazuMember2' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='80' super-class='com.fy.engineserver.jiazu2.instance.BiaoCheEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='1001' super-class='com.fy.engineserver.economic.thirdpart.migu.entity.SaleRecord' checkIntervalInSeconds='1'></entity-manager>
+	<entity-manager id='1002' super-class='com.fy.engineserver.economic.thirdpart.migu.entity.ArticleTradeRecord' checkIntervalInSeconds='1'></entity-manager>
+	<entity-manager id='86' super-class='com.fy.engineserver.activity.chongzhiActivity.MonthCardRecord' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='87' super-class='com.fy.engineserver.activity.levelUpReward.instance.LevelUpRewardEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='88' super-class='com.fy.engineserver.activity.chongzhiActivity.ChargeRecord' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='89' super-class='com.fy.engineserver.articleEnchant.EnchantData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='90' super-class='com.fy.engineserver.datasource.article.data.entity.BaoShiXiaZiData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='91' super-class='com.fy.engineserver.datasource.article.data.magicweapon.huntLife.instance.HuntLifeEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='92' super-class='com.fy.engineserver.datasource.article.data.magicweapon.huntLife.instance.HuntArticleExtraData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='94' super-class='com.fy.engineserver.sprite.pet.PetFlyState' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='95' super-class='com.fy.engineserver.talent.TalentData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='96' super-class='com.fy.engineserver.activity.fairyRobbery.instance.FairyRobberyEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='98' super-class='com.fy.engineserver.soulpith.instance.SoulPithEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='99' super-class='com.fy.engineserver.soulpith.instance.SoulPithAeData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='101' super-class='com.fy.engineserver.datasource.article.data.equipextra.instance.EquipExtraData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='102' super-class='com.fy.engineserver.activity.xianling.PlayerXianLingData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='103' super-class='com.fy.engineserver.activity.xianling.XianLingBillBoardData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='107' super-class='com.fy.engineserver.datasource.article.data.horseInlay.instance.HorseEquInlay' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='108' super-class='com.fy.engineserver.jiazu.petHouse.HouseData' checkIntervalInSeconds='180'></entity-manager>
+	
+	<database name='test-pool' type='oracle'>
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<url>jdbc:oracle:thin:@119.254.154.200:1521:orcl</url>
+			<username>test</username>
+			<password>test</password>
+		<maxConn>30</maxConn>
+		<timeoutSeconds>300</timeoutSeconds>
+		<checkoutSeconds>300</checkoutSeconds>
+	</database>
+
+</persistence-units>

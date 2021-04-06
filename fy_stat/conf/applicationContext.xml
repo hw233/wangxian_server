@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+    
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" lazy-init="false">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/jdbc.properties</value>
+				<value>/WEB-INF/system.properties</value>
+				<value>/WEB-INF/stat.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- 计划任务 -->
+    <bean id="ScheduleTasker"
+    	class="com.xuanzhi.tools.timer.ScheduleTasker" scope="singleton" init-method="initialize">
+    	<property name="scheduleFile" value="${schedule.file}"></property>
+    	<property name="openning" value="${schedule.openning}"></property>
+    </bean> 
+
+    <bean id="stat_system_server" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+            init-method="init" scope="singleton">
+             <property name="enableHeapForTimeout" value="true"></property>
+             <property name="enableTimepiece" value="true"></property>
+			 <property name="threadPoolMaxPoolSize" value="400"></property>
+             <property name="name" value="${stat.system.server.name}"></property>
+             <property name="clientModel" value="false"></property>
+			 <property name="multiServerModel" value="false"></property>
+             <property name="secondaryServerNum" value="1"></property>
+             <property name="host" value="${stat.system.server.host}"></property>
+             <property name="port" value="${stat.system.server.port}"></property>
+             <property name="connectionConnectedHandler" ref="statServerService"></property>
+    </bean>
+
+    <bean id="statServerService" class="com.sqage.stat.server.StatServerService"
+    	init-method="init" scope="singleton">
+    	<property name="queueFile" value="${stat.system.queue.file}"></property>
+    	<property name="userManager" ref="UserManager"></property>
+    	<property name="playGameManager" ref="PlayGameManager"></property>
+    	<property name="onLineUsersCountManager" ref="OnLineUsersCountManager"></property>
+    	<property name="chongZhiManager" ref="ChongZhiManager"></property>
+    	<property name="channelDAO" ref="ChannelDAO"></property>
+    	<property name="channelItemManager" ref="ChannelItemManager"></property>
+    	
+    	<property name="savingYuanbaoManager" ref="SavingYuanbaoManager"></property>
+    	<property name="userStatManager" ref="UserStatManager"></property>
+    	<property name="transactionManager" ref="TransactionManager"></property>
+    	<property name="transaction_SpecialManager" ref="Transaction_SpecialManager"></property>
+    	<property name="huoDonginfoManager" ref="HuoDonginfoManager"></property>
+    	<property name="taskinfoManager" ref="TaskinfoManager"></property>
+    	
+    	<property name="daoJu_MoHuService" ref="daoJu_MoHuService"></property>
+    	<property name="daoJuMoHuService_merge" ref="daoJuMoHuService_merge"></property>
+    	<property name="daoJuService" ref="daoJuService"></property>
+    	<property name="gameChongZhiService" ref="gameChongZhiService"></property>
+    	<property name="gameChongZhi_JingXiService" ref="gameChongZhi_JingXiService"></property>
+    	
+    	<property name="daoJuService_merge" ref="daoJuService_merge"></property>
+    	<property name="gameChongZhiService_merge" ref="gameChongZhiService_merge"></property>
+    	<property name="taskAcceptService" ref="taskAcceptService"></property>
+    	<property name="taskFinishService" ref="taskFinishService"></property>
+    	<property name="task2AnalysisService" ref="task2AnalysisService"></property>
+    	<property name="taskAnalysisService_merge" ref="taskAnalysisService_merge"></property>
+    	<property name="taskFinish2AnalysisService" ref="taskFinish2AnalysisService"></property>
+    	<property name="taskFinishService_merge" ref="taskFinishService_merge"></property>
+    	<property name="onLineUsersService" ref="onLineUsersService"></property>
+    	
+    	<property name="acceptHuoDonginfoService" ref="acceptHuoDonginfoService"></property>
+    	<property name="finishHuoDonginfoService" ref="finishHuoDonginfoService"></property>
+    	<property name="transactionService" ref="transactionService"></property>
+    	<property name="transaction_SpecialService" ref="transaction_SpecialService"></property>
+    	<property name="yinZiKuCunService" ref="YinZiKuCunService"></property>
+    	<property name="liBaoqueueService" ref="LiBaoqueueService"></property>
+    	
+    	<property name="transaction_FaceService" ref="Transaction_FaceService"></property>
+    	<property name="transfer_PlatformService" ref="Transfer_PlatformService"></property>
+    	<property name="battle_PlayerStatService" ref="Battle_PlayerStatService"></property>
+    	<property name="battle_TeamStatService" ref="Battle_TeamStatService"></property>
+    	<property name="battle_costTimeService" ref="Battle_costTimeService"></property>
+    	<property name="fuMoStatService" ref="FuMoStatService"></property>
+    	<property name="npcinfoStatService" ref="NpcinfoStatService"></property>
+    	
+    	<property name="enterGameService" ref="EnterGameService"></property>
+    	<property name="registUserService" ref="RegistUserService"></property>
+    	
+    </bean>
+    
+    
+      <bean id="EnterGameService" class="com.sqage.stat.server.EnterGameService"
+    	init-method="init" scope="singleton">
+    	<property name="playGameManager" ref="PlayGameManager"></property>
+    </bean>
+     <bean id="RegistUserService" class="com.sqage.stat.server.RegistUserService"
+    	init-method="init" scope="singleton">
+    	<property name="userManager" ref="UserManager"></property>
+    	<property name="channelDAO" ref="ChannelDAO"></property>
+    </bean>
+    
+    
+    
+    
+    
+    <bean id="finishHuoDonginfoService" class="com.sqage.stat.server.FinishHuoDonginfoService"
+    	init-method="init" scope="singleton">
+    	<property name="huoDonginfoManager" ref="HuoDonginfoManager"></property>
+    </bean>
+    <bean id="acceptHuoDonginfoService" class="com.sqage.stat.server.AcceptHuoDonginfoService"
+    	init-method="init" scope="singleton">
+    	<property name="huoDonginfoManager" ref="HuoDonginfoManager"></property>
+    </bean>
+    <bean id="transactionService" class="com.sqage.stat.server.TransactionService"
+    	init-method="init" scope="singleton">
+    	<property name="transactionManager" ref="TransactionManager"></property>
+    </bean>
+    <bean id="transaction_SpecialService" class="com.sqage.stat.server.Transaction_SpecialService"
+    	init-method="init" scope="singleton">
+    	<property name="transaction_SpecialManager" ref="Transaction_SpecialManager"></property>
+    </bean>
+    
+    
+    
+    
+    
+    <bean id="onLineUsersService" class="com.sqage.stat.server.OnLineUsersService"
+    	init-method="init" scope="singleton">
+    	<property name="onLineUsersCountManager" ref="OnLineUsersCountManager"></property>
+    </bean>
+    
+    <bean id="daoJuService" class="com.sqage.stat.server.DaoJuService"
+    	init-method="init" scope="singleton">
+    	<property name="daoJuManager" ref="DaoJuManager"></property>
+    	<property name="userManager" ref="UserManager"></property>
+    </bean>
+    
+    <bean id="daoJuService_merge" class="com.sqage.stat.server.DaoJuService_merge"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+    
+    
+    <bean id="daoJu_MoHuService" class="com.sqage.stat.server.DaoJu_MoHuService"
+    	init-method="init" scope="singleton">
+    	<property name="daoJuManager" ref="DaoJuManager"></property>
+    	<property name="userManager" ref="UserManager"></property>
+    </bean>
+    
+    <bean id="daoJuMoHuService_merge" class="com.sqage.stat.server.DaoJuMoHuService_merge"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+    
+    
+    
+    
+    
+    <bean id="gameChongZhiService" class="com.sqage.stat.server.GameChongZhiService"
+    	init-method="init" scope="singleton">
+    	<property name="gameChongZhiManager" ref="GameChongZhiManager"></property>
+    	<property name="userManager" ref="UserManager"></property>
+    </bean>
+    
+     <bean id="gameChongZhi_JingXiService" class="com.sqage.stat.server.GameChongZhi_JingXiService"
+    	init-method="init" scope="singleton">
+    	<property name="gameChongZhiManager" ref="GameChongZhiManager"></property>
+    	<property name="userManager" ref="UserManager"></property>
+    </bean>
+    
+    
+    
+    <bean id="gameChongZhiService_merge" class="com.sqage.stat.server.GameChongZhiService_merge"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+    <bean id="taskAcceptService" class="com.sqage.stat.server.TaskAcceptService"
+    	init-method="init" scope="singleton">
+    	<property name="taskAnalysisManager" ref="TaskAnalysisManager"></property>
+    	
+    </bean>
+    
+     <bean id="taskFinishService" class="com.sqage.stat.server.TaskFinishService"
+    	init-method="init" scope="singleton">
+    	<property name="taskAnalysisManager" ref="TaskAnalysisManager"></property>
+    </bean>
+    
+     <bean id="task2AnalysisService" class="com.sqage.stat.server.Task2AnalysisService"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+     <bean id="taskAnalysisService_merge" class="com.sqage.stat.server.TaskAnalysisService_merge"
+    	init-method="init" scope="singleton">
+      </bean>
+    
+    <bean id="taskFinish2AnalysisService" class="com.sqage.stat.server.TaskFinish2AnalysisService"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+      <bean id="taskFinishService_merge" class="com.sqage.stat.server.TaskFinishService_merge"
+    	init-method="init" scope="singleton">
+    </bean>
+    
+      <bean id="YinZiKuCunService" class="com.sqage.stat.server.YinZiKuCunService"
+    	init-method="init" scope="singleton">
+    	<property name="yinZiKuCunManager" ref="YinZiKuCunManager"></property>
+    </bean>
+    
+      <bean id="LiBaoqueueService" class="com.sqage.stat.server.LiBaoqueueService"
+    	init-method="init" scope="singleton">
+    	<property name="libaoManager" ref="LibaoManager"></property>
+    </bean>
+    
+    
+      <bean id="Transaction_FaceService" class="com.sqage.stat.server.Transaction_FaceService"
+    	init-method="init" scope="singleton">
+    	<property name="transaction_FaceManager" ref="Transaction_FaceManager"></property>
+    </bean>
+    
+     <bean id="Transfer_PlatformService" class="com.sqage.stat.server.Transfer_PlatformService"
+    	init-method="init" scope="singleton">
+    	<property name="transaction_FaceManager" ref="Transaction_FaceManager"></property>
+    </bean>
+    
+     <bean id="Battle_PlayerStatService" class="com.sqage.stat.server.Battle_PlayerStatService"
+    	init-method="init" scope="singleton">
+    	<property name="battleMSGManager" ref="BattleMSGManager"></property>
+    </bean>
+    
+    <bean id="Battle_TeamStatService" class="com.sqage.stat.server.Battle_TeamStatService"
+    	init-method="init" scope="singleton">
+    	<property name="battleMSGManager" ref="BattleMSGManager"></property>
+    </bean>
+    
+     <bean id="Battle_costTimeService" class="com.sqage.stat.server.Battle_costTimeService"
+    	init-method="init" scope="singleton">
+    	<property name="battleMSGManager" ref="BattleMSGManager"></property>
+    </bean>
+    
+    <bean id="FuMoStatService" class="com.sqage.stat.server.FuMoStatService"
+    	init-method="init" scope="singleton">
+    	<property name="fuMoManager" ref="FuMoManager"></property>
+    </bean>
+    
+       
+    <bean id="NpcinfoStatService" class="com.sqage.stat.server.NpcinfoStatService"
+    	init-method="init" scope="singleton">
+    	<property name="npcinfoManager" ref="NpcinfoManager"></property>
+    </bean>
+    
+    
+	 <import resource="daoContext.xml"/>
+	 <import resource="managerContext.xml"/>
+</beans>

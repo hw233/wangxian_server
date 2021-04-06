@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helps>
+
+<help id='KnapsackWindow'>
+	
+	<screen width='800' height='480'>
+		<function>
+			<rect x='150' y='150' w='100' h='100' color='4294901760' linew='5' />
+
+				<line  x1='50' y1='50' x2='75' y2='75' color='4294967040' linew='5'/>
+				<line  x1='75' y1='75' x2='92' y2='92' color='4294967040' linew='5'/>
+
+			<btn  x='100' y='100' text='KnapsackWindow 800x480' color='4294967295' fontsize='14'/>			
+			<bubule>
+					<line  x1='490' y1='45' x2='790' y2='45' color='4294901760' linew='2'/>
+					<line  x1='790' y1='45' x2='790' y2='400' color='4294901760' linew='2'/>
+					<line  x1='490' y1='45' x2='490' y2='400' color='4294901760' linew='2'/>
+					<line  x1='490' y1='400' x2='790' y2='400' color='4294901760' linew='2'/>
+
+				<content color='0xffffeeff' x='500' y='50' w='260' h='200' >背包泡泡1：我是一噶得就得能否 的啊锋飞洒锋锋斯蒂芬的锋第三方</content>
+			</bubule>
+		</function>
+	</screen>
+
+
+</help>
+
+
+
+</helps>

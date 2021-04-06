@@ -1,0 +1,2940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<prototypes version="1.0" author="myzdf">
+
+	<factory name="GameMessageFactory" enable-serialize="true" />
+	<handler name="GameMessageHandler" />
+
+
+
+
+	<prototype req_name="HEARTBEAT_CHECK_REQ" req_type="0x00000015" res_name="HEARTBEAT_CHECK_RES" res_type="0x80000015" req_client_send="true"
+		res_client_receive="true" comment="心跳频率检测包，客户端每5秒发送一次">
+		<req>
+			<property name="gameTimeOfClient" type="long" comment="发送请求时客户端中游戏的时间" />
+			<property name="speed" type="short" comment="玩家移动速度" />
+		</req>
+		<res>
+			<property name="gameTimeOfClient" type="long" comment="发送请求时客户端中游戏的时间" />
+			<property name="speed" type="short" comment="玩家移动速度" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_DISPLAYER_INFO_REQ" req_type="0x0000E002" res_name="QUERY_DISPLAYER_INFO_RES" res_type="0x8000E002"
+		req_client_send="true" res_client_receive="true" comment="获取与渠道相关的显示内容，">
+		<req>
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+		</req>
+		<res>
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类型，比如uc的用户，sina的用户，需要在注册，登录中发给数据库" />
+			<property name="register_title" type="String" encoding="UTF-8" comment="注册页面显示在上面的文字，比如 注册帐号" />
+			<property name="register_input_name" type="String" encoding="UTF-8" comment="用户名输入框前的描述文字" />
+			<property name="register_input_password" type="String" encoding="UTF-8" comment="密码输入框前的描述文字" />
+			<property name="register_input_password_again" type="String" encoding="UTF-8" comment="再次密码输入框前的描述文字" />
+
+			<property name="login_input_name" type="String" encoding="UTF-8" comment="用户名输入框前的描述文字" />
+			<property name="login_input_password" type="String" encoding="UTF-8" comment="密码输入框前的描述文字" />
+
+			<property name="keys" type="String[]" encoding="UTF-8" comment="额外的数据key" />
+			<property name="values" type="String[]" encoding="UTF-8" comment="额外的数据value" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PASSPORT_REGISTER_REQ" req_type="0x0000E001" res_name="PASSPORT_REGISTER_RES" res_type="0x8000E001" req_client_send="true"
+		res_client_receive="true" comment="注册一个通行证,返回推荐关系">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类别，比如uc的用户，sina的用户等" />
+
+			<property name="quickreg" type="boolean" comment="是否是快速注册" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端的编号，此编号由客户端随机生成，长度为16的字符串，安装后即不再改动" />
+			<property name="whitecontent" type="String" encoding="UTF-8" comment="白名单接口返回的数据" />
+			<property name="handset" type="String" encoding="UTF-8" comment="jar包里写明的手机机型，表明jar包的配置" />
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="recommendid" type="long" comment="推荐关系ID,jad中包含此信息，-1为jad不含此值" />
+		</req>
+		<res>
+			<property name="id" type="long" comment="通行证id"></property>
+			<property name="result" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+
+			<property name="loginUsername" type="String" encoding="UTF-8" comment="登录用户名，此用户名可能与注册的username不一样"></property>
+
+			<property name="recUserServer" type="String" encoding="UTF-8" comment="推荐人服务器"></property>
+			<property name="recUserUsername" type="String" encoding="UTF-8" comment="推荐人账户名"></property>
+			<property name="recUserPlayername" type="String" encoding="UTF-8" comment="推荐人角色名"></property>
+			<property name="recUserPolcamp" type="byte" comment="推荐人角色阵营"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_REGISTER_IMAGE_REQ" req_type="0x0000E005" res_name="GET_REGISTER_IMAGE_RES" res_type="0x8000E005"
+		req_client_send="true" res_client_receive="true" comment="获取注册验证码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端的编号，此编号由客户端随机生成，长度为16的字符串，安装后即不再改动" />
+		</req>
+		<res>
+			<property name="yanzhengPng" type="byte[]" comment="验证码的PNG图片"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_REGISTER_IMAGE_NEW_REQ" req_type="0x0000E006" res_name="GET_REGISTER_IMAGE_NEW_RES" res_type="0x8000E006"
+		req_client_send="true" res_client_receive="true" comment="获取注册验证码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端的编号，此编号由客户端随机生成，长度为16的字符串，安装后即不再改动" />
+		</req>
+		<res>
+			<property name="yanzhengPng" type="byte[]" comment="验证码的PNG图片"></property>
+			<property name="others" type="String[]" comment="一些控制信息"></property>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="PASSPORT_REGISTER_NEW_REQ" req_type="0x0000E004" res_name="PASSPORT_REGISTER_NEW_RES" res_type="0x8000E004" req_client_send="true"
+		res_client_receive="true" comment="注册一个通行证,返回推荐关系">
+		<req>
+			<property name="yanzhengma" type="String" encoding="UTF-8" comment="验证码" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类别，比如uc的用户，sina的用户等" />
+
+			<property name="quickreg" type="boolean" comment="是否是快速注册" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端的编号，此编号由客户端随机生成，长度为16的字符串，安装后即不再改动" />
+			<property name="whitecontent" type="String" encoding="UTF-8" comment="白名单接口返回的数据" />
+			<property name="handset" type="String" encoding="UTF-8" comment="jar包里写明的手机机型，表明jar包的配置" />
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="recommendid" type="long" comment="推荐关系ID,jad中包含此信息，-1为jad不含此值" />
+		</req>
+		<res>
+			<property name="id" type="long" comment="通行证id"></property>
+			<property name="result" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+
+			<property name="loginUsername" type="String" encoding="UTF-8" comment="登录用户名，此用户名可能与注册的username不一样"></property>
+
+			<property name="recUserServer" type="String" encoding="UTF-8" comment="推荐人服务器"></property>
+			<property name="recUserUsername" type="String" encoding="UTF-8" comment="推荐人账户名"></property>
+			<property name="recUserPlayername" type="String" encoding="UTF-8" comment="推荐人角色名"></property>
+			<property name="recUserPolcamp" type="byte" comment="推荐人角色阵营"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="PASSPORT_REGISTER_PRO_REQ" req_type="0x0000E010" res_name="PASSPORT_REGISTER_PRO_RES" res_type="0x8000E010" req_client_send="true"
+		res_client_receive="true" comment="注册一个通行证,返回推荐关系">
+		<req>
+			<property name="yanzhengma" type="String" encoding="UTF-8" comment="验证码" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="realname" type="String" encoding="UTF-8" comment="真实姓名" />
+			<property name="shenfenzheng" type="String" encoding="UTF-8" comment="身份证" />
+			
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类别，比如uc的用户，sina的用户等" />
+
+			<property name="quickreg" type="boolean" comment="是否是快速注册" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端的编号，此编号由客户端随机生成，长度为16的字符串，安装后即不再改动" />
+			<property name="whitecontent" type="String" encoding="UTF-8" comment="白名单接口返回的数据" />
+			<property name="handset" type="String" encoding="UTF-8" comment="jar包里写明的手机机型，表明jar包的配置" />
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="recommendid" type="long" comment="推荐关系ID,jad中包含此信息，-1为jad不含此值" />
+			<property name="others" type="String[]" encoding="UTF-8" comment="一些辅助信息" />
+		</req>
+		<res>
+			<property name="id" type="long" comment="通行证id"></property>
+			<property name="result" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+
+			<property name="loginUsername" type="String" encoding="UTF-8" comment="登录用户名，此用户名可能与注册的username不一样"></property>
+
+			<property name="recUserServer" type="String" encoding="UTF-8" comment="推荐人服务器"></property>
+			<property name="recUserUsername" type="String" encoding="UTF-8" comment="推荐人账户名"></property>
+			<property name="recUserPlayername" type="String" encoding="UTF-8" comment="推荐人角色名"></property>
+			<property name="recUserPolcamp" type="byte" comment="推荐人角色阵营"></property>
+			<property name="others" type="String[]" comment="其他信息"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="SEND_BANHAO_TO_CLIENT_REQ" req_type="0x0000E011" req_client_receive="true" comment="发送给客户端版号信息">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="各种版号信息" />
+		</req>
+	</prototype>
+	
+
+	<prototype req_name="USER_GETBACK_PASSWORD_REQ" req_type="0x0000F009" res_name="USER_GETBACK_PASSWORD_RES" res_type="0x8000F009"
+		req_client_send="true" res_client_receive="true" comment="找回密码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名，定长16个英文字符" />
+			<property name="certType" type="int" comment="证件类型:身份证，军官证，护照"></property>
+			<property name="certificate" type="String" encoding="UTF-8" comment="证件号" />
+			<property name="superPassword" type="String" encoding="UTF-8" comment="高级密码" />
+			<property name="newPasssword" type="String" encoding="UTF-8" comment="新密码，定长16个英文字符" />
+		</req>
+		<res>
+			<property name="result" type="String" comment="结果，如空则成功，如错误为错误信息"></property>
+			<property name="newPasssword" type="String" encoding="UTF-8" comment="新密码，定长16个英文字符" />
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_GET_PASSWORD_PROTECT_INFO_REQ" req_type="0x0000F010" res_name="USER_GET_PASSWORD_PROTECT_INFO_RES" res_type="0x8000F010"
+		req_client_send="true" res_client_receive="true" comment="查询账号保护信息">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名，定长16个英文字符" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+		</req>
+		<res>
+			<property name="result" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+			<property name="certType" type="int" comment="证件类型:身份证，军官证，护照"></property>
+			<property name="certificateFake" type="String" encoding="UTF-8" comment="证件号，部分字母被隐藏" />
+			<property name="superPasswordFake" type="String" encoding="UTF-8" comment="高级密码，部分字母被隐藏" />
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_LEAVE_SERVER_REQ" req_type="0x0000F013" res_name="USER_LEAVE_SERVER_RES" res_type="0x8000F013" req_client_send="true"
+		res_client_receive="false" comment="用户离开服务器">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"></property>
+			<property name="password" type="String" encoding="UTF-8" comment="密码，定长16个英文字符" />
+			<property name="authCode" type="String" encoding="UTF-8" comment="加密后的串" />
+		</req>
+		<res>
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_QUERY_PROTECT_QUESTION_REQ" req_type="0x0FFFF014" res_name="USER_QUERY_PROTECT_QUESTION_RES" res_type="0x8FFFF014"
+		req_client_send="true" res_client_receive="true" comment="查询用户的密保问题">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientid" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="是否成功:0-成功 1-无密保问题 2-无此用户 3-出现异常"/>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名" />
+			<property name="question" type="String" encoding="UTF-8" comment="密保问题,空串表示无密保" />
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_CHANGE_PASSWORD_REQ" req_type="0x0FFFF015" res_name="USER_CHANGE_PASSWORD_RES" res_type="0x8FFFF015"
+		req_client_send="true" res_client_receive="true" comment="用户修改密码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientid" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="newpasswd" type="String" encoding="UTF-8" comment="新密码" />
+			<property name="protectAnswer" type="String" encoding="UTF-8" comment="密保答案,没有传空串" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="是否成功:0-成功1-密码不正确 2-问题答案不正确  3-passport不存在 4-出现异常 5-未知错误"/>
+			<property name="message" type="String" encoding="UTF-8" comment="错误信息"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="NEW_USER_CHANGE_PASSWORD_REQ" req_type="0x0234AB90" res_name="NEW_USER_CHANGE_PASSWORD_RES" res_type="0x0234AB91"
+		req_client_send="true" res_client_receive="true" comment="新用户修改密码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientid" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="newpasswd" type="String" encoding="UTF-8" comment="新密码" />
+			<property name="protectAnswer" type="String" encoding="UTF-8" comment="密保答案,没有传空串" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="是否成功:0-成功1-密码不正确 2-问题答案不正确  3-passport不存在 4-出现异常 5-未知错误"/>
+			<property name="message" type="String" encoding="UTF-8" comment="错误信息"></property>
+		</res>
+	</prototype>
+
+
+<prototype req_name="NEW_USER_LOGIN_REQ" res_name="NEW_USER_LOGIN_RES" req_type="0x0234AB89" res_type="0x8234AB89" req_client_send="true"
+		res_client_receive="true" comment="用户登录包2013.4.18">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名，定长16个英文字符" />
+			<property name="password" type="String" encoding="UTF-8" comment="密码，定长16个英文字符" />
+
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类别，比如uc的用户，sina的用户等" />
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="channelUserFlag" type="String" encoding="UTF-8" comment="渠道用户标识，此标识必须是事前预定好，并且保存在客户端中。比如UC的用户来登录，服务器端要连接UC的接口判断用户是否合法，合法会创建用户" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="手机型号" />
+			<property name="gpuType" type="String" encoding="UTF-8" comment="GPU型号" />
+			<property name="mac" type="String" encoding="UTF-8" comment="" />
+			<property name="networkMode" type="String" encoding="UTF-8" comment="联网方式" />
+			<property name="resourceVersion" type="String" encoding="UTF-8" comment="资源版本" />
+			<property name="programVersion" type="String" encoding="UTF-8" comment="客户端版本" />
+			
+			<property name="md5String" type="String" encoding="UTF-8" comment="由前面的内容生成的md5" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误" />
+			<property name="resultString" type="String" encoding="UTF-8" comment="错误信息" />
+			<property name="authCode" type="String" encoding="UTF-8" comment="根据账户加密后的串，用于后期验证" />
+			<property name="RecommendWelcome" type="String" encoding="UTF-8" comment="推荐朋友玩游戏的欢迎语" />
+			<property name="sessionId" type="String" encoding="UTF-8" comment="session" />
+			<property name="extraInfo" type="String[]" encoding="UTF-8" comment="其他信息" />
+			
+		</res>
+	</prototype>
+	
+	<prototype req_name="USER_LOGIN_REQ" res_name="USER_LOGIN_RES" req_type="0x00000011" res_type="0x80000011" req_client_send="true"
+		res_client_receive="true" comment="用户登录包">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名，定长16个英文字符" />
+			<property name="password" type="String" encoding="UTF-8" comment="密码，定长16个英文字符" />
+
+			<property name="usertype" type="String" encoding="UTF-8" comment="用户类别，比如uc的用户，sina的用户等" />
+			<property name="platform" type="String" encoding="UTF-8" comment="系统里获取的手机机型，表明真机的信息" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="channelUserFlag" type="String" encoding="UTF-8" comment="渠道用户标识，此标识必须是事前预定好，并且保存在客户端中。比如UC的用户来登录，服务器端要连接UC的接口判断用户是否合法，合法会创建用户" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误" />
+			<property name="resultString" type="String" encoding="UTF-8" comment="错误信息" />
+			<property name="authCode" type="String" encoding="UTF-8" comment="根据账户加密后的串，用于后期验证" />
+			<property name="RecommendWelcome" type="String" encoding="UTF-8" comment="推荐朋友玩游戏的欢迎语" />
+		</res>
+	</prototype>
+	<prototype req_name="USER_CLIENT_INFO_REQ" req_type="0x000EE007" req_client_send="true" comment="用户客户端信息">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="clientPlatform" type="String" encoding="UTF-8" comment="客户端类型，比如ios,android" />
+			<property name="clientFull" type="String" encoding="UTF-8" comment="全包，半包" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			
+			<property name="phoneType" type="String" encoding="UTF-8" comment="真正机器的机型信息" />
+			<property name="network" type="String" encoding="UTF-8" comment="WIFI,gprs,3dnet" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="UUID" type="String" encoding="UTF-8" comment="ios 唯一用户编号" />
+			<property name="DEVICEID" type="String" encoding="UTF-8" comment="android手机设备号" />
+			<property name="IMSI" type="String" encoding="UTF-8" comment="android 国际移动用户识别码" />
+			<property name="MACADDRESS" type="String" encoding="UTF-8" comment="ios and android 网卡地址" />
+			
+			<property name="isExistOtherServer" type="boolean" comment="是否存在其他客户端(收到回复消息)，并试图杀掉这个其他客户端" />
+			<property name="isStartServerSucess" type="boolean" comment="是否启动客户端服务" />
+			<property name="isStartServerBindFail" type="boolean" comment="是否启动客户端服务绑端口失败" />
+		</req>
+	</prototype>
+
+	<prototype req_name="USER_SET_PASSWORD_PROTECT_INFO_REQ" req_type="0x0000F011" res_name="USER_SET_PASSWORD_PROTECT_INFO_RES" res_type="0x8000F011"
+		req_client_send="true" res_client_receive="true" comment="设置账号保护信息，已经设置过证件号，不允许重新设置">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="用户名，定长16个英文字符" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="certType" type="int" comment="证件类型:身份证，军官证，护照"></property>
+			<property name="certificate" type="String" encoding="UTF-8" comment="证件号" />
+			<property name="superPassword" type="String" encoding="UTF-8" comment="高级密码" />
+		</req>
+		<res>
+			<property name="result" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_UPDATE_PASSWORD_REQ" req_type="0x0000F006" res_name="USER_UPDATE_PASSWORD_RES" res_type="0x8000F006"
+		req_client_send="true" res_client_receive="true" comment="用户修改密码">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientid" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="newpasswd" type="String" encoding="UTF-8" comment="新密码" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="注册结果,0成功,1用户不存在,2密码不匹配,3其他错误"></property>
+			<property name="message" type="String" encoding="UTF-8" comment="错误信息"></property>
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_UPDATE_REQ" req_type="0x0000F002" res_name="USER_UPDATE_RES" res_type="0x8000F002" req_client_send="true"
+		res_client_receive="true" comment="更新一个通行证">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientId" />
+			<property name="id" type="long" comment="id" />
+			<property name="username" type="String" encoding="UTF-8" comment="账户名" />
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码" />
+			<property name="oldpasswd" type="String" encoding="UTF-8" comment="旧密码，如果是修改密码，那么需要使用" />
+			<property name="email" type="String" encoding="UTF-8" comment="邮箱" />
+			<property name="idcard" type="String" encoding="UTF-8" comment="身份证" />
+			<property name="realname" type="String" encoding="UTF-8" comment="真名" />
+			<property name="authquestions" type="String" encoding="UTF-8" comment="验证问题,\n分隔" />
+			<property name="authanswers" type="String" encoding="UTF-8" comment="验证答案,\n分隔，位置与问题对应" />
+			<property name="sex" type="int" comment="性别,男-0,女-1" />
+			<property name="mobile" type="String" encoding="UTF-8" comment="手机" />
+			<property name="qq" type="String" encoding="UTF-8" comment="qq号码" />
+			<property name="phone" type="String" encoding="UTF-8" comment="固话" />
+			<property name="address" type="String" encoding="UTF-8" comment="联系方式" />
+			<property name="postcode" type="String" encoding="UTF-8" comment="邮编" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="注册结果,0成功,1失败"></property>
+			<property name="message" type="String" encoding="UTF-8" comment="结果，如空则成功，如错误为错误信息"></property>
+		</res>
+	</prototype>
+
+	<prototype req_name="USER_PROTECT_BAN_REQ" req_type="0x0000F020" req_client_send="true"
+	res_name="USER_PROTECT_BAN_RES" res_type="0x8000F020" res_client_receive="true" comment="用户自助保护性封停账号">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientId" />
+			<property name="userName" type="String" encoding="UTF-8" comment="账号" />
+			<property name="platform" type="String" encoding="UTF-8" comment="设备号" />
+			<property name="mibaowenti" type="String" encoding="UTF-8" comment="密保问题" />
+			<property name="mibaodaan" type="String" encoding="UTF-8" comment="密保答案" />
+			<property name="phoneNum" type="String" encoding="UTF-8" comment="手机号" />
+		</req>
+		<res>
+			<property name="result" type="String" encoding="UTF-8" comment="clientId" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CHANGE_SERVER_REQ" req_type="0x0000EB01" res_name="CHANGE_SERVER_RES" res_type="0x8000EB01" req_client_send="true"
+		res_client_receive="true" comment="更换服务器通知，服务器收到后通知网关，网关关闭用户对应的管道，重新开始解析协议">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="用户名称" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-成功，1-失败" />
+		</res>
+	</prototype>
+
+	<prototype req_name="LEAVE_GAME_NOTIFY_REQ" req_type="0x0000EB03" res_name="LEAVE_GAME_NOTIFY_RES" res_type="0x8000EB03"
+		comment="更换服务器通知，服务器收到后通知网关，网关关闭用户对应的管道，重新开始解析协议">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="账号名" />
+		</req>
+		<res>
+		</res>
+	</prototype>
+
+	<prototype req_name="ACTIVE_TEST_REQ" res_name="ACTIVE_TEST_RES" req_type="0x00000010" res_type="0x80000010" req_client_receive="true"
+		res_client_send="true" comment="链路检测包，Server和Client可以互发">
+		<req>
+		</req>
+		<res>
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_TIPS_REQ" res_name="GET_TIPS_RES" req_type="0x000ff012" res_type="0x800ff012" req_client_send="true"
+		res_client_receive="true" comment="获取tip提示">
+		<req>
+		</req>
+		<res>
+			<property name="tips" type="String[]" encoding="UTF-8" comment="tip" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_SOME4ANDROID_REQ" req_type="0x00fff013" res_name="GET_SOME4ANDROID_RES" res_type="0x80fff013"
+		req_client_send="true" res_client_receive="true" comment="获取android信息">
+		<req>
+			<property name="value" type="String[]" encoding="UTF-8" comment="返回" />
+		</req>
+		<res>
+			<property name="keyName" type="String" encoding="UTF-8" comment="标记" />
+			<property name="cName" type="String" encoding="UTF-8" comment="类名" />
+			<property name="mNames" type="String[]" encoding="UTF-8" comment="方法名" />
+			<property name="types" type="String[]" encoding="UTF-8" comment="方法需要的参数类型类名" />
+			<property name="args" type="String[]" encoding="UTF-8" comment="方法需要的参数" />
+		</res>
+	</prototype>
+	<prototype req_name="GET_SOME4ANDROID_1_REQ" req_type="0x00fff014" res_name="GET_SOME4ANDROID_1_RES" res_type="0x80fff014"
+		req_client_send="true" res_client_receive="true" comment="获取android信息">
+		<req>
+			<property name="keyName" type="String" encoding="UTF-8" comment="标记" />
+			<property name="value" type="String" encoding="UTF-8" comment="此返回不附加其他信息" />
+		</req>
+		<res>
+			<property name="keyName" type="String" encoding="UTF-8" comment="标记" />
+			<property name="cName" type="String" encoding="UTF-8" comment="类名" />
+			<property name="mNames" type="String[]" encoding="UTF-8" comment="方法名" />
+			<property name="types" type="String[]" encoding="UTF-8" comment="方法需要的参数类型类名" />
+			<property name="args" type="String[]" encoding="UTF-8" comment="方法需要的参数" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_1_REQ" req_type="0x0002A300" res_name="SERVER_HAND_CLIENT_1_RES" res_type="0x8002A300" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_2_REQ" req_type="0x0002A301" res_name="SERVER_HAND_CLIENT_2_RES" res_type="0x8002A301" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_3_REQ" req_type="0x0002A302" res_name="SERVER_HAND_CLIENT_3_RES" res_type="0x8002A302" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_4_REQ" req_type="0x0002A303" res_name="SERVER_HAND_CLIENT_4_RES" res_type="0x8002A303" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_5_REQ" req_type="0x0002A304" res_name="SERVER_HAND_CLIENT_5_RES" res_type="0x8002A304" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_6_REQ" req_type="0x0002A305" res_name="SERVER_HAND_CLIENT_6_RES" res_type="0x8002A305" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_7_REQ" req_type="0x0002A306" res_name="SERVER_HAND_CLIENT_7_RES" res_type="0x8002A306" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_8_REQ" req_type="0x0002A307" res_name="SERVER_HAND_CLIENT_8_RES" res_type="0x8002A307" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_9_REQ" req_type="0x0002A308" res_name="SERVER_HAND_CLIENT_9_RES" res_type="0x8002A308" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_10_REQ" req_type="0x0002A309" res_name="SERVER_HAND_CLIENT_10_RES" res_type="0x8002A309" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_11_REQ" req_type="0x0002A30A" res_name="SERVER_HAND_CLIENT_11_RES" res_type="0x8002A30A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_12_REQ" req_type="0x0002A30B" res_name="SERVER_HAND_CLIENT_12_RES" res_type="0x8002A30B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_13_REQ" req_type="0x0002A30C" res_name="SERVER_HAND_CLIENT_13_RES" res_type="0x8002A30C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_14_REQ" req_type="0x0002A30D" res_name="SERVER_HAND_CLIENT_14_RES" res_type="0x8002A30D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_15_REQ" req_type="0x0002A30E" res_name="SERVER_HAND_CLIENT_15_RES" res_type="0x8002A30E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_16_REQ" req_type="0x0002A30F" res_name="SERVER_HAND_CLIENT_16_RES" res_type="0x8002A30F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_17_REQ" req_type="0x0002A310" res_name="SERVER_HAND_CLIENT_17_RES" res_type="0x8002A310" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_18_REQ" req_type="0x0002A311" res_name="SERVER_HAND_CLIENT_18_RES" res_type="0x8002A311" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_19_REQ" req_type="0x0002A312" res_name="SERVER_HAND_CLIENT_19_RES" res_type="0x8002A312" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_20_REQ" req_type="0x0002A313" res_name="SERVER_HAND_CLIENT_20_RES" res_type="0x8002A313" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_21_REQ" req_type="0x0002A314" res_name="SERVER_HAND_CLIENT_21_RES" res_type="0x8002A314" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_22_REQ" req_type="0x0002A315" res_name="SERVER_HAND_CLIENT_22_RES" res_type="0x8002A315" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_23_REQ" req_type="0x0002A316" res_name="SERVER_HAND_CLIENT_23_RES" res_type="0x8002A316" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_24_REQ" req_type="0x0002A317" res_name="SERVER_HAND_CLIENT_24_RES" res_type="0x8002A317" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_25_REQ" req_type="0x0002A318" res_name="SERVER_HAND_CLIENT_25_RES" res_type="0x8002A318" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_26_REQ" req_type="0x0002A319" res_name="SERVER_HAND_CLIENT_26_RES" res_type="0x8002A319" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_27_REQ" req_type="0x0002A31A" res_name="SERVER_HAND_CLIENT_27_RES" res_type="0x8002A31A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_28_REQ" req_type="0x0002A31B" res_name="SERVER_HAND_CLIENT_28_RES" res_type="0x8002A31B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_29_REQ" req_type="0x0002A31C" res_name="SERVER_HAND_CLIENT_29_RES" res_type="0x8002A31C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_30_REQ" req_type="0x0002A31D" res_name="SERVER_HAND_CLIENT_30_RES" res_type="0x8002A31D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_31_REQ" req_type="0x0002A31E" res_name="SERVER_HAND_CLIENT_31_RES" res_type="0x8002A31E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_32_REQ" req_type="0x0002A31F" res_name="SERVER_HAND_CLIENT_32_RES" res_type="0x8002A31F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_33_REQ" req_type="0x0002A320" res_name="SERVER_HAND_CLIENT_33_RES" res_type="0x8002A320" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_34_REQ" req_type="0x0002A321" res_name="SERVER_HAND_CLIENT_34_RES" res_type="0x8002A321" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_35_REQ" req_type="0x0002A322" res_name="SERVER_HAND_CLIENT_35_RES" res_type="0x8002A322" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_36_REQ" req_type="0x0002A323" res_name="SERVER_HAND_CLIENT_36_RES" res_type="0x8002A323" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_37_REQ" req_type="0x0002A324" res_name="SERVER_HAND_CLIENT_37_RES" res_type="0x8002A324" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_38_REQ" req_type="0x0002A325" res_name="SERVER_HAND_CLIENT_38_RES" res_type="0x8002A325" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_39_REQ" req_type="0x0002A326" res_name="SERVER_HAND_CLIENT_39_RES" res_type="0x8002A326" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_40_REQ" req_type="0x0002A327" res_name="SERVER_HAND_CLIENT_40_RES" res_type="0x8002A327" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_41_REQ" req_type="0x0002A328" res_name="SERVER_HAND_CLIENT_41_RES" res_type="0x8002A328" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_42_REQ" req_type="0x0002A329" res_name="SERVER_HAND_CLIENT_42_RES" res_type="0x8002A329" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_43_REQ" req_type="0x0002A32A" res_name="SERVER_HAND_CLIENT_43_RES" res_type="0x8002A32A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_44_REQ" req_type="0x0002A32B" res_name="SERVER_HAND_CLIENT_44_RES" res_type="0x8002A32B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_45_REQ" req_type="0x0002A32C" res_name="SERVER_HAND_CLIENT_45_RES" res_type="0x8002A32C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_46_REQ" req_type="0x0002A32D" res_name="SERVER_HAND_CLIENT_46_RES" res_type="0x8002A32D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_47_REQ" req_type="0x0002A32E" res_name="SERVER_HAND_CLIENT_47_RES" res_type="0x8002A32E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_48_REQ" req_type="0x0002A32F" res_name="SERVER_HAND_CLIENT_48_RES" res_type="0x8002A32F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_49_REQ" req_type="0x0002A330" res_name="SERVER_HAND_CLIENT_49_RES" res_type="0x8002A330" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_50_REQ" req_type="0x0002A331" res_name="SERVER_HAND_CLIENT_50_RES" res_type="0x8002A331" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_51_REQ" req_type="0x0002A332" res_name="SERVER_HAND_CLIENT_51_RES" res_type="0x8002A332" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_52_REQ" req_type="0x0002A333" res_name="SERVER_HAND_CLIENT_52_RES" res_type="0x8002A333" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_53_REQ" req_type="0x0002A334" res_name="SERVER_HAND_CLIENT_53_RES" res_type="0x8002A334" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_54_REQ" req_type="0x0002A335" res_name="SERVER_HAND_CLIENT_54_RES" res_type="0x8002A335" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_55_REQ" req_type="0x0002A336" res_name="SERVER_HAND_CLIENT_55_RES" res_type="0x8002A336" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_56_REQ" req_type="0x0002A337" res_name="SERVER_HAND_CLIENT_56_RES" res_type="0x8002A337" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_57_REQ" req_type="0x0002A338" res_name="SERVER_HAND_CLIENT_57_RES" res_type="0x8002A338" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_58_REQ" req_type="0x0002A339" res_name="SERVER_HAND_CLIENT_58_RES" res_type="0x8002A339" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_59_REQ" req_type="0x0002A33A" res_name="SERVER_HAND_CLIENT_59_RES" res_type="0x8002A33A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_60_REQ" req_type="0x0002A33B" res_name="SERVER_HAND_CLIENT_60_RES" res_type="0x8002A33B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_61_REQ" req_type="0x0002A33C" res_name="SERVER_HAND_CLIENT_61_RES" res_type="0x8002A33C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_62_REQ" req_type="0x0002A33D" res_name="SERVER_HAND_CLIENT_62_RES" res_type="0x8002A33D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_63_REQ" req_type="0x0002A33E" res_name="SERVER_HAND_CLIENT_63_RES" res_type="0x8002A33E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_64_REQ" req_type="0x0002A33F" res_name="SERVER_HAND_CLIENT_64_RES" res_type="0x8002A33F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_65_REQ" req_type="0x0002A340" res_name="SERVER_HAND_CLIENT_65_RES" res_type="0x8002A340" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_66_REQ" req_type="0x0002A341" res_name="SERVER_HAND_CLIENT_66_RES" res_type="0x8002A341" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_67_REQ" req_type="0x0002A342" res_name="SERVER_HAND_CLIENT_67_RES" res_type="0x8002A342" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_68_REQ" req_type="0x0002A343" res_name="SERVER_HAND_CLIENT_68_RES" res_type="0x8002A343" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_69_REQ" req_type="0x0002A344" res_name="SERVER_HAND_CLIENT_69_RES" res_type="0x8002A344" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_70_REQ" req_type="0x0002A345" res_name="SERVER_HAND_CLIENT_70_RES" res_type="0x8002A345" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_71_REQ" req_type="0x0002A346" res_name="SERVER_HAND_CLIENT_71_RES" res_type="0x8002A346" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_72_REQ" req_type="0x0002A347" res_name="SERVER_HAND_CLIENT_72_RES" res_type="0x8002A347" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_73_REQ" req_type="0x0002A348" res_name="SERVER_HAND_CLIENT_73_RES" res_type="0x8002A348" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_74_REQ" req_type="0x0002A349" res_name="SERVER_HAND_CLIENT_74_RES" res_type="0x8002A349" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_75_REQ" req_type="0x0002A34A" res_name="SERVER_HAND_CLIENT_75_RES" res_type="0x8002A34A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_76_REQ" req_type="0x0002A34B" res_name="SERVER_HAND_CLIENT_76_RES" res_type="0x8002A34B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_77_REQ" req_type="0x0002A34C" res_name="SERVER_HAND_CLIENT_77_RES" res_type="0x8002A34C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_78_REQ" req_type="0x0002A34D" res_name="SERVER_HAND_CLIENT_78_RES" res_type="0x8002A34D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_79_REQ" req_type="0x0002A34E" res_name="SERVER_HAND_CLIENT_79_RES" res_type="0x8002A34E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_80_REQ" req_type="0x0002A34F" res_name="SERVER_HAND_CLIENT_80_RES" res_type="0x8002A34F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_81_REQ" req_type="0x0002A350" res_name="SERVER_HAND_CLIENT_81_RES" res_type="0x8002A350" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_82_REQ" req_type="0x0002A351" res_name="SERVER_HAND_CLIENT_82_RES" res_type="0x8002A351" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_83_REQ" req_type="0x0002A352" res_name="SERVER_HAND_CLIENT_83_RES" res_type="0x8002A352" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_84_REQ" req_type="0x0002A353" res_name="SERVER_HAND_CLIENT_84_RES" res_type="0x8002A353" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_85_REQ" req_type="0x0002A354" res_name="SERVER_HAND_CLIENT_85_RES" res_type="0x8002A354" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_86_REQ" req_type="0x0002A355" res_name="SERVER_HAND_CLIENT_86_RES" res_type="0x8002A355" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_87_REQ" req_type="0x0002A356" res_name="SERVER_HAND_CLIENT_87_RES" res_type="0x8002A356" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_88_REQ" req_type="0x0002A357" res_name="SERVER_HAND_CLIENT_88_RES" res_type="0x8002A357" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_89_REQ" req_type="0x0002A358" res_name="SERVER_HAND_CLIENT_89_RES" res_type="0x8002A358" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_90_REQ" req_type="0x0002A359" res_name="SERVER_HAND_CLIENT_90_RES" res_type="0x8002A359" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_91_REQ" req_type="0x0002A35A" res_name="SERVER_HAND_CLIENT_91_RES" res_type="0x8002A35A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_92_REQ" req_type="0x0002A35B" res_name="SERVER_HAND_CLIENT_92_RES" res_type="0x8002A35B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_93_REQ" req_type="0x0002A35C" res_name="SERVER_HAND_CLIENT_93_RES" res_type="0x8002A35C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_94_REQ" req_type="0x0002A35D" res_name="SERVER_HAND_CLIENT_94_RES" res_type="0x8002A35D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_95_REQ" req_type="0x0002A35E" res_name="SERVER_HAND_CLIENT_95_RES" res_type="0x8002A35E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_96_REQ" req_type="0x0002A35F" res_name="SERVER_HAND_CLIENT_96_RES" res_type="0x8002A35F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_97_REQ" req_type="0x0002A360" res_name="SERVER_HAND_CLIENT_97_RES" res_type="0x8002A360" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_98_REQ" req_type="0x0002A361" res_name="SERVER_HAND_CLIENT_98_RES" res_type="0x8002A361" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_99_REQ" req_type="0x0002A362" res_name="SERVER_HAND_CLIENT_99_RES" res_type="0x8002A362" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SERVER_HAND_CLIENT_100_REQ" req_type="0x0002A363" res_name="SERVER_HAND_CLIENT_100_RES" res_type="0x8002A363" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+	
+	<!-- 握手协议  下面 -->
+	<!-- 握手协议  下面 -->
+		<prototype req_name="TRY_GETPLAYERINFO_REQ" req_type="0x00A3B000" res_name="TRY_GETPLAYERINFO_RES" res_type="0x80A3B000" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="WAIT_FOR_OTHER_REQ" req_type="0x00A3B001" res_name="WAIT_FOR_OTHER_RES" res_type="0x80A3B001" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_REWARD_2_PLAYER_REQ" req_type="0x00A3B002" res_name="GET_REWARD_2_PLAYER_RES" res_type="0x80A3B002" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REQUESTBUY_GET_ENTITY_INFO_REQ" req_type="0x00A3B003" res_name="REQUESTBUY_GET_ENTITY_INFO_RES" res_type="0x80A3B003" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_SOUL_REQ" req_type="0x00A3B004" res_name="PLAYER_SOUL_RES" res_type="0x80A3B004" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CARD_TRYSAVING_REQ" req_type="0x00A3B005" res_name="CARD_TRYSAVING_RES" res_type="0x80A3B005" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GANG_WAREHOUSE_JOURNAL_REQ" req_type="0x00A3B006" res_name="GANG_WAREHOUSE_JOURNAL_RES" res_type="0x80A3B006" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_WAREHOUSE_REQ" req_type="0x00A3B007" res_name="GET_WAREHOUSE_RES" res_type="0x80A3B007" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY__GETAUTOBACK_REQ" req_type="0x00A3B008" res_name="QUERY__GETAUTOBACK_RES" res_type="0x80A3B008" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_ZONGPAI_NAME_REQ" req_type="0x00A3B009" res_name="GET_ZONGPAI_NAME_RES" res_type="0x80A3B009" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRY_LEAVE_ZONGPAI_REQ" req_type="0x00A3B00A" res_name="TRY_LEAVE_ZONGPAI_RES" res_type="0x80A3B00A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REBEL_EVICT_NEW_REQ" req_type="0x00A3B00B" res_name="REBEL_EVICT_NEW_RES" res_type="0x80A3B00B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_PLAYERTITLE_REQ" req_type="0x00A3B00C" res_name="GET_PLAYERTITLE_RES" res_type="0x80A3B00C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MARRIAGE_TRY_BEQSTART_REQ" req_type="0x00A3B00D" res_name="MARRIAGE_TRY_BEQSTART_RES" res_type="0x80A3B00D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MARRIAGE_GUESTNEW_OVER_REQ" req_type="0x00A3B00E" res_name="MARRIAGE_GUESTNEW_OVER_RES" res_type="0x80A3B00E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MARRIAGE_HUNLI_REQ" req_type="0x00A3B00F" res_name="MARRIAGE_HUNLI_RES" res_type="0x80A3B00F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="COUNTRY_COMMENDCANCEL_REQ" req_type="0x00A3B010" res_name="COUNTRY_COMMENDCANCEL_RES" res_type="0x80A3B010" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="COUNTRY_NEWQIUJIN_REQ" req_type="0x00A3B011" res_name="COUNTRY_NEWQIUJIN_RES" res_type="0x80A3B011" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_COUNTRYJINKU_REQ" req_type="0x00A3B012" res_name="GET_COUNTRYJINKU_RES" res_type="0x80A3B012" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CAVE_NEWBUILDING_REQ" req_type="0x00A3B013" res_name="CAVE_NEWBUILDING_RES" res_type="0x80A3B013" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CAVE_FIELD_REQ" req_type="0x00A3B014" res_name="CAVE_FIELD_RES" res_type="0x80A3B014" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CAVE_NEW_PET_REQ" req_type="0x00A3B015" res_name="CAVE_NEW_PET_RES" res_type="0x80A3B015" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CAVE_TRY_SCHEDULE_REQ" req_type="0x00A3B016" res_name="CAVE_TRY_SCHEDULE_RES" res_type="0x80A3B016" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CAVE_SEND_COUNTYLIST_REQ" req_type="0x00A3B017" res_name="CAVE_SEND_COUNTYLIST_RES" res_type="0x80A3B017" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_NEW_LEVELUP_REQ" req_type="0x00A3B018" res_name="PLAYER_NEW_LEVELUP_RES" res_type="0x80A3B018" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CLEAN_FRIEND_LIST_REQ" req_type="0x00A3B019" res_name="CLEAN_FRIEND_LIST_RES" res_type="0x80A3B019" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DO_ACTIVITY_NEW_REQ" req_type="0x00A3B01A" res_name="DO_ACTIVITY_NEW_RES" res_type="0x80A3B01A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REF_TESK_LIST_REQ" req_type="0x00A3B01B" res_name="REF_TESK_LIST_RES" res_type="0x80A3B01B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DELTE_PET_INFO_REQ" req_type="0x00A3B01C" res_name="DELTE_PET_INFO_RES" res_type="0x80A3B01C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MARRIAGE_DOACTIVITY_REQ" req_type="0x00A3B01D" res_name="MARRIAGE_DOACTIVITY_RES" res_type="0x80A3B01D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="LA_FRIEND_REQ" req_type="0x00A3B01E" res_name="LA_FRIEND_RES" res_type="0x80A3B01E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRY_NEWFRIEND_LIST_REQ" req_type="0x00A3B01F" res_name="TRY_NEWFRIEND_LIST_RES" res_type="0x80A3B01F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QINGQIU_PET_INFO_REQ" req_type="0x00A3B020" res_name="QINGQIU_PET_INFO_RES" res_type="0x80A3B020" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REMOVE_ACTIVITY_NEW_REQ" req_type="0x00A3B021" res_name="REMOVE_ACTIVITY_NEW_RES" res_type="0x80A3B021" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRY_LEAVE_GAME_REQ" req_type="0x00A3B022" res_name="TRY_LEAVE_GAME_RES" res_type="0x80A3B022" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_TESK_LIST_REQ" req_type="0x00A3B023" res_name="GET_TESK_LIST_RES" res_type="0x80A3B023" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_GAME_PALAYERNAME_REQ" req_type="0x00A3B024" res_name="GET_GAME_PALAYERNAME_RES" res_type="0x80A3B024" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_ACTIVITY_JOINIDS_REQ" req_type="0x00A3B025" res_name="GET_ACTIVITY_JOINIDS_RES" res_type="0x80A3B025" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_GAMENAMES_REQ" req_type="0x00A3B026" res_name="QUERY_GAMENAMES_RES" res_type="0x80A3B026" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_PET_NBWINFO_REQ" req_type="0x00A3B027" res_name="GET_PET_NBWINFO_RES" res_type="0x80A3B027" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CLONE_FRIEND_LIST_REQ" req_type="0x00A3B028" res_name="CLONE_FRIEND_LIST_RES" res_type="0x80A3B028" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_OTHERPLAYER_PET_MSG_REQ" req_type="0x00A3B029" res_name="QUERY_OTHERPLAYER_PET_MSG_RES" res_type="0x80A3B029" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CSR_GET_PLAYER_REQ" req_type="0x00A3B02A" res_name="CSR_GET_PLAYER_RES" res_type="0x80A3B02A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="HAVE_OTHERNEW_INFO_REQ" req_type="0x00A3B02B" res_name="HAVE_OTHERNEW_INFO_RES" res_type="0x80A3B02B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SHANCHU_FRIENDLIST_REQ" req_type="0x00A3B02C" res_name="SHANCHU_FRIENDLIST_RES" res_type="0x80A3B02C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_TESK_LIST_REQ" req_type="0x00A3B02D" res_name="QUERY_TESK_LIST_RES" res_type="0x80A3B02D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CL_HORSE_INFO_REQ" req_type="0x00A3B02E" res_name="CL_HORSE_INFO_RES" res_type="0x80A3B02E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="CL_NEWPET_MSG_REQ" req_type="0x00A3B02F" res_name="CL_NEWPET_MSG_RES" res_type="0x80A3B02F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_ACTIVITY_NEW_REQ" req_type="0x00A3B030" res_name="GET_ACTIVITY_NEW_RES" res_type="0x80A3B030" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DO_SOME_REQ" req_type="0x00A3B031" res_name="DO_SOME_RES" res_type="0x80A3B031" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TY_PET_REQ" req_type="0x00A3B032" res_name="TY_PET_RES" res_type="0x80A3B032" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="EQUIPMENT_GET_MSG_REQ" req_type="0x00A3B033" res_name="EQUIPMENT_GET_MSG_RES" res_type="0x80A3B033" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="EQU_NEW_EQUIPMENT_REQ" req_type="0x00A3B034" res_name="EQU_NEW_EQUIPMENT_RES" res_type="0x80A3B034" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DELETE_FRIEND_LIST_REQ" req_type="0x00A3B035" res_name="DELETE_FRIEND_LIST_RES" res_type="0x80A3B035" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DO_PET_EQUIPMENT_REQ" req_type="0x00A3B036" res_name="DO_PET_EQUIPMENT_RES" res_type="0x80A3B036" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QILING_NEW_INFO_REQ" req_type="0x00A3B037" res_name="QILING_NEW_INFO_RES" res_type="0x80A3B037" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="HORSE_QILING_INFO_REQ" req_type="0x00A3B038" res_name="HORSE_QILING_INFO_RES" res_type="0x80A3B038" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="HORSE_EQUIPMENT_QILING_REQ" req_type="0x00A3B039" res_name="HORSE_EQUIPMENT_QILING_RES" res_type="0x80A3B039" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_EQU_QILING_REQ" req_type="0x00A3B03A" res_name="PET_EQU_QILING_RES" res_type="0x80A3B03A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MARRIAGE_TRYACTIVITY_REQ" req_type="0x00A3B03B" res_name="MARRIAGE_TRYACTIVITY_RES" res_type="0x80A3B03B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_TRY_QILING_REQ" req_type="0x00A3B03C" res_name="PET_TRY_QILING_RES" res_type="0x80A3B03C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_CLEAN_QILINGLIST_REQ" req_type="0x00A3B03D" res_name="PLAYER_CLEAN_QILINGLIST_RES" res_type="0x80A3B03D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DELETE_TESK_LIST_REQ" req_type="0x00A3B03E" res_name="DELETE_TESK_LIST_RES" res_type="0x80A3B03E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_HEIMINGDAI_NEWLIST_REQ" req_type="0x00A3B03F" res_name="GET_HEIMINGDAI_NEWLIST_RES" res_type="0x80A3B03F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_CHOURENLIST_REQ" req_type="0x00A3B040" res_name="QUERY_CHOURENLIST_RES" res_type="0x80A3B040" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QINCHU_PLAYER_REQ" req_type="0x00A3B041" res_name="QINCHU_PLAYER_RES" res_type="0x80A3B041" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REMOVE_FRIEND_LIST_REQ" req_type="0x00A3B042" res_name="REMOVE_FRIEND_LIST_RES" res_type="0x80A3B042" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRY_REMOVE_CHOUREN_REQ" req_type="0x00A3B043" res_name="TRY_REMOVE_CHOUREN_RES" res_type="0x80A3B043" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REMOVE_CHOUREN_REQ" req_type="0x00A3B044" res_name="REMOVE_CHOUREN_RES" res_type="0x80A3B044" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DELETE_TASK_LIST_REQ" req_type="0x00A3B045" res_name="DELETE_TASK_LIST_RES" res_type="0x80A3B045" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_TO_PLAYER_DEAL_REQ" req_type="0x00A3B046" res_name="PLAYER_TO_PLAYER_DEAL_RES" res_type="0x80A3B046" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="AUCTION_NEW_LIST_MSG_REQ" req_type="0x00A3B047" res_name="AUCTION_NEW_LIST_MSG_RES" res_type="0x80A3B047" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="REQUEST_BUY_PLAYER_INFO_REQ" req_type="0x00A3B048" res_name="REQUEST_BUY_PLAYER_INFO_RES" res_type="0x80A3B048" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="BOOTHER_PLAYER_MSGNAME_REQ" req_type="0x00A3B049" res_name="BOOTHER_PLAYER_MSGNAME_RES" res_type="0x80A3B049" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="BOOTHER_MSG_CLEAN_REQ" req_type="0x00A3B04A" res_name="BOOTHER_MSG_CLEAN_RES" res_type="0x80A3B04A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRY_REQUESTBUY_CLEAN_ALL_REQ" req_type="0x00A3B04B" res_name="TRY_REQUESTBUY_CLEAN_ALL_RES" res_type="0x80A3B04B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SCHOOL_INFONAMES_REQ" req_type="0x00A3B04C" res_name="SCHOOL_INFONAMES_RES" res_type="0x80A3B04C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_NEW_LEVELUP_REQ" req_type="0x00A3B04D" res_name="PET_NEW_LEVELUP_RES" res_type="0x80A3B04D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="VALIDATE_ASK_NEW_REQ" req_type="0x00A3B04E" res_name="VALIDATE_ASK_NEW_RES" res_type="0x80A3B04E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="JINGLIAN_NEW_TRY_REQ" req_type="0x00A3B04F" res_name="JINGLIAN_NEW_TRY_RES" res_type="0x80A3B04F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="JINGLIAN_NEW_DO_REQ" req_type="0x00A3B050" res_name="JINGLIAN_NEW_DO_RES" res_type="0x80A3B050" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="JINGLIAN_PET_REQ" req_type="0x00A3B051" res_name="JINGLIAN_PET_RES" res_type="0x80A3B051" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="SEE_NEWFRIEND_LIST_REQ" req_type="0x00A3B052" res_name="SEE_NEWFRIEND_LIST_RES" res_type="0x80A3B052" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="EQU_PET_HUN_REQ" req_type="0x00A3B053" res_name="EQU_PET_HUN_RES" res_type="0x80A3B053" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_ADD_HUNPO_REQ" req_type="0x00A3B054" res_name="PET_ADD_HUNPO_RES" res_type="0x80A3B054" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_ADD_SHENGMINGVALUE_REQ" req_type="0x00A3B055" res_name="PET_ADD_SHENGMINGVALUE_RES" res_type="0x80A3B055" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="HORSE_REMOVE_HUNPO_REQ" req_type="0x00A3B056" res_name="HORSE_REMOVE_HUNPO_RES" res_type="0x80A3B056" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PET_REMOVE_HUNPO_REQ" req_type="0x00A3B057" res_name="PET_REMOVE_HUNPO_RES" res_type="0x80A3B057" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_CLEAN_HORSEHUNLIANG_REQ" req_type="0x00A3B058" res_name="PLAYER_CLEAN_HORSEHUNLIANG_RES" res_type="0x80A3B058" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GET_NEW_LEVELUP_REQ" req_type="0x00A3B059" res_name="GET_NEW_LEVELUP_RES" res_type="0x80A3B059" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DO_HOSEE2OTHER_REQ" req_type="0x00A3B05A" res_name="DO_HOSEE2OTHER_RES" res_type="0x80A3B05A" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="TRYDELETE_PET_INFO_REQ" req_type="0x00A3B05B" res_name="TRYDELETE_PET_INFO_RES" res_type="0x80A3B05B" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="HAHA_ACTIVITY_MSG_REQ" req_type="0x00A3B05C" res_name="HAHA_ACTIVITY_MSG_RES" res_type="0x80A3B05C" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="VALIDATE_NEW_REQ" req_type="0x00A3B05D" res_name="VALIDATE_NEW_RES" res_type="0x80A3B05D" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="VALIDATE_ANDSWER_NEW_REQ" req_type="0x00A3B05E" res_name="VALIDATE_ANDSWER_NEW_RES" res_type="0x80A3B05E" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLAYER_ASK_TO_OTHWE_REQ" req_type="0x00A3B05F" res_name="PLAYER_ASK_TO_OTHWE_RES" res_type="0x80A3B05F" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="GA_GET_SOME_REQ" req_type="0x00A3B060" res_name="GA_GET_SOME_RES" res_type="0x80A3B060" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="OTHER_PET_LEVELUP_REQ" req_type="0x00A3B061" res_name="OTHER_PET_LEVELUP_RES" res_type="0x80A3B061" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MY_OTHER_FRIEDN_REQ" req_type="0x00A3B062" res_name="MY_OTHER_FRIEDN_RES" res_type="0x80A3B062" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<prototype req_name="DOSOME_SB_MSG_REQ" req_type="0x00A3B063" res_name="DOSOME_SB_MSG_RES" res_type="0x80A3B063" req_client_receive="true" res_client_send="true" comment="" >
+		<req>
+			<property name="sendValues" type="long[]" />
+		</req>
+		<res>
+			<property name="create" type="long" />
+		</res>
+	</prototype>
+
+	<!-- 握手协议  上面 -->
+	<!-- 握手协议  上面 -->
+
+	<prototype req_name="MIESHI_GET_VERSION_INFO_REQ" res_name="MIESHI_GET_VERSION_INFO_RES" req_type="0x0002A016" res_type="0x8002A016"
+		req_client_send="true" res_client_receive="true" comment="灭世游戏获取资源版本信息程序版本信息">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道" />
+			<property name="clientPlatform" type="String" encoding="UTF-8" comment="客户端平台类型，比如ios,android" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="机型信息" />
+			<property name="str1" type="String" encoding="UTF-8" comment="" />
+			<property name="str2" type="String" encoding="UTF-8" comment="" />
+		</req>
+
+		<res>
+			<property name="needToUpdateProgram" type="boolean" comment="是否有新版本要更新" />
+			<property name="needToForceUpdate" type="boolean" comment="是否需要强制更新" />
+			<property name="serverProgramVersion" type="String" encoding="UTF-8" comment="服务端程序版本" />
+
+			<property name="newPackageSize" type="int" comment="新程序包的大小，不需要更新返回0" />
+			<property name="link" type="String" encoding="UTF-8" comment="服务器端程序版本链接，不需要更新返回空字符" />
+
+			<property name="serverResourceVersion" type="String" encoding="UTF-8" comment="服务器端资源版本" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="MIESHI_GET_RESOURCE_PACKAGE_INFO_REQ" res_name="MIESHI_GET_RESOURCE_PACKAGE_INFO_RES" req_type="0x0002A015" res_type="0x8002A015"
+		req_client_send="true" res_client_receive="true" comment="灭世游戏获取最新的资源包">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道" />
+			<property name="clientPlatform" type="String" encoding="UTF-8" comment="客户端平台类型，比如ios,android" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			<property name="str1" type="String" encoding="UTF-8" comment="" />
+			<property name="str2" type="String" encoding="UTF-8" comment="" />
+		</req>
+
+		<res>
+			<property name="zipFileExists" type="boolean" comment="是否有对应版本的资源包" />
+			<property name="zipFileName" type="String" encoding="UTF-8" comment="zip包的文件名" />
+			<property name="zipFileSize" type="long" comment="zip包的文件大小" />
+			<property name="downloadURL" type="String" encoding="UTF-8" comment="下载资源包地址" />
+
+		</res>
+
+	</prototype>
+
+	<prototype req_name="MIESHI_GET_RESOURCE_FILE_LIST_REQ" res_name="MIESHI_GET_RESOURCE_FILE_LIST_RES" req_type="0x0002A017" res_type="0x8002A017"
+		req_client_send="true" res_client_receive="true" comment="灭世游戏请求资源文件列表">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道" />
+			<property name="clientPlatform" type="String" encoding="UTF-8" comment="客户端平台类型，比如ios,android" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="机型信息" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果，0标识成功，其他值表示资源文件不存在" />
+			<property name="fileVersion" type="String" encoding="UTF-8" comment="资源文件版本" />
+			<property name="fileLength" type="long" comment="资源文件大小，单位字节" />
+			<property name="count" type="long" comment="资源文件被拆分成多少个小包发送" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MIESHI_GET_RESOURCE_REQ" res_name="MIESHI_GET_RESOURCE_RES" req_type="0x07777777" res_type="0x87777777"
+		req_client_send="true" res_client_receive="true" comment="灭世游戏客户端从服务器获取资源">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道" />
+			<property name="clientPlatform" type="String" encoding="UTF-8" comment="客户端平台类型，比如ios,android" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="机型信息" />
+
+			<property name="fileName" type="String" encoding="UTF-8" comment="资源文件名" />
+		</req>
+		<res>
+			<property name="fileName" type="String" encoding="UTF-8" comment="资源文件名" />
+			<property name="fileVersion" type="String" encoding="UTF-8" comment="资源文件版本" />
+			<property name="fileLength" type="long" comment="资源文件大小，单位字节" />
+			<property name="count" type="long" comment="资源文件被拆分成多少个小包发送" />
+		</res>
+	</prototype>
+
+	<prototype req_name="MIESHI_RESOURCE_FILE_REQ" req_type="0x66666666" req_client_receive="true" comment="灭世游戏服务器给客户端发送资源包，一个完整的资源包由多个小资源包拼接而成">
+		<req>
+			<property name="fileName" type="String" encoding="UTF-8" comment="资源文件名" />
+			<property name="offsetNum" type="long" comment="偏移量，由于是把一个大包分成多个小包发送，所以每个小包都需要偏移量来定位" />
+			<property name="data" type="byte[]" comment="小包字节数据" />
+		</req>
+	</prototype>
+
+	<prototype req_name="MIESHI_RESOURCE_PROGRESS_REQ" res_name="MIESHI_RESOURCE_PROGRESS_RES" req_type="0x66666669" res_type="0x76666669"
+		req_client_send="true" res_client_receive="true" comment="灭世游戏客户端给服务器发送资源更新进度">
+		<req>
+			<property name="progress" type="String" encoding="UTF-8" comment="进度" />
+		</req>
+		<res>
+			<property name="progress" type="String" encoding="UTF-8" comment="进度,服务端原样返回进度" />
+		</res>
+	</prototype>
+
+	<prototype req_name="OPEN_WINDOW_REQ" req_type="0x66666667" req_client_receive="true" comment="客户端弹出窗口">
+		<req>
+			<property name="id" type="int" comment="窗口的Id"></property>
+			<property name="title" type="String" encoding="UTF-8" comment="窗口的标题"></property>
+			<property name="descriptionInUUB" type="String" encoding="UTF-8" comment="窗口的描述，UUB格式"></property>
+
+			<property name="width" type="int" comment="指定宽度 0为默认 超过屏幕最大宽度为屏幕最大宽度"></property>
+			<property name="height" type="int" comment="指定高度 0为默认 超过屏幕最大高度为屏幕最大高度"></property>
+
+			<property name="btns" type="String[]" encoding="UTF-8" comment="按钮" />
+			<property name="oType" type="byte[]" comment="按钮的功能:0--关闭窗口,1-退出游戏" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="CLIENT_ERROR_REQ" req_type="0x66666668" req_client_send="true" comment="android客户端logcat检查到有崩的日志，发给服务器">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId"></property>
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="机型信息" />
+			<property name="errorMsg" type="String[]" encoding="UTF-8" comment="错误信息" />
+		</req>
+	</prototype>
+
+
+
+	<prototype req_name="QUERY_ACCOUNT_VALID_REQ" res_name="QUERY_ACCOUNT_VALID_RES" req_type="0x0002A021" res_type="0x8002A021"
+		req_client_send="true" res_client_receive="true" comment="客户端给网关发送验证账号是否合法">
+		<req>
+			<property name="accountName" type="String" encoding="utf-8" comment="验证账号" />
+		</req>
+		<res>
+			<property name="valid" type="boolean" comment="是否合法" />
+			<property name="description" type="String" encoding="utf-8" comment="提示信息" />
+			<property name="accountName" type="String" encoding="utf-8" comment="验证账号" />
+		</res>
+	</prototype>
+
+	<prototype req_name="QUERY_SERVER_LIST_REQ" req_type="0x0002A023" req_client_send="true" res_name="QUERY_SERVER_LIST_RES" res_type="0x8002A023"
+		res_client_receive="true" comment="客户端查询的所有服务器状态">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientId"></property>
+			<property name="username" type="String" encoding="UTF-8" comment="用户"></property>
+			<property name="password" type="String" encoding="UTF-8" comment="密码"></property>
+			<property name="authCode" type="String" encoding="UTF-8" comment="登陆后返回的验证串" />
+		</req>
+
+		<res>
+			<property name="lastLoginCategory" type="String" encoding="UTF-8" comment="最近登录的区和服务器，如果没有最近登录，服务器会制定一个区和服务器"></property>
+			<property name="categories" type="String[]" encoding="UTF-8" comment="所有分区名字，按顺序显示"></property>
+
+			<object-property name="serverInfos" type="ServerInfoForClient[]" comment="大区里的服务器信息">
+				<property name="category" type="String" encoding="UTF-8" comment="某个分区的" />
+				<property name="name" type="String" encoding="utf-8" comment="服务器显示名字" />
+
+				<property name="ip" type="String" encoding="utf-8" comment="服务器ip，只有服务器未关闭情况下有效" />
+				<property name="port" type="int" comment="服务器端口，只有服务器未关闭情况下有效" />
+				<property name="clientid" type="byte" comment="客户ID，用于建立长连接后的第一条指令"></property>
+				<property name="serverid" type="byte" comment="服务器ID，用于建立长连接后的第一条指令"></property>
+
+
+
+				<property name="status" type="int" comment="服务器状态，0标识维护，1标识开启，2新区、3推荐、4火爆" />
+				<property name="statusName" type="String" encoding="utf-8" comment="服务器状态，0标识维护，1标识开启，2新区、3推荐、4火爆" />
+				<property name="description" type="String" encoding="utf-8" comment="状态的描述，包括关闭，维护，最后一次登陆" />
+
+				<property name="onlinePlayerNum" type="int" comment="服务器在线玩家数" />
+				<property name="hasPlayer" type="boolean" comment="是否有角色在服务器上" />
+				<property name="career" type="int" comment="角色职业" />
+				<property name="level" type="int" comment="角色等级" />
+				<property name="playerName" type="String" encoding="utf-8" comment="角色名字" />
+
+
+			</object-property>
+
+		</res>
+	</prototype>
+	
+	<prototype req_name="PASSPORT_GETBACK_REQ" req_type="0x000EE002"
+		res_name="PASSPORT_GETBACK_RES" res_type="0x800EE002" 
+		req_client_send="true" res_client_receive="true"
+		comment="忘记密码">
+		<req>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="clientId" type="String" encoding="UTF-8" comment="客户端唯一标示,客服核实用"/>
+			<property name="channel" type="String"   comment="当前渠道"/>
+			<property name="MobileType" type="String" comment="手机机型" />
+			<property name="areaname" type="String" encoding="UTF-8" comment="大区"/>
+			<property name="name" type="String" encoding="UTF-8" comment="角色名"/>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastChargeDate" type="String"   comment="最后一次充值日期" />
+			<property name="lastChargeAmount" type="String"   comment="最后一次充值金额" />
+			<property name="lastLoginDate" type="String"  comment="最后一次登陆日期"/>
+		</req>
+		<res>
+			<property name="resultType" type="byte" comment="0-通过密保找回密码成功"></property>
+			<property name="description" type="String" encoding="UTF-8"  comment="结果描述"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="PHONE_UIID_INFO_REQ" req_type="0x000EE006" req_client_send="true" comment="客户端通知服务端用户手机唯一标示之类的信息">
+		<req>
+			<property name="UUID" type="String" encoding="UTF-8" comment="ios" />
+			<property name="DEVICEID" type="String" encoding="UTF-8" comment="android" />
+			<property name="IMSI" type="String" encoding="UTF-8" comment="android" />
+			<property name="MACADDRESS" type="String" encoding="UTF-8" comment="ios and android" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="SERVERSLIST_AND_PASSPORTQUESTION_REQ" res_name="SERVERSLIST_AND_PASSPORTQUESTION_RES"
+	req_client_send="true" res_client_receive="true" req_type="0x000EE003" res_type="0x800EE003" comment="返回游戏大区，服务器列表，密保问题">
+		<req>
+			<property name="areatype" type="String" encoding="UTF-8" comment="所选类型" />
+		</req>
+		<res>
+			<property name="areas" type="String[]" encoding="UTF-8" comment="所有大区" />
+			<property name="servers" type="String[]" encoding="UTF-8" comment="所选区对应的服务器" />
+			<property name="areatype" type="String" encoding="UTF-8" comment="服务器所在区" />
+			<property name="questions" type="String[]" encoding="UTF-8" comment="所有密保问题" />
+		</res>
+	</prototype>
+		
+	<prototype req_name="SEND_CLIENT_EXTENDINFO_REQ" res_name="SEND_CLIENT_EXTENDINFO_RES" req_type="0x002EE100" res_type="0x802EE100"
+		req_client_send="true" res_client_receive="true" comment="发送客户端手机号等信息">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="" />
+		</req>
+		<res>
+			<property name="mess" type="String[]" encoding="UTF-8" comment="" />
+		</res>
+	</prototype>
+
+	<prototype req_name="PLATFORM_ARGS_REQ" res_name="PLATFORM_ARGS_RES" req_type="0x000EE001" res_type="0x800EE001"
+		req_client_send="true" res_client_receive="true" comment="客户端给网关请求腾讯的参数">
+		<req>
+			<property name="userType" type="String" encoding="utf-8" comment="userType:QQUSER, UCUSER, 91USER..." />
+		</req>
+		<res>
+			<property name="cpId" type="String" encoding="utf-8" comment="qq：cpid, 91为appId" />
+			<property name="gameId" type="String" encoding="utf-8" comment="qq:gameid 91为appKey" />
+			<property name="goodsId" type="String" encoding="utf-8" comment="GoodsId" />
+			<property name="apkUrl" type="String" encoding="utf-8" comment="apkurl, 91如果不为空，则从自己网关下载" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="NEW_MIESHI_GET_VERSION_INFO_REQ" req_type="0x0002A018"
+		req_client_send="true" comment="灭世游戏获取资源版本信息程序版本信息">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="ClientId" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道" />
+			<property name="platform" type="String" encoding="UTF-8" comment="客户端平台类型，比如ios,android" />
+			<property name="gpu" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="真实GPU" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="机型信息" />
+			<property name="mac" type="String" encoding="UTF-8" comment="mac地址" />
+			<property name="clientProgramVersion" type="String" encoding="UTF-8" comment="客户端程序版本" />
+			<property name="clientResourceVersion" type="String" encoding="UTF-8" comment="客户端资源版本" />
+			<property name="netMode" type="String" encoding="UTF-8" comment="联网方式" />
+			<property name="packageType" type="String" encoding="UTF-8" comment="全包半包" />
+			<property name="extraInfo" type="String[]" encoding="UTF-8" comment="冗余字段" />
+			<property name="md5" type="String" encoding="UTF-8" comment="" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="NEW_QUERY_WINDOW_REQ" req_type="0x002EE106" req_client_receive="true" comment="查询某个NPC身上的窗口">
+		<req>
+			<property name="id" type="int" comment="窗口的Id"></property>
+			<property name="title" type="String" encoding="UTF-8" comment="窗口的标题"></property>
+			<property name="descriptionInUUB" type="String" encoding="UTF-8" comment="窗口的描述，UUB格式"></property>
+			<property name="inputTitle" type="String[]" encoding="UTF-8" comment="input标题"></property>
+			<property name="inputType" type="byte[]" comment="输入内容的类型，0标识输入数字，1随意,长度为0就没有输入框"></property>
+			<property name="maxSize" type="byte[]" comment="输入内容的最大长度，1个汉字长度为2"></property>
+			<property name="defaultContent" type="String[]" encoding="UTF-8" comment="默认内容"></property>
+			<property name="png" type="byte[]" comment="窗口的PNG图片"></property>
+			<object-property name="options" type="Option[]" comment="Window上的选项">
+				<property name="text" type="String" encoding="UTF-8" comment="显示的文字" />
+				<property name="color" type="int" comment="文字的颜色" />
+				<property name="oType" type="byte" comment="选项的类型" />
+				<property name="oId" type="int" comment="选项对应的功能或者窗口的标识" />
+			</object-property>
+		</req>
+	</prototype>
+
+	<prototype req_name="NEW_OPTION_SELECT_REQ" req_type="0x002EE107" req_client_send="true"
+		comment="客户端选择了某个窗口中的某个选项，客户端要根据选项中的类型来判断是否要发送此指令，以及是否要等待QUERY_WINDOW_RES响应">
+		<req>
+			<property name="wId" type="int" comment="窗口的Id" />
+			<property name="index" type="int" comment="选项在窗口中的下标位置" />
+			<property name="inputText" type="String[]" encoding="UTF-8" comment="输入文字" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="MIESHI_MAP_LANG_TRANSLATE" req_type="0x000EE008"
+		req_client_receive="true" comment="通知客户端地图名翻译">
+		<req>
+			<property name="chinese" type="String[]" encoding="UTF-8" comment="简体名" />
+			<property name="translated" type="String[]" encoding="UTF-8" comment="翻译" />
+		</req>
+	</prototype>
+	
+	<prototype res_name="MIESHI_DELETE_ONE_RESOURCE_RES" res_type="0x0002A027" res_client_receive="true"
+		comment="服务器通知客户端，删除某个资源,可以是mieshi_resource下的任何文件或是sd中的任何文件">
+		<res>
+			<property name="ResourceType" type="int" comment="删除文件类型, 0为sd卡的"></property>
+			<property name="ResourceName" type="String" encoding="UTF-8" comment="文件名，包含目录名"></property>
+			<property name="msg" type="String" encoding="UTF-8" comment="错误消息"></property>
+		</res>
+	</prototype>
+
+
+	<!-- 以下是服务器给网关发送的协议 -->
+
+	<prototype req_name="MIESHI_SKILL_INFO_REQ" req_type="0x0002A024" req_client_send="true" comment="灭世游戏服务器给网关发送技能数据，网关把数据存放到资源文件夹的other目录中">
+		<req>
+			<property name="data" type="byte[]" max-num="512000" comment="字节数据包" />
+		</req>
+	</prototype>
+
+	<prototype req_name="MIESHI_UPDATE_PLAYER_INFO" req_type="0x0002A025" comment="灭世游戏服务器给网关发送技能数据">
+		<req>
+			<property name="serverName" type="String" encoding="utf-8" />
+			<property name="userName" type="String" encoding="utf-8" />
+			<property name="playerName" type="String" encoding="utf-8" />
+			<property name="playerLevel" type="int" />
+			<property name="playerCareer" type="int" />
+			<property name="action" type="int" comment="0=创建角色，1=进入游戏，2=离开游戏，3=删除角色" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="NEW_MIESHI_UPDATE_PLAYER_INFO" req_type="0x0002A030" comment="游戏服务器给网关发送角色数据">
+		<req>
+			<property name="serverName" type="String" encoding="utf-8" />
+			<property name="userName" type="String" encoding="utf-8" />
+			<property name="playerId" type="long" />
+			<property name="playerName" type="String" encoding="utf-8" />
+			<property name="playerLevel" type="int" />
+			<property name="playerCareer" type="int" />
+			<property name="playerRMB" type="int" />
+			<property name="playerVip" type="int" />
+			<property name="action" type="int" comment="0=创建角色，1=进入游戏，2=离开游戏，3=删除角色" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="UPDATE_PLAYER_INFO_FOR_HEFU_REQ" req_type="0x0002A031" comment="游戏服务器给网关发送角色更新数据以便更新角色名称">
+		<req>
+			<property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+	</prototype>
+	
+	
+	<prototype req_name="ATTENTIONS_REQ" res_name="ATTENTIONS_RES" req_type="0x000EE004" res_type="0x800EE004" comment="注意事项">
+		<req>
+		</req>
+		<res>
+			<property name="attentions" type="String" encoding="UTF-8" comment="注意事项" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="DENY_USER_REQ" res_name="DENY_USER_RES" req_type="0x002EE005" res_type="0x802EE005" comment="封帐号">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientid" />
+			<property name="username" type="String" encoding="UTF-8" comment="帐号名" />
+			<property name="reason" type="String" encoding="UTF-8" comment="原因" />
+			<property name="gm" type="String" encoding="UTF-8" comment="gm" />
+			<property name="denyClientId" type="boolean" comment="" />
+			<property name="enableDeny" type="boolean" comment="" />
+			<property name="foroverDeny" type="boolean" comment="" />
+			<property name="days" type="int" comment="" />
+			<property name="hours" type="int" comment="" />
+		</req>
+		<res>
+			<property name="result" type="String" encoding="UTF-8" comment="注意事项" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="REPORT_ONLINENUM_REQ" res_name="REPORT_ONLINENUM_RES" req_type="0x002EE077" res_type="0x802EE077" comment="汇报服务器的在线人数">
+		<req>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="onlineNum" type="int" comment="" />
+		</req>
+		<res>
+		</res>
+	</prototype>
+
+	<prototype req_name="REPORT_LONG_HEARTBEAT_REQ" req_type="0x002EE078" comment="汇报服务器的超时心跳">
+		<req>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="game" type="String" encoding="UTF-8" comment="地图名" />
+			<property name="heartbeatTime" type="long" comment="心跳时长" />
+		</req>
+	</prototype>
+
+	<prototype req_name="REPORT_LONG_PROTOCAL_REQ" req_type="0x002EE178" comment="汇报服务器的超时协议">
+		<req>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="pName" type="String" encoding="UTF-8" comment="协议名" />
+			<property name="costTime" type="long" comment="超时时长" />
+		</req>
+	</prototype>
+
+	<prototype req_name="REPORT_CHAT_REQ" req_type="0x002EE079" comment="汇报服务器的世界发言">
+		<req>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="user" type="String" encoding="UTF-8" comment="" />
+			<property name="playerId" type="long" comment="" />
+			<property name="playerName" type="String" encoding="UTF-8" comment="" />
+			<property name="contents" type="String[]" encoding="UTF-8" comment="数组第一位为世界发言内容" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="QUERY_CLIENT_INFO_REQ" res_name="QUERY_CLIENT_INFO_RES" req_type="0x002EE099" res_type="0x802EE099" comment="服务器查询某个玩家的客户端信息">
+		<req>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="" />
+		</req>
+		<res>
+			<property name="serverName" type="String" encoding="UTF-8" comment="" />
+			<property name="username" type="String" encoding="UTF-8" comment="" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="channel" type="String" encoding="UTF-8" comment="" />
+			<property name="uuid" type="String" encoding="UTF-8" comment="" />
+			<property name="deviceId" type="String" encoding="UTF-8" comment="" />
+			<property name="platform" type="String" encoding="UTF-8" comment="" />
+			<property name="network" type="String" encoding="UTF-8" comment="" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="" />
+			<property name="programVersion" type="String" encoding="UTF-8" comment="" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="QUERY_LOGIN_INFO_REQ" res_name="QUERY_LOGIN_INFO_RES" req_type="0x002EE101" res_type="0x802EE101" comment="查询用户最近一次登录信息（目前只用来查询最近一次登陆时间）">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="" />
+		</req>
+		<res>
+			<property name="mess" type="String[]" encoding="UTF-8" comment="" />
+			<property name="result" type="int" comment="结果,0-成功，1-失败" />
+			<property name="desc" type="String" encoding="UTF-8" comment="错误信息描述 成功则此为空" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="SESSION_VALIDATE_REQ" res_name="SESSION_VALIDATE_RES" req_type="0x002EE102" res_type="0x802EE102" comment="服务器向网关校验session">
+		<req>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器名字"/>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"/>
+			<property name="sessionId" type="String" encoding="UTF-8" comment="" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="platform" type="String" encoding="UTF-8" comment="客户端类型，比如ios,android" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="真正机器的机型信息" />
+			<property name="network" type="String" encoding="UTF-8" comment="WIFI,gprs,3dnet" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+			<property name="MACADDRESS" type="String" encoding="UTF-8" comment="ios and android 网卡地址" />
+		</req>
+		<res>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"/>
+			<property name="sessionId" type="String" encoding="UTF-8" comment="" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="result" type="int" comment="结果,0-成功，1-失败" />
+			<property name="desc" type="String" encoding="UTF-8" comment="错误信息描述 因为不想修改协议，在成功后这个字段会返回这个用户的身份证号" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="NOTIFY_USER_ENTERSERVER_REQ" req_type="0x002EE103" comment="服务器通知网关某个用户进入">
+		<req>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器名字"/>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"/>
+			<property name="sessionId" type="String" encoding="UTF-8" comment="" />
+			<property name="clientId" type="String" encoding="UTF-8" comment="" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串，例如：ODANL_DWB01，jar包或者jad中包含此信息" />
+			<property name="MACADDRESS" type="String" encoding="UTF-8" comment="ios and android 网卡地址" />
+			<property name="ipAddress" type="String" encoding="UTF-8" comment="ip地址" />
+			<property name="platform" type="String" encoding="UTF-8" comment="客户端类型，比如ios,android" />
+			<property name="phoneType" type="String" encoding="UTF-8" comment="真正机器的机型信息" />
+			<property name="network" type="String" encoding="UTF-8" comment="WIFI,gprs,3dnet" />
+			<property name="gpuOtherName" type="String" encoding="UTF-8" comment="pvr,png,ati,etc" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="NOTIFY_SERVER_TIREN_REQ" req_type="0x002EE104" comment="网关通知服务器T掉某个用户">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"/>
+			<property name="reason" type="String" encoding="UTF-8" comment="原因" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="NOTIFY_USER_LEAVESERVER_REQ" req_type="0x002EE105" comment="服务器通过网关某个用户离开">
+		<req>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器名字"/>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"/>
+			<property name="MACADDRESS" type="String" encoding="UTF-8" comment="ios and android 网卡地址" />
+			<property name="ipAddress" type="String" encoding="UTF-8" comment="ip地址" />
+		</req>
+	</prototype>
+	
+	<prototype req_name="GM_ACTION_REQ" req_type="0x002EE109" comment="GM操作补发页面">
+		<req>
+			<object-property name="gmAction" type="GmAction" comment="gm后台操作信息">
+				<property name="serverName" type="String" encoding="UTF-8" comment="服务器名字" />
+				<property name="playerId" type="long" comment="角色ID" />
+				<property name="playerName" type="String" encoding="UTF-8" comment="角色名字" />
+				<property name="userName" type="String" encoding="UTF-8" comment="用户名字" />
+				<property name="actionType" type="int" comment="操作类型" />
+				<property name="reason" type="String" encoding="UTF-8" comment="原因" />
+				<property name="operator" type="String" encoding="UTF-8" comment="操作人" />
+				<property name="actionTime" type="long" comment="操作时间" />
+				<property name="amount" type="long" comment="操作数目" />
+				<property name="articleInfo" type="String" encoding="UTF-8" comment="操作物品信息" />
+				<property name="petInfo" type="String" encoding="UTF-8" comment="操作宠物信息" />
+				<property name="otherInfos" type="String[]" encoding="UTF-8" comment="其他信息" />
+			</object-property>
+		</req>
+	</prototype>
+	
+	<prototype req_name="GET_WAIGUA_PROCESS_NAMES_REQ" req_type="0x002EE110"
+		res_name="GET_WAIGUA_PROCESS_NAMES_RES" res_type="0x802EE110"
+		comment="">
+		<req>
+		</req>
+		<res>
+			<property name="proNames" type="String[]" comment="外挂进程"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_NOTICE_REQ" req_type="0x002EE111"
+		res_name="GET_NOTICE_RES" res_type="0x802EE111"
+		comment="">
+		<req>
+		    <property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+		<res>
+			<property name="infos" type="String[]" encoding="utf-8" comment="公告信息"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="THIRDPART_PROMOTE_REQ"
+	  	req_client_send="true"
+		res_client_receive="true" req_type="0x002EE112"
+		res_name="THIRDPART_PROMOTE_RES" res_type="0x802EE112"
+		comment="">
+		<req>
+		    <property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+		<res>
+			<property name="infos" type="String[]" encoding="utf-8" comment="响应信息"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="NEW_QUERY_SERVER_LIST_REQ" req_type="0x002EE113" req_client_send="true" res_name="NEW_QUERY_SERVER_LIST_RES" res_type="0x802EE113"
+		res_client_receive="true" comment="客户端查询的所有服务器状态">
+		<req>
+			<property name="clientId" type="String" encoding="UTF-8" comment="clientId"></property>
+			<property name="username" type="String" encoding="UTF-8" comment="用户"></property>
+			<property name="password" type="String" encoding="UTF-8" comment="密码"></property>
+			<property name="authCode" type="String" encoding="UTF-8" comment="登陆后返回的验证串" />
+		</req>
+
+		<res>
+			<property name="lastLoginCategory" type="String" encoding="UTF-8" comment="最近登录的区和服务器，如果没有最近登录，服务器会制定一个区和服务器"></property>
+			<property name="categories" type="String[]" encoding="UTF-8" comment="所有分区名字，按顺序显示"></property>
+			<property name="newservernames" type="String[]" encoding="UTF-8" comment="新服务器名称"></property>
+			<property name="recommendservernames" type="String[]" encoding="UTF-8" comment="推荐服务器名称"></property>
+
+			<object-property name="serverInfos" type="ServerInfoForClient[]" comment="大区里的服务器信息">
+				<property name="category" type="String" encoding="UTF-8" comment="某个分区的" />
+				<property name="name" type="String" encoding="utf-8" comment="服务器显示名字" />
+
+				<property name="ip" type="String" encoding="utf-8" comment="服务器ip，只有服务器未关闭情况下有效" />
+				<property name="port" type="int" comment="服务器端口，只有服务器未关闭情况下有效" />
+				<property name="clientid" type="byte" comment="客户ID，用于建立长连接后的第一条指令"></property>
+				<property name="serverid" type="byte" comment="服务器ID，用于建立长连接后的第一条指令"></property>
+
+
+
+				<property name="status" type="int" comment="服务器状态，0标识维护，1标识开启，2新区、3推荐、4火爆" />
+				<property name="statusName" type="String" encoding="utf-8" comment="服务器状态，0标识维护，1标识开启，2新区、3推荐、4火爆" />
+				<property name="description" type="String" encoding="utf-8" comment="状态的描述，包括关闭，维护，最后一次登陆" />
+
+				<property name="onlinePlayerNum" type="int" comment="服务器在线玩家数" />
+				<property name="hasPlayer" type="boolean" comment="是否有角色在服务器上" />
+				<property name="career" type="int" comment="角色职业" />
+				<property name="level" type="int" comment="角色等级" />
+				<property name="playerName" type="String" encoding="utf-8" comment="角色名字" />
+
+			</object-property>
+
+		</res>
+	</prototype>
+	
+	<prototype req_name="ANNOUNCEMENT_REQ" req_type="0x002EE114" req_client_send="true" res_name="ANNOUNCEMENT_RES" res_type="0x802EE114"
+		res_client_receive="true" comment="公告与合服提示协议">
+		<req>
+			<property name="announcetype" type="int"  comment="是公告还是合服提示" />
+			<property name="channel" type="String"  comment="渠道" />
+			<property name="infos" type="String[]"  comment="其他信息" />
+		</req>
+		<res>
+		    <property name="announcetype" type="int"  comment="是公告还是合服提示" />
+		    <property name="contents" type="String[]" comment="公告或者提示内容" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="QUERY_WHITE_LIST_REQ" req_type="0x002EE115" res_name="QUERY_WHITE_LIST_RES" res_type="0x802EE115"  comment="游戏服务器给网关发送角色数据">
+		<req>
+			<property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+		<res>
+		    <property name="infos" type="String[]"  encoding="utf-8"  />
+		</res>
+		</prototype>
+
+	<prototype req_name="VALIDATE_DEVICE_INFO_REQ" req_type="0x002EE116" res_name="VALIDATE_DEVICE_INFO_RES" res_type="0x802EE116"  comment="游戏服务器给网关发送角色数据">
+		<req>
+			<property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+		<res>
+		    <property name="infos" type="String[]"  encoding="utf-8"  />
+		</res>
+		</prototype>
+		
+	<prototype req_name="MODIFY_VIP_INFO_REQ" req_type="0x002EE117" res_name="MODIFY_VIP_INFO_RES" res_type="0x802EE117"  comment="是否有权限修改vip资料">
+		<req>
+			<property name="userName" type="String" encoding="utf-8"/>
+			<property name="cilentId" type="String" encoding="utf-8" />
+			<property name="infos" type="String[]" encoding="utf-8" />
+		</req>
+		<res>
+		    <property name="result" type="boolean"  encoding="utf-8"  />
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_PHONE_CODE_REQ" req_type="0x002EE118" req_client_send="true" res_name="GET_PHONE_CODE_RES" res_client_receive="true"  res_type="0x802EE118"  comment="获取验证码">
+		<req>
+			<property name="phoneNumber" type="long" encoding="utf-8"/>
+		</req>
+		<res>
+		    <property name="phoneCode" type="int"  encoding="utf-8"  />
+		    <property name="result" type="String"  encoding="utf-8"  comment="ok串为成功"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="QUICK_REGISTER_REQ" req_type="0x002EE119" req_client_send="true" res_name="QUICK_REGISTER_RES" res_client_receive="true" res_type="0x802EE119"  comment="快速注册">
+		<req>
+			<property name="phoneNumber" type="long" encoding="utf-8"/>
+			<property name="ppwd" type="String" encoding="utf-8" />
+			<property name="phoneCode" type="int"  encoding="utf-8"  />
+			<property name="channel" type="String"  encoding="utf-8"  />
+			<property name="clientID" type="String"  encoding="utf-8"  />
+			<property name="reqUserType" type="String"  encoding="utf-8"  />
+			<property name="platform" type="String"  encoding="utf-8"  />
+			<property name="phoneType" type="String"  encoding="utf-8"  />
+		</req>
+		<res>
+		     <property name="result" type="String"  encoding="utf-8"  comment="ok串为成功"/>
+			 <property name="loginUsername" type="String" encoding="UTF-8" comment="登录用户名，此用户名可能与注册的username不一样"></property>
+			 <property name="others" type="String[]" comment="其他信息"></property>
+		</res>
+	</prototype>
+		
+	</prototypes>	
+		

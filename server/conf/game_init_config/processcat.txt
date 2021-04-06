@@ -1,0 +1,58 @@
+Shenzhen Chinaleap Electronics Co., Ltd.,ARMM7K
+WallpaperWidget,com.amlogic.wallpaperwidget;MediaDateWidget,com.amlogic.webwidget;ThumbnailWidget,com.amlogic.thumbnailwidget;软件下载,com.onda.gfan;HDMI设置,com.amlogic.HdmiSwitch
+酷比市场,com.cube.gfan;系统升级,android.rockchip.update.service;谷歌拼音输入法,com.android.inputmethod.pinyin
+Google 服务框架,com.google.process.gapps;Android 系统,system;SoHu,com.sohu
+unknown,MID-A13
+rockchip,P76a双核(M4Q5)
+Ramos,W17PRO(Dualcore)
+GO输入法国际版,com.jb.gokeyboard;Google Play 商店,com.android.vending;Picasa Uploader,com.google.android.apps.uploader;Google Talk,com.google.android.talk;Google One Time Init,com.google.android.onetimeinitializer
+com.android.smspush,com.android.smspush;Picasa Uploader,com.google.android.apps.uploader;台电市场,com.taclast.pad.gfan;System Update,android.rockchip.update.service;超级权限,eu.chainfire.supersu
+精灵助手,com.shuame.sprite;com.tencent.mm:push;Billiards 3D,com.kb.mengting;飘渺寻仙曲,org.cocos2dx.tests
+unknown,A78 Dual core
+网络位置,com.google.process.gapps;谷歌拼音输入法,com.android.inputmethod.pinyin;索尼爱立信主页,com.sonyericsson.home;图库,com.cooliris.media;我上传的内容,com.google.android.apps.uploader;日历存储,com.android.providers.calendar;状态栏,com.android.systemui
+rockchip,U18GT-S
+爱立顺软件园,com.luckystar.gfan;授权管理,com.baidu.easyroot;OTA,com.actions.ota;搜索应用提供商,android.process.acore;Google Play 商店,com.android.vending
+Teclast,P76s双核(DKH5)
+谷歌拼音输入法,com.android.inputmethod.pinyin;中华万年历,cn.etouch.ecalendar;Google Play 商店,com.android.vending
+原道小秘书,com.zdworks.android.pad.zdclock.yuandaopad;谷歌拼音输入法,com.android.inputmethod.pinyin;Android 系统,system
+Google 服务框架,com.google.process.gapps;谷歌拼音输入法,com.android.inputmethod.pinyin;索尼爱立信主页,com.sonyericsson.home;图库,com.cooliris.media
+Google 服务框架,com.google.process.gapps;索尼爱立信主页,com.sonyericsson.home;图库,com.cooliris.media
+ONDA,ONDA MID
+语音搜索,com.google.android.voicesearch;com.google.android.apps.maps:GoogleLocationService;飘渺寻仙曲,org.cocos2dx.tests;索尼爱立信主页,com.sonyericsson.home
+网易新闻,com.netease.newsreader.activity;Fused Location,com.android.location.fused;手机管家,com.tencent.qqpimsecure;MediaFloat,com.android.rk.mediafloat
+rockchip,Teclast P76e(G6R8)
+Google 服务框架,com.google.process.gapps;谷歌拼音输入法,com.android.inputmethod.pinyin;索尼爱立信主页,com.sonyericsson.home;图库,com.cooliris.media;状态栏,com.android.systemu
+Atci_service,com.mediatek.atci.service;Pico TTS,com.svox.pico;Key Chain,com.android.keychain
+unknown,pado_p7
+中华万年历,cn.etouch.ecalendar;原道软件市场,com.yuandaopad.gfan;System Update,android.rockchip.update.service;com.zdworks.android.pad.zdclock.yuandaopad:remote
+rockchip,N70-S
+getjar.android.client:GetJarWatchDogService;图库,com.cooliris.media;Appstore,com.amazon.venezia
+rockchip,N12GJ-QZ
+unknown,voyo Q808四核
+rockchip,U25GT
+谷歌拼音输入法,com.android.inputmethod.pinyin;下载管理器,android.process.media; 360卫士,com.qihoo360.mobilesafe;com.qihoo360.mobilesafe.opti:tiny;联系人存储,android.process.acore;飘渺寻仙曲,org.a360jiekou
+Google 服务框架,com.google.process.gapps;Appstore,com.amazon.venezia;谷歌拼音输入法,com.android.inputmethod.pinyin;索尼爱立信主页,com.sonyericsson.home
+谷歌拼音输入法,com.android.inputmethod.pinyin;Fused Location,com.android.location.fused;系统升级,android.rockchip.update.service;授权管理,com.mgyun.shua.su
+unknown,SoftwinerEvb
+Google 服务框架,com.google.process.gapps;Appstore,com.amazon.venezia;GetJar,getjar.android.client;getjar.android.client:GetJarWatchDogService
+谷歌拼音输入法,com.google.android.inputmethod.pinyin;飘渺寻仙曲,org.a360jiekou;Trebuchet,com.cyanogenmod.trebuchet;通讯录,com.android.contacts
+unknown,MOMO7Star
+rockchip,P85HD双核(K6N2)
+rockchip,U25GT_PRO
+谷歌拼音输入法,com.android.inputmethod.pinyin;下载管理器,android.process.media;com.qihoo360.mobilesafe.opti:tiny;联系人存储,android.process.acore;飘渺寻仙曲,org.a360jiekou
+谷歌拼音输入法,com.android.inputmethod.pinyin;System Update,android.rockchip.update.service;Picasa Uploader,com.google.android.apps.uploader;授权管理,com.kingroot.kinguser;李有才,com.yiyoucai.yiyoucai;com.qihoo.daemon;360手机助手,com.qihoo.appstore
+rockchip,P76e(G6R8)
+DSP 管理器,com.bel.android.dspmanager;com.cyanogenmod.updater.updater.service.UpdateCheckService;百度输入法PAD版,com.baidu.padinput;kingllxb,com.kingllxb.kingllxb
+rockchip,A78
+网易新闻,com.netease.newsreader.activity;台电市场,com.taclast.pad.gfan;System Update,android.rockchip.update.service;com.lbe.security.shuame:service
+软件包访问帮助程序,com.android.defcontainer;谷歌拼音输入法,com.android.inputmethod.pinyin;日历存储,com.android.providers.calendar;时钟,com.android.deskclock
+谷歌拼音输入法,com.android.inputmethod.pinyin;Picasa Uploader,com.google.android.apps.uploader;酷比市场,com.cube.gfan;系统升级,android.rockchip.update.service;SuperSU,eu.chainfire.supersu;ASUS Weather,com.asus.weather;com.qihoo.daemon;360手机助手,com.qihoo.appstore;mp3player,com.android.mp3player;Gmail,com.google.android.gm;BooksProvider,com.android.rk.books;QQ,com.tencent.hd.qq
+谷歌拼音输入法,com.google.android.inputmethod.pinyin;com.qihoo.daemon;Trebuchet,com.cyanogenmod.trebuchet;SuperSU,eu.chainfire.supersu
+搜索,com.android.quicksearchbox;Appstore,com.amazon.venezia;com.google.android.apps.maps:GoogleLocationService;Android 键盘,com.android.inputmethod.latin;飘渺寻仙曲,org.cocos2dx.tests
+搜狗输入法,com.sohu.inputmethod.sogou;net.qihoo.launcher.widget.clockweather:WeatherService;腾讯连接助手,com.qq.AppService;MTK Thermal Manager,com.mediatek.thermalmanager
+K-Touch,K-Touch T789
+搜索应用提供商,android.process.acore;Key Chain,com.android.keychain;超级用户,com.noshufou.android.su;授权管理,com.kingroot.kinguser
+yuandao,N70
+rockchip,N70DC-S
+Google 合作伙伴设置,com.google.android.partnersetup;飘渺寻仙曲,org.cocos2dx.tests;谷歌拼音输入法,com.google.android.inputmethod.pinyin;酷我音乐,cn.kuwo.player;Google Play 商店,com.android.vending
+飘渺寻仙曲,org.cocos2dx.tests;Google 合作伙伴设置,com.google.android.partnersetup;Google Play 商店,com.android.vending;com.google.android.apps.maps:LocationFriendService;MusicFX,com.android.musicfx

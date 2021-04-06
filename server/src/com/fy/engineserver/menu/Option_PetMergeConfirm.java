@@ -1,0 +1,60 @@
+package com.fy.engineserver.menu;
+
+import com.fy.engineserver.core.Game;
+import com.fy.engineserver.datasource.language.Translate;
+import com.fy.engineserver.message.PET_MERGE_REQ;
+import com.fy.engineserver.sprite.Player;
+import com.fy.engineserver.sprite.pet.PetManager;
+
+/**
+ * 绑定宠物合体窗口
+ * 
+ * 
+ *
+ */
+public class Option_PetMergeConfirm extends Option{
+
+	PET_MERGE_REQ req;
+
+	public PET_MERGE_REQ getReq() {
+		return req;
+	}
+
+	public void setReq(PET_MERGE_REQ req) {
+		this.req = req;
+	}
+
+	/**
+	 * 当oType = OPTION_TYPE_SERVER_FUNCTION时，子类需要实现此方法来实现具体的功能
+	 * @param game
+	 * @param player
+	 */
+	public void doSelect(Game game,Player player){
+		PetManager pm = PetManager.getInstance();
+		if(pm != null){
+			if(req == null){
+				return;
+			}
+			pm.confirmMergePetReq(player, req.getPetEntityAId(), req.getPetEntityBId(), req.getPetASkillId());
+		}
+	}
+
+	public byte getOType() {
+		return Option.OPTION_TYPE_SERVER_FUNCTION;
+	}
+
+	public void setOType(byte type) {
+		//oType = type;
+	}
+
+	public int getOId() {
+		return OptionConstants.SERVER_FUNCTION_绑定;
+	}
+
+	public void setOId(int oid) {
+	}
+	
+	public String toString(){
+		return Translate.服务器选项;
+	}
+}

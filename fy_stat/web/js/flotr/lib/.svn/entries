@@ -1,0 +1,76 @@
+8
+
+dir
+384
+svn://116.213.192.219:9999/repos1/stat_common_mieshi/js/flotr/lib
+svn://116.213.192.219:9999/repos1
+
+
+
+2016-03-17T02:37:12.134136Z
+6
+jyh
+
+
+svn:special svn:externals svn:needs-lock
+
+base64.js
+file
+
+
+
+
+2015-01-28T02:24:08.631098Z
+dc32fd5525e4991b4254d6427d02f81d
+2016-03-17T02:37:12.134136Z
+6
+jyh
+
+prototype-1.6.0.2.js
+file
+
+
+
+
+2015-01-28T02:24:08.631098Z
+85ef171f309a2e29242d85c105bb0223
+2016-03-17T02:37:12.134136Z
+6
+jyh
+
+excanvas.js
+file
+
+
+
+
+2015-01-28T02:24:08.631098Z
+f80999206dec1e331f26ff04c00427ea
+2016-03-17T02:37:12.134136Z
+6
+jyh
+
+canvastext.js
+file
+
+
+
+
+2015-01-28T02:24:08.646699Z
+9a59ec281cc5eff3719489d3019ecb99
+2016-03-17T02:37:12.134136Z
+6
+jyh
+
+canvas2image.js
+file
+
+
+
+
+2015-01-28T02:24:08.646699Z
+ba51bc6c4addc74f9f1d6fc76a7aeda7
+2016-03-17T02:37:12.134136Z
+6
+jyh
+

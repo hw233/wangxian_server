@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="common-tools" default="main" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="src" value="src/java"/>
+	<property name="test-src" 	value="src/test"/>
+	<property name="build" value="build"/>
+	<property name="dist" value="."/>
+	<property name="web" value="web"/>
+	<property name="log" value="log"/>
+	<property name="bin" value="bin"/>
+	<property name="lib" value="lib"/>
+	<property name="conf" value="conf"/>
+	<property name="version" value="1.1"/>
+	<property name="com" value="xuanzhi"/>
+	<property name="name" value="tools"/>
+	<property name="ant_home" value="/usr/local/ant"/>	
+	<property name="clover" value="clover"/>
+
+	<path id="project.class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+	
+	
+	<target name="generate_message_for_time">
+			<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer
+			      	-package com.xuanzhi.tools.time    	
+			      	-output.dir ./src/test/com/xuanzhi/tools/time   	
+			      	-file ./src/test/com/xuanzhi/tools/time/time_prototype.xml"/> 
+			      <classpath>
+			      	<fileset dir="lib">
+			      				<include name="**/*.jar"/>
+			      			</fileset>	
+			      </classpath>
+			</java>	
+		</target>
+			      					
+	<taskdef resource="clovertasks" classpath="lib/clover_crack.jar"/>
+
+	<!--step to use clover: 
+		1,ant with.clover query-test
+		2,ant clover.report
+	-->
+
+	<target name="with.clover">
+		<copy file="lib/clover_crack.jar" todir="${ant_home}/lib"/>
+		
+		<clover-setup initString="${clover}/tools_clover.db" tmpdir="${clover}" preserve="true"/>
+	</target> 
+
+	<target name="clover.report" depends="with.clover">
+		<mkdir dir="${apache_document_root}/${name}"/>
+		<clover-report>
+			<current outfile="${apache_document_root}/${name}/clover-report-html">
+				<format type="html"/>
+			</current>
+		</clover-report>
+	</target>
+
+	<target name="init">
+		<!-- create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${log}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+		<mkdir dir="${clover}"/>
+		<mkdir dir="${lib}"/>
+		<cvs command="update -P -d" dest="${src}"/>
+		<cvs command="update -P -d" dest="web"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" encoding="utf-8" debug="on">
+			<classpath refid="project.class.path"/>
+		</javac>
+		<copy tofile="${build}/com/xuanzhi/tools/text/gb2ucs.map" file="${src}/com/xuanzhi/tools/text/gb2ucs.map"/>
+	</target>
+
+	<target name="main" depends="compile">
+		<mkdir dir="${dist}/lib"/>
+		
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+
+	<target name="cache">
+		<mkdir dir="${build}/cache"/>
+
+		<javac srcdir="${src}" destdir="${build}/cache" encoding="utf-8" debug="on" includes="com/xuanzhi/tools/cache/**">
+					<classpath refid="project.class.path"/>
+		</javac>
+		<jar jarfile="${dist}/lib/${com}-cache-${version}.jar" basedir="${build}/cache"/>
+		
+		<delete dir="${build}/cache"/>
+	</target>
+	
+	<target name="build-test" depends="compile">
+		<javac srcdir="${test-src}" destdir="${build}" encoding="utf-8" debug="on">
+			<classpath refid="project.class.path"/>
+		</javac>
+		<mkdir dir="${lib}"/>
+		<!-- put everything in ${build} into the airinbox-mud.jar file -->
+		<jar jarfile="${lib}/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+	
+	<target name="docs">
+		<mkdir dir="${dist}/docs/api"/>
+		
+		<!-- put javadocs in ${dist}/docs dir -->
+		<javadoc packagenames="com.xuanzhi.tools.*"
+			 sourcepath="${src}" 
+			 destdir="${dist}/docs/api" 
+			 author="true"
+			 version="true"
+			 access="public"
+			 use="true"
+			 windowtitle="xuanzhi Tools API" encoding="UTF-8">
+			<bottom><![CDATA[<i>Copyright &#169; 2007-2009 xuanzhi Corp. All Rights Reserved.</i>]]></bottom>
+			<classpath refid="project.class.path"/>
+		</javadoc>
+	</target>
+			
+	<target name="clean">
+		<!-- delete the ${build} -->
+		<delete dir="${build}"/>
+		<delete dir="${clover}"/>
+		<delete file="${dist}/lib/${com}-${name}-${version}.jar"/>
+	</target>
+</project>

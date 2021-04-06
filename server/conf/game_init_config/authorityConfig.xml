@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	玩家权利控制模块配置文件
+	权利配置：
+		type相当于id，通过type索引配置
+		defaultNum为每次刷新所有玩家都拥有的次数，譬如急行军3次，千层塔2次等等。
+		maxNum为当次周期内能行使的最大次数，包括默认+vip+付费+累积，譬如千层塔6次，竞技场20次，不限次数的，设置为大数即可，格式为: 非vip,vip1级,vip2级....
+		vipAddNum为给vip玩家增加的次数，格式为每个vip等级对应一个数，用“,”分隔, 非vip,1级vip,2级vip......
+		refreshType为刷新类型，0-每小时刷新, 1-每日刷新, 2-每周刷新, 3-每月刷新
+		accumulate为未行使次数是否积攒
+		accumulate为积攒最大值，不限次数的设置为大数
+ -->
+<authority-list>
+	<authority type="0" description="千层塔攻打次数1道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="1" description="每日境界任务" defaultNum="10" maxNum="100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100" 
+		vipAddNum="0,1,1,2,2,3,3,3,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5" refreshType="1" accumulate="true" accumulateMax="1000000"></authority>
+	<authority type="2" description="千层塔攻打次数2道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="3" description="千层塔攻打次数3道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="4" description="千层塔攻打次数4道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="5" description="千层塔攻打次数5道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="6" description="千层塔攻打次数6道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="7" description="千层塔困难攻打次数1道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="8" description="千层塔困难攻打次数2道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="9" description="千层塔困难攻打次数3道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="10" description="千层塔困难攻打次数4道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="11" description="千层塔困难攻打次数5道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="12" description="千层塔困难攻打次数6道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="13" description="千层塔深渊攻打次数1道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="14" description="千层塔深渊攻打次数2道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="15" description="千层塔深渊攻打次数3道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="16" description="千层塔深渊攻打次数4道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="17" description="千层塔深渊攻打次数5道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+	<authority type="18" description="千层塔深渊攻打次数6道" defaultNum="1" maxNum="1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,8,8,8,8,8,8,8,8,8,8" 
+		vipAddNum="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" refreshType="1" accumulate="false" accumulateMax="1000000"></authority>
+</authority-list>

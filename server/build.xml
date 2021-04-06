@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+
+<project name="game_server" default="main" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="src" value="src" />
+	<property name="build" value="build"/>
+	<property name="dist" value="."/>
+	<property name="web" value="web"/>
+	<property name="log" value="log"/>
+	<property name="bin" value="bin"/>
+	<property name="lib" value="lib"/>
+	<property name="conf" value="conf"/>
+	<property name="version" value="1.0"/>
+	<property name="com" value="game"/>
+	<property name="name" value="server"/> 
+	<property name="ant_home" value="/usr/local/ant"/>	
+	<property name="clover" value="clover"/>
+	<property name="webapp_path" value="/home/jyt/resin_server/webapps"/>
+	<property name="webapp_path_test" value="/home/jyt/resin_server_test/webapps"/>
+	<property name="webapp_path_test2" value="/home/jyt/resin_server_client/webapps"/>
+	<property name="log_path" value="/home/jyt/resin_server/log"/>
+	<property name="log_path_test" value="/home/jyt/resin_server_test/log"/>
+	<property name="log_path_test2" value="/home/jyt/resin_server_client/log"/>
+	<property name="game_init_config" value="conf/game_init_config"/>
+	<property name="webapp_path_release" value="/home/yauser/game/resin_server/webapps"/>
+	<property name="log_path_release" value="/home/yauser/game/resin_server/log/"/>
+	
+	<property name="webapp_path_deploy" value="/home/yauser/game/projects/deploy_server/webapps"/>
+	<property name="log_path_deploy" value="/home/yauser/game/projects/deploy_server/log"/>
+	
+	
+	<path id="project.class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>	
+	</path>
+
+
+	<target name="init" depends="clean">
+		<tstamp/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${web}"/>
+		<mkdir dir="${log}"/>
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${conf}"/>
+		<mkdir dir="${clover}"/>
+		<mkdir dir="${lib}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" fork="true" memorymaximumsize="1g" encoding="utf-8" debug="on" optimize="off">
+			<classpath refid="project.class.path"/>
+		</javac>
+        <copy todir="${build}">
+                <fileset dir="${src}">
+                        <include name="**/*.xml" />
+                        <include name="**/*.dtd" />
+                        <include name="**/*.properties" />
+                        <include name="**/*.vm" />
+                        <include name="**/*.xsd" />
+                </fileset>
+        </copy>
+	</target>
+
+	<target name="main" depends="compile">
+		<mkdir dir="${dist}/lib"/>
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+	</target>
+	
+	<target name="fy_deploy">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path_deploy}/game_server"/>
+		<mkdir dir="${log_path_deploy}/game_server"/>
+
+		<mkdir dir="${webapp_path_deploy}/game_server/WEB-INF/spring_config/"/>
+		<mkdir dir="${webapp_path_deploy}/game_server/WEB-INF/game_init_config/"/>
+		<mkdir dir="${webapp_path_deploy}/game_server/WEB-INF/game_runtime_data/"/>
+		<!-- copy game_init_config cehua -->
+		<copy todir="${webapp_path_deploy}/game_server/WEB-INF/game_init_config/" overwrite="true">
+		                <fileset dir="${game_init_config}"/>
+		</copy>
+		<!-- copy spring_config -->
+		<copy file="${conf}/game_server_context.xml" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+		<copy file="${conf}/deploy/server.properties" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+		<copy file="${conf}/dwr.xml" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/dwr.xml"/>
+		<copy file="${conf}/deploy/log4j.properties" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/deploy/logback.xml" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+		<copy file="${conf}/web.xml" tofile="${webapp_path_deploy}/game_server/WEB-INF/web.xml" overwrite="true"/>
+	
+		<!-- copy game_init_config -->	
+
+		<copy file="${conf}/wordfilter.txt" tofile="${webapp_path_deploy}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+		<copy file="${conf}/schedule.conf" tofile="${webapp_path_deploy}/game_server/WEB-INF/game_init_config/schedule.conf" overwrite="true"/>
+		<copy file="${conf}/deploy/simpleEMF.xml" tofile="${webapp_path_deploy}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+
+		
+		<copy file="${conf}/template/server.properties" tofile="${webapp_path_deploy}/game_server/template/server.properties"/>
+		<copy file="${conf}/template/simpleEMF.xml" tofile="${webapp_path_deploy}/game_server/template/simpleEMF.xml" overwrite="true"/>
+		<copy file="${conf}/template/log4j.properties" tofile="${webapp_path_deploy}/game_server/template/log4j.properties"/>
+		<copy file="${conf}/template/logback.xml" tofile="${webapp_path_deploy}/game_server/template/logback.xml"/>
+		
+		<copy todir="${webapp_path_deploy}/game_server/WEB-INF/lib/" overwrite="true">
+                <fileset dir="${lib}"/>
+        </copy>
+		<mkdir dir="${webapp_path_deploy}/game_server/admin"/>    		
+		<copy todir="${webapp_path_deploy}/game_server/">
+	            <fileset dir="web">
+	                   <include name="**/*.*"/>
+	            </fileset>
+	    </copy>
+		<copy todir="${webapp_path_deploy}/game_server/admin">
+			<fileset dir="/home/yauser/game/projects/common_tools/web/transport">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+		<mkdir dir="${webapp_path_deploy}/game_server/thread"/>
+		<copy todir="${webapp_path_deploy}/game_server/thread">
+			<fileset dir="/home/yauser/game/projects/common_tools/web/thread">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+	</target>	
+	
+	<target name="server_release">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path_release}/game_server"/>
+		<mkdir dir="${log_path_release}/game_server"/>
+
+		<mkdir dir="${webapp_path_release}/game_server/WEB-INF/spring_config/"/>
+		<mkdir dir="${webapp_path_release}/game_server/WEB-INF/game_init_config/"/>
+		<mkdir dir="${webapp_path_release}/game_server/WEB-INF/game_runtime_data/"/>
+
+		<!-- copy game_init_config cehua -->
+
+		<copy todir="${webapp_path_release}/game_server/WEB-INF/game_init_config/" overwrite="true">
+                <fileset dir="${game_init_config}"/>
+		</copy>
+
+		<!-- copy spring_config -->
+		
+		<copy file="${conf}/game_server_context.xml" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+		<copy file="${conf}/release/server.properties" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+		<copy file="${conf}/dwr.xml" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/dwr.xml" overwrite="true"/>
+		<copy file="${conf}/release/log4j.properties" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/release/logback.xml" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+		<copy file="${conf}/release/simpleEMF.xml" tofile="${webapp_path_release}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+	
+		<!-- copy game_init_config -->	
+		
+		<copy file="${conf}/web.xml" tofile="${webapp_path_release}/game_server/WEB-INF/web.xml" overwrite="true"/>
+
+
+		<copy file="${conf}/wordfilter.txt" tofile="${webapp_path_release}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+
+		<copy todir="${webapp_path_release}/game_server/WEB-INF/lib/" overwrite="true">
+                <fileset dir="${lib}"/>
+        </copy>
+		<mkdir dir="${webapp_path_release}/game_server/admin"/>    		
+		<copy todir="${webapp_path_release}/game_server/">
+	            <fileset dir="web">
+	                   <include name="**/*.*"/>
+	            </fileset>
+	    </copy>
+		<copy todir="${webapp_path_release}/game_server/admin">
+			<fileset dir="/home/yauser/game/common_tools/web/transport">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+		<mkdir dir="${webapp_path_release}/game_server/thread"/>
+		<copy todir="${webapp_path_release}/game_server/thread">
+			<fileset dir="/home/yauser/game/common_tools/web/thread">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+	</target>
+		
+	<target name="server_test">
+		<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+		<mkdir dir="${webapp_path}/game_server"/>
+		<mkdir dir="${log_path}/game_server"/>
+
+		<mkdir dir="${webapp_path}/game_server/WEB-INF/spring_config/"/>
+		<mkdir dir="${webapp_path}/game_server/WEB-INF/game_init_config/"/>
+		<mkdir dir="${webapp_path}/game_server/WEB-INF/game_runtime_data/"/>
+
+		<!-- copy game_init_config cehua -->
+
+		<copy todir="${webapp_path}/game_server/WEB-INF/game_init_config/" overwrite="true">
+                <fileset dir="${game_init_config}"/>
+		</copy>
+
+		<!-- copy spring_config -->
+		
+		<copy file="${conf}/game_server_context.xml" tofile="${webapp_path}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+		<copy file="${conf}/server.properties" tofile="${webapp_path}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+		<copy file="${conf}/dwr.xml" tofile="${webapp_path}/game_server/WEB-INF/spring_config/dwr.xml" overwrite="true"/>
+		<copy file="${conf}/log4j.properties" tofile="${webapp_path}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+		<copy file="${conf}/logback.xml" tofile="${webapp_path}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+		<copy file="${conf}/simpleEMF.xml" tofile="${webapp_path}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+	
+		<!-- copy game_init_config -->	
+		
+		<copy file="${conf}/web.xml" tofile="${webapp_path}/game_server/WEB-INF/web.xml" overwrite="true"/>
+
+
+		<copy file="${conf}/wordfilter.txt" tofile="${webapp_path}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+
+		<copy todir="${webapp_path}/game_server/WEB-INF/lib/" overwrite="true">
+                <fileset dir="${lib}"/>
+        </copy>
+		<mkdir dir="${webapp_path}/game_server/admin"/>    		
+		<copy todir="${webapp_path}/game_server/">
+	            <fileset dir="web">
+	                   <include name="**/*.*"/>
+	            </fileset>
+	    </copy>
+		<copy todir="${webapp_path}/game_server/admin">
+			<fileset dir="/home/jyt/projects/common_tools/web/transport">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+		<mkdir dir="${webapp_path}/game_server/thread"/>
+		<copy todir="${webapp_path}/game_server/thread">
+			<fileset dir="/home/jyt/projects/common_tools/web/thread">
+                   <include name="**/*.*"/>
+            </fileset>
+		</copy>
+	</target>
+	
+	<target name="server_test2">
+			<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+			<mkdir dir="${webapp_path_test}/game_server"/>
+			<mkdir dir="${log_path_test}/game_server"/>
+
+			<mkdir dir="${webapp_path_test}/game_server/WEB-INF/spring_config/"/>
+			<mkdir dir="${webapp_path_test}/game_server/WEB-INF/game_init_config/"/>
+			<mkdir dir="${webapp_path_test}/game_server/WEB-INF/game_runtime_data/"/>
+
+			<!-- copy game_init_config cehua -->
+
+			<copy todir="${webapp_path_test}/game_server/WEB-INF/game_init_config/" overwrite="true">
+	                <fileset dir="${game_init_config}"/>
+			</copy>
+
+			<!-- copy spring_config -->
+			<copy file="${conf}/game_server_context.xml" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+			<copy file="${conf}/program/server.properties" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+			<copy file="${conf}/dwr.xml" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/dwr.xml" overwrite="true"/>
+			<copy file="${conf}/program/log4j.properties" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+			<copy file="${conf}/program/logback.xml" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+			<copy file="${conf}/program/simpleEMF.xml" tofile="${webapp_path_test}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+		
+			<!-- copy game_init_config -->	
+			
+			<copy file="${conf}/web.xml" tofile="${webapp_path_test}/game_server/WEB-INF/web.xml" overwrite="true"/>
+
+
+			<copy file="${conf}/wordfilter.txt" tofile="${webapp_path_test}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+
+			<copy todir="${webapp_path_test}/game_server/WEB-INF/lib/" overwrite="true">
+	                <fileset dir="${lib}"/>
+	        </copy>
+			<mkdir dir="${webapp_path_test}/game_server/admin"/>    		
+			<copy todir="${webapp_path_test}/game_server/">
+		            <fileset dir="web">
+		                   <include name="**/*.*"/>
+		            </fileset>
+		    </copy>
+			<copy todir="${webapp_path_test}/game_server/admin">
+				<fileset dir="/home/jyt/projects/common_tools/web/transport">
+	                   <include name="**/*.*"/>
+	            </fileset>
+			</copy>
+			<mkdir dir="${webapp_path_test}/game_server/thread"/>
+			<copy todir="${webapp_path_test}/game_server/thread">
+				<fileset dir="/home/jyt/projects/common_tools/web/thread">
+	                   <include name="**/*.*"/>
+	            </fileset>
+			</copy>
+	</target>
+	
+	<target name="server_test3">
+			<jar jarfile="${dist}/lib/${com}-${name}-${version}.jar" basedir="${build}"/>
+			<mkdir dir="${webapp_path_test2}/game_server"/>
+			<mkdir dir="${log_path_test2}/game_server"/>
+
+			<mkdir dir="${webapp_path_test2}/game_server/WEB-INF/spring_config/"/>
+			<mkdir dir="${webapp_path_test2}/game_server/WEB-INF/game_init_config/"/>
+			<mkdir dir="${webapp_path_test2}/game_server/WEB-INF/game_runtime_data/"/>
+
+			<!-- copy game_init_config cehua -->
+
+			<copy todir="${webapp_path_test2}/game_server/WEB-INF/game_init_config/" overwrite="true">
+	                <fileset dir="${game_init_config}"/>
+			</copy>
+
+			<!-- copy spring_config -->
+			<copy file="${conf}/clienttest/game_server_context.xml" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/game_server_context.xml" overwrite="true"/>
+			<copy file="${conf}/clienttest/server.properties" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/server.properties" overwrite="true"/>
+			<copy file="${conf}/dwr.xml" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/dwr.xml" overwrite="true"/>
+			<copy file="${conf}/clienttest/log4j.properties" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/log4j.properties" overwrite="true"/>
+			<copy file="${conf}/clienttest/logback.xml" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/logback.xml" overwrite="true"/>
+			<copy file="${conf}/clienttest/simpleEMF.xml" tofile="${webapp_path_test2}/game_server/WEB-INF/spring_config/simpleEMF.xml" overwrite="true"/>
+		
+			<!-- copy game_init_config -->	
+			
+			<copy file="${conf}/web.xml" tofile="${webapp_path_test2}/game_server/WEB-INF/web.xml" overwrite="true"/>
+
+
+			<copy file="${conf}/wordfilter.txt" tofile="${webapp_path_test2}/game_server/WEB-INF/game_init_config/wordfilter.txt" overwrite="true"/>
+
+			<copy todir="${webapp_path_test2}/game_server/WEB-INF/lib/" overwrite="true">
+	                <fileset dir="${lib}"/>
+	        </copy>
+			<mkdir dir="${webapp_path_test2}/game_server/admin"/>    		
+			<copy todir="${webapp_path_test2}/game_server/">
+		            <fileset dir="web">
+		                   <include name="**/*.*"/>
+		            </fileset>
+		    </copy>
+			<copy todir="${webapp_path_test2}/game_server/admin">
+				<fileset dir="/home/jyt/projects/common_tools/web/transport">
+	                   <include name="**/*.*"/>
+	            </fileset>
+			</copy>
+			<mkdir dir="${webapp_path_test2}/game_server/thread"/>
+			<copy todir="${webapp_path_test2}/game_server/thread">
+				<fileset dir="/home/jyt/projects/common_tools/web/thread">
+	                   <include name="**/*.*"/>
+	            </fileset>
+			</copy>
+	</target>
+	
+	<target name="generate_message_for_meishi_server">
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf-8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer
+		      	-package com.fy.engineserver.message     	
+		      	-output.dir ./src/com/fy/engineserver/message/		      	
+		      	-classes com.fy.engineserver.sprite.Sprite
+		      	-classes com.fy.engineserver.sprite.Soul
+		      	-classes com.fy.engineserver.sprite.SoulEquipment4Client
+		      	-classes com.fy.engineserver.sprite.Player
+		      	-classes com.fy.engineserver.sprite.pet.PetMating
+		      	-classes com.fy.engineserver.sprite.EntitySummoned
+		      	-classes com.fy.gamegateway.gmaction.GmAction
+		      	-classes com.fy.engineserver.core.FieldChangeEvent
+		      	-classes com.fy.engineserver.core.GameWorldInfo
+		      	-classes com.fy.engineserver.core.MoveTrace4Client
+		      	-classes com.fy.engineserver.datasource.repute.Repute
+		      	-classes com.fy.engineserver.gateway.ServerInfoForClient
+		      	-classes com.fy.engineserver.datasource.career.SkillInfo
+		      	-classes com.fy.engineserver.datasource.skill.Skill
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.CommonAttackSkill
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutEffect
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutEffectAndQuickMove
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutTraceAndWithRange
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutTraceAndWithMatrix
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutTraceAndWithTargetOrPosition
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutTraceAndWithSummonNPC
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithTraceAndDirectionOrTarget
+		      	-classes com.fy.engineserver.datasource.skill.activeskills.SkillWithoutTraceAndOnTeamMember
+		      	-classes com.fy.engineserver.datasource.buff.Buff
+		      	-classes com.fy.engineserver.datasource.career.Career
+		      	-classes com.fy.engineserver.datasource.career.CareerThread
+		      	-classes com.fy.engineserver.datasource.article.entity.client.ArticleEntity
+		      	-classes com.fy.engineserver.datasource.article.entity.client.EquipmentEntity
+		      	-classes com.fy.engineserver.datasource.article.entity.client.PropsEntity 
+		      	-classes com.fy.engineserver.datasource.article.entity.client.BagInfo4Client
+		      	-classes com.fy.engineserver.datasource.article.data.props.PropsCategory
+		      	-classes com.fy.engineserver.tournament.data.TournamentRankDataClient
+		      	-classes com.fy.engineserver.tournament.data.TournamentRewardDataClient
+		      	-classes com.fy.engineserver.newtask.Task
+		      	-classes com.fy.engineserver.newtask.TaskEntity
+		      	-classes com.fy.engineserver.newtask.service.FunctionNpcModify
+		      	-classes com.fy.engineserver.newtask.prizes.TaskPrize
+		      	-classes com.fy.engineserver.newtask.targets.TaskTarget
+		      	-classes com.fy.engineserver.chat.ChatMessage
+		      	-classes com.fy.engineserver.chat.ChatMessageItem
+		      	-classes com.fy.engineserver.chat.ChatMessageTask
+		      	-classes com.fy.engineserver.core.client.FunctionNPC
+		      	-classes com.fy.engineserver.menu.MenuWindow
+		      	-classes com.fy.engineserver.menu.Option
+		      	-classes com.fy.engineserver.shop.client.Goods
+		    	-classes com.fy.engineserver.core.client.AavilableTaskInfo
+		      	-classes com.fy.engineserver.operating.activities.ActivityItem
+		      	-classes com.fy.engineserver.honor.Honor
+		      	-classes com.fy.engineserver.battlefield.concrete.BattleItem
+				-classes com.fy.engineserver.battlefield.concrete.BattleFieldStatData
+		      	-classes com.fy.engineserver.trade.boothsale.BoothInfo4Client 
+		      	-classes com.fy.engineserver.trade.requestbuy.RequestBuyInfo4Client
+		      	-classes com.fy.engineserver.trade.requestbuy.RequestOption
+		      	-classes com.fy.engineserver.trade.boothsale.MessageBoardInfo4Client
+		      	-classes com.fy.engineserver.auction.AuctionInfo4Client
+		      	-classes com.fy.engineserver.marriage.MarriageLevel
+		      	-classes com.fy.gamebase.help.HelpMessage 
+		      	-classes com.fy.engineserver.sprite.SoulData
+		      	-classes com.fy.engineserver.sprite.horse.Horse
+		      	-classes com.fy.engineserver.septstation.SeptLocationLocation
+		      	-classes com.fy.engineserver.septbuilding.entity.SeptBuildingEntity4Client
+		      	-classes com.fy.engineserver.septbuilding.entity.JiazuBedge
+		      	-classes com.fy.engineserver.jiazu.JiazuMember4Client 
+		      	-classes com.fy.engineserver.worldmap.WorldMapArea
+		      	-classes com.fy.engineserver.homestead.cave.ResourceCollection
+		      	-classes com.fy.engineserver.homestead.cave.PetHookInfo
+		      	-classes com.fy.engineserver.homestead.cave.CaveSchedule
+		      	-classes com.fy.engineserver.homestead.cave.CaveScheduleForClient
+		      	-classes com.fy.engineserver.homestead.cave.resource.PlantCfg
+		      	-classes com.fy.engineserver.homestead.cave.CaveDynamic
+		      	-classes com.fy.engineserver.homestead.cave.resource.ConvertArticleCfg
+		      	-classes com.fy.engineserver.society.Player_RelatinInfo
+		      	-classes com.fy.engineserver.hotspot.HotspotClientInfo
+		      	-classes com.fy.engineserver.activity.quiz.Subject
+		      	-classes com.fy.engineserver.sprite.pet.PetSkillReleaseProbability
+		      	-classes com.fy.engineserver.core.ParticleData
+		      	-classes com.fy.confirm.bean.GameActivity
+		      	-classes com.fy.engineserver.gm.feedback.Feedback
+		      	-classes com.fy.engineserver.gm.feedback.Reply
+		      	-classes com.fy.boss.gm.newfeedback.GmTalk
+		      	-classes com.fy.boss.gm.newfeedback.NewFeedback
+		      	-classes com.fy.engineserver.sprite.TeamChangeNotice
+		      	-classes com.fy.engineserver.notice.Notice
+		      	-classes com.fy.engineserver.qiancengta.info.RewardMsg
+		      	-classes com.fy.engineserver.sifang.info.SiFangSimplePlayerInfo
+		      	-classes com.fy.engineserver.sifang.info.SiFangOverInfo
+		      	-classes com.fy.engineserver.newBillboard.BillboardMenu
+		      	-classes com.fy.engineserver.newBillboard.BillboardDate
+		      	-classes com.fy.engineserver.achievement.Achievement
+		      	-classes com.fy.engineserver.achievement.LeftMenu
+		      	-classes com.fy.engineserver.vip.data.VIPData
+		      	-classes com.fy.engineserver.vip.data.VIPData2
+		      	-classes com.fy.engineserver.activity.newChongZhiActivity.RmbRewardClientData
+				-classes com.fy.engineserver.activity.newChongZhiActivity.WeekAndMonthClientData
+		      	-classes com.fy.engineserver.activity.ActivityIntroduce
+		      	-classes com.fy.engineserver.hook.PlayerHookInfo
+		      	-classes com.fy.engineserver.articleProtect.ArticleProtectClientInfo
+		      	-classes com.fy.engineserver.playerTitles.PlayerTitle
+		      	-classes com.fy.engineserver.guozhan.GuozhanMapPoint
+		      	-classes com.fy.engineserver.country.data.CountryInfoForClient
+		      	-classes com.fy.engineserver.country.data.CountryQiujinAndJinyanForClient
+		      	-classes com.fy.engineserver.septstation.JiazuBossDamageRecord
+		      	-classes com.fy.engineserver.economic.charge.ChargeMoneyConfigure
+		      	-classes com.fy.engineserver.economic.charge.ChargeMode
+		      	-classes com.fy.engineserver.activity.notice.ActivityNotice
+		      	-classes com.fy.engineserver.activity.loginActivity.LoginActivityArticle
+		      	-classes com.fy.engineserver.activity.worldBoss.WorldBossEntry
+		      	-classes com.fy.engineserver.activity.worldBoss.WorldBossLevelSeg
+		      	-classes com.fy.engineserver.activity.worldBoss.WorldBossBody
+		      	-classes com.fy.engineserver.activity.worldBoss.WBossBean
+		      	-classes com.fy.korea.BoardItem
+		      	-classes com.fy.engineserver.sprite.petdao.PetData
+				-classes com.fy.engineserver.activity.activeness.ActivityForActiveness
+		      	-classes com.fy.engineserver.sprite.pet2.GradePet
+				-classes com.fy.engineserver.activity.activeness.PlayerActivenessInfo
+		      	-classes com.fy.engineserver.datasource.skill.master.ExchangeConf
+		    	-classes com.fy.engineserver.datasource.article.data.magicweapon.operate.MoreMagicWeaponMess
+		      	-classes com.fy.engineserver.carbon.devilSquare.model.DevelSquareBaseConf
+		      	-classes com.fy.engineserver.playerAims.clientModel.PlayerAims
+		      	-classes com.fy.engineserver.sprite.horse2.model.HorseAttrModel
+		      	-classes com.fy.engineserver.activity.wafen.instacne.model.FenDiModel4Client
+		      	-classes com.fy.engineserver.datasource.article.data.magicweapon.model.TunShiModle
+				-classes com.fy.engineserver.activity.fairyBuddha.FairyBuddhaInfo
+				-classes com.fy.engineserver.activity.fairyBuddha.Voter
+		      	-classes com.fy.engineserver.battlefield.jjc.PlayerTeamInfo
+		      	-classes com.fy.engineserver.battlefield.jjc.PlayerOptionInfo
+		      	-classes com.fy.engineserver.wing.Wing
+		      	-classes com.fy.engineserver.wing.TypeProp
+		      	-classes com.fy.engineserver.wing.BrightInlayTypeProp
+		      	-classes com.fy.engineserver.wing.ActivateRegular
+		      	-classes com.fy.engineserver.sprite.pet.Pet
+		      	-classes com.fy.engineserver.jiazu2.model.JiazuSkillModel
+		      	-classes com.fy.engineserver.activity.newChongZhiActivity.WeekClientActivity
+		      	-classes com.fy.engineserver.jiazu2.model.JiazuTaskModel4Client
+		      	-classes com.fy.engineserver.battlefield.jjc.BattleUpdateInfo
+		      	-classes com.fy.engineserver.battlefield.jjc.JJCBattleEndInfoOfTeam
+		      	-classes com.fy.engineserver.battlefield.jjc.JJCBattleEndInfoOfMember
+		      	-classes com.fy.engineserver.battlefield.jjc.BillboardInfo
+		      	-classes com.fy.engineserver.activity.chongzhiActivity.MonthCardInfo
+		      	-classes com.fy.engineserver.activity.dailyTurnActivity.model.TurnModel4Client
+		      	-classes com.fy.engineserver.datasource.article.data.magicweapon.huntLife.client.Shouhun4Client
+		      	-classes com.fy.engineserver.sprite.pet.PetFlySkillInfo
+		      	-classes com.fy.engineserver.talent.TalentSkillClientInfo
+		      	-classes com.fy.engineserver.activity.disaster.instance.DisasterPlayer
+		      	-classes com.fy.engineserver.activity.dice.DiceBillboardData
+		      	-classes com.fy.engineserver.soulpith.module.SoulpithInfo4Client
+		      	-classes com.fy.engineserver.soulpith.module.SoulPithExtraAttrModule
+		      	-classes com.fy.engineserver.activity.shop.ActivityPropHasRate
+		      	-classes com.fy.engineserver.soulpith.module.SoulInfo4Client
+		      	-classes com.fy.engineserver.hunshi.Hunshi2Material
+		      	-classes com.fy.engineserver.hunshi.Hunshi2Cell
+		      	-classes com.fy.engineserver.activity.datamanager.module.ActivityModule
+		      	-classes com.fy.engineserver.activity.across.battle.BattleRoom
+		      	-classes com.fy.engineserver.activity.xianling.XianLingBillBoardData
+		      	-classes com.fy.engineserver.activity.xianling.TempPrize
+		      	-classes com.fy.engineserver.activity.across.billboard.CrossBillborad
+		      	-classes com.fy.engineserver.activity.costBillbord.CostPlayerInfo
+		      	-classes com.fy.engineserver.activity.costBillbord.CostRewardInfo
+		      	-classes com.fy.engineserver.sprite.pet.PetCellInfo
+		      	-classes com.fy.engineserver.jiazu2.manager.HuanJingInfoForClient
+		      	-classes com.fy.engineserver.economic.charge.ChargeCardConfig
+		      	-classes com.fy.engineserver.activity.chongzhiActivity.TotleCostActivity
+		      	-encoding UTF-8
+		      	-file ../gateway/conf/common/message_gateway.xml
+		      	-file ./conf/message_prototype_new.xml"/> 
+		      <classpath>
+		      	<fileset dir="lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>	
+		      </classpath>
+		</java>	
+	</target>
+	<target name="generate_message_for_mieshi_client_c">
+			<java classname="com.fy.engineserver.tool.MessageComplier2For_C" >
+				<arg line="-imports ByteBuffer
+					-output.dir ../hg/clientMessage				      	
+					-classes com.fy.gamebase.sprite.Sprite
+			      	-classes com.fy.gamebase.sprite.Soul
+			      	-classes com.fy.gamebase.sprite.SoulEquipment4Client
+			      	-classes com.fy.gamebase.sprite.Player
+			      	-classes com.fy.gamebase.sprite.EntitySummoned
+			      	-classes com.fy.gamebase.sprite.FieldChangeEvent
+			      	-classes com.fy.gamebase.scenes.GameWorldInfo
+			      	-classes com.fy.gamebase.sprite.MoveTrace4Client
+			      	-classes com.fy.gamebase.sociality.Repute
+			      	-classes com.fy.gamebase.skill.SkillInfo
+			      	-classes com.fy.gamebase.skill.Skill
+			      	-classes com.fy.gamebase.skill.activeskills.CommonAttackSkill
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutEffect
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutEffectAndQuickMove
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutTraceAndWithRange
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutTraceAndWithMatrix
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutTraceAndWithTargetOrPosition
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutTraceAndWithSummonNPC
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithTraceAndDirectionOrTarget
+			      	-classes com.fy.gamebase.skill.activeskills.SkillWithoutTraceAndOnTeamMember
+			      	-classes com.fy.gamebase.sprite.Buff
+			      	-classes com.fy.gamebase.career.Career
+			      	-classes com.fy.gamebase.career.CareerThread
+					-classes com.fy.engineserver.sprite.SoulData
+			    	-classes com.fy.gamebase.article.ArticleEntity
+			      	-classes com.fy.gamebase.article.EquipmentEntity
+			      	-classes com.fy.gamebase.article.PropsEntity
+			      	-classes com.fy.gamebase.article.PropsCategory
+			      	-classes com.fy.gamebase.article.BagInfo4Client
+					-classes com.fy.gamebase.article.TournamentRankDataClient
+					-classes com.fy.gamebase.article.TournamentRewardDataClient
+			      	-classes com.fy.gamebase.newtask.Task
+			      	-classes com.fy.gamebase.newtask.FunctionNpcModify
+			      	-classes com.fy.gamebase.newtask.TaskEntity
+			      	-classes com.fy.gamebase.newtask.TaskPrize
+			      	-classes com.fy.gamebase.newtask.TaskTarget
+			      	-classes com.fy.gamebase.chat.ChatMessage
+			      	-classes com.fy.gamebase.chat.ChatMessageItem
+			      	-classes com.fy.gamebase.chat.ChatMessageTask
+			      	-classes com.fy.gamebase.newtask.FunctionNPC
+			      	-classes com.fy.gamebase.menu.MenuWindow
+			      	-classes com.fy.gamebase.menu.Option
+			      	-classes com.fy.gamebase.shop.Goods
+			      	-classes com.fy.gamebase.newtask.AavilableTaskInfo
+			      	-classes com.fy.gamebase.util.ActivityItem
+			      	-classes com.fy.gamebase.sociality.Honor
+			      	-classes com.fy.gamebase.battle.BattleItem
+			      	-classes com.fy.gamebase.battle.BattleFieldStatData
+			      	-classes com.fy.gamebase.sprite.MagicWeapon 
+			      	-classes com.fy.gamebase.sprite.pet.Pet 
+			      	-classes com.fy.gamebase.sprite.pet.PetMating
+			      	-classes com.fy.gamebase.trade.BoothInfo4Client
+			      	-classes com.fy.gamebase.trade.RequestBuyInfo4Client
+			      	-classes com.fy.gamebase.trade.RequestOption
+			      	-classes com.fy.gamebase.trade.MessageBoardInfo4Client
+			      	-classes com.fy.gamebase.trade.AuctionInfo4Client
+					-classes com.fy.engineserver.hook.PlayerHookInfo
+			      	-classes com.fy.engineserver.articleProtect.ArticleProtectClientInfo
+			      	-classes com.fy.gamebase.help.HelpMessage 
+			      	-classes com.fy.gamebase.horse.Horse 
+			      	-classes com.fy.gamebase.map.WorldMapArea 
+					-classes com.fy.gamebase.jiazu.SeptLocationLocation
+			      	-classes com.fy.gamebase.jiazu.SeptBuildingEntity4Client
+			      	-classes com.fy.gamebase.jiazu.JiazuBedge
+			      	-classes com.fy.gamebase.jiazu.JiazuMember4Client 
+			      	-classes com.fy.gamebase.map.WorldMapArea 
+			      	-classes com.fy.gamebase.cave.PlantCfg
+			      	-classes com.fy.gamebase.cave.ResourceCollection
+					-classes com.fy.gamebase.cave.PetHookInfo
+					-classes com.fy.gamebase.cave.CaveSchedule
+					-classes com.fy.gamebase.cave.CaveScheduleForClient
+					-classes com.fy.gamebase.cave.CaveDynamic
+					-classes com.fy.gamebase.PetSkillReleaseProbability
+					-classes com.fy.engineserver.marriage.MarriageLevel
+					-classes com.fy.gamebase.society.Player_RelatinInfo
+					-classes mieshi_base_c_lib.hotspot.HotspotClientInfo 
+					-classes com.fy.engineserver.activity.quiz.Subject 
+					-classes com.fy.gamebase.newtask.ParticleData 
+					-classes com.fy.gamebase.newtask.GameActivity 
+					-classes com.fy.confirm.bean.GameActivity
+					-classes com.fy.engineserver.gm.feedback.Feedback 
+					-classes com.fy.engineserver.gm.feedback.Reply 
+					-classes com.fy.boss.gm.newfeedback.GmTalk
+					-classes com.fy.boss.gm.newfeedback.NewFeedback
+					-classes com.fy.gamegateway.mieshi.server.ServerInfoForClient 
+					-classes sprite.TeamChangeNotice
+					-classes com.fy.Notice
+					-classes com.fy.engineserver.activity.newChongZhiActivity.RmbRewardClientData
+					-classes com.fy.engineserver.activity.newChongZhiActivity.WeekAndMonthClientData
+					-classes com.fy.engineserver.qiancengta.info.RewardMsg
+					-classes com.fy.sifang.info.SiFangSimplePlayerInfo
+					-classes com.fy.sifang.info.SiFangOverInfo
+					-classes com.fy.tournament.data.TournamentRankDataClient
+					-classes com.fy.tournament.data.TournamentRewardDataClient				
+			      	-classes com.fy.engineserver.newBillboard.BillboardMenu
+			      	-classes com.fy.engineserver.newBillboard.BillboardDate
+			      	-classes com.fy.engineserver.achievement.Achievement
+			      	-classes com.fy.engineserver.achievement.LeftMenu
+					-classes com.fy.engineserver.vip.data.VIPData
+					-classes com.fy.engineserver.vip.data.VIPData2
+					-classes com.fy.engineserver.activity.ActivityIntroduce
+					-classes com.fy.engineserver.playerTitles.PlayerTitle
+					-classes com.fy.engineserver.guozhan.GuozhanMapPoint
+					-classes com.fy.engineserver.country.data.CountryInfoForClient
+					-classes com.fy.engineserver.country.data.CountryQiujinAndJinyanForClient
+					-classes com.JiazuBossDamageRecord
+					-classes com.fy.engineserver.economic.charge.ChargeMoneyConfigure
+					-classes com.fy.engineserver.economic.charge.ChargeMode
+			      	-classes com.fy.engineserver.activity.notice.ActivityNotice
+					-classes com.fy.engineserver.activity.loginActivity.LoginActivityArticle
+			      	-classes com.fy.engineserver.activity.worldBoss.WorldBossEntry
+			      	-classes com.fy.engineserver.activity.worldBoss.WorldBossLevelSeg
+			      	-classes com.fy.engineserver.activity.worldBoss.WorldBossBody			      	
+					-classes com.fy.engineserver.activity.worldBoss.WBossBean
+					-classes com.fy.korea.BoardItem
+					-classes com.fy.engineserver.sprite.petdao.PetData
+					-classes com.fy.engineserver.activity.activeness.ActivityForActiveness
+					-classes com.fy.engineserver.sprite.pet2.GradePet
+					-classes com.fy.engineserver.activity.activeness.PlayerActivenessInfo
+					-classes com.fy.engineserver.datasource.skill.master.ExchangeConf
+					-classes com.fy.engineserver.datasource.article.data.magicweapon.operate.MoreMagicWeaponMess
+					-classes com.fy.engineserver.carbon.devilSquare.model.DevelSquareBaseConf
+					-classes com.fy.engineserver.playerAims.clientModel.PlayerAims
+					-classes com.fy.engineserver.sprite.horse2.model.HorseAttrModel
+					-classes com.fy.engineserver.activity.wafen.instacne.model.FenDiModel4Client
+					-classes com.fy.engineserver.datasource.article.data.magicweapon.model.TunShiModle
+					-classes com.fy.engineserver.activity.fairyBuddha.FairyBuddhaInfo
+					-classes com.fy.engineserver.activity.fairyBuddha.Voter
+					-classes com.fy.engineserver.battlefield.jjc.PlayerTeamInfo
+					-classes com.fy.engineserver.battlefield.jjc.PlayerOptionInfo
+			      	-classes com.fy.engineserver.wing.Wing
+			      	-classes com.fy.engineserver.wing.TypeProp
+			      	-classes com.fy.engineserver.wing.BrightInlayTypeProp
+			      	-classes com.fy.engineserver.wing.ActivateRegular
+					-classes com.fy.engineserver.jiazu2.model.JiazuSkillModel
+					-classes com.fy.engineserver.jiazu2.model.JiazuTaskModel4Client
+					-classes com.fy.engineserver.activity.WeekClientActivity
+					-classes com.fy.engineserver.battlefield.jjc.BattleUpdateInfo
+					-classes com.fy.engineserver.battlefield.jjc.JJCBattleEndInfoOfTeam
+					-classes com.fy.engineserver.battlefield.jjc.JJCBattleEndInfoOfMember
+					-classes com.fy.engineserver.battlefield.jjc.BillboardInfo
+					-classes com.fy.engineserver.activity.chongzhiActivity.MonthCardInfo
+					-classes com.fy.engineserver.activity.dailyTurnActivity.model.TurnModel4Client
+					-classes com.fy.engineserver.datasource.article.data.magicweapon.huntLife.client.Shouhun4Client
+					-classes com.fy.engineserver.sprite.pet.PetFlySkillInfo
+					-classes com.fy.engineserver.sprite.pet.Pet
+					-classes com.fy.engineserver.talent.TalentSkillClientInfo
+					-classes com.fy.engineserver.activity.disaster.instance.DisasterPlayer
+					-classes com.fy.engineserver.activity.dice.DiceBillboardData
+					-classes com.fy.engineserver.soulpith.module.SoulpithInfo4Client
+					-classes com.fy.engineserver.soulpith.module.SoulPithExtraAttrModule
+					-classes com.fy.engineserver.activity.shop.ActivityPropHasRate
+					-classes com.fy.engineserver.soulpith.module.SoulInfo4Client
+			      	-classes com.fy.engineserver.hunshi.Hunshi2Material
+			      	-classes com.fy.engineserver.hunshi.Hunshi2Cell
+			      	-classes com.fy.engineserver.activity.datamanager.module.ActivityModule
+					-classes com.fy.engineserver.activity.across.battle.BattleRoom
+					-classes com.fy.engineserver.activity.xianling.XianLingBillBoardData
+					-classes com.fy.engineserver.activity.xianling.TempPrize
+					-classes com.fy.engineserver.activity.across.billboard.CrossBillborad
+					-classes com.fy.engineserver.activity.costBillbord.CostPlayerInfo
+					-classes com.fy.engineserver.activity.costBillbord.CostRewardInfo
+					-classes com.fy.engineserver.sprite.pet.PetCellInfo
+					-classes com.fy.engineserver.jiazu2.manager.HuanJingInfoForClient
+					-classes com.fy.engineserver.economic.charge.ChargeCardConfig
+					-classes com.fy.engineserver.activity.chongzhiActivity.TotleCostActivity
+					-exclude .*OBSERVE.*
+			      	-encoding UTF-8
+			      	-file ./conf/message_prototype_new.xml
+			      	-file ../gateway/conf/common/message_gateway.xml
+			      	"/> 
+			      <classpath path="./bin">
+			      	<fileset dir="lib">
+			      				<include name="**/*.jar"/>
+			      			</fileset>	
+			      </classpath>
+			</java>	
+		</target>
+	
+	<target name="generate_message_for_cross_system">
+		<java classname="com.xuanzhi.tools.transport.MessageComplier" >
+			  <jvmarg line="-Dfine.encoding=utf-8"/>	
+		      <arg line="-imports com.xuanzhi.tools.transport.*;java.nio.ByteBuffer;com.fy.engineserver.datasource.article.data.entity.ArticleEntity
+		      	-package com.fy.engineserver.crossserver.message     	
+		      	-output.dir ./src/com/fy/engineserver/crossserver/message/		
+		      	-classes com.fy.engineserver.battlefield.concrete.BattleItem
+		      	-classes com.fy.engineserver.crossserver.ArticleEntityPacket
+		      	-classes com.fy.engineserver.sprite.MagicWeapon
+		      	-file ./conf/message_cross_server.xml"/> 
+		      <classpath>
+		      	<fileset dir="lib">
+		      				<include name="**/*.jar"/>
+		      			</fileset>
+		      </classpath>
+		</java>	
+	</target>
+	
+	<target name="clean">
+		<!-- delete the ${build} -->
+		<delete dir="${build}"/>
+		<delete dir="${clover}"/>
+		<delete file="${dist}/lib/${com}-${name}-${version}.jar"/>
+	</target>
+	
+	
+</project>

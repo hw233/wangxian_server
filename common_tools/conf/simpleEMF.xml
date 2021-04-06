@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+ 
+ 		<serverId>100</serverId>
+		
+		<!-- 
+		<entity-manager id='1' super-class='com.xuanzhi.tools.simplejpa.impl.TTPlayer' checkIntervalInSeconds='5'>
+ 		</entity-manager>	
+ 
+ 		<entity-manager id='2' super-class='com.xuanzhi.tools.simplejpa.impl.TTAbstractArticleEntity' checkIntervalInSeconds='5'>
+ 			<class id='3'>com.xuanzhi.tools.simplejpa.impl.ArticleTypeA</class>
+ 			<class id='4'>com.xuanzhi.tools.simplejpa.impl.ArticleTypeB</class>
+ 			<class id='5'>com.xuanzhi.tools.simplejpa.impl.ArticleTypeC</class>
+ 			<class id='6'>com.xuanzhi.tools.simplejpa.impl.ArticleTypeA_A</class>
+ 		</entity-manager>
+ 		-->
+ 			
+ 		<!-- 
+ 		<database name='test-pool' type='oracle'>
+ 			<driver>oracle.jdbc.driver.OracleDriver</driver>
+ 			<url>jdbc:oracle:thin:@116.213.142.183:1521:ora183</url>
+ 			<username>simplejpatest</username>
+ 			<password>simplejpatest</password>
+			<maxConn>30</maxConn>
+			<timeoutSeconds>300</timeoutSeconds>
+			<checkoutSeconds>300</checkoutSeconds>
+		</database>
+  -->
+  		<entity-manager id='1' super-class='com.xuanzhi.tools.simplejpa.impl.MysqlPlayer' checkIntervalInSeconds='5' 
+  			maxRowPerTableForMysql='100'>
+ 		</entity-manager>	
+ 
+		<database name='test-pool' type='mysql'>
+ 			<driver>com.mysql.jdbc.Driver</driver>
+ 			<url>jdbc:mysql://112.25.14.12:3306/simpletest?characterEncoding=utf-8&amp;useUnicode=true</url>
+ 			<username>simpletest</username>
+ 			<password>simpletest</password>
+			<maxConn>30</maxConn>
+			<timeoutSeconds>300</timeoutSeconds>
+			<checkoutSeconds>300</checkoutSeconds>
+		</database>
+  
+</persistence-units>

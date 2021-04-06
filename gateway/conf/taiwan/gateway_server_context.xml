@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+	
+	<bean id="propertyConfigurer" 
+ 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="location">
+	       <value>/WEB-INF/conf/gateway.properties</value>
+	    </property>  
+	</bean>
+	
+		<!--  gateway server selector -->
+
+	    <!-- boss -->
+	    <bean id="GameConstants" class="com.xuanzhi.boss.game.GameConstants" 
+	    		init-method="init" scope="singleton">
+	    	<property name="gameName" value="灭世"></property>
+	    	<property name="serverName" value="网关"></property>
+	    	<property name="serverAddress" value=""></property>
+	    </bean>
+	    
+	    
+	    <bean id="boss_system_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+	            init-method="init" scope="singleton">
+            <property name="enableHeapForTimeout" value="true"></property>
+            <property name="maxConnectionNum" value="256"></property>
+            <property name="threadPoolMaxPoolSize" value="256"></property>
+            <property name="name" value="BossSystemClient"></property>
+            <property name="clientModel" value="true"></property>
+            <property name="host" value="${boss.server.host}"></property>
+            <property name="port" value="${boss.server.port}"></property>
+           	<property name="connectionCreatedHandler" ref="bossClientService"></property>
+	    </bean>
+	  
+
+	   	 <bean id="bossClientService" class="com.fy.boss.client.BossClientService" 
+	    	init-method="initialize" scope="singleton">	
+	    	<property name="connectionSelector" ref="boss_system_client"></property>         
+	    </bean>
+	   
+	   
+	 <!-- outer -->
+	 
+ 	<bean id="statManager" class="com.fy.gamegateway.stat.StatManager" 
+    	init-method="init" scope="singleton">  
+    </bean>
+    
+   
+    <bean id="TipManager" class="com.fy.gamegateway.mieshi.server.TipManager" 
+    	init-method="initialize" scope="singleton">  
+            <property name="tipConfigFile" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/tips.xml"></property>    
+    </bean>
+    
+   
+     
+     <!-- 处理游戏服务器发来的请求的 --> 
+    <bean id="gateway_mieshi_UpdateResource_selector" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+            init-method="init" scope="singleton">
+             <property name="enableHeapForTimeout" value="true"></property>
+             <property name="threadPoolMaxPoolSize" value="1000"></property>
+             <property name="name" value="gateway_mieshi_UpdateResource_selector"></property>
+             <property name="clientModel" value="false"></property>
+			 <property name="multiServerModel" value="false"></property>
+             <property name="secondaryServerNum" value="1"></property>
+             <property name="port" value="10002"></property>
+             <property name="connectionConnectedHandler" ref="mieshiGatewayUpdateResourceServer"></property>
+             <property name="connectionReceiveBufferSize" value="500000"></property>
+    </bean>
+    <bean id="mieshiGatewayUpdateResourceServer" class="com.fy.gamegateway.mieshi.server.MieshiGatewayUpdateResourceServer" 
+    	init-method="init" scope="singleton">
+            <property name="connectionSelector" ref="gateway_mieshi_UpdateResource_selector"></property>
+            <property name="skillFile" value="${resinHome}/webapps/game_gateway/game_resource/other/skilldata.bin"></property>
+            <property name="skillHttpPath" value="${webRoot}/game_resource/other/skilldata.bin"></property>
+            
+    </bean>
+    <bean id="ResourceManager" class="com.fy.gamegateway.mieshi.resource.manager.ResourceManager" 
+    	init-method="init" scope="singleton">
+            <property name="testResourceRootPath" value="${resinHome}/webapps/game_gateway/game_resource/"></property>
+            <property name="realResourceRootPath" value="${resinHome}/webapps/game_gateway/real/game_resource/"></property>
+            <property name="testResourceRootHttpPath" value="${apacheRoot}/game_resource/"></property>
+            <property name="realResourceRootHttpPath" value="${apacheRoot}/real/game_resource/"></property>
+    </bean>
+    
+     <bean id="PackageManager" class="com.fy.gamegateway.mieshi.resource.manager.PackageManager" 
+    	init-method="init" scope="singleton">
+           <property name="testPackageRoot" value="${resinHome}/webapps/game_gateway/packages/"></property>
+           <property name="testHttpRoot" value="${apacheRoot}/packages/"></property>
+           <property name="realPackageRoot" value="${resinHome}/webapps/game_gateway/real/packages/"></property>
+           <property name="realHttpRoot" value="${apacheRoot}/real/packages/"></property>
+    </bean>
+    
+    <bean id="ResourceSharedNodeManager" class="com.fy.gamegateway.mieshi.resource.manager.ResourceSharedNodeManager" 
+    	init-method="init" scope="singleton">
+            <property name="configFile" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/shared_nodes.xml"></property>
+    </bean>
+    
+    
+     <bean id="MieshiPlayerInfoManager" class="com.fy.gamegateway.mieshi.server.MieshiPlayerInfoManager" 
+    	init-method="init" destroy-method="destroy" scope="singleton">
+           <property name="cacheFile" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/mieshi_player_info.ddc"></property>
+    </bean>
+    
+    <bean id="MieshiServerInfoManager" class="com.fy.gamegateway.mieshi.server.MieshiServerInfoManager" 
+    	init-method="init" scope="singleton">
+           <property name="cacheFile" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/mieshi_server.ddc"></property>
+    </bean>
+
+        <!-- 激活码 -->
+	<bean id="boss_confirmation_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector" init-method="init" scope="singleton">
+		<property name="enableHeapForTimeout" value="true"></property>
+		<property name="name" value="ConfirmationManager-Selector"></property>
+		<property name="maxConnectionNum" value="256"></property>
+		<property name="clientModel" value="false"></property>
+		<property name="port" value="11001"></property>
+		<property name="connectionConnectedHandler" ref="confirmactionCode_message_handler"></property>
+	</bean>
+	<bean id="confirmactionCode_message_handler" class="com.xuanzhi.confirmation.service.server.MessageReceiver" init-method="init">
+	</bean>
+	<bean id="confirmation" class="com.xuanzhi.confirmation.service.server.DataManager" init-method="init">
+		<property name="diskCacheFileRoot" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/"/>
+	</bean>
+	<!-- 激活码 -->
+        
+     <bean id="innerTesterManager" class="com.fy.gamegateway.mieshi.server.InnerTesterManager"
+    	init-method="init" scope="singleton">
+    	<property name="cacheFile" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/mieshi_inner_tester_info.ddc"></property>
+    </bean>
+ 
+ 
+ 
+ 	<!--  必须放在配置文件的最后   -->
+     <!-- 处理用户发来的请求的 --> 
+     
+    <bean id="gateway_mieshi_user_selector2" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+            init-method="init" scope="singleton">
+             <property name="enableHeapForTimeout" value="true"></property>
+             <property name="threadPoolMaxPoolSize" value="1000"></property>
+             <property name="name" value="gateway_mieshi_user_selector"></property>
+             <property name="clientModel" value="false"></property>
+			 <property name="multiServerModel" value="false"></property>
+             <property name="secondaryServerNum" value="1"></property>
+             <property name="port" value="${gateway.server.port2}"></property>
+             <property name="connectionConnectedHandler" ref="gateway_mieshi_user_server"></property>
+    </bean>
+    
+    <bean id="gateway_mieshi_user_selector" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+            init-method="init" scope="singleton">
+             <property name="enableHeapForTimeout" value="true"></property>
+             <property name="threadPoolMaxPoolSize" value="1000"></property>
+             <property name="name" value="gateway_mieshi_user_selector"></property>
+             <property name="clientModel" value="false"></property>
+			 <property name="multiServerModel" value="false"></property>
+             <property name="secondaryServerNum" value="1"></property>
+             <property name="port" value="${gateway.server.port}"></property>
+             <property name="connectionConnectedHandler" ref="gateway_mieshi_user_server"></property>
+    </bean>
+    
+    <bean id="gateway_mieshi_user_server" class="com.fy.gamegateway.mieshi.server.MieshiGatewayServer" 
+    	init-method="init" scope="singleton">
+            <property name="connectionSelector" ref="gateway_mieshi_user_selector"></property>
+            <property name="gameSubSystems">
+            	<list>
+            		<ref bean="mieshiGatewaySubSystem"/>
+            	</list>
+            </property>
+    </bean>
+    
+     <bean id="mieshiGatewaySubSystem" class="com.fy.gamegateway.mieshi.server.MieshiGatewaySubSystem"
+    	init-method="initialize" scope="singleton">
+    	<property name="bossClientService" ref="bossClientService"></property>
+    	<property name="innerTesterManager" ref="innerTesterManager"></property>
+    	<property name="errorMsgPath" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/mieshi_errormsg.ddc"></property>
+    	<property name="shenfenzhengCachePath" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/shenfenzhengCache.ddc"></property>
+    	<property name="tipInfoCachePath" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/hefutipcache.ddc"></property>
+    	<property name="hefuPlayerCachePath" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/hefuplayercache.ddc"></property>
+    	<property name="validateShenfenzheng" value="false"></property>
+   		<property name="showShenfenzheng" value="false"></property>
+    </bean>
+    
+    
+      <bean id="stat_system_client" class="com.xuanzhi.tools.transport.DefaultConnectionSelector"
+            init-method="init" scope="singleton">
+            <property name="enableHeapForTimeout" value="true"></property>
+            <property name="name" value="stat.system.client.name"></property>
+            <property name="clientModel" value="true"></property>
+            <property name="host" value="${stat.server.host}"></property>
+            <property name="port" value="${stat.server.port}"></property>
+    </bean>
+   
+    <bean id="statClientService" class="com.sqage.stat.client.StatClientService" 
+    	init-method="initialize" scope="singleton">
+            <property name="selector" ref="stat_system_client"></property> 
+            <property name="queueFile" value="${resinHome}/webapps/game_gateway/WEB-INF/stat_client_queue/"></property>   
+            <property name="openning" value="true"></property>
+    </bean>
+	 
+	 <bean id="RecordManager" class="com.fy.gamegateway.getbackpassport.RecordManager" 
+    	init-method="init" scope="singleton">  
+    </bean>
+    
+
+    <bean id="MultiLanguageTranslateManager" class="com.fy.gamegateway.language.MultiLanguageTranslateManager" init-method="init" scope="singleton">
+		<property name="needTranslate" value="${server.translate}"/>
+		<property name="filePath" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/${server.translate.file}"/>
+	</bean>
+    
+    <bean id="AppstoreVersionManager" class="com.fy.gamegateway.mieshi.server.AppstoreVersionManager" 
+    	init-method="init" scope="singleton">
+            <property name="configFile" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/appstore_versions.xml"></property>
+    </bean>
+    
+    <bean id="GooglePlayVersionManager" class="com.fy.gamegateway.mieshi.server.GooglePlayVersionManager" 
+    	init-method="init" scope="singleton">
+            <property name="configFile" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/googleplay_versions.xml"></property>
+    </bean>
+    
+    <bean id="NeedToHttpVersionManager" class="com.fy.gamegateway.mieshi.server.NeedToHttpVersionManager" 
+    	init-method="init" scope="singleton">
+            <property name="configFile" value="${resinHome}/webapps/game_gateway/WEB-INF/conf/needToHttp_versions.xml"></property>
+    </bean>
+    
+    <bean id="MiniResourceZipManager" class="com.fy.gamegateway.mieshi.resource.manager.MiniResourceZipManager" 
+    	init-method="init" scope="singleton">
+            <property name="data_path" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/resMiniDatas.ddc"></property>
+            <property name="miniZipRootPath" value="${resinHome}/webapps/game_gateway/real/miniZip/"></property>
+            <property name="miniZipHttpRootPath" value="${apacheRoot}/real/miniZip/"></property>
+    </bean>
+    
+    <bean id="AuthorizeManager" class="com.fy.gamegateway.mieshi.waigua.AuthorizeManager" init-method="init"  destroy-method="destroy" scope="singleton">
+  		
+  	</bean>
+    
+    <bean id="MieshiServerHeartBeatInfoManager" class="com.fy.gamegateway.mieshi.server.MieshiServerHeartBeatInfoManager" 
+    	init-method="init" scope="singleton">
+           <property name="cacheFile" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/mieshi_server_heartbeat.ddc"></property>
+    </bean>
+    
+    <bean id="GateWayHandleOverTimeInfoManager" class="com.fy.gamegateway.mieshi.server.GateWayHandleOverTimeInfoManager" 
+    	init-method="init" scope="singleton">
+           <property name="cacheFile" value="${resinHome}/webapps/game_gateway/WEB-INF/diskCacheFileRoot/gateway_handle_overtime.xml"></property>
+    </bean>
+    
+</beans>

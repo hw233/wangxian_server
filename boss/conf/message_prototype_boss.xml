@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<prototypes version="1.0" author="myzdf">
+	<factory name="BossMessageFactory" />
+	<init-params stringMaxLength="10240000" arrayMaxLength="5024000" objectMaxLength="4096000"/>
+	<prototype req_name="PASSPORT_REGISTER_REQ" req_type="0x0000E000" 
+			res_name="PASSPORT_REGISTER_RES" res_type="0x8000E000"  comment="注册一个通行证"> 
+		<req>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="result" type="byte" comment="注册的结果，0表示成功，1表示用户已存在，2表示服务器内部错误"></property>
+			<property name="description" type="String" encoding="UTF-8"  comment="结果描述"></property>
+		</res>
+	</prototype>
+	<prototype req_name="PASSPORT_LOGIN_REQ" req_type="0x0000E001" 
+			res_name="PASSPORT_LOGIN_RES" res_type="0x8000E001"  comment="登陆">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="lastLoginClientId" type="String"  comment="最后登录的clientid"/>
+			<property name="lastLoginChannel" type="String" encoding="UTF-8" comment="最后登录的渠道"/>
+			<property name="lastLoginMobileOs" type="String" comment="最后登录手机平台" />
+			<property name="lastLoginMobileType" type="String" comment="最后登录机型" />
+			<property name="lastLoginNetworkMode" type="String"  comment="最后登录联网方式" />
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="result" type="byte" comment="登录的结果，0表示成功登陆，1表示密码不匹配，2表示用户不存在，3此帐号正在被其他人使用，6表示包格式错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+	<prototype req_name="PASSPORT_GET_REQ" req_type="0x0000E002" 
+			res_name="PASSPORT_GET_RES" res_type="0x8000E002"  comment="登陆">
+		<req>
+			<property name="id" type="long" comment="id"/>
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerDate" type="long"  comment="注册日期"/>
+			<property name="lastLoginDate" type="long"  comment="最后一次登陆日期"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="lastLoginChannel" type="String"  comment="最后一次登陆渠道"/>
+			<property name="lastLoginIp" type="String"  comment="最后一次登陆ip"/>
+			<property name="lastLoginClientId" type="String"  comment="最后一次登陆clientId"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="lastLoginMobileOs" type="String" comment="最后一次登陆手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="lastLoginMobileType" type="String" comment="最后一次登陆手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+			<property name="lastLoginNetworkMode" type="String" encoding="UTF-8"  comment="登陆时联网方式" />
+			<property name="totalChargeAmount" type="long"   comment="充值总额" />
+			<property name="lastChargeDate" type="long"   comment="最后一次充值日期" />
+			<property name="lastChargeAmount" type="long"   comment="最后一次充值金额" />
+			<property name="lastChargeChannel" type="String"   comment="最后一次充值渠道" />
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+			<property name="ucPassword" type="String"   comment="uc密码" />
+			
+			<property name="result" type="byte" comment="结果，0表示成功，1表示id不存在，2表示Boss内部错误，"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+
+	
+	<prototype req_name="PASSPORT_GET_REQ2" req_type="0x0000E003" 
+			res_name="PASSPORT_GET_RES2" res_type="0x8000E003"  comment="登陆">
+		<req>
+			<property name="username" type="String" comment="账号名"/>
+		</req>
+		<res>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="registerClientId" type="String" encoding="UTF-8" comment="注册clientId"/>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="fromWhere" type="String" encoding="UTF-8" comment="账号来源"/>
+			<property name="registerDate" type="long"  comment="注册日期"/>
+			<property name="lastLoginDate" type="long"  comment="最后一次登陆日期"/>
+			<property name="registerChannel" type="String" encoding="UTF-8" comment="注册渠道"/>
+			<property name="lastLoginChannel" type="String"  comment="最后一次登陆渠道"/>
+			<property name="lastLoginIp" type="String"  comment="最后一次登陆ip"/>
+			<property name="lastLoginClientId" type="String"  comment="最后一次登陆clientId"/>
+			<property name="registerMobile" type="String" comment="注册手机号码"/>
+			<property name="registerMobileOs" type="String" comment="注册手机平台" />
+			<property name="lastLoginMobileOs" type="String" comment="最后一次登陆手机平台" />
+			<property name="registerMobileType" type="String" comment="注册手机机型" />
+			<property name="lastLoginMobileType" type="String" comment="最后一次登陆手机机型" />
+			<property name="registerNetworkMode" type="String" encoding="UTF-8"  comment="注册时联网方式" />
+			<property name="lastLoginNetworkMode" type="String" encoding="UTF-8"  comment="登陆时联网方式" />
+			<property name="totalChargeAmount" type="long"   comment="充值总额" />
+			<property name="lastChargeDate" type="long"   comment="最后一次充值日期" />
+			<property name="lastChargeAmount" type="long"   comment="最后一次充值金额" />
+			<property name="lastChargeChannel" type="String"   comment="最后一次充值渠道" />
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+			<property name="ucPassword" type="String"   comment="uc密码" />
+			
+			<property name="result" type="byte" comment="结果，0表示成功，1表示用户不存在，2Boss内部错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+
+	<prototype req_name="PASSPORT_UPDATE_REQ" req_type="0x0000E004" 
+			res_name="PASSPORT_UPDATE_RES" res_type="0x8000E004"  comment="登陆">
+		<req>
+			<property name="passportid" type="long" comment="通行证id"></property>
+			<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+			<property name="passwd" type="String" encoding="UTF-8" comment="密码"/>
+			<property name="nickName" type="String" encoding="UTF-8" comment="账户别名"/>
+			<property name="secretQuestion" type="String"   comment="密保问题" />
+			<property name="secretAnswer" type="String"   comment="密保答案" />
+			<property name="lastQuestionSetDate" type="long"   comment="最后一次设置密保时间" />
+			<property name="isSetSecretQuestion" type="boolean"   comment="是否设置密保问题" />
+			<property name="status" type="int"   comment="用户状态" />
+			<property name="lastUpdateStatusDate" type="long"   comment="最后一次设置用户状态时间" />
+			<property name="ucPassword" type="String"   comment="uc密码" />
+		</req>
+		<res>
+			<property name="isOk" type="boolean"   comment="是否设置密保问题" />
+			<property name="result" type="byte" comment="结果，0表示成功登陆，其他表示内部错误"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="APPSTORE_UPDATE_IDENTY_REQ" req_type="0x0000E005" 
+			res_name="APPSTORE_UPDATE_IDENTY_RES" res_type="0x8000E005"  comment="更新Passport的lastloginIp">
+		<req>
+			<property name="passportid" type="long" comment="passportid"></property>
+			<property name="appidentify" type="String" comment="appstore机型唯一标识"></property>
+		</req>
+		<res>
+			<property name="isOk" type="boolean"   comment="是否成功" />
+			<property name="result" type="byte" comment="结果，0表示成功 1表示失败"></property>
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="QQ_LOGIN_VALIDATE_REQ" req_type="0x0000A001" 
+			res_name="QQ_LOGIN_VALIDATE_RES" res_type="0x8000A001"  comment="登陆">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="腾讯获取的UID"/>
+			<property name="sessionId" type="String" encoding="UTF-8" comment="腾讯获取的sessionId"/>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-验证成功, 1-验证失败"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="QQ_SAVING_REQ" req_type="0x0000A002" 
+			res_name="QQ_SAVING_RES" res_type="0x8000A002"  comment="QQ充值">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="腾讯获取的UID"/>
+			<property name="goodcount" type="int"  comment="商品数量"/>
+			<property name="savingType" type="String"  comment="充值类别"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+	
+
+	
+	
+	<prototype req_name="CHANNEL_UER_SAVING_REQ" req_type="0x0000A003" 
+			res_name="CHANNEL_UER_SAVING_RES" res_type="0x8000A003"  comment="渠道充值">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="UC的UID"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-成功, 非0-错误 "/>
+			<property name="desc" type="String" encoding="UTF-8" comment="错误描述"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="NINEONE_SAVING_REQ" req_type="0x0000A004" 
+			res_name="NINEONE_SAVING_RES" res_type="0x8000A004"  comment="91充值">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="91的用户名"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+
+	<prototype req_name="APPCHINA_SAVING_REQ" req_type="0x0000A005" 
+			res_name="APPCHINA_SAVING_RES" res_type="0x8000A005"  comment="应用汇充值">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="应用汇的用户名"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+	
+		<prototype req_name="QQ_SAVING_NEW_REQ" req_type="0x0000A006" 
+			res_name="QQ_SAVING_NEW_RES" res_type="0x8000A006"  comment="QQ充值">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="腾讯获取的UID"/>
+			<property name="goodcount" type="int"  comment="商品数量"/>
+			<property name="savingType" type="String"  comment="充值类别"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="userChannel" type="String"  encoding="UTF-8"  comment="渠道名称"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+	
+	
+	<!-- 充值 -->
+	<prototype req_name="USER_SAVING_REQ" req_type="0x0000F001" 
+			res_name="USER_SAVING_RES" res_type="0x8000F001"  
+			req_client_send="true"  res_client_receive="true"
+			comment="用户充值">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="账号名"/>
+			<property name="playername" type="String" encoding="UTF-8" comment="那个玩家过来的，可为空"/>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器"/>
+			<property name="channel" type="String" encoding="UTF-8" comment="充值的客户端渠道"/>
+			<property name="os" type="String" encoding="UTF-8" comment="客户端OS"/>
+			<property name="cardtype" type="String" encoding="UTF-8" comment="卡类型, 移动充值卡|联通一卡付|电信充值卡|盛大卡|征途卡|骏网一卡通|久游卡|网易卡|完美卡|搜狐卡"/>
+			<property name="cardno" type="String" encoding="UTF-8" comment="卡序列号"/>
+			<property name="cardpass" type="String" encoding="UTF-8" comment="卡密码"/>
+			<property name="mianzhi" type="int" comment="卡面值，单位：分"/>
+			<property name="goodsType" type="int" comment="预留字段， 货物，用于需要定义货物的地方"/>
+			<property name="amount" type="int" comment="预留字段， 数量，用于需要数量的地方"/>			
+			<property name="orderID" type="String" encoding="UTF-8" comment="预留字段， 用于记录第三方的订单号"/>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-成功，1-失败"/>
+			<property name="failreason" type="String" encoding="UTF-8" comment="结果描述"/>
+		</res>
+	</prototype>
+	<prototype req_name="SAVING_RECORD_REQ" req_type="0x0000F002"
+		res_name="SAVING_RECORD_RES" res_type="0x8000F002" 
+		req_client_send = "true" res_client_receive = "true"
+		comment="客户端请求充值记录">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="用户名称"/>
+			<property name="pageNum" type="int" comment="每页的显示数量,20"></property>
+			<property name="pageIndex" type="int" comment="显示第几页:0,1,2,3..."></property>
+		</req>
+		<res>
+			<property name="statusDesp" type="String[]" encoding="UTF-8" comment="订单状态"/>	
+			<property name="orderId" type="String[]" encoding="UTF-8" comment="订单"/>	
+			<property name="createTime" type="long[]" comment="订单发生时间"/>	
+			<property name="savingAmount" type="long[]" comment="充值额度：分"/>	
+			<property name="savingMedium" type="String[]" encoding="UTF-8" comment="充值介质"/>			
+			<property name="savingTotalNum" type="long" comment="总充值记录数"/>	
+			<property name="savingPageNum" type="long" comment="总页数"/>
+		</res>
+	</prototype>
+
+	<!-- prototype req_name="PASSPORT_FORGET_REQ" req_type="0x0000F003"
+		res_name="PASSPORT_FORGET_RES" res_type="0x8000F003" 
+		req_client_send = "true" res_client_receive = "true"
+		comment="忘记密码">
+		<req>
+			<object-property name="passport" type="Passport" comment="客户端通行证消息">
+				<property name="id" type="long" comment="通行证id"></property>
+				<property name="clientId" type="String" encoding="UTF-8" comment="客户端唯一标示,客服核实用"/>
+				<property name="channel" type="String"   comment="当前渠道"/>
+				<property name="MobileType" type="String" comment="手机机型" />
+				<property name="servername" type="String" encoding="UTF-8" comment="服务器"/>
+				<property name="registerMobile" type="String" comment="注册手机号码"/>
+				<property name="username" type="String" encoding="UTF-8" comment="账户名"/>
+				<property name="secretQuestion" type="String"   comment="密保问题" />
+				<property name="secretAnswer" type="String"   comment="密保答案" />
+				<property name="lastChargeDate" type="long"   comment="最后一次充值日期" />
+				<property name="lastChargeAmount" type="long"   comment="最后一次充值金额" />
+				<property name="lastLoginDate" type="long"  comment="最后一次登陆日期"/>
+			</object-property>
+		</req>
+		<res>
+			<property name="resultType" type="byte" comment="0-通过密保找回密码成功"></property>
+			<property name="description" type="String" encoding="UTF-8"  comment="结果描述"></property>
+		</res>
+	</prototype-->
+	
+	<prototype req_name="ALIPAY_ARGS_REQ" res_name="ALIPAY_ARGS_RES" req_type="0x0000F004" res_type="0x8000F004"
+		req_client_send="true" res_client_receive="true" coment="获得支付宝参数">
+		<req></req>
+		<res>
+			<property name="partnerID" type="String" encoding="UTF-8" comment="合作商ID" />
+			<property name="sellerID" type="String" encoding="UTF-8" comment="账户ID" />
+			<property name="aliPublicKey" type="String" encoding="UTF-8" comment="支付宝公钥" />
+			<property name="ownPublicKey" type="String" encoding="UTF-8" comment="商户公钥" />
+			<property name="ownPrivateKey" type="String" encoding="UTF-8" comment="商户私钥" />
+			<property name="notifyUrl" type="String" encoding="UTF-8" comment="回调接口" />
+		</res>
+	</prototype>
+
+	<prototype req_name="ALIPAY_GET_ORDERID_REQ" res_name="ALIPAY_GET_ORDERID_RES" req_type="0x0000F005" res_type="0x8000F005"
+		req_client_send="true" res_client_receive="true" coment="获得支付宝订单">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户" />
+			<property name="channel" type="String" encoding="UTF-8" comment="当前客户端渠道" />
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器" />
+			<property name="payAmount" type="long" comment="支付额度，单位：分" />
+		</req>
+		<res>
+			<property name="orderId" type="String" encoding="UTF-8" comment="订单号" />
+			<property name="orderInfo" type="String" encoding="UTF-8" comment="订单号信息加密后的" />
+			<property name="publicKey" type="String" encoding="UTF-8" comment="支付宝公钥" />
+		</res>
+	</prototype>
+
+	<prototype req_name="ORDER_STATUS_CHANGE_REQ" res_name="ORDER_STATUS_CHANGE_RES" req_type="0x0000F006" res_type="0x8000F006"
+		req_client_send="true" res_client_receive="true" coment="获得支付宝订单">
+		<req>
+			<property name="orderId" type="String" encoding="UTF-8" comment="订单号" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串" />
+			<property name="status"  type="String" encoding="UTF-8" comment="此订单的状态" />
+			<property name="statusDesp" type="String" encoding="UTF-8" comment="状态说明" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+		</res>
+	</prototype>
+
+	<prototype req_name="APPSTORE_RECEIPT_REQ" res_name="APPSTORE_RECEIPT_RES" req_type="0x0000F007" res_type="0x8000F007"
+		req_client_send="true" res_client_receive="true" coment="苹果渠道充值通知">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户" />
+			<property name="channel" type="String" encoding="UTF-8" comment="当前客户端渠道" />
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器" />
+			<property name="receipt" type="String" encoding="UTF-8" comment="充值信息" />
+			<property name="deviceCode" type="String" encoding="UTF-8" comment="设备号" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+		</res>
+	</prototype>
+
+	<prototype req_name="APPSTORE_SAVING_VERIFY_REQ" res_name="APPSTORE_SAVING_VERIFY_RES" req_type="0x0000F008" res_type="0x8000F008"
+		req_client_send="true" res_client_receive="true" coment="苹果是否可充值">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户" />
+			<property name="channel" type="String" encoding="UTF-8" comment="当前客户端渠道" />
+			<property name="verifyStr" type="String" encoding="UTF-8" comment="校验的特征码:uuid:xxxmacaddr:xxx" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述，空为成功" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="ORDER_STATUS_NOTIFY_REQ" res_name="ORDER_STATUS_NOTIFY_RES" req_type="0x0000F009" res_type="0x8000F009"
+		req_client_send="true" res_client_receive="true" coment="客户端修改订单状态">
+		<req>
+			<property name="orderId" type="String" encoding="UTF-8" comment="订单号" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串" />
+			<property name="handlestatus"  type="String" encoding="UTF-8" comment="调用接口的状态" />
+			<property name="handlestatusDesp" type="String" encoding="UTF-8" comment="状态说明" />
+			<property name="responsestatus"  type="String" encoding="UTF-8" comment="此订单最终回调的状态" />
+			<property name="responsestatusDesp" type="String" encoding="UTF-8" comment="状态说明" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="SAVING_UCIDTOUSERNAME_REQ"  res_name="SAVING_UCIDTOUSERNAME_RES" req_type="0x0000F010" res_type="0x8000F010"
+		req_client_send="true" res_client_receive="true" coment="储存ucid和游戏账号对应关系">
+		<req>
+			<property name="ucid" type="String" encoding="UTF-8" comment="ucid" />
+			<property name="username" type="String" encoding="UTF-8" comment="游戏登陆账号" />
+			<property name="channel" type="String" encoding="UTF-8" comment="账号渠道" />
+		</req>
+		<res>
+			<property name="result"  type="int" comment="结果: 0-成功， 1-表示ucid已存在, 2-表示内部错误" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_USERNAMEBYUCID_REQ" res_name="GET_USERNAMEBYUCID_RES" req_type="0x0000F011" res_type="0x8000F011"
+		req_client_send="true" res_client_receive="true" coment="根据ucid查询游戏账号">
+		<req>
+			<property name="ucid"  type="String" encoding="UTF-8" comment="ucid" />
+		</req>
+		<res>
+			<property name="username"  type="String" encoding="UTF-8" comment="username" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_UCIDBYUSERNAME_REQ" res_name="GET_UCIDBYUSERNAME_RES" req_type="0x0000F012" res_type="0x8000F012"
+		req_client_send="true" res_client_receive="true" coment="根据username查询ucid">
+		<req>
+			<property name="username"  type="String" encoding="UTF-8" comment="username" />
+		</req>
+		<res>
+			<property name="ucid"  type="String" encoding="UTF-8" comment="ucid" />
+		</res>
+	</prototype>
+	
+	<!-- GM反馈 -->
+	<prototype req_name="FEEDBACK_COMMIT_BOSS_REQ" res_name="FEEDBACK_COMMIT_BOSS_RES" req_type="0x0000F013" res_type="0x8000F013" req_client_send="true" res_client_receive="true" coment="是否让提交">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"></property>
+			<property name="playername" type="String" encoding="UTF-8" comment="角色名"></property>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器名"></property>
+			<property name="viplevel" type="int" comment="vip等级"></property>
+		</req>
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="result" type="byte" comment="结果, 0-成功, 1-失败" />
+			<property name="resultMess" type="String" encoding="UTF-8" comment="是否让提交原因信息" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="FEEDBACK_HOME_PAGE_BOSS_REQ" res_name="FEEDBACK_HOME_PAGE_BOSS_RES" req_type="0x0000F014" res_type="0x8000F014" req_client_send="true" res_client_receive="true" coment="首界面">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名"></property>
+			<property name="playername" type="String" encoding="UTF-8" comment="角色名"></property>
+			<property name="viplevel" type="int" comment="vip等级"></property>
+		</req>
+		<res>
+			<property name="queueCountMess" type="String" encoding="UTF-8" comment="当前排队数量信息"></property>
+			<property name="gmServiceMess" type="String" encoding="UTF-8" comment="客服帮助提示信息" />
+			<property name="showNumLimit" type="int" comment="最大显示数量" />
+			<object-property name="feedbacks" type="NewFeedback[]">
+				<property name="id" type="long" comment="反馈唯一标识"></property>
+				<property name="playerState" type="int" comment="玩家的状态:等待回复,有新回复,评分"></property>
+				<property name="waitCount" type="int" comment="该反馈的排队位数"></property>
+				<property name="title" type="String" encoding="UTF-8" comment="标题" />
+			</object-property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="FEEDBACK_DELETE_BOSS_REQ" res_name="FEEDBACK_DELETE_BOSS_RES" req_type="0x0000F015" res_type="0x8000F015" req_client_send="true" res_client_receive="true" coment="删除反馈">
+		<req>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+		</req>
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="resultMess" type="String" encoding="UTF-8" comment="成功失败原因" />
+			<property name="result" type="byte" comment="结果, 0-成功, 1-失败" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="FEEDBACK_SCORE_BOSS_REQ" res_name="FEEDBACK_SCORE_BOSS_RES" req_type="0x0000F016" res_type="0x8000F016" req_client_send="true" res_client_receive="true" coment="评分">
+		<req>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="select" type="int" comment="评分选项"></property>
+		</req>
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="result" type="int" comment="处理：(0:成功，1:失败)"></property>
+			<property name="resultMess" type="String" encoding="UTF-8" comment="评分成功失败信息"></property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="FEEDBACK_LOOK_BOSS_REQ" res_name="FEEDBACK_LOOK_BOSS_RES" req_type="0x0000F017" res_type="0x8000F017" req_client_send="true" res_client_receive="true" coment="查看反馈">
+		<req>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+		</req>
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="resultMess" type="String" encoding="UTF-8" comment="成功失败原因" />
+			<property name="result" type="byte" comment="结果, 0-成功, 1-失败" />
+			<object-property name="talk" type="GmTalk[]">
+				<property name="id" type="long" comment="反馈唯一标识"></property>
+				<property name="name" type="String" encoding="UTF-8" comment="客服编号或者玩家角色名" />
+				<property name="sendDate" type="long" comment="发送日期"></property>
+				<property name="talkcontent" type="String" encoding="UTF-8" comment="内容" />
+			</object-property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="FEEDBACK_LOOK_SCORE_BOSS_REQ" res_name="FEEDBACK_LOOK_SCORE_BOSS_RES" req_type="0x0000F018" res_type="0x8000F018" req_client_send="true" res_client_receive="true" coment="查看评分">
+		<req>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+		</req>
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="scoreMess" type="String" encoding="UTF-8" comment="评分描述" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="PASSPORT_UPDATE_REQ2" res_name="PASSPORT_UPDATE_RES2" req_type="0x0000D018" res_type="0x8000D018" req_client_send="true" res_client_receive="true" coment="查看评分">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="名字" />
+			<property name="mt" type="String" encoding="UTF-8" comment="名字" />
+			<property name="ip" type="String" encoding="UTF-8" comment="名字" />
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果, 0-成功, 1-失败" />
+		</res>
+	</prototype>
+
+	<prototype req_name="FEEDBACK_PLAYER_TALK_BOSS_REQ" res_name="FEEDBACK_PLAYER_TALK_BOSS_RES" req_type="0x0000F019" res_type="0x8000F019" req_client_send="true" res_client_receive="true" coment="玩家说话">
+		<req>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<property name="viplevel" type="int" comment="vip等级"></property>
+			<object-property name="talk" type="GmTalk">
+				<property name="name" type="String" encoding="UTF-8" comment="客服编号或者玩家角色名" />
+				<property name="sendDate" type="long" comment="发送日期"></property>
+				<property name="talkcontent" type="String" encoding="UTF-8" comment="内容" />
+			</object-property>
+		</req>
+		<res>
+			<property name="feedbackId" type="long" comment="反馈唯一标识"></property>
+			<property name="gmtalkId" type="long" comment="谈话唯一标识"></property>
+			<property name="sendDate" type="long" comment="发送日期"></property>
+			<property name="result" type="byte" comment="结果, 0-成功, 1-失败" />
+			<property name="resultMess" type="String" encoding="UTF-8" comment="成功或失败原因"></property>
+		</res>
+	</prototype>
+	
+	<prototype res_name="FEEDBACK_GM_TALK_BOSS_RES" res_type="0x8000F020" res_client_receive="true" coment="客服说话">
+		<res>
+			<property name="id" type="long" comment="反馈唯一标识"></property>
+			<object-property name="talk" type="GmTalk">
+				<property name="id" type="long" comment="谈话唯一标识"></property>
+				<property name="name" type="String" encoding="UTF-8" comment="客服编号或者玩家角色名" />
+				<property name="sendDate" type="long" comment="发送日期"></property>
+				<property name="talkcontent" type="String" encoding="UTF-8" comment="内容" />
+			</object-property>
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_MOZUANINFO_REQ" res_name="GET_MOZUANINFO_RES" req_type="0x0000F021" res_type="0x8000F021"
+		req_client_send="true" res_client_receive="true" coment="根据传入的参数获取qq用户相关的魔钻信息">
+		<req>
+			<property name="username"  type="String" encoding="UTF-8" comment="username" />
+			<property name="clientstring"  type="String" encoding="UTF-8" comment="一个经过特殊符号隔离的字符串" />
+			<property name="channel"  type="String" encoding="UTF-8" comment="channel" />
+		</req>
+		<res>
+			<object-property name="qqUserInfo" type="QQUserInfo" comment="qq相关用户信息 目前只存了魔钻相关的信息">
+				<property name="mozuan" type="boolean" comment="是否是魔钻"></property>
+				<property name="mozuanDengji" type="int" comment="魔钻等级"></property>
+			</object-property>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述，空为成功" />
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="SEND_FUND_FOR_NINEONE_REQ" res_name="SEND_FUND_FOR_NINEONE_RES" req_type="0x0000F022" res_type="0x8000F022"
+		req_client_send="true" res_client_receive="true" coment="根据传入的参数为91用户发积金">
+		<req>
+			<property name="username"  type="String" encoding="UTF-8" comment="username" />
+			<property name="channel"  type="String" encoding="UTF-8" comment="channel" />
+			<property name="fundtype"  type="String" encoding="UTF-8" comment="积金自定义规则描述" />
+		</req>
+		<res>
+			<property name="sum" type="int" comment="积金" />
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+			<property name="description" type="String" encoding="UTF-8" comment="结果描述，空为成功" />
+		</res>
+	</prototype>
+	
+	
+	
+	
+	<prototype req_name="CHANNEL_UER_SAVING_NEW_REQ" req_type="0x0000F023" 
+			res_name="CHANNEL_UER_SAVING_NEW_RES" res_type="0x8000F023"  comment="渠道充值">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="UC的UID"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-成功, 非0-错误 "/>
+			<property name="desc" type="String" encoding="UTF-8" comment="错误描述"/>
+		</res>
+	</prototype>
+	
+	<prototype req_name="NINEONE_SAVING_NEW_REQ" req_type="0x0000F024" 
+			res_name="NINEONE_SAVING_NEW_RES" res_type="0x8000F024"  comment="91充值">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="91的用户名"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+
+	<prototype req_name="APPCHINA_SAVING_NEW_REQ" req_type="0x0000F025" 
+			res_name="APPCHINA_SAVING_NEW_RES" res_type="0x8000F025"  comment="应用汇充值">
+		<req>
+			<property name="userName" type="String" encoding="UTF-8" comment="应用汇的用户名"/>
+			<property name="goodsCount" type="int"  comment="充值卡数量"/>
+			<property name="payType" type="String"  comment="支付类别"/>
+			<property name="cardNo" type="String"  comment="充值卡号"/>
+			<property name="cardPassword" type="String"  comment="充值卡密码"/>
+			<property name="payAmount" type="int"  comment="充值金额"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="channel" type="String"  encoding="UTF-8"  comment="充值渠道"/>
+			<property name="mobileOs" type="String"   comment="手机平台"/>
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>
+		<!-- 充值 -->
+	<prototype req_name="USER_SAVING_NEW_REQ" req_type="0x0000F026" 
+			res_name="USER_SAVING_NEW_RES" res_type="0x8000F026"  
+			
+			comment="用户充值">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="账号名"/>
+			<property name="playername" type="String" encoding="UTF-8" comment="那个玩家过来的，可为空"/>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器"/>
+			<property name="channel" type="String" encoding="UTF-8" comment="充值的客户端渠道"/>
+			<property name="os" type="String" encoding="UTF-8" comment="客户端OS"/>
+			<property name="cardtype" type="String" encoding="UTF-8" comment="卡类型, 移动充值卡|联通一卡付|电信充值卡|盛大卡|征途卡|骏网一卡通|久游卡|网易卡|完美卡|搜狐卡"/>
+			<property name="cardno" type="String" encoding="UTF-8" comment="卡序列号"/>
+			<property name="cardpass" type="String" encoding="UTF-8" comment="卡密码"/>
+			<property name="mianzhi" type="int" comment="卡面值，单位：分"/>
+			<property name="goodsType" type="int" comment="预留字段， 货物，用于需要定义货物的地方"/>
+			<property name="amount" type="int" comment="预留字段， 数量，用于需要数量的地方"/>			
+			<property name="orderID" type="String" encoding="UTF-8" comment="预留字段， 用于记录第三方的订单号"/>
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="result" type="byte" comment="结果,0-成功，1-失败"/>
+			<property name="failreason" type="String" encoding="UTF-8" comment="结果描述"/>
+		</res>
+	</prototype>
+	
+	
+	<prototype req_name="ALIPAY_GET_ORDERID_NEW_REQ" res_name="ALIPAY_GET_ORDERID_NEW_RES" req_type="0x0000F027" res_type="0x8000F027"
+	coment="获得支付宝订单">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户" />
+			<property name="channel" type="String" encoding="UTF-8" comment="当前客户端渠道" />
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器" />
+			<property name="payAmount" type="long" comment="支付额度，单位：分" />
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" encoding="UTF-8" comment="订单号" />
+			<property name="orderInfo" type="String" encoding="UTF-8" comment="订单号信息加密后的" />
+			<property name="publicKey" type="String" encoding="UTF-8" comment="支付宝公钥" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="APPSTORE_RECEIPT_NEW_REQ" res_name="APPSTORE_RECEIPT_NEW_RES" req_type="0x0000F028" res_type="0x8000F028"
+		 coment="苹果渠道充值通知">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户" />
+			<property name="channel" type="String" encoding="UTF-8" comment="当前客户端渠道" />
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器" />
+			<property name="receipt" type="String" encoding="UTF-8" comment="充值信息" />
+			<property name="deviceCode" type="String" encoding="UTF-8" comment="设备号" />
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="result" type="int" comment="结果: 0-成功， 1-失败" />
+		</res>
+	</prototype>
+	
+
+	
+	
+	<prototype req_name="GET_SERVER_URL_REQ" res_name="GET_SERVER_URL_RES" req_type="0x0000F029" res_type="0x8000F029"
+		coment="获得服务器的后台地址">
+		<req>
+			<property name="servername" type="String" encoding="UTF-8" comment="服务器" />
+		</req>
+		<res>
+			<property name="url" type="String" encoding="UTF-8" comment="服务器url" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="GET_USER_LAST_SAVING_TIME_REQ" res_name="GET_USER_LAST_SAVING_TIME_RES" req_type="0x0000F030" res_type="0x8000F030"
+	 coment="获得用户最后一次充值时间">
+		<req>
+			<property name="username" type="String" encoding="UTF-8" comment="用户名" />
+		</req>
+		<res>
+			<property name="savingTime" type="long" comment="充值时间" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="JUDGE_POP_WINDOW_FOR_VIP_REQ" res_name="JUDGE_POP_WINDOW_FOR_VIP_RES" req_type="0x0000F031" res_type="0x8000F031"
+		coment="判断是否需要弹出窗口用来搜集信息">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="信息集合" />
+		</req>
+		<res>
+			<property name="windowCanPop" type="int" comment="可否弹出窗口" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="CREATE_NEW_VIPINFORECORD_REQ" res_name="CREATE_NEW_VIPINFORECORD_RES" req_type="0x0000F032" res_type="0x8000F032"
+		coment="收集vip用户的一些信息">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="信息集合" />
+		</req>
+		<res>
+			<property name="result" type="int" comment="可否弹出窗口" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="QQ_SAVING_PRO_REQ" req_type="0x0000F033" 
+			res_name="QQ_SAVING_PRO_RES" res_type="0x8000F033"  comment="QQ充值">
+		<req>
+			<property name="uid" type="String" encoding="UTF-8" comment="腾讯获取的UID"/>
+			<property name="goodcount" type="int"  comment="商品数量"/>
+			<property name="savingType" type="String"  comment="充值类别"/>
+			<property name="serverName" type="String"  encoding="UTF-8"  comment="游戏服务器名称"/>
+			<property name="userChannel" type="String"  encoding="UTF-8"  comment="渠道名称"/>
+			<property name="others" type="String[]"   comment="添加的内容，可一直添加"/>
+		</req>
+		<res>
+			<property name="orderId" type="String" comment="我们这边的订单id"/>
+			<property name="result" type="byte" comment="结果,0-成功, 1-uid不存在  2-sid不一致  3-商品数量小于1 4-订单生成失败 5-Boss响应超时"/>
+			<property name="desc" type="String" encoding="UTF-8" comment="结果,0-成功, 1-uid不存在   2-订单生成失败 3-server不存在  "/>
+		</res>
+	</prototype>	
+	
+	<prototype req_name="GET_UCVIP_INFO_REQ" res_name="GET_UCVIP_INFO_RES" req_type="0x0000F034" res_type="0x8000F034"
+		coment="收集UCVIP用户信息">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="信息集合" />
+		</req>
+		<res>
+			<property name="result" type="String[]"  encoding="UTF-8"  comment="ucvip信息集合" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="CAN_SEND_UC_VID_MAIL_REQ" res_name="CAN_SEND_UC_VID_MAIL_RES" req_type="0x0000F035" res_type="0x8000F035"
+		coment="是否给UCVIP用户发送礼包">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="信息集合" />
+		</req>
+		<res>
+			<property name="result" type="String[]"  encoding="UTF-8"  comment="ucvip信息集合" />
+		</res>
+	</prototype>
+	<prototype req_name="CREATE_UC_VID_MAIL_SEND_RECORD_REQ" res_name="CREATE_UC_VID_MAIL_SEND_RECORD_RES" req_type="0x0000F036" res_type="0x8000F036"
+		coment="创建给UCVIP用户发送礼包的记录">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="信息集合" />
+		</req>
+		<res>
+			<property name="result" type="String[]"  encoding="UTF-8"  comment="ucvip信息集合" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="MIGU_COMMUNICATE_REQ" res_name="MIGU_COMMUNICATE_RES" req_type="0x0000F037" res_type="0x8000F037"
+		coment="米谷通讯协议">
+		<req>
+			<property name="infos" type="String[]" encoding="UTF-8" comment="" />
+		</req>
+		<res>
+			<property name="result" type="String[]"  encoding="UTF-8"  comment="" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="QUERY_SAVINGAMOUNT_REQ" res_name="QUERY_SAVINGAMOUNT_RES" req_type="0x0000F038" res_type="0x8000F038"
+		coment="查询充值金额">
+		<req>
+			<property name="playerId" type="long"  comment="角色id" />
+			<property name="startTime" type="long" comment="开始时间" />
+			<property name="endTime" type="long" comment="结束时间" />
+			<property name="otherArgs" type="String[]" comment="留着扩展用" />
+		</req>
+		<res>
+			<property name="amount" type="long"  comment="充值总额" />
+			<property name="otherResults" type="String[]"  comment="留着扩展用" />
+		</res>
+	</prototype>
+	
+	<prototype req_name="MORE_ARGS_ORDER_STATUS_CHANGE_REQ" res_name="MORE_ARGS_ORDER_STATUS_CHANGE_RES" req_type="0x0000F039" res_type="0x8000F039" req_client_send="true" res_client_receive="true" coment="客户端修改订单状态">
+		<req>
+			<property name="orderId" type="String" encoding="UTF-8" comment="订单号" />
+			<property name="channel" type="String" encoding="UTF-8" comment="渠道串" />
+			<property name="status"  type="String" encoding="UTF-8" comment="此订单的状态" />
+			<property name="statusDesp" type="String" encoding="UTF-8" comment="状态说明" />
+			<property name="zoneid" type="String" encoding="UTF-8" comment="大区id" />
+			<property name="pfkey" type="String" encoding="UTF-8" comment="pfkey" />
+			<property name="pay_token" type="String" encoding="UTF-8" comment="pay_token" />
+			<property name="args" type="String[]" encoding="UTF-8" comment="额外参数" />
+		</req>
+		<res>
+			<property name="result" type="String" encoding="UTF-8" comment="结果描述" />
+		</res>
+	</prototype>
+	
+</prototypes>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persistence-units>
+
+	<serverId>100</serverId>
+	<serverName>正式发布服</serverName>
+	
+	<entity-manager id='1' super-class='com.mieshi.engineserver.jiazu.JiazuMember' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='2' super-class='com.mieshi.engineserver.jiazu.Jiazu' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='3' super-class='com.mieshi.engineserver.septstation.SeptStation' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='4' super-class='com.mieshi.engineserver.homestead.cave.Cave' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='5' super-class='com.mieshi.engineserver.homestead.faery.Faery' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='6' super-class='com.mieshi.engineserver.newtask.DeliverTask' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='7' super-class='com.mieshi.engineserver.achievement.GameDataRecord' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='8' super-class='com.mieshi.engineserver.achievement.AchievementEntity' checkIntervalInSeconds='180'></entity-manager>
+	
+	<entity-manager id='9' super-class='com.mieshi.engineserver.qiancengta.QianCengTa_Ta' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='10' super-class='com.mieshi.engineserver.sifang.info.SiFangInfo' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='11' super-class='com.mieshi.engineserver.trade.requestbuy.RequestBuy' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='12' super-class='com.mieshi.engineserver.auction.Auction' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='13' super-class='com.mieshi.engineserver.hotspot.HotspotInfo' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='14' super-class='com.mieshi.engineserver.marriage.MarriageBeq' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='15' super-class='com.mieshi.engineserver.marriage.MarriageInfo' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='16' super-class='com.mieshi.engineserver.marriage.MarriageDownCity' checkIntervalInSeconds='180'></entity-manager>
+	
+	<entity-manager id='17' super-class='com.mieshi.engineserver.unite.Unite' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='18' super-class='com.mieshi.engineserver.masterAndPrentice.MasterPrenticeInfo' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='19' super-class='com.mieshi.engineserver.society.Relation' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='20' super-class='com.mieshi.engineserver.gm.feedback.Feedback' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='21' super-class='com.mieshi.engineserver.notice.Notice' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='22' super-class='com.mieshi.engineserver.zongzu.data.ZongPai' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='23' super-class='com.mieshi.engineserver.sprite.horse.Horse' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='24' super-class='com.mieshi.engineserver.sprite.pet.Pet' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='25' super-class='com.mieshi.engineserver.billboard.special.SpecialEquipmentBillBoard' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='26' super-class='com.mieshi.engineserver.newBillboard.BillboardStatDate' checkIntervalInSeconds='180'></entity-manager>
+	
+	<entity-manager id='27' super-class='com.mieshi.engineserver.activity.fateActivity.base.FateActivity' checkIntervalInSeconds='180'>
+		<class id='28'>com.mieshi.engineserver.activity.fateActivity.BeerActivityAbroad</class>
+		<class id='29'>com.mieshi.engineserver.activity.fateActivity.BeerActivityInCountry</class>
+		<class id='30'>com.mieshi.engineserver.activity.fateActivity.FateActivityAbroad</class>
+		<class id='31'>com.mieshi.engineserver.activity.fateActivity.FateActivityInCountry</class>
+	</entity-manager>
+	
+	<entity-manager id='32' super-class='com.mieshi.engineserver.gm.feedback.GMRecord' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='33' super-class='com.mieshi.engineserver.datasource.article.data.entity.ArticleEntity' checkIntervalInSeconds='180'>
+		<class id='34'>com.mieshi.engineserver.datasource.article.data.entity.EquipmentEntity</class>
+		<class id='35'>com.mieshi.engineserver.datasource.article.data.entity.BiWuArticleEntity</class>
+		<class id='36'>com.mieshi.engineserver.datasource.article.data.entity.BottlePropsEntity</class>
+		<class id='37'>com.mieshi.engineserver.datasource.article.data.entity.ExchangeArticleEntity</class>
+		<class id='38'>com.mieshi.engineserver.datasource.article.data.entity.FateActivityPropsEntity</class>
+		<class id='39'>com.mieshi.engineserver.datasource.article.data.entity.MagicWeaponEntity</class>
+		<class id='40'>com.mieshi.engineserver.datasource.article.data.entity.PetEggPropsEntity</class>
+		<class id='41'>com.mieshi.engineserver.datasource.article.data.entity.PetPropsEntity</class>
+		<class id='42'>com.mieshi.engineserver.datasource.article.data.entity.PropsEntity</class>
+		<class id='43'>com.mieshi.engineserver.datasource.article.data.entity.Special_1EquipmentEntity</class>
+		<class id='44'>com.mieshi.engineserver.datasource.article.data.entity.Special_2EquipmentEntity</class>
+		<class id='45'>com.mieshi.engineserver.activity.explore.ExploreResourceMapEntity</class>
+		<class id='46'>com.mieshi.engineserver.sprite.pet.SingleForPetPropsEntity</class>
+		<class id='57'>com.mieshi.engineserver.datasource.article.data.entity.QiLingArticleEntity</class>
+		<class id='60'>com.mieshi.engineserver.datasource.article.data.entity.YinPiaoEntity</class>
+		<class id='69'>com.mieshi.engineserver.activity.dig.DigPropsEntity</class>
+		<class id='71'>com.mieshi.engineserver.datasource.article.data.entity.NewMagicWeaponEntity</class>
+		<class id='100'>com.mieshi.engineserver.datasource.article.data.entity.HunshiEntity</class>
+		<class id='109'>com.mieshi.engineserver.datasource.article.data.equipments.god.GodEquipmentEntity</class>
+	</entity-manager>
+	<entity-manager id='47' super-class='com.mieshi.engineserver.mail.Mail' checkIntervalInSeconds='5'></entity-manager>
+	<entity-manager id='48' super-class='com.mieshi.engineserver.activity.clifford.CliffordData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='49' super-class='com.mieshi.engineserver.activity.village.data.VillageData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='50' super-class='com.mieshi.engineserver.country.data.Country' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='51' super-class='com.mieshi.engineserver.country.data.CountryManagerData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='52' super-class='com.mieshi.engineserver.tournament.data.TournamentData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='53' super-class='com.mieshi.engineserver.tournament.data.OneTournamentData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='54' super-class='com.mieshi.engineserver.cityfight.citydata.CityData' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='55' super-class='com.mieshi.engineserver.sprite.Player' checkIntervalInSeconds='180'></entity-manager>
+
+	<entity-manager id='56' super-class='com.mieshi.engineserver.newtask.TaskEntity' checkIntervalInSeconds='180'></entity-manager>
+	
+	<entity-manager id='58' super-class='com.mieshi.engineserver.articleProtect.ArticleProtectData' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='59' super-class='com.mieshi.engineserver.buffsave.BuffSave' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='61' super-class='com.mieshi.engineserver.activity.worldBoss.WBossBean' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='62' super-class='com.mieshi.engineserver.newBillboard.BillboardInfo' checkIntervalInSeconds='30'></entity-manager>
+	<entity-manager id='72' super-class='com.mieshi.engineserver.playerAims.instance.PlayerAimsEntity' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='79' super-class='com.mieshi.engineserver.jiazu2.instance.JiazuMember2' checkIntervalInSeconds='180'></entity-manager>
+	<entity-manager id='80' super-class='com.mieshi.engineserver.jiazu2.instance.BiaoCheEntity' checkIntervalInSeconds='180'></entity-manager>
+	
+	<database name='test-pool' type='oracle'>
+		<driver>oracle.jdbc.driver.OracleDriver</driver>
+		<url>jdbc:oracle:thin:@116.213.192.216:1521:ora183</url>
+		<username>ms_release</username>
+		<password>1qazxsw2</password>
+		<maxConn>30</maxConn>
+		<timeoutSeconds>30000</timeoutSeconds>
+		<checkoutSeconds>300</checkoutSeconds>
+	</database>
+</persistence-units>

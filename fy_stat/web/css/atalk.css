@@ -1,0 +1,69 @@
+#overlay {/*该层为覆盖层*/
+      DISPLAY: none;
+      Z-INDEX: 9990; /*设置高亮层的下方*/
+      FILTER: alpha(opacity=40); /*设置成透明*/
+      LEFT: 0px; 
+      WIDTH: 100%; 
+      POSITION: absolute; 
+      TOP: 0px; 
+      HEIGHT: 100%; 
+      BACKGROUND-COLOR: #000; 
+      moz-opacity: 0.8; 
+      opacity: .80
+}
+
+#lightbox1 {/*该层为高亮显示层*/
+       DISPLAY: none;
+       Z-INDEX: 9991; /*设置该层在网页的最上端,设置足够大*/
+       BACKGROUND: #fff; /*设置背景色*/
+       LEFT: 50%; 
+       MARGIN: -220px 0px 0px -250px; 
+       BORDER: 1px #dedede solid; 
+       WIDTH: 400px;
+       POSITION: absolute; 
+       TOP: 400px; 
+       HEIGHT: 174px; 
+       TEXT-ALIGN: left
+}
+.ltitle1{ height:24px; padding:4px 10px 0 10px; background:url(../images/overtitle.gif) repeat-x;}
+.ltitle1 img{cursor:pointer;float:right;margin-top:4px}
+.lh31{float:left; font-size:14px; color:#000;text-align:center;}
+.lbody1{font-size:14px; border:1px #dedede solid; padding:5px;text-align:center;padding:10px 10px 10px 10px;}
+
+#lightbox2 {/*该层为高亮显示层*/
+       DISPLAY: none;
+       Z-INDEX: 9992; /*设置该层在网页的最上端,设置足够大*/
+       BACKGROUND: #fff; /*设置背景色*/
+       LEFT: 50%; 
+       MARGIN: -220px 0px 0px -250px; 
+       BORDER: 1px #dedede solid; 
+       WIDTH: 400px;
+       POSITION: absolute; 
+       TOP: 50%; 
+       HEIGHT: 174px; 
+       TEXT-ALIGN: left
+}
+.ltitle2{ height:24px; padding:4px 10px 0 10px; background:url(../images/overtitle.gif) repeat-x;}
+.ltitle2 img{cursor:pointer;float:right;margin-top:4px}
+.lh32{float:left; font-size:14px; color:#000;text-align:center;}
+.lbody2{font-size:14px; border:1px #dedede solid; padding:5px;text-align:center;padding:10px 10px 10px 10px;}
+
+#lightbox3 {/*该层为高亮显示层*/
+       DISPLAY: none;
+       Z-INDEX: 9993; /*设置该层在网页的最上端,设置足够大*/
+       BACKGROUND: #fff; /*设置背景色*/
+       LEFT: 50%; 
+       TOP: 1800px; 
+       MARGIN: -220px 0px 0px -250px; 
+       BORDER: 1px #dedede solid; 
+       WIDTH: 400px;
+       POSITION: absolute; 
+       HEIGHT: 174px; 
+       TEXT-ALIGN: left
+}
+.ltitle3{ height:24px; padding:4px 10px 0 10px; background:url(../images/overtitle.gif) repeat-x;}
+.ltitle3 img{cursor:pointer;float:right;margin-top:4px}
+.lh33{float:left; font-size:14px; color:#000;text-align:center;}
+.lbody3{font-size:14px; border:1px #dedede solid; padding:5px;text-align:center;padding:10px 10px 10px 10px;}
+
+

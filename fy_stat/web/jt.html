@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.bai {color: #FFFFFF}
+-->
+</style>
+<script>
+	var isZuo = true;
+	function opOrCl(){
+		if (isZuo)
+		{
+			document.getElementById("jiantou").innerHTML="&gt;<br/>&gt;<br/>&gt;";
+			eval("parent.document.getElementById('sonframeset').cols='0,10,*';");
+			isZuo = false;
+		}else
+		{
+			document.getElementById("jiantou").innerHTML="&lt;<br/>&lt;<br/>&lt;";
+			eval("parent.document.getElementById('sonframeset').cols='180,10,*';");
+			isZuo = true;
+		}
+	}
+</script>
+</head>
+<body bgcolor="#BADAFE">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+	<div align="center">
+	<div id="jiantou" style="cursor:pointer" onclick="opOrCl()" onmouseover="document.getElementById('jiantou').style.color='#000000'" onmouseout="document.getElementById('jiantou').style.color='#FFFFFF'" title="开/关" height="50" width="10" class="bai">
+	&lt;<br/>&lt;<br/>&lt;
+	</div>
+	</div>
+<p>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<handsetInfo time='Mon May 24 20:16:27 CST 2010'  ver="0.01">
+
+<comment1 name="收集玩家手机平台，参考玩家之前用的客户端，暂时配了如下jar映射，需要真机测试审核是否合理" />
+ 
+ 
+ <info jarname="n70" jar='YDJNOKIA176x208' comments= "" >
+	<device handset='NokiaN70' comments= "" />
+	<device handset='NokiaN72' comments= "" />
+	<device handset='Nokia6670' comments= "" />
+	<device handset='Nokia6630' comments= "" />
+</info>
+
+
+<info jarname="n7610" jar='Y1JNokia176x208'	comments= "无过图,一套avata,补丁在jar包,NOKIAUI，非触摸">
+	<device handset='Nokia7610/' comments= "" />
+</info>
+
+
+  
+
+<info jarname="n73" jar='YDD240x320' comments= '有过图,全avata,下载补丁，非触摸'>
+	<device handset='default' comments="没映射的机型的【默认客户端】" />
+	<device handset='Nokia7310' comments="" />	
+	<device handset='Nokia7373' comments="" />
+	<device handset='Nokia6120' comments="" />
+	<device handset='Nokia5320'  comments="" />
+			
+	<device handset='MotorolaEM35' comments="" />
+	
+	
+	
+	
+	<device handset='LG-KC550' comments="" />
+	<device handset='LG-KS360' comments="" />
+	<device handset='LG-KU990' comments="" />
+	<device handset='LGBL20' comments="" />
+	
+	<device handset='GT-S5630C' comments="" />
+	<device handset='GT-S5230C' comments="" />
+	<device handset='GIONEE-L600' comments="" />
+	<device handset='GIONEE-A15' comments="" />
+	
+	<device handset='Polaris' comments="" />	
+	<device handset='Release/20.1.011' comments="" />
+	<device handset='(20.1.062)' comments="" />
+	<device handset='(31.1.016)/31.1.016' comments="" />
+	<device handset='MAUI' comments="" />
+	<device handset='MAUI_WAP_Browser' comments="" />
+	<device handset='Series60' comments="" />
+	<device handset='TIANYU-KTOUCH/C800' comments="" />
+	<device handset='Lenovo-i909' comments="" />
+	<device handset='MotorolaW7' comments="" />
+	
+	<device handset='SAMSUNG-GT'  comments="" />
+	<device handset='Samsung/510DJH' comments="" />
+	<device handset='Samsung/SGH-i450' comments="" />
+	<device handset='Samsung/SGH-i458B' comments="" />
+	<device handset='SAMSUNG M3510C' comments="" />
+	<device handset='Samsung/510DJIC2' comments="" />
+	<device handset='SAMSUNG GT-S3600C' comments="" />
+	<device handset='SAMSUNG-SGH' comments="" />
+	
+		
+	<device handset='Nokia6500'  comments="" />
+	<device handset='Nokia5630' comments="" />
+	<device handset='Nokia5300' comments="" />
+	<device handset='Nokia5310' comments="" />
+	<device handset='Nokia5130' comments="" />
+	<device handset='Nokia6730' comments="" />
+	<device handset='Nokia2700' comments="" />
+	<device handset='NokiaE66' comments="" />
+	<device handset='Nokia5220' comments="" />
+	<device handset='NokiaX3' comments="" />
+	<device handset='Nokia5610' comments="" />
+	<device handset='Nokia6110' comments="" />
+	<device handset='Nokia6270' comments="" />
+	<device handset='Nokia6788' comments="" />
+	<device handset='Nokia3208' comments="" />
+	<device handset='Nokia6710' comments="" />
+	<device handset='NokiaN80' comments="" />
+	<device handset='Nokia N71' comments="" />
+	<device handset='Nokia6230' comments="" />
+	<device handset='Nokia6202' comments="" />
+	<device handset='NokiaC5-00' comments="" />
+	<device handset='Nokia6280' comments="" />
+	<device handset='Nokia6290' comments="" />
+	<device handset='Nokia7500' comments="" />
+	<device handset='NokiaE50' comments="" />
+	<device handset='SonyEricssonC510a' comments="" />
+	<device handset='SonyEricssonT700' comments="" />
+	
+	<device handset='SonyEricssonC902' comments="" />
+	<device handset='SonyEricssonW830' comments="" />
+	<device handset='SonyEricssonK818' comments="" />
+	<device handset='SonyEricssonW995' comments="" />
+	<device handset='SonyEricssonW705' comments="" />
+	<device handset='SonyEricssonW910' comments="" />
+	<device handset='SonyEricssonW595' comments="" />
+	<device handset='SonyEricssonW580' comments="" />
+	<device handset='SonyEricssonW850' comments="" />
+	<device handset='SonyEricssonK810' comments="" />
+	<device handset='SonyEricssonW908' comments="" />
+	<device handset='SonyEricssonS500' comments="" />	
+	<device handset='SonyEricssonK850' comments="" />
+	<device handset='SonyEricssonW888' comments="" />
+	<device handset='SonyEricssonK800' comments="" />
+	<device handset='SonyEricssonW715' comments="" />
+	<device handset='SonyEricssonK790' comments="" />
+	<device handset='SonyEricssonU100' comments="" />
+	<device handset='SonyEricssonW980' comments="" />	
+	<device handset='SonyEricssonW890' comments="" />
+	<device handset='SonyEricssonJ105' comments="" />
+	<device handset='SonyEricssonW980' comments="" />
+	<device handset='SonyEricssonW760' comments="" />
+	<device handset='SonyEricssonG502' comments="" />
+	<device handset='NokiaN73'  comments="" />
+	
+	<device handset='(20.1.001)'  comments="" />
+	<device handset='NokiaN78'  comments="" />
+	<device handset='NokiaN85'  comments="" />
+	<device handset='NokiaN86'  comments="" />
+	<device handset='NokiaN95'  comments="" />
+	<device handset='NokiaN81'  comments="" />
+	<device handset='NokiaN79'  comments="" />
+	<device handset='NokiaN82'  comments="" />
+	<device handset='Nokia5700'  comments="" />
+	<device handset='Nokia6220'  comments="" />
+	<device handset='NokiaN96'  comments="" />
+	<device handset='Nokia6122'  comments="" />
+	<device handset='Nokia5730'  comments="" />
+	<device handset='Nokia6210'  comments="" />
+	
+	<device handset='NokiaN76'  comments="" />
+	<device handset='Nokia6700'  comments="" />
+	<device handset='NokiaN93'  comments="" />
+	
+	<device handset='Mozilla' comments="" />、
+	<device handset='NokiaE52' comments= "" />
+</info>
+
+
+<info jarname="e62" jar='YDD320x240'  comments= "有过图,全avata,下载补丁，触摸" >
+	<device handset='NokiaE63' comments= "" />	
+	<device handset='NokiaE62' comments= "" />
+	<device handset='NokiaE71'  comments="" />
+	<device handset='NokiaE72'  comments="" />
+	<device handset='Nokia6720'  comments="" />
+	<device handset='NokiaE65'  comments="" />
+	<device handset='NokiaE75'  comments="" />
+	<device handset='NokiaE61' />
+</info>
+
+<info jarname="n5800" jar='YDD360x640' comments= "有过图,全avata,下载补丁,触摸" >
+	<device handset='Nokia5800' comments= "" />
+	<device handset='Nokia5802' comments= "" />
+	<device handset='NokiaN97' comments= "" />
+	<device handset='NokiaX6' comments= "" />
+	<device handset='Nokia5230' comments= "" />
+	<device handset='Nokia5530' comments= "" />
+	<device handset='Nokia5233' comments= "" />
+	<device handset='Nokia5235' comments= "" />	
+	<device handset='SonyEricssonU1i' comments= "" />		
+</info>
+
+
+<info jarname="nor176x208low" jar='Y1JNBBUF176x208' comments= "176*208低配版">
+ 
+	<device handset='SonyEricssonW610' comments= "" />
+	<device handset='SonyEricssonW550' comments= "" />
+	<device handset='Nokia3250' comments= "" />
+	<device handset='Nokia3230' comments= "" />
+
+	<device handset='SonyEricssonK750c' comments= "" />
+	<device handset='HTC'  comments= "" />
+	
+	<device handset='SonyEricssonZ558c'  comments="" />
+	
+	<device handset='SonyEricssonW800'  comments="" />
+	<device handset='SonyEricssonW700'  comments="" />
+	<device handset='SonyEricssonK530'  comments="" />
+	<device handset='SonyEricssonK610i'  comments= ""/>
+	<device handset='SonyEricssonW350i'  comments= ""/>
+	<device handset='SonyEricssonS312'  comments= ""/>		
+	<device handset='SonyEricssonT707'  comments= ""/>
+	<device handset='SonyEricssonW810'  comments="" />
+</info>
+<info jarname="nor240x320low" jar='Y1JNBUF240x320' comments= " 240*320低配版">
+
+	<device handset='Nokia7212' comments="" />
+	<device handset='Nokia3600' comments="" />
+	<device handset='Nokia3110' comments="" />
+	<device handset='Nokia3110' comments="" />
+	<device handset='Nokia7610s/' comments="" />	
+	
+	
+	<device handset='Jbed-FastBCC' comments="" />
+	<device handset='Nokia6300' comments= ""/>
+	<device handset='Nokia7210' comments="" />
+	<device handset='Nokia6303' comments="" />
+	<device handset='Nokia6208' comments="" />
+	<device handset='Nokia6600' comments="" />
+	<device handset='Nokia5611' comments="" />
+	<device handset='Nokia6288' comments= "" />
+		
+
+</info>
+
+<info jarname="nor320x240low" jar='Y1JNBUF320x240' comments= " ">
+	<device handset='320*240低配版' comments= "320*240低配版" />
+</info>
+
+
+
+</handsetInfo>
